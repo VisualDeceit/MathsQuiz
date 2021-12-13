@@ -56,15 +56,47 @@
 		1B71BA102767BE490056A2FF /* MathsQuiz */ = {
 			isa = PBXGroup;
 			children = (
-				1B71BA112767BE490056A2FF /* AppDelegate.swift */,
-				1B71BA132767BE490056A2FF /* SceneDelegate.swift */,
+				1B71BA262767BEE30056A2FF /* App */,
+				1B71BA282767BEF30056A2FF /* Core */,
+				1B71BA292767BF070056A2FF /* Flow */,
+				1B71BA2A2767BF1C0056A2FF /* Resources */,
 				1B71BA152767BE490056A2FF /* ViewController.swift */,
 				1B71BA172767BE490056A2FF /* Main.storyboard */,
-				1B71BA1A2767BE4A0056A2FF /* Assets.xcassets */,
+			);
+			path = MathsQuiz;
+			sourceTree = "<group>";
+		};
+		1B71BA262767BEE30056A2FF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1B71BA112767BE490056A2FF /* AppDelegate.swift */,
+				1B71BA132767BE490056A2FF /* SceneDelegate.swift */,
 				1B71BA1C2767BE4A0056A2FF /* LaunchScreen.storyboard */,
 				1B71BA1F2767BE4A0056A2FF /* Info.plist */,
 			);
-			path = MathsQuiz;
+			path = App;
+			sourceTree = "<group>";
+		};
+		1B71BA282767BEF30056A2FF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		1B71BA292767BF070056A2FF /* Flow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Flow;
+			sourceTree = "<group>";
+		};
+		1B71BA2A2767BF1C0056A2FF /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1B71BA1A2767BE4A0056A2FF /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,7 +248,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +303,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -288,7 +320,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DQ48S8SUS4;
-				INFOPLIST_FILE = MathsQuiz/Info.plist;
+				INFOPLIST_FILE = MathsQuiz/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -307,7 +340,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DQ48S8SUS4;
-				INFOPLIST_FILE = MathsQuiz/Info.plist;
+				INFOPLIST_FILE = MathsQuiz/App/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
