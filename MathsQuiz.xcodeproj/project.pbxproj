@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA112767BE490056A2FF /* AppDelegate.swift */; };
 		1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA132767BE490056A2FF /* SceneDelegate.swift */; };
-		1B71BA162767BE490056A2FF /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA152767BE490056A2FF /* AuthViewController.swift */; };
+		1B71BA162767BE490056A2FF /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA152767BE490056A2FF /* SignInViewController.swift */; };
 		1B71BA192767BE490056A2FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B71BA172767BE490056A2FF /* Main.storyboard */; };
 		1B71BA1B2767BE4A0056A2FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B71BA1A2767BE4A0056A2FF /* Assets.xcassets */; };
 		1B71BA1E2767BE4A0056A2FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B71BA1C2767BE4A0056A2FF /* LaunchScreen.storyboard */; };
+		1B71BA352768F5680056A2FF /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA342768F5680056A2FF /* SignInPresenter.swift */; };
 		3C0CAAE42768907E00810069 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE32768907E00810069 /* UIColor + Extensions.swift */; };
 		3C0CAAE7276890CE00810069 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE6276890CE00810069 /* Colors.swift */; };
 		3C0CAAEB2768966F00810069 /* MathsQuizStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAEA2768966F00810069 /* MathsQuizStandardTextField.swift */; };
@@ -23,11 +24,12 @@
 		1B71BA0E2767BE490056A2FF /* MathsQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathsQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B71BA112767BE490056A2FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B71BA132767BE490056A2FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1B71BA152767BE490056A2FF /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		1B71BA152767BE490056A2FF /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		1B71BA182767BE490056A2FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1B71BA1A2767BE4A0056A2FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1B71BA1D2767BE4A0056A2FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B71BA1F2767BE4A0056A2FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1B71BA342768F5680056A2FF /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		3C0CAAE32768907E00810069 /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
 		3C0CAAE6276890CE00810069 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3C0CAAEA2768966F00810069 /* MathsQuizStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathsQuizStandardTextField.swift; sourceTree = "<group>"; };
@@ -66,7 +68,7 @@
 			children = (
 				1B71BA262767BEE30056A2FF /* App */,
 				1B71BA282767BEF30056A2FF /* Core */,
-				1B71BA292767BF070056A2FF /* Flow */,
+				1B71BA292767BF070056A2FF /* Flows */,
 				1B71BA2A2767BF1C0056A2FF /* Resources */,
 				1B71BA172767BE490056A2FF /* Main.storyboard */,
 			);
@@ -91,15 +93,16 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		1B71BA292767BF070056A2FF /* Flow */ = {
+		1B71BA292767BF070056A2FF /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				1B71BA2F2768F3280056A2FF /* Auth */,
 				3C0CAAEF27689DD700810069 /* Models */,
 				3C0CAAEE27689DD000810069 /* Views */,
 				3C0CAAEC27689DA200810069 /* Controllers */,
 				3C0CAAED27689DB600810069 /* Extensions */,
 			);
-			path = Flow;
+			path = Flows;
 			sourceTree = "<group>";
 		};
 		1B71BA2A2767BF1C0056A2FF /* Resources */ = {
@@ -110,10 +113,50 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		1B71BA2F2768F3280056A2FF /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				1B71BA312768F4DF0056A2FF /* SignUp */,
+				1B71BA302768F4D00056A2FF /* SignIn */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		1B71BA302768F4D00056A2FF /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				1B71BA332768F5280056A2FF /* View */,
+				1B71BA322768F51C0056A2FF /* Presenter */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		1B71BA312768F4DF0056A2FF /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		1B71BA322768F51C0056A2FF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1B71BA342768F5680056A2FF /* SignInPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1B71BA332768F5280056A2FF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B71BA152767BE490056A2FF /* SignInViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		3C0CAAEC27689DA200810069 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1B71BA152767BE490056A2FF /* AuthViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -213,7 +256,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B71BA162767BE490056A2FF /* AuthViewController.swift in Sources */,
+				1B71BA352768F5680056A2FF /* SignInPresenter.swift in Sources */,
+				1B71BA162767BE490056A2FF /* SignInViewController.swift in Sources */,
 				3C0CAAE7276890CE00810069 /* Colors.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor + Extensions.swift in Sources */,
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
