@@ -5,7 +5,6 @@
 //  Created by Karahanyan Levon on 14.12.2021.
 //
 
-import Foundation
 import UIKit
 
 class MathsQuizStandardTextField: UITextField {
