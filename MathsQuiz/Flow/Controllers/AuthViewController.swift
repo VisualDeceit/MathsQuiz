@@ -96,8 +96,8 @@ class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        addTapGestureRecognizer()
         addTargetToButtons()
+        addTapGestureRecognizer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,7 +117,7 @@ private extension AuthViewController {
         setupScrollView()
         setupImageView()
         setupAuthForm()
-        setupSignForm()
+        setupSignUpForm()
     }
     
     func setupScrollView() {
@@ -173,7 +173,7 @@ private extension AuthViewController {
         ])
     }
     
-    func setupSignForm() {
+    func setupSignUpForm() {
         let buttonsStackView = UIStackView(arrangedSubviews: [googleButton,
                                                               appleButton,
                                                               facebookButton])
@@ -210,7 +210,6 @@ private extension AuthViewController {
 }
 
 // MARK: - Setup targets
-
 private extension AuthViewController {
     func addTargetToButtons() {
         forgotPasswordButton.addTarget(self,
