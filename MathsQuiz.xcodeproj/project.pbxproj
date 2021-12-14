@@ -18,6 +18,7 @@
 		3C0CAAE7276890CE00810069 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE6276890CE00810069 /* Colors.swift */; };
 		3C0CAAEB2768966F00810069 /* MathsQuizStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAEA2768966F00810069 /* MathsQuizStandardTextField.swift */; };
 		3C0CAAF12768A15000810069 /* MathsQuizStandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAF02768A15000810069 /* MathsQuizStandardButton.swift */; };
+		3C24A12E2768E12B00B4C721 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C24A12D2768E12B00B4C721 /* SignUpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		3C0CAAE6276890CE00810069 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3C0CAAEA2768966F00810069 /* MathsQuizStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathsQuizStandardTextField.swift; sourceTree = "<group>"; };
 		3C0CAAF02768A15000810069 /* MathsQuizStandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathsQuizStandardButton.swift; sourceTree = "<group>"; };
+		3C24A12D2768E12B00B4C721 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 				1B71BA162767BE490056A2FF /* SignInViewController.swift in Sources */,
 				1B71BA3B276908560056A2FF /* SignInAssembly.swift in Sources */,
 				3C0CAAE7276890CE00810069 /* Colors.swift in Sources */,
+				3C24A12E2768E12B00B4C721 /* SignUpViewController.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor + Extensions.swift in Sources */,
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
 				3C0CAAEB2768966F00810069 /* MathsQuizStandardTextField.swift in Sources */,

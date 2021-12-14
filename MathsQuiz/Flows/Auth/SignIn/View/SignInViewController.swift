@@ -103,8 +103,8 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        addTapGestureRecognizer()
         addTargetToButtons()
+        addTapGestureRecognizer()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -124,7 +124,7 @@ private extension SignInViewController {
         setupScrollView()
         setupImageView()
         setupAuthForm()
-        setupSignForm()
+        setupSignUpForm()
     }
     
     func setupScrollView() {
@@ -180,7 +180,7 @@ private extension SignInViewController {
         ])
     }
     
-    func setupSignForm() {
+    func setupSignUpForm() {
         let buttonsStackView = UIStackView(arrangedSubviews: [googleButton,
                                                               appleButton,
                                                               facebookButton])
