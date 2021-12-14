@@ -7,11 +7,18 @@
 
 import UIKit
 
-class AuthViewController: UIViewController {
+///View input interface
+protocol SignInViewInput: AnyObject {
+    //здесь нужно добавить функции для команд от presenter
+}
+
+class SignInViewController: UIViewController {
     
     private var isKeyboardShown = false
     
     private let scrollView = UIScrollView()
+    
+    var presenter: SignInViewOutput!
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -112,7 +119,7 @@ class AuthViewController: UIViewController {
 }
 
 //MARK: - Setup views
-private extension AuthViewController {
+private extension SignInViewController {
     func setupViews() {
         setupScrollView()
         setupImageView()
@@ -210,7 +217,7 @@ private extension AuthViewController {
 }
 
 // MARK: - Setup targets
-private extension AuthViewController {
+private extension SignInViewController {
     func addTargetToButtons() {
         forgotPasswordButton.addTarget(self,
                                        action: #selector(forgotPasswordButtonTapped),
@@ -238,32 +245,32 @@ private extension AuthViewController {
     }
     
     @objc func forgotPasswordButtonTapped() {
-        print("forgotPasswordButtonTapped")
+        self.presenter.forgotPasswordButtonTapped()
     }
     
     @objc func googleButtonTapped() {
-        print("googleButtonTapped")
+        self.presenter.googleButtonTapped()
     }
     
     @objc func appleButtonTapped() {
-        print("appleButtonTapped")
+        self.presenter.appleButtonTapped()
     }
     
     @objc func facebookButtonTapped() {
-        print("facebookButtonTapped")
+        self.presenter.facebookButtonTapped()
     }
     
     @objc func createNewAccountButtonTapped() {
-        print("createNewAccountButtonTapped")
+        self.presenter.createNewAccountButtonTapped()
     }
     
     @objc func loginButtonTapped() {
-        print("loginButtonTapped")
+        self.presenter.loginButtonTapped()
     }
 }
 
 // MARK: - Setup observers and gestures recognizer
-private extension AuthViewController {
+private extension SignInViewController {
     func addTapGestureRecognizer() {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self,
                                                          action: #selector(hideKeyboard))
@@ -316,4 +323,9 @@ private extension AuthViewController {
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
     }
+}
+
+//MARK:- Commands from presenter
+extension SignInViewController: SignInViewInput {
+    // обработка команд от presenter
 }
