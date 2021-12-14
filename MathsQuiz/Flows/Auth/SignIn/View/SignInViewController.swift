@@ -7,7 +7,7 @@
 
 import UIKit
 
-///Интерфейс передачи во View (ViewController)
+///View input interface
 protocol SignInViewInput: AnyObject {
     //здесь нужно добавить функции для команд от presenter
 }

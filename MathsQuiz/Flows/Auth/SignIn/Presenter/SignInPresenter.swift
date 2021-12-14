@@ -7,7 +7,7 @@
 
 import Foundation
 
-///Интерфейс передачи в Presenter
+///View output interface
 protocol SignInViewOutput: AnyObject {
     init(view: SignInViewInput)
     func forgotPasswordButtonTapped()
