@@ -7,11 +7,16 @@
 
 import UIKit
 
+///SignUp view input interface
+protocol SignUpViewInput: AnyObject {}
+
 class SignUpViewController: UIViewController {
     
     private var isKeyboardShown = false
     
     private let scrollView = UIScrollView()
+    
+    var presenter: SignUpViewOutput!
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -158,11 +163,11 @@ private extension SignUpViewController {
     }
     
     @objc func signUpButtonTapped() {
-        print("signUpButtonTapped")
+        self.presenter.signUpButtonTapped()
     }
     
     @objc func signInButtonTapped() {
-        print("signInButtonTapped")
+        self.presenter.signInButtonTapped()
     }
 }
 
@@ -220,4 +225,9 @@ private extension SignUpViewController {
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
     }
+}
+
+//MARK:- Commands from presenter
+extension SignUpViewController: SignUpViewInput {
+    
 }
