@@ -7,7 +7,7 @@
 
 import Foundation
 
-///View output interface
+///SignIn view output interface
 protocol SignInViewOutput: AnyObject {
     init(view: SignInViewInput)
     func forgotPasswordButtonTapped()

@@ -7,10 +7,8 @@
 
 import UIKit
 
-///View input interface
-protocol SignInViewInput: AnyObject {
-    //здесь нужно добавить функции для команд от presenter
-}
+///SignIn view input interface
+protocol SignInViewInput: AnyObject {}
 
 class SignInViewController: UIViewController {
     

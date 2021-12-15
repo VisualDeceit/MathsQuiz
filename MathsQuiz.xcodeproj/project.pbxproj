@@ -15,6 +15,8 @@
 		1B71BA352768F5680056A2FF /* SignInPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA342768F5680056A2FF /* SignInPresenter.swift */; };
 		1B71BA3B276908560056A2FF /* SignInAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA3A276908560056A2FF /* SignInAssembly.swift */; };
 		1B71BA5A27691EF70056A2FF /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA5927691EF70056A2FF /* SignUpViewController.swift */; };
+		1B71BA6327699B290056A2FF /* SignUpPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA6227699B290056A2FF /* SignUpPresenter.swift */; };
+		1B71BA6727699FD50056A2FF /* SignUpAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA6627699FD50056A2FF /* SignUpAssembly.swift */; };
 		3C0CAAE42768907E00810069 /* UIColor + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE32768907E00810069 /* UIColor + Extensions.swift */; };
 		3C0CAAE7276890CE00810069 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE6276890CE00810069 /* Colors.swift */; };
 		3C0CAAEB2768966F00810069 /* MathsQuizStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAEA2768966F00810069 /* MathsQuizStandardTextField.swift */; };
@@ -32,11 +34,12 @@
 		1B71BA342768F5680056A2FF /* SignInPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInPresenter.swift; sourceTree = "<group>"; };
 		1B71BA3A276908560056A2FF /* SignInAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAssembly.swift; sourceTree = "<group>"; };
 		1B71BA5927691EF70056A2FF /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		1B71BA6227699B290056A2FF /* SignUpPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpPresenter.swift; sourceTree = "<group>"; };
+		1B71BA6627699FD50056A2FF /* SignUpAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAssembly.swift; sourceTree = "<group>"; };
 		3C0CAAE32768907E00810069 /* UIColor + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extensions.swift"; sourceTree = "<group>"; };
 		3C0CAAE6276890CE00810069 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		3C0CAAEA2768966F00810069 /* MathsQuizStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathsQuizStandardTextField.swift; sourceTree = "<group>"; };
 		3C0CAAF02768A15000810069 /* MathsQuizStandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathsQuizStandardButton.swift; sourceTree = "<group>"; };
-		3C24A12D2768E12B00B4C721 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +58,6 @@
 			children = (
 				1B71BA102767BE490056A2FF /* MathsQuiz */,
 				1B71BA0F2767BE490056A2FF /* Products */,
-				1B71BA5627691D4C0056A2FF /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,6 +140,8 @@
 		1B71BA312768F4DF0056A2FF /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				1B71BA6127699B0F0056A2FF /* Assembly */,
+				1B71BA6027699B050056A2FF /* Presenter */,
 				1B71BA5827691EBE0056A2FF /* View */,
 			);
 			path = SignUp;
@@ -167,20 +171,28 @@
 			path = Assembly;
 			sourceTree = "<group>";
 		};
-		1B71BA5627691D4C0056A2FF /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				3C24A12D2768E12B00B4C721 /* SignUpViewController.swift */,
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		1B71BA5827691EBE0056A2FF /* View */ = {
 			isa = PBXGroup;
 			children = (
 				1B71BA5927691EF70056A2FF /* SignUpViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1B71BA6027699B050056A2FF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1B71BA6227699B290056A2FF /* SignUpPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1B71BA6127699B0F0056A2FF /* Assembly */ = {
+			isa = PBXGroup;
+			children = (
+				1B71BA6627699FD50056A2FF /* SignUpAssembly.swift */,
+			);
+			path = Assembly;
 			sourceTree = "<group>";
 		};
 		3C0CAAEC27689DA200810069 /* Controllers */ = {
@@ -293,6 +305,8 @@
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
 				3C0CAAEB2768966F00810069 /* MathsQuizStandardTextField.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MathsQuizStandardButton.swift in Sources */,
+				1B71BA6727699FD50056A2FF /* SignUpAssembly.swift in Sources */,
+				1B71BA6327699B290056A2FF /* SignUpPresenter.swift in Sources */,
 				1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
