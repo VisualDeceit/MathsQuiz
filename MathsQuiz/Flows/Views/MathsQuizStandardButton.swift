@@ -13,7 +13,7 @@ class MathsQuizStandardButton: UIButton {
                      accessibilityIdentifier: String? = nil) {
         self.init()
         self.setTitle(title, for: .normal)
-        self.backgroundColor = Colors.lavenderDark
+        self.backgroundColor = Colors.ubeDefault
         self.tintColor = Colors.whiteColor
         self.layer.cornerRadius = 22
         self.translatesAutoresizingMaskIntoConstraints = false

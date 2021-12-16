@@ -104,7 +104,6 @@
 				1B71BA2F2768F3280056A2FF /* Auth */,
 				3C0CAAEF27689DD700810069 /* Models */,
 				3C0CAAEE27689DD000810069 /* Views */,
-				3C0CAAEC27689DA200810069 /* Controllers */,
 				3C0CAAED27689DB600810069 /* Extensions */,
 			);
 			path = Flows;
@@ -193,13 +192,6 @@
 				1B71BA6627699FD50056A2FF /* SignUpAssembly.swift */,
 			);
 			path = Assembly;
-			sourceTree = "<group>";
-		};
-		3C0CAAEC27689DA200810069 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
 			sourceTree = "<group>";
 		};
 		3C0CAAED27689DB600810069 /* Extensions */ = {

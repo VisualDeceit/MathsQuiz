@@ -31,7 +31,7 @@ class SignUpViewController: UIViewController {
         label.text = "Уже есть аккаунт?"
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = Colors.lavenderLight
+        label.textColor = Colors.ubeDefault
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -40,7 +40,7 @@ class SignUpViewController: UIViewController {
     private let signInButton: UIButton = {
         let button = UIButton()
         button.setTitle("Войдите", for: .normal)
-        button.setTitleColor(Colors.lavenderDark, for: .normal)
+        button.setTitleColor(Colors.ubeLight, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = Colors.whiteColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -78,6 +78,7 @@ class SignUpViewController: UIViewController {
 //MARK: - Setup views
 private extension SignUpViewController {
     func setupViews() {
+        view.backgroundColor = Colors.whiteColor
         setupScrollView()
         setupImageView()
         setupSignUpForm()
