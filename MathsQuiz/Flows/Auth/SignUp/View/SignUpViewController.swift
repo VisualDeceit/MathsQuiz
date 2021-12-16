@@ -18,12 +18,25 @@ class SignUpViewController: UIViewController {
     
     var presenter: SignUpViewOutput!
     
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "dog1")
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+    private let newAccountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Новая учетная запись"
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let createNewAccountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Cоздайте учетную запись, чтобы вы могли использовать Maths Quiz"
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.textColor = Colors.mqGray
+        label.font = UIFont.systemFont(ofSize: 14)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
     }()
     
     private let alreadyExistLabel: UILabel = {
@@ -31,7 +44,7 @@ class SignUpViewController: UIViewController {
         label.text = "Уже есть аккаунт?"
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = Colors.ubeDefault
+        label.textColor = Colors.mqGray
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -40,21 +53,27 @@ class SignUpViewController: UIViewController {
     private let signInButton: UIButton = {
         let button = UIButton()
         button.setTitle("Войдите", for: .normal)
-        button.setTitleColor(Colors.ubeLight, for: .normal)
+        button.setTitleColor(Colors.burntSienna, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = Colors.whiteColor
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    private let nameTextField = MathsQuizStandardTextField(placeholder: "Имя и фамилия")
-    private let emailTextField = MathsQuizStandardTextField(placeholder: "Email")
+    private let nameTextField = MathsQuizStandardTextField(placeholder: "Имя и фамилия",
+                                                           leftImageName: "Monochrome-1",
+                                                           autocorrectionType: .no)
+    private let emailTextField = MathsQuizStandardTextField(placeholder: "Email",
+                                                            leftImageName: "Outline",
+                                                            autocorrectionType: .no)
     private let passwordTextField = MathsQuizStandardTextField(placeholder: "Пароль",
-                                                      isSecured: true,
-                                                      autocorrectionType: .no)
+                                                               leftImageName: "Monochrome",
+                                                               isSecured: true,
+                                                               autocorrectionType: .no)
     private let confirmPasswordTextField = MathsQuizStandardTextField(placeholder: "Подтверждение пароля",
-                                                             isSecured: true,
-                                                             autocorrectionType: .no)
+                                                                      leftImageName: "Monochrome",
+                                                                      isSecured: true,
+                                                                      autocorrectionType: .no)
     private let signUpButton = MathsQuizStandardButton(title: "Зарегистрироваться")
     
     override func viewDidLoad() {
@@ -80,7 +99,7 @@ private extension SignUpViewController {
     func setupViews() {
         view.backgroundColor = Colors.whiteColor
         setupScrollView()
-        setupImageView()
+        setupTitleLabels()
         setupSignUpForm()
         setupSignInForm()
     }
@@ -98,14 +117,18 @@ private extension SignUpViewController {
         ])
     }
     
-    func setupImageView() {
-        scrollView.addSubview(imageView)
+    func setupTitleLabels() {
+        scrollView.addSubview(newAccountLabel)
+        scrollView.addSubview(createNewAccountLabel)
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4)
+            newAccountLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 48),
+            newAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            newAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            
+            createNewAccountLabel.topAnchor.constraint(equalTo: newAccountLabel.bottomAnchor, constant: 7),
+            createNewAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 51),
+            createNewAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -51)
         ])
     }
     
@@ -115,7 +138,7 @@ private extension SignUpViewController {
                                                        passwordTextField,
                                                        confirmPasswordTextField])
         stackView.axis = .vertical
-        stackView.spacing = 8
+        stackView.spacing = 16
         stackView.distribution = .fillEqually
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -125,11 +148,11 @@ private extension SignUpViewController {
         NSLayoutConstraint.activate([
             nameTextField.heightAnchor.constraint(equalToConstant: 44),
             
-            stackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 26),
+            stackView.topAnchor.constraint(equalTo: createNewAccountLabel.bottomAnchor, constant: 24),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
             stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
             
-            signUpButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 43),
+            signUpButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 24),
             signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 54),
             signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -54)
         ])
@@ -145,7 +168,7 @@ private extension SignUpViewController {
         scrollView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: signUpButton.bottomAnchor, constant: 42),
+            stackView.topAnchor.constraint(equalTo: signUpButton.bottomAnchor, constant: 24),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
         ])

@@ -51,9 +51,8 @@ class MathsQuizStandardTextField: UITextField {
     }
     
     func addLabel(with text: String) {
-        
         label.text = text
-        label.font = UIFont.systemFont(ofSize: 9)
+        label.font = UIFont.systemFont(ofSize: 11)
         label.textColor = Colors.mqGray
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
@@ -86,12 +85,26 @@ class MathsQuizStandardTextField: UITextField {
         }
     }
     
+    @objc func textfieldeditingDidBegin() {
+        UIView.animate(withDuration: 0.2) {
+            self.label.transform = CGAffineTransform(translationX: 0, y: -10)
+        }
+    }
+    
+    @objc func textfielDidEndEditing() {
+        if self.text == "" {
+            UIView.animate(withDuration: 1) {
+                self.label.transform = .identity
+            }
+        }
+    }
+    
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: UIEdgeInsets(top: 10, left: 40, bottom: 0, right: 20))
+        return bounds.inset(by: UIEdgeInsets(top: 10, left: 40, bottom: 0, right: 30))
     }
 
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: UIEdgeInsets(top: 10, left: 40, bottom: 0, right: 20))
+        return bounds.inset(by: UIEdgeInsets(top: 10, left: 40, bottom: 0, right: 30))
     }
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
@@ -105,19 +118,5 @@ class MathsQuizStandardTextField: UITextField {
     func addTargets() {
         self.addTarget(self, action: #selector(textfieldeditingDidBegin), for: .editingDidBegin)
         self.addTarget(self, action: #selector(textfielDidEndEditing), for: .editingDidEnd)
-    }
-    
-    @objc func textfieldeditingDidBegin() {
-        UIView.animate(withDuration: 0.2) {
-            self.label.transform = CGAffineTransform(translationX: 0, y: -10)
-        }
-    }
-    
-    @objc func textfielDidEndEditing() {
-        if self.text == "" {
-            UIView.animate(withDuration: 1) {
-                self.label.transform = .identity
-            }
-        }
     }
 }
