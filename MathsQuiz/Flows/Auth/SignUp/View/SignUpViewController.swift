@@ -52,7 +52,7 @@ class SignUpViewController: UIViewController {
     
     private let signInButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Войдите", for: .normal)
+        button.setTitle("Войти", for: .normal)
         button.setTitleColor(Colors.burntSienna, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = Colors.whiteColor
@@ -74,7 +74,7 @@ class SignUpViewController: UIViewController {
                                                                       leftImageName: "Monochrome",
                                                                       isSecured: true,
                                                                       autocorrectionType: .no)
-    private let signUpButton = MathsQuizStandardButton(title: "Зарегистрироваться")
+    private let signUpButton = MathsQuizStandardButton(title: "Создать")
     
     override func viewDidLoad() {
         super.viewDidLoad()
