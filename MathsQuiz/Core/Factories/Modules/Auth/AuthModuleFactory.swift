@@ -9,4 +9,5 @@ import UIKit
 
 protocol AuthModuleFactory {
     func makeLoginModule() -> LoginViewInput & Presentable
+    func makeSignUpModule() -> SignUpViewInput & Presentable
 }

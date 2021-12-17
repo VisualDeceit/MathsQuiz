@@ -7,16 +7,12 @@
 
 import UIKit
 
-///SignUp view input interface
-protocol SignUpViewInput: AnyObject {}
+class SignUpViewController: UIViewController, SignUpViewInput {
 
-class SignUpViewController: UIViewController {
-    
     private var isKeyboardShown = false
-    
     private let scrollView = UIScrollView()
     
-    var presenter: SignUpViewOutput!
+    var presenter: (SignUpPresenterOutput & SignUpViewOutput)?
     
     private let newAccountLabel: UILabel = {
         let label = UILabel()
@@ -33,7 +29,7 @@ class SignUpViewController: UIViewController {
         label.text = "Cоздайте учетную запись, чтобы вы могли использовать Maths Quiz"
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = Colors.mqGray
+        label.textColor = MQColor.gray
         label.font = UIFont.systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -44,7 +40,7 @@ class SignUpViewController: UIViewController {
         label.text = "Уже есть аккаунт?"
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = Colors.mqGray
+        label.textColor = MQColor.gray
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -53,28 +49,28 @@ class SignUpViewController: UIViewController {
     private let signInButton: UIButton = {
         let button = UIButton()
         button.setTitle("Войти", for: .normal)
-        button.setTitleColor(Colors.burntSienna, for: .normal)
+        button.setTitleColor(MQColor.burntSienna, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        button.backgroundColor = Colors.whiteColor
+        button.backgroundColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
-    private let nameTextField = MathsQuizStandardTextField(placeholder: "Имя и фамилия",
+    private let nameTextField = MQStandardTextField(placeholder: "Имя и фамилия",
                                                            leftImageName: "Monochrome-1",
                                                            autocorrectionType: .no)
-    private let emailTextField = MathsQuizStandardTextField(placeholder: "Email",
+    private let emailTextField = MQStandardTextField(placeholder: "Email",
                                                             leftImageName: "Outline",
                                                             autocorrectionType: .no)
-    private let passwordTextField = MathsQuizStandardTextField(placeholder: "Пароль",
+    private let passwordTextField = MQStandardTextField(placeholder: "Пароль",
                                                                leftImageName: "Monochrome",
                                                                isSecured: true,
                                                                autocorrectionType: .no)
-    private let confirmPasswordTextField = MathsQuizStandardTextField(placeholder: "Подтверждение пароля",
+    private let confirmPasswordTextField = MQStandardTextField(placeholder: "Подтверждение пароля",
                                                                       leftImageName: "Monochrome",
                                                                       isSecured: true,
                                                                       autocorrectionType: .no)
-    private let signUpButton = MathsQuizStandardButton(title: "Создать")
+    private let signUpButton = MQStandardButton(title: "Создать")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -97,7 +93,7 @@ class SignUpViewController: UIViewController {
 //MARK: - Setup views
 private extension SignUpViewController {
     func setupViews() {
-        view.backgroundColor = Colors.whiteColor
+        view.backgroundColor = .white
         setupScrollView()
         setupTitleLabels()
         setupSignUpForm()
@@ -187,11 +183,11 @@ private extension SignUpViewController {
     }
     
     @objc func signUpButtonTapped() {
-        self.presenter.signUpButtonTapped()
+        presenter?.signUpButtonTapped()
     }
     
     @objc func signInButtonTapped() {
-        self.presenter.signInButtonTapped()
+        presenter?.signInButtonTapped()
     }
 }
 
@@ -249,9 +245,4 @@ private extension SignUpViewController {
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
     }
-}
-
-//MARK:- Commands from presenter
-extension SignUpViewController: SignUpViewInput {
-    
 }

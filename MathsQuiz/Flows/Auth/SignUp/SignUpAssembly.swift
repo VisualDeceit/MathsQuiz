@@ -7,8 +7,8 @@
 
 import UIKit
 
-enum SignUpAssembly {
-    static func build() -> UIViewController {
+final class SignUpAssembly {
+    static func build() -> SignUpViewInput & Presentable {
         let view = SignUpViewController()
         let presenter = SignUpPresenter(view: view)
         view.presenter = presenter

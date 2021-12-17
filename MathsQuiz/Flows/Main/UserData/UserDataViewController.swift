@@ -42,7 +42,7 @@ class UserDataViewController: UIViewController {
 //MARK: - Setup views
 private extension UserDataViewController {
     func setupViews() {
-        view.backgroundColor = Colors.whiteColor
+        view.backgroundColor = .white
         
         setupScrollView()
         setupUserDataForm()

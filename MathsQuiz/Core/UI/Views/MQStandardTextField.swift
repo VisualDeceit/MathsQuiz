@@ -25,7 +25,7 @@ class MQStandardTextField: UITextField {
         self.accessibilityIdentifier = accessibilityIdentifier
         self.isSecureTextEntry = isSecured
         self.layer.cornerRadius = 12
-        self.backgroundColor = UIColor.ubeLight
+        self.backgroundColor = MQColor.ubeLight
         self.textColor = .black
         
         self.isAnimatedForm = isAnimatedForm
@@ -62,7 +62,7 @@ class MQStandardTextField: UITextField {
     func addLabel(with text: String) {
         label.text = text
         label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = UIColor.mqGray
+        label.textColor = MQColor.gray
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         
@@ -83,7 +83,7 @@ class MQStandardTextField: UITextField {
         self.rightViewMode = .always
         let button = UIButton()
         button.setImage(UIImage(systemName: "eye"), for: .normal)
-        button.tintColor = UIColor.mqGray
+        button.tintColor = MQColor.gray
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
         button.addTarget(self, action: #selector(securedButtonTapped), for: .touchUpInside)
