@@ -41,6 +41,7 @@
 		3CD20F0B276CCCB7009AD650 /* ConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F0A276CCCB7009AD650 /* ConfigCell.swift */; };
 		3CD20F0E276CCD0F009AD650 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F0D276CCD0F009AD650 /* MainCollectionViewCell.swift */; };
 		3CD20F10276CD77E009AD650 /* CollectionCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F0F276CD77E009AD650 /* CollectionCellSize.swift */; };
+		3CD20F12276CDBE7009AD650 /* MainCollectionViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F11276CDBE7009AD650 /* MainCollectionViewData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		3CD20F0A276CCCB7009AD650 /* ConfigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigCell.swift; sourceTree = "<group>"; };
 		3CD20F0D276CCD0F009AD650 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		3CD20F0F276CD77E009AD650 /* CollectionCellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellSize.swift; sourceTree = "<group>"; };
+		3CD20F11276CDBE7009AD650 /* MainCollectionViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +317,7 @@
 			children = (
 				3C0CAAE6276890CE00810069 /* Colors.swift */,
 				3CD20F0F276CD77E009AD650 /* CollectionCellSize.swift */,
+				3CD20F11276CDBE7009AD650 /* MainCollectionViewData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				3C0CAAE7276890CE00810069 /* Colors.swift in Sources */,
 				1B7C4736276B42E700BFD277 /* Coordinator.swift in Sources */,
 				3CD20F08276CCC10009AD650 /* MainViewController.swift in Sources */,
+				3CD20F12276CDBE7009AD650 /* MainCollectionViewData.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor + Extensions.swift in Sources */,
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
 				1B7C4778276C42C600BFD277 /* CoordinatorFactory.swift in Sources */,

@@ -52,14 +52,15 @@ private extension MainViewController {
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        10
+        MainCollectionViewData.data.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.reuseId,
                                                       for: indexPath)
         guard let mainCell = cell as? MainCollectionViewCell else { return cell }
-        mainCell.configCell(with: "")
+        let data = MainCollectionViewData.data[indexPath.row]
+        mainCell.configCell(with: data)
         
         return mainCell
     }
