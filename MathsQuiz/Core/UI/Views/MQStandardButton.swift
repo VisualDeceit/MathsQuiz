@@ -17,7 +17,8 @@ class MQStandardButton: UIButton {
         self.tintColor = MQColor.whiteColor
         self.layer.cornerRadius = 22
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalToConstant: 44).isActive = true    }
+        self.heightAnchor.constraint(equalToConstant: 44).isActive = true
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
