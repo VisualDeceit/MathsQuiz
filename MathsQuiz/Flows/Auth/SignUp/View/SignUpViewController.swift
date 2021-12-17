@@ -54,6 +54,7 @@ class SignUpViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Войти", for: .normal)
         button.setTitleColor(Colors.burntSienna, for: .normal)
+        button.setTitleColor(Colors.ubeDefault, for: .highlighted)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = Colors.whiteColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -61,17 +62,17 @@ class SignUpViewController: UIViewController {
     }()
     
     private let nameTextField = MathsQuizStandardTextField(placeholder: "Имя и фамилия",
-                                                           leftImageName: "Monochrome-1",
+                                                           leftImageName: "person",
                                                            autocorrectionType: .no)
     private let emailTextField = MathsQuizStandardTextField(placeholder: "Email",
-                                                            leftImageName: "Outline",
+                                                            leftImageName: "mail",
                                                             autocorrectionType: .no)
     private let passwordTextField = MathsQuizStandardTextField(placeholder: "Пароль",
-                                                               leftImageName: "Monochrome",
+                                                               leftImageName: "block",
                                                                isSecured: true,
                                                                autocorrectionType: .no)
     private let confirmPasswordTextField = MathsQuizStandardTextField(placeholder: "Подтверждение пароля",
-                                                                      leftImageName: "Monochrome",
+                                                                      leftImageName: "block",
                                                                       isSecured: true,
                                                                       autocorrectionType: .no)
     private let signUpButton = MathsQuizStandardButton(title: "Создать")
@@ -187,11 +188,11 @@ private extension SignUpViewController {
     }
     
     @objc func signUpButtonTapped() {
-        self.presenter.signUpButtonTapped()
+//        self.presenter.signUpButtonTapped()
     }
     
     @objc func signInButtonTapped() {
-        self.presenter.signInButtonTapped()
+//        self.presenter.signInButtonTapped()
     }
 }
 
