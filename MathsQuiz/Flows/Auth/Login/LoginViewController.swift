@@ -27,7 +27,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
         label.text = "или\nавторизироваться с помощью"
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = Colors.lavenderLight
+        label.textColor = Colors.mqGray
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
     private let noAccountYetLabel: UILabel = {
         let label = UILabel()
         label.text = "Еще нет аккаунта?"
-        label.textColor = Colors.lavenderLight
+        label.textColor = Colors.mqGray
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -45,7 +45,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
     private let forgotPasswordButton: UIButton = {
         let button = UIButton()
         button.setTitle("Забыли пароль?", for: .normal)
-        button.setTitleColor(Colors.lavenderDark, for: .normal)
+        button.setTitleColor(Colors.burntSienna, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -81,7 +81,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
     private let createNewAccountButton: UIButton = {
         let button = UIButton()
         button.setTitle("Создайте новый", for: .normal)
-        button.setTitleColor(Colors.lavenderDark, for: .normal)
+        button.setTitleColor(Colors.burntSienna, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = Colors.whiteColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -89,8 +89,11 @@ class LoginViewController: UIViewController,  LoginViewInput {
     }()
 
     private let loginButton = MathsQuizStandardButton(title: "Войти")
-    private let emailTextField = MathsQuizStandardTextField(placeholder: "Email")
+    private let emailTextField = MathsQuizStandardTextField(placeholder: "Email",
+                                                            leftImageName: "Outline",
+                                                            autocorrectionType: .no)
     private let passwordTextField = MathsQuizStandardTextField(placeholder: "Пароль",
+                                                               leftImageName: "Monochrome",
                                                                isSecured: true,
                                                                autocorrectionType: .no)
     
@@ -115,6 +118,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
 //MARK: - Setup views
 private extension LoginViewController {
     func setupViews() {
+        view.backgroundColor = Colors.whiteColor
         setupScrollView()
         setupImageView()
         setupAuthForm()
