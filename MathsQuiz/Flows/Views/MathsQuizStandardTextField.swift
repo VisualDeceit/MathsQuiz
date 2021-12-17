@@ -10,11 +10,13 @@ import UIKit
 class MathsQuizStandardTextField: UITextField {
     
     private var isTextSecured = true
+    private var isAnimatedForm = true
     
     lazy var label = UILabel()
     
     convenience init(placeholder: String,
                      leftImageName: String? = nil,
+                     isAnimatedForm: Bool = true,
                      isSecured: Bool = false,
                      accessibilityIdentifier: String? = nil,
                      autocorrectionType: UITextAutocorrectionType? = nil) {
@@ -23,6 +25,8 @@ class MathsQuizStandardTextField: UITextField {
         self.isSecureTextEntry = isSecured
         self.layer.cornerRadius = 12
         self.backgroundColor = Colors.ubeLight
+        
+        self.isAnimatedForm = isAnimatedForm
         
         if let autocorrectionType = autocorrectionType {
             self.autocorrectionType = autocorrectionType
@@ -37,7 +41,10 @@ class MathsQuizStandardTextField: UITextField {
         if isSecured {
             addSecuredButton()
         }
-        addTargets()
+        
+        if isAnimatedForm {
+            addTargets()
+        }
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -57,10 +64,17 @@ class MathsQuizStandardTextField: UITextField {
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         
-        NSLayoutConstraint.activate([
-            label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40)
-        ])
+        if isAnimatedForm {
+            NSLayoutConstraint.activate([
+                label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                label.topAnchor.constraint(equalTo: self.topAnchor, constant: 3),
+                label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
+            ])
+        }
     }
     
     func addSecuredButton() {
@@ -100,11 +114,19 @@ class MathsQuizStandardTextField: UITextField {
     }
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: UIEdgeInsets(top: 10, left: 40, bottom: 0, right: 30))
+        if isAnimatedForm {
+            return bounds.inset(by: UIEdgeInsets(top: 10, left: 40, bottom: 0, right: 30))
+        } else {
+            return bounds.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 30))
+        }
     }
 
     override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return bounds.inset(by: UIEdgeInsets(top: 10, left: 40, bottom: 0, right: 30))
+        if isAnimatedForm {
+            return bounds.inset(by: UIEdgeInsets(top: 10, left: 40, bottom: 0, right: 30))
+        } else {
+            return bounds.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 30))
+        }
     }
     
     override func leftViewRect(forBounds bounds: CGRect) -> CGRect {
