@@ -37,6 +37,10 @@
 		3C0CAAF12768A15000810069 /* MathsQuizStandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAF02768A15000810069 /* MathsQuizStandardButton.swift */; };
 		3CD20F01276C91BB009AD650 /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F00276C91BB009AD650 /* UserAccountViewController.swift */; };
 		3CD20F02276CA695009AD650 /* UserDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20EFE276B925C009AD650 /* UserDataViewController.swift */; };
+		3CD20F08276CCC10009AD650 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F07276CCC10009AD650 /* MainViewController.swift */; };
+		3CD20F0B276CCCB7009AD650 /* ConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F0A276CCCB7009AD650 /* ConfigCell.swift */; };
+		3CD20F0E276CCD0F009AD650 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F0D276CCD0F009AD650 /* MainCollectionViewCell.swift */; };
+		3CD20F10276CD77E009AD650 /* CollectionCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F0F276CD77E009AD650 /* CollectionCellSize.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +76,10 @@
 		3C0CAAF02768A15000810069 /* MathsQuizStandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MathsQuizStandardButton.swift; sourceTree = "<group>"; };
 		3CD20EFE276B925C009AD650 /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
 		3CD20F00276C91BB009AD650 /* UserAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
+		3CD20F07276CCC10009AD650 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		3CD20F0A276CCCB7009AD650 /* ConfigCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigCell.swift; sourceTree = "<group>"; };
+		3CD20F0D276CCD0F009AD650 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
+		3CD20F0F276CD77E009AD650 /* CollectionCellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellSize.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,8 +151,10 @@
 				3C0CAAEF27689DD700810069 /* Models */,
 				3C0CAAEE27689DD000810069 /* Views */,
 				3C0CAAED27689DB600810069 /* Extensions */,
+				3CD20F09276CCC8B009AD650 /* Protocols */,
 				3CD20EFE276B925C009AD650 /* UserDataViewController.swift */,
 				3CD20F00276C91BB009AD650 /* UserAccountViewController.swift */,
+				3CD20F07276CCC10009AD650 /* MainViewController.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -293,6 +303,7 @@
 		3C0CAAEE27689DD000810069 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3CD20F0C276CCCEC009AD650 /* Cells */,
 				3C0CAAEA2768966F00810069 /* MathsQuizStandardTextField.swift */,
 				3C0CAAF02768A15000810069 /* MathsQuizStandardButton.swift */,
 			);
@@ -303,8 +314,25 @@
 			isa = PBXGroup;
 			children = (
 				3C0CAAE6276890CE00810069 /* Colors.swift */,
+				3CD20F0F276CD77E009AD650 /* CollectionCellSize.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3CD20F09276CCC8B009AD650 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3CD20F0A276CCCB7009AD650 /* ConfigCell.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		3CD20F0C276CCCEC009AD650 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3CD20F0D276CCD0F009AD650 /* MainCollectionViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,8 +415,10 @@
 				1B7C4767276B8B4600BFD277 /* AuthCoordinator.swift in Sources */,
 				1B7C4783276C463B00BFD277 /* AuthModuleFactory.swift in Sources */,
 				1B71BA3B276908560056A2FF /* LoginAssembly.swift in Sources */,
+				3CD20F0E276CCD0F009AD650 /* MainCollectionViewCell.swift in Sources */,
 				3C0CAAE7276890CE00810069 /* Colors.swift in Sources */,
 				1B7C4736276B42E700BFD277 /* Coordinator.swift in Sources */,
+				3CD20F08276CCC10009AD650 /* MainViewController.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor + Extensions.swift in Sources */,
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
 				1B7C4778276C42C600BFD277 /* CoordinatorFactory.swift in Sources */,
@@ -400,8 +430,10 @@
 				3C0CAAF12768A15000810069 /* MathsQuizStandardButton.swift in Sources */,
 				1B7C4751276B5FC200BFD277 /* AuthCoordinatorOutput.swift in Sources */,
 				1B71BA6727699FD50056A2FF /* SignUpAssembly.swift in Sources */,
+				3CD20F10276CD77E009AD650 /* CollectionCellSize.swift in Sources */,
 				1B71BA6327699B290056A2FF /* SignUpPresenter.swift in Sources */,
 				1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */,
+				3CD20F0B276CCCB7009AD650 /* ConfigCell.swift in Sources */,
 				1B7C4792276C663C00BFD277 /* CoordinatorFactoryImp.swift in Sources */,
 				3CD20F01276C91BB009AD650 /* UserAccountViewController.swift in Sources */,
 			);
