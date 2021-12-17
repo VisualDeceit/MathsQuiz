@@ -46,6 +46,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
         let button = UIButton()
         button.setTitle("Забыли пароль?", for: .normal)
         button.setTitleColor(Colors.burntSienna, for: .normal)
+        button.setTitleColor(Colors.ubeDefault, for: .highlighted)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -82,6 +83,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
         let button = UIButton()
         button.setTitle("Создайте новый", for: .normal)
         button.setTitleColor(Colors.burntSienna, for: .normal)
+        button.setTitleColor(Colors.ubeDefault, for: .highlighted)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = Colors.whiteColor
         button.translatesAutoresizingMaskIntoConstraints = false

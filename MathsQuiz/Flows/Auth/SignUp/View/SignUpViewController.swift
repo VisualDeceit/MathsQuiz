@@ -54,6 +54,7 @@ class SignUpViewController: UIViewController {
         let button = UIButton()
         button.setTitle("Войти", for: .normal)
         button.setTitleColor(Colors.burntSienna, for: .normal)
+        button.setTitleColor(Colors.ubeDefault, for: .highlighted)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = Colors.whiteColor
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -187,11 +188,11 @@ private extension SignUpViewController {
     }
     
     @objc func signUpButtonTapped() {
-        self.presenter.signUpButtonTapped()
+//        self.presenter.signUpButtonTapped()
     }
     
     @objc func signInButtonTapped() {
-        self.presenter.signInButtonTapped()
+//        self.presenter.signInButtonTapped()
     }
 }
 
