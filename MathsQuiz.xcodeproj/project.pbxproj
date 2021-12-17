@@ -71,6 +71,7 @@
 		3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardTextField.swift; sourceTree = "<group>"; };
 		3C0CAAF02768A15000810069 /* MQStandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardButton.swift; sourceTree = "<group>"; };
 		3CD20EFE276B925C009AD650 /* UserDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataViewController.swift; sourceTree = "<group>"; };
+		3CD20F00276C91BB009AD650 /* UserAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,6 +379,7 @@
 				1B71BA5A27691EF70056A2FF /* SignUpViewController.swift in Sources */,
 				1B7C4740276B58B600BFD277 /* Presentable.swift in Sources */,
 				1B71BA352768F5680056A2FF /* LoginPresenter.swift in Sources */,
+				3CD20F02276CA695009AD650 /* UserDataViewController.swift in Sources */,
 				1B7C4731276B42D100BFD277 /* AppCoordinator.swift in Sources */,
 				1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */,
 				1B7C4772276B8D2200BFD277 /* Constants.swift in Sources */,
@@ -402,6 +404,7 @@
 				1B71BA6327699B290056A2FF /* SignUpPresenter.swift in Sources */,
 				1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */,
 				1B7C4792276C663C00BFD277 /* CoordinatorFactoryImp.swift in Sources */,
+				3CD20F01276C91BB009AD650 /* UserAccountViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -50,6 +50,7 @@ class SignUpViewController: UIViewController, SignUpViewInput {
         let button = UIButton()
         button.setTitle("Войти", for: .normal)
         button.setTitleColor(MQColor.burntSienna, for: .normal)
+        button.setTitleColor(MQColor.ubeDefault, for: .highlighted)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -57,17 +58,17 @@ class SignUpViewController: UIViewController, SignUpViewInput {
     }()
     
     private let nameTextField = MQStandardTextField(placeholder: "Имя и фамилия",
-                                                           leftImageName: "Monochrome-1",
+                                                           leftImageName: "person",
                                                            autocorrectionType: .no)
     private let emailTextField = MQStandardTextField(placeholder: "Email",
-                                                            leftImageName: "Outline",
+                                                            leftImageName: "mail",
                                                             autocorrectionType: .no)
     private let passwordTextField = MQStandardTextField(placeholder: "Пароль",
-                                                               leftImageName: "Monochrome",
+                                                               leftImageName: "block",
                                                                isSecured: true,
                                                                autocorrectionType: .no)
     private let confirmPasswordTextField = MQStandardTextField(placeholder: "Подтверждение пароля",
-                                                                      leftImageName: "Monochrome",
+                                                                      leftImageName: "block",
                                                                       isSecured: true,
                                                                       autocorrectionType: .no)
     private let signUpButton = MQStandardButton(title: "Создать")

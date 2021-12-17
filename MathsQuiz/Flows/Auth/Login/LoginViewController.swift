@@ -46,6 +46,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
         let button = UIButton()
         button.setTitle("Забыли пароль?", for: .normal)
         button.setTitleColor(MQColor.burntSienna, for: .normal)
+        button.setTitleColor(MQColor.ubeDefault, for: .highlighted)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -82,6 +83,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
         let button = UIButton()
         button.setTitle("Создайте новый", for: .normal)
         button.setTitleColor(MQColor.burntSienna, for: .normal)
+        button.setTitleColor(MQColor.ubeDefault, for: .highlighted)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         button.backgroundColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -90,10 +92,10 @@ class LoginViewController: UIViewController,  LoginViewInput {
 
     private let loginButton = MQStandardButton(title: "Войти")
     private let emailTextField = MQStandardTextField(placeholder: "Email",
-                                                            leftImageName: "Outline",
+                                                            leftImageName: "mail",
                                                             autocorrectionType: .no)
     private let passwordTextField = MQStandardTextField(placeholder: "Пароль",
-                                                               leftImageName: "Monochrome",
+                                                               leftImageName: "block",
                                                                isSecured: true,
                                                                autocorrectionType: .no)
     
