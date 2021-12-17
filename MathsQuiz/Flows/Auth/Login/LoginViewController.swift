@@ -7,16 +7,12 @@
 
 import UIKit
 
-///SignIn view input interface
-protocol SignInViewInput: AnyObject {}
-
-class SignInViewController: UIViewController {
+class LoginViewController: UIViewController,  LoginViewInput {
     
     private var isKeyboardShown = false
-    
     private let scrollView = UIScrollView()
     
-    var presenter: SignInViewOutput!
+    var presenter: (LoginPresenterOutput & LoginViewOutput)?
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -120,7 +116,7 @@ class SignInViewController: UIViewController {
 }
 
 //MARK: - Setup views
-private extension SignInViewController {
+private extension LoginViewController {
     func setupViews() {
         view.backgroundColor = Colors.whiteColor
         setupScrollView()
@@ -219,7 +215,7 @@ private extension SignInViewController {
 }
 
 // MARK: - Setup targets
-private extension SignInViewController {
+private extension LoginViewController {
     func addTargetToButtons() {
         forgotPasswordButton.addTarget(self,
                                        action: #selector(forgotPasswordButtonTapped),
@@ -247,32 +243,32 @@ private extension SignInViewController {
     }
     
     @objc func forgotPasswordButtonTapped() {
-        self.presenter.forgotPasswordButtonTapped()
+        presenter?.forgotPasswordButtonTapped()
     }
     
     @objc func googleButtonTapped() {
-        self.presenter.googleButtonTapped()
+        presenter?.googleButtonTapped()
     }
     
     @objc func appleButtonTapped() {
-        self.presenter.appleButtonTapped()
+        presenter?.appleButtonTapped()
     }
     
     @objc func facebookButtonTapped() {
-        self.presenter.facebookButtonTapped()
+        presenter?.facebookButtonTapped()
     }
     
     @objc func createNewAccountButtonTapped() {
-        self.presenter.createNewAccountButtonTapped()
+        presenter?.createNewAccountButtonTapped()
     }
     
     @objc func loginButtonTapped() {
-        self.presenter.loginButtonTapped()
+        presenter?.loginButtonTapped()
     }
 }
 
 // MARK: - Setup observers and gestures recognizer
-private extension SignInViewController {
+private extension LoginViewController {
     func addTapGestureRecognizer() {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self,
                                                          action: #selector(hideKeyboard))
@@ -325,9 +321,4 @@ private extension SignInViewController {
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
     }
-}
-
-//MARK:- Commands from presenter
-extension SignInViewController: SignInViewInput {
-    // обработка команд от presenter
 }

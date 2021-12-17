@@ -8,7 +8,7 @@
 import Foundation
 ///SignUp view output interface
 protocol SignUpViewOutput: AnyObject {
-    init(view: SignUpViewInput)
+    //init(view: SignUpViewInput)
     func signUpButtonTapped()
     func signInButtonTapped()
 }
