@@ -6,15 +6,13 @@
 //
 
 import Foundation
-///SignUp view output interface
-protocol SignUpViewOutput: AnyObject {
-    //init(view: SignUpViewInput)
-    func signUpButtonTapped()
-    func signInButtonTapped()
-}
 
-class SignUpPresenter: SignUpViewOutput {
+class SignUpPresenter: SignUpViewOutput, SignUpPresenterOutput {
+    
     private(set) weak var view: SignUpViewInput?
+    
+    var onSignUpComplete: (() -> Void)?
+    var onLoginButtonTap: (() -> Void)?
     
     required init(view: SignUpViewInput) {
         self.view = view
@@ -22,9 +20,11 @@ class SignUpPresenter: SignUpViewOutput {
     
     func signUpButtonTapped() {
         print(#function)
+        onSignUpComplete?()
     }
     
     func signInButtonTapped() {
         print(#function)
+        onLoginButtonTap?()
     }
 }

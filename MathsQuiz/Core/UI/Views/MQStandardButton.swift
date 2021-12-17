@@ -1,5 +1,5 @@
 //
-//  MathsQuizStandardButton.swift
+//  MQStandardButton.swift
 //  MathsQuiz
 //
 //  Created by Karahanyan Levon on 14.12.2021.
@@ -7,17 +7,18 @@
 
 import UIKit
 
-class MathsQuizStandardButton: UIButton {
+class MQStandardButton: UIButton {
     
     convenience init(title: String,
                      accessibilityIdentifier: String? = nil) {
         self.init()
         self.setTitle(title, for: .normal)
-        self.backgroundColor = Colors.ubeDefault
-        self.tintColor = Colors.whiteColor
+        self.backgroundColor = MQColor.ubeDefault
+        self.tintColor = MQColor.whiteColor
         self.layer.cornerRadius = 22
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalToConstant: 44).isActive = true    }
+        self.heightAnchor.constraint(equalToConstant: 44).isActive = true
+    }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)

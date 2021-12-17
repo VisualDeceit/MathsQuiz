@@ -9,6 +9,11 @@
 
 import Foundation
 
+protocol LoginPresenterOutput: AnyObject {
+    var onCompleteAuth: (() -> Void)? { get set }
+    var onSignUpButtonTap: (() -> Void)? { get set }
+}
+
 protocol LoginViewInput: AnyObject {
     var presenter: (LoginViewOutput & LoginPresenterOutput)? { get set }
 }
@@ -24,7 +29,3 @@ protocol LoginViewOutput: AnyObject {
     func loginButtonTapped()
 }
 
-protocol LoginPresenterOutput: AnyObject {
-    var onCompleteAuth: (() -> Void)? { get set }
-    var onSignUpButtonTap: (() -> Void)? { get set }
-}

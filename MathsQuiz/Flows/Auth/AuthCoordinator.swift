@@ -30,14 +30,22 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
         }
         
         view.presenter?.onSignUpButtonTap = { [weak self] in
-            print("SignUp Proceed")
             self?.showSignUp()
         }
         router.setRootModule(view, hideBar: true)
     }
     
     private func showSignUp() {
+        let view = factory.makeSignUpModule()
+        view.presenter?.onSignUpComplete = { [weak self] in
+            self?.router.popModule()
+        }
         
+        view.presenter?.onLoginButtonTap = { [weak self] in
+            self?.router.popModule()
+        }
+        
+        router.push(view, animated: true)
     }
     
     private func showTerms() {

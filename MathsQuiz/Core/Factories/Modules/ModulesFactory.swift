@@ -14,4 +14,9 @@ extension ModulesFactory: AuthModuleFactory {
         let view = LoginAssembly.build()
         return view
     }
+    
+    func makeSignUpModule() -> Presentable & SignUpViewInput {
+        let view = SignUpAssembly.build()
+        return view
+    }
 }
