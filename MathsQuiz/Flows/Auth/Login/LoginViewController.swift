@@ -90,10 +90,10 @@ class LoginViewController: UIViewController,  LoginViewInput {
 
     private let loginButton = MathsQuizStandardButton(title: "Войти")
     private let emailTextField = MathsQuizStandardTextField(placeholder: "Email",
-                                                            leftImageName: "Outline",
+                                                            leftImageName: "mail",
                                                             autocorrectionType: .no)
     private let passwordTextField = MathsQuizStandardTextField(placeholder: "Пароль",
-                                                               leftImageName: "Monochrome",
+                                                               leftImageName: "block",
                                                                isSecured: true,
                                                                autocorrectionType: .no)
     

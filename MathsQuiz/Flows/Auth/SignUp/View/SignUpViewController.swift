@@ -61,17 +61,17 @@ class SignUpViewController: UIViewController {
     }()
     
     private let nameTextField = MathsQuizStandardTextField(placeholder: "Имя и фамилия",
-                                                           leftImageName: "Monochrome-1",
+                                                           leftImageName: "person",
                                                            autocorrectionType: .no)
     private let emailTextField = MathsQuizStandardTextField(placeholder: "Email",
-                                                            leftImageName: "Outline",
+                                                            leftImageName: "mail",
                                                             autocorrectionType: .no)
     private let passwordTextField = MathsQuizStandardTextField(placeholder: "Пароль",
-                                                               leftImageName: "Monochrome",
+                                                               leftImageName: "block",
                                                                isSecured: true,
                                                                autocorrectionType: .no)
     private let confirmPasswordTextField = MathsQuizStandardTextField(placeholder: "Подтверждение пароля",
-                                                                      leftImageName: "Monochrome",
+                                                                      leftImageName: "block",
                                                                       isSecured: true,
                                                                       autocorrectionType: .no)
     private let signUpButton = MathsQuizStandardButton(title: "Создать")

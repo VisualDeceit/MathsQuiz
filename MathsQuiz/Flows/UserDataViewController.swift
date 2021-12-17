@@ -13,16 +13,25 @@ class UserDataViewController: UIViewController {
     
     private let scrollView = UIScrollView()
     private let phoneNumberTextfield = MathsQuizStandardTextField(placeholder: "Номер телефона", isAnimatedForm: false)
-    private let surnameTextfield = MathsQuizStandardTextField(placeholder: "Фамилия", isAnimatedForm: false)
-    private let nameTextfield = MathsQuizStandardTextField(placeholder: "Имя", isAnimatedForm: false)
-    private let birthdayTextfield = MathsQuizStandardTextField(placeholder: "Дата рождения", isAnimatedForm: false)
-    private let sexTextfield = MathsQuizStandardTextField(placeholder: "Пол", isAnimatedForm: false)
+    private let surnameTextfield = MathsQuizStandardTextField(placeholder: "Фамилия",
+                                                              isAnimatedForm: false,
+                                                              autocorrectionType: .no)
+    private let nameTextfield = MathsQuizStandardTextField(placeholder: "Имя",
+                                                           isAnimatedForm: false,
+                                                           autocorrectionType: .no)
+    private let birthdayTextfield = MathsQuizStandardTextField(placeholder: "Дата рождения",
+                                                               isAnimatedForm: false,
+                                                               autocorrectionType: .no)
+    private let sexTextfield = MathsQuizStandardTextField(placeholder: "Пол",
+                                                          isAnimatedForm: false,
+                                                          autocorrectionType: .no)
     private let saveButton = MathsQuizStandardButton(title: "Сохранить")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
+        addTargetToButtons()
         addTapGestureRecognizer()
     }
     
@@ -88,6 +97,17 @@ private extension UserDataViewController {
             saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
         ])
     }
+}
+
+// MARK: - Setup targets
+private extension UserDataViewController {
+    func addTargetToButtons() {
+        saveButton.addTarget(self,
+                             action: #selector(saveButtonTapped),
+                             for: .touchUpInside)
+    }
+    
+    @objc func saveButtonTapped() {}
 }
 
 // MARK: - Setup observers and gestures recognizer
