@@ -7,11 +7,9 @@
 
 import Foundation
 
-typealias Credentials = (username: String, password: String)
-
 struct Session {
     static var isAuthorized: Bool {
-        return UserDefaultsWrapper.token != nil
+        return UserDefaultsWrapper.uid != nil
     }
     
     static var isSeenOnboarding: Bool {

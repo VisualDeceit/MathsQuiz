@@ -20,12 +20,12 @@ struct UserDefaultsWrapper {
         }
     }
     
-    static var token: String? {
+    static var uid: String? {
         get {
-            return UserDefaultsStandart.string(forKey: PersistantKeys.token)
+            return UserDefaultsStandart.string(forKey: PersistantKeys.uid)
         }
         set {
-            UserDefaultsStandart.set(newValue, forKey: PersistantKeys.token)
+            UserDefaultsStandart.set(newValue, forKey: PersistantKeys.uid)
         }
     }
 }

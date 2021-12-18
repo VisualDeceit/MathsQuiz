@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 
-class SignUpPresenter: SignUpViewOutput, SignUpPresenterOutput {
+class SignUpPresenter: SignUpPresenterOutput {
 
     private(set) weak var view: SignUpViewInput?
     
@@ -54,18 +54,21 @@ class SignUpPresenter: SignUpViewOutput, SignUpPresenterOutput {
                 }
                 return
             }
-            print(String(describing: authResult))
-            // Добавить пользователя в БД
+            UserDefaultsWrapper.uid = authResult.user.uid
+            // TODO - Добавить пользователя в БД
             self?.onSignUpComplete?()
         }
     }
-    
+}
+
     // MARK: - SignUpViewOutput
-    func signUpButtonTapped(data: SignUpData) {
+extension SignUpPresenter: SignUpViewOutput {
+    
+    func onSignUpButtonTapped(data: SignUpData) {
         createUser(from: data)
     }
     
-    func signInButtonTapped() {
+    func onLoginButtonTapped() {
         onLoginButtonTap?()
     }
 }

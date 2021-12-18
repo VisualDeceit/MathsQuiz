@@ -26,7 +26,7 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
     private func showLogin() {
         let view = factory.makeLoginModule()
         view.presenter?.onCompleteAuth = { [weak self] in
-            self?.finishFlow?()
+            // self?.finishFlow?()
         }
         
         view.presenter?.onSignUpButtonTap = { [weak self] in
@@ -39,7 +39,6 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
         let view = factory.makeSignUpModule()
         view.presenter?.onSignUpComplete = { [weak self] in
             // завершить Flow и перейти в Main Flow
-            self?.router.popModule()
         }
         
         view.presenter?.onLoginButtonTap = { [weak self] in

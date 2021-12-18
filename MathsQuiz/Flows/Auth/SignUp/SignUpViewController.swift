@@ -177,7 +177,7 @@ private extension SignUpViewController {
                                action: #selector(signUpButtonTapped),
                                for: .touchUpInside)
         signInButton.addTarget(self,
-                               action: #selector(signInButtonTapped),
+                               action: #selector(loginButtonTapped),
                                for: .touchUpInside)
     }
     
@@ -186,11 +186,11 @@ private extension SignUpViewController {
                                     email: emailTextField.text ?? "" ,
                                     password: passwordTextField.text ?? "",
                                     passwordConfirm: confirmPasswordTextField.text ?? "")
-        presenter?.signUpButtonTapped(data: signUpData)
+        presenter?.onSignUpButtonTapped(data: signUpData)
     }
     
-    @objc func signInButtonTapped() {
-        presenter?.signInButtonTapped()
+    @objc func loginButtonTapped() {
+        presenter?.onLoginButtonTapped()
     }
 }
 
@@ -252,6 +252,7 @@ private extension SignUpViewController {
 
 // MARK: - SignUpViewInput
 extension SignUpViewController {
+    
     func needShowAlert(title: String, message: String?) {
         showAlert(title: title, message: message)
     }

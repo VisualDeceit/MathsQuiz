@@ -261,11 +261,13 @@ private extension LoginViewController {
     }
     
     @objc func createNewAccountButtonTapped() {
-        presenter?.createNewAccountButtonTapped()
+        presenter?.onCreateNewAccountButtonTapped()
     }
     
     @objc func loginButtonTapped() {
-        presenter?.loginButtonTapped()
+        let credentials = Credentials(email: emailTextField.text ?? "",
+                                      password: passwordTextField.text ?? "")
+        presenter?.onLoginButtonTapped(credentials: credentials)
     }
 }
 
@@ -322,5 +324,13 @@ private extension LoginViewController {
     
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
+    }
+}
+
+// MARK: - LoginViewInput
+extension LoginViewController {
+    
+    func needShowAlert(title: String, message: String?) {
+        showAlert(title: title, message: message)
     }
 }

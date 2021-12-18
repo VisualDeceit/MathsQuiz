@@ -14,8 +14,8 @@ protocol SignUpPresenterOutput {
 protocol SignUpViewOutput: AnyObject {
     init(view: SignUpViewInput)
 
-    func signUpButtonTapped(data: SignUpData)
-    func signInButtonTapped()
+    func onSignUpButtonTapped(data: SignUpData)
+    func onLoginButtonTapped()
 }
 
 protocol SignUpViewInput: AnyObject {
