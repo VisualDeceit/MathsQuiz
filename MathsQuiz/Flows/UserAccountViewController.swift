@@ -82,7 +82,7 @@ class UserAccountViewController: UIViewController {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension UserAccountViewController {
     func setupViews() {
         view.backgroundColor = Colors.whiteColor

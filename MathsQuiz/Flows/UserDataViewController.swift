@@ -48,7 +48,7 @@ class UserDataViewController: UIViewController {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension UserDataViewController {
     func setupViews() {
         view.backgroundColor = Colors.whiteColor

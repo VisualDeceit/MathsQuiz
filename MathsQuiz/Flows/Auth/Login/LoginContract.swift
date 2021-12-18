@@ -14,10 +14,6 @@ protocol LoginPresenterOutput: AnyObject {
     var onSignUpButtonTap: (() -> Void)? { get set }
 }
 
-protocol LoginViewInput: AnyObject {
-    var presenter: (LoginViewOutput & LoginPresenterOutput)? { get set }
-}
-
 protocol LoginViewOutput: AnyObject {
     init(view: LoginViewInput)
     
@@ -25,7 +21,12 @@ protocol LoginViewOutput: AnyObject {
     func googleButtonTapped()
     func appleButtonTapped()
     func facebookButtonTapped()
-    func createNewAccountButtonTapped()
-    func loginButtonTapped()
+    func onCreateNewAccountButtonTapped()
+    func onLoginButtonTapped(credentials: Credentials)
 }
 
+protocol LoginViewInput: AnyObject {
+    var presenter: (LoginViewOutput & LoginPresenterOutput)? { get set }
+    
+    func needShowAlert(title: String, message: String?)
+}

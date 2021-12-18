@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController,  LoginViewInput {
+class LoginViewController: UIViewController, LoginViewInput {
     
     private var isKeyboardShown = false
     private let scrollView = UIScrollView()
@@ -92,12 +92,12 @@ class LoginViewController: UIViewController,  LoginViewInput {
 
     private let loginButton = MQStandardButton(title: "Войти")
     private let emailTextField = MQStandardTextField(placeholder: "Email",
-                                                            leftImageName: "mail",
-                                                            autocorrectionType: .no)
+                                                     leftImageName: "mail",
+                                                     autocorrectionType: .no)
     private let passwordTextField = MQStandardTextField(placeholder: "Пароль",
-                                                               leftImageName: "block",
-                                                               isSecured: true,
-                                                               autocorrectionType: .no)
+                                                        leftImageName: "block",
+                                                        isSecured: true,
+                                                        autocorrectionType: .no)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +117,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension LoginViewController {
     func setupViews() {
         view.backgroundColor = .white
@@ -261,11 +261,13 @@ private extension LoginViewController {
     }
     
     @objc func createNewAccountButtonTapped() {
-        presenter?.createNewAccountButtonTapped()
+        presenter?.onCreateNewAccountButtonTapped()
     }
     
     @objc func loginButtonTapped() {
-        presenter?.loginButtonTapped()
+        let credentials = Credentials(email: emailTextField.text ?? "",
+                                      password: passwordTextField.text ?? "")
+        presenter?.onLoginButtonTapped(credentials: credentials)
     }
 }
 
@@ -322,5 +324,13 @@ private extension LoginViewController {
     
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
+    }
+}
+
+// MARK: - LoginViewInput
+extension LoginViewController {
+    
+    func needShowAlert(title: String, message: String?) {
+        showAlert(title: title, message: message)
     }
 }

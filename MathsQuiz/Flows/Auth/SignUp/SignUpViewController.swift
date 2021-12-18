@@ -38,10 +38,8 @@ class SignUpViewController: UIViewController, SignUpViewInput {
     private let alreadyExistLabel: UILabel = {
         let label = UILabel()
         label.text = "Уже есть аккаунт?"
-        label.textAlignment = .center
-        label.numberOfLines = 0
         label.textColor = MQColor.gray
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -58,19 +56,19 @@ class SignUpViewController: UIViewController, SignUpViewInput {
     }()
     
     private let nameTextField = MQStandardTextField(placeholder: "Имя и фамилия",
-                                                           leftImageName: "person",
-                                                           autocorrectionType: .no)
+                                                    leftImageName: "person",
+                                                    autocorrectionType: .no)
     private let emailTextField = MQStandardTextField(placeholder: "Email",
-                                                            leftImageName: "mail",
-                                                            autocorrectionType: .no)
+                                                     leftImageName: "mail",
+                                                     autocorrectionType: .no)
     private let passwordTextField = MQStandardTextField(placeholder: "Пароль",
+                                                        leftImageName: "block",
+                                                        isSecured: true,
+                                                        autocorrectionType: .no)
+    private let confirmPasswordTextField = MQStandardTextField(placeholder: "Подтверждение пароля",
                                                                leftImageName: "block",
                                                                isSecured: true,
                                                                autocorrectionType: .no)
-    private let confirmPasswordTextField = MQStandardTextField(placeholder: "Подтверждение пароля",
-                                                                      leftImageName: "block",
-                                                                      isSecured: true,
-                                                                      autocorrectionType: .no)
     private let signUpButton = MQStandardButton(title: "Создать")
     
     override func viewDidLoad() {
@@ -91,7 +89,7 @@ class SignUpViewController: UIViewController, SignUpViewInput {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension SignUpViewController {
     func setupViews() {
         view.backgroundColor = .white
@@ -179,16 +177,20 @@ private extension SignUpViewController {
                                action: #selector(signUpButtonTapped),
                                for: .touchUpInside)
         signInButton.addTarget(self,
-                               action: #selector(signInButtonTapped),
+                               action: #selector(loginButtonTapped),
                                for: .touchUpInside)
     }
     
     @objc func signUpButtonTapped() {
-        presenter?.signUpButtonTapped()
+        let signUpData = SignUpData(username: nameTextField.text ?? "",
+                                    email: emailTextField.text ?? "" ,
+                                    password: passwordTextField.text ?? "",
+                                    passwordConfirm: confirmPasswordTextField.text ?? "")
+        presenter?.onSignUpButtonTapped(data: signUpData)
     }
     
-    @objc func signInButtonTapped() {
-        presenter?.signInButtonTapped()
+    @objc func loginButtonTapped() {
+        presenter?.onLoginButtonTapped()
     }
 }
 
@@ -245,5 +247,13 @@ private extension SignUpViewController {
     
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
+    }
+}
+
+// MARK: - SignUpViewInput
+extension SignUpViewController {
+    
+    func needShowAlert(title: String, message: String?) {
+        showAlert(title: title, message: message)
     }
 }

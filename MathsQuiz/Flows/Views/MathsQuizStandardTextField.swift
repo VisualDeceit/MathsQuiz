@@ -105,7 +105,6 @@ class MQStandardTextField: UITextField {
         var newPoint = CGPoint(x: view.bounds.size.width * anchorPoint.x,
                                y: view.bounds.size.height * anchorPoint.y)
 
-
         var oldPoint = CGPoint(x: view.bounds.size.width * view.layer.anchorPoint.x,
                                y: view.bounds.size.height * view.layer.anchorPoint.y)
 
@@ -129,7 +128,7 @@ class MQStandardTextField: UITextField {
         toSmallFontSize.toValue = !isEditing ? 1.0 : 0.7
         
         let toChangePosition = CABasicAnimation(keyPath: "position.y")
-        toChangePosition.fromValue = label.layer.position.y  - ( isEditing ? 0 : 12)
+        toChangePosition.fromValue = label.layer.position.y - ( isEditing ? 0 : 12)
         toChangePosition.toValue = label.layer.position.y - ( !isEditing ? 0 : 12)
 
         let animationGroup = CAAnimationGroup()
@@ -141,13 +140,13 @@ class MQStandardTextField: UITextField {
         return animationGroup
     }
     @objc func textfieldeditingDidBegin() {
-        guard text == "" else { return }
+        guard let text = text, text.isEmpty else { return }
         isEdited.toggle()
         label.layer.add(placeholderAnimation(), forKey: "")
     }
     
     @objc func textfielDidEndEditing() {
-        guard text == "" else { return }
+        guard let text = text, text.isEmpty else { return }
             isEdited.toggle()
             label.layer.add(placeholderAnimation(), forKey: "")
     }
