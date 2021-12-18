@@ -28,7 +28,7 @@ class LoginViewController: UIViewController, LoginViewInput {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.textColor = MQColor.gray
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = MQFont.boldSystemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -37,7 +37,7 @@ class LoginViewController: UIViewController, LoginViewInput {
         let label = UILabel()
         label.text = "Еще нет аккаунта?"
         label.textColor = MQColor.gray
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = MQFont.boldSystemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -47,7 +47,7 @@ class LoginViewController: UIViewController, LoginViewInput {
         button.setTitle("Забыли пароль?", for: .normal)
         button.setTitleColor(MQColor.burntSienna, for: .normal)
         button.setTitleColor(MQColor.ubeDefault, for: .highlighted)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = MQFont.boldSystemFont14
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -84,7 +84,7 @@ class LoginViewController: UIViewController, LoginViewInput {
         button.setTitle("Создайте новый", for: .normal)
         button.setTitleColor(MQColor.burntSienna, for: .normal)
         button.setTitleColor(MQColor.ubeDefault, for: .highlighted)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = MQFont.boldSystemFont14 
         button.backgroundColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

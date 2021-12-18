@@ -23,9 +23,9 @@ class UserAccountViewController: UIViewController {
     private let changePhotoButton: UIButton = {
         let button = UIButton()
         button.setTitle("Изменить", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
-        button.backgroundColor = Colors.ubeDefault
-        button.tintColor = Colors.whiteColor
+        button.titleLabel?.font = MQFont.systemFont10
+        button.backgroundColor = MQColor.ubeDefault
+        button.tintColor = MQColor.background
         button.layer.cornerRadius = 10
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -34,14 +34,14 @@ class UserAccountViewController: UIViewController {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Вася Пупкин"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.font = MQFont.boldSystemFont24
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let mailContainerView: UIView = {
         let view = UIView()
-        view.backgroundColor = Colors.ubeLight
+        view.backgroundColor = MQColor.ubeLight
         view.layer.cornerRadius = 12
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
@@ -58,7 +58,7 @@ class UserAccountViewController: UIViewController {
     private let mailLabel: UILabel = {
         let label = UILabel()
         label.text = "test@mail.com"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = MQFont.systemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -70,9 +70,9 @@ class UserAccountViewController: UIViewController {
         return view
     }()
     
-    private let myDataButton = MathsQuizStandardButton(title: "Мои данные")
-    private let changePasswordButton = MathsQuizStandardButton(title: "Изменить пароль")
-    private let exitButton = MathsQuizStandardButton(title: "Выйти")
+    private let myDataButton = MQStandardButton(title: "Мои данные")
+    private let changePasswordButton = MQStandardButton(title: "Изменить пароль")
+    private let exitButton = MQStandardButton(title: "Выйти")
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,7 +85,7 @@ class UserAccountViewController: UIViewController {
 // MARK: - Setup views
 private extension UserAccountViewController {
     func setupViews() {
-        view.backgroundColor = Colors.whiteColor
+        view.backgroundColor = MQColor.background
         
         setupScrollView()
         setupUserDataForm()

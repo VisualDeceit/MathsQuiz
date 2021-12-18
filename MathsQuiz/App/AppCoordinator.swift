@@ -35,11 +35,12 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        switch instructor {
-        case .onboarding: runOnboardingFlow()
-        case .auth: runAuthFlow()
-        case .main: runMainFlow()
-        }
+        runAuthFlow() // temp
+//        switch instructor {
+//        case .onboarding: runOnboardingFlow()
+//        case .auth: runAuthFlow()
+//        case .main: runMainFlow()
+//        }
     }
     
     private func runAuthFlow() {
