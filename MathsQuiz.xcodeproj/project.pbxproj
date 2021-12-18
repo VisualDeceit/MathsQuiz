@@ -42,6 +42,7 @@
 		3CD20F0E276CCD0F009AD650 /* MainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F0D276CCD0F009AD650 /* MainCollectionViewCell.swift */; };
 		3CD20F10276CD77E009AD650 /* CollectionCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F0F276CD77E009AD650 /* CollectionCellSize.swift */; };
 		3CD20F12276CDBE7009AD650 /* MainCollectionViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD20F11276CDBE7009AD650 /* MainCollectionViewData.swift */; };
+		3CF41FE9276DD6210029FD17 /* CircularProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CF41FE8276DD6210029FD17 /* CircularProgressBarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		3CD20F0D276CCD0F009AD650 /* MainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewCell.swift; sourceTree = "<group>"; };
 		3CD20F0F276CD77E009AD650 /* CollectionCellSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCellSize.swift; sourceTree = "<group>"; };
 		3CD20F11276CDBE7009AD650 /* MainCollectionViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCollectionViewData.swift; sourceTree = "<group>"; };
+		3CF41FE8276DD6210029FD17 /* CircularProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -308,6 +310,7 @@
 				3CD20F0C276CCCEC009AD650 /* Cells */,
 				3C0CAAEA2768966F00810069 /* MathsQuizStandardTextField.swift */,
 				3C0CAAF02768A15000810069 /* MathsQuizStandardButton.swift */,
+				3CF41FE8276DD6210029FD17 /* CircularProgressBarView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -429,6 +432,7 @@
 				1B7C4797276C6A2D00BFD277 /* RouterImp.swift in Sources */,
 				1B7C478C276C63D500BFD277 /* LoginContract.swift in Sources */,
 				1B7C4743276B58EA00BFD277 /* Router.swift in Sources */,
+				3CF41FE9276DD6210029FD17 /* CircularProgressBarView.swift in Sources */,
 				3C0CAAEB2768966F00810069 /* MathsQuizStandardTextField.swift in Sources */,
 				1B7C473C276B574100BFD277 /* BaseCoordinator.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MathsQuizStandardButton.swift in Sources */,

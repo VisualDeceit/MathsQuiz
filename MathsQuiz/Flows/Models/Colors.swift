@@ -17,5 +17,6 @@ struct Colors {
     static let jasperOrangeLight = UIColor(rgb: 0xF9E9D5)
     static let candyPinkLight = UIColor(rgb: 0xF8E8E5)
     static let lavenderLight = UIColor(rgb: 0xE2DBF7)
+    static let lavenderDark = UIColor(rgb: 0xA08CDD)
     static let whiteColor = UIColor.white
 }

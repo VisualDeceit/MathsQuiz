@@ -11,6 +11,7 @@ struct MainCollectionViewData {
     var name: String
     var color: UIColor
     var levelCount: String
+    var userProgressValue: Double?
     
     static var data: [MainCollectionViewData] = [MainCollectionViewData(name: "Сложение",
                                                                         color: Colors.lavenderLight,

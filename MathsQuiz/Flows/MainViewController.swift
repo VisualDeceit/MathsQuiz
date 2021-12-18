@@ -9,6 +9,24 @@ import UIKit
 
 class MainViewController: UIViewController {
     
+    private let greetingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Привет, Данила!"
+        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
+    private let userPhoto: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "userPhoto")
+        imageView.layer.cornerRadius = imageView.frame.width / 2
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+    
     private var mainCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -32,17 +50,34 @@ private extension MainViewController {
     func setupViews() {
         view.backgroundColor = Colors.whiteColor
         
+        setupGreetingForm()
         setupMainCollectionView()
     }
     
-    private func setupMainCollectionView() {
+    func setupGreetingForm() {
+        view.addSubview(greetingLabel)
+        view.addSubview(userPhoto)
+        
+        NSLayoutConstraint.activate([
+            greetingLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44),
+            greetingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            greetingLabel.trailingAnchor.constraint(equalTo: userPhoto.leadingAnchor, constant: 50),
+            
+            userPhoto.centerYAnchor.constraint(equalTo: greetingLabel.centerYAnchor, constant: -10),
+            userPhoto.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            userPhoto.widthAnchor.constraint(equalToConstant: 56),
+            userPhoto.heightAnchor.constraint(equalToConstant: 56)
+        ])
+    }
+    
+    func setupMainCollectionView() {
         view.addSubview(mainCollectionView)
         
         mainCollectionView.dataSource = self
         mainCollectionView.delegate = self
         
         NSLayoutConstraint.activate([
-            mainCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+            mainCollectionView.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 33),
             mainCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -59,6 +94,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.reuseId,
                                                       for: indexPath)
         guard let mainCell = cell as? MainCollectionViewCell else { return cell }
+        let userProgressValues = [0.1, 0.2, 0.9, 1, 0.5]
+        MainCollectionViewData.data[indexPath.row].userProgressValue = userProgressValues[indexPath.row]
         let data = MainCollectionViewData.data[indexPath.row]
         mainCell.configCell(with: data)
         
