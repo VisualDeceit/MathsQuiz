@@ -23,7 +23,7 @@ class SignUpViewController: UIViewController {
         label.text = "Новая учетная запись"
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.font = MQFont.boldSystemFont24
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -34,7 +34,7 @@ class SignUpViewController: UIViewController {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.textColor = Colors.mqGray
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = MQFont.systemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -45,7 +45,7 @@ class SignUpViewController: UIViewController {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.textColor = Colors.mqGray
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = MQFont.boldSystemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -55,7 +55,7 @@ class SignUpViewController: UIViewController {
         button.setTitle("Войти", for: .normal)
         button.setTitleColor(Colors.burntSienna, for: .normal)
         button.setTitleColor(Colors.ubeDefault, for: .highlighted)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        button.titleLabel?.font = MQFont.boldSystemFont14
         button.backgroundColor = Colors.whiteColor
         button.translatesAutoresizingMaskIntoConstraints = false
         return button

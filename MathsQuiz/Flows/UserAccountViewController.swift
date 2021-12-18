@@ -23,7 +23,7 @@ class UserAccountViewController: UIViewController {
     private let changePhotoButton: UIButton = {
         let button = UIButton()
         button.setTitle("Изменить", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 10)
+        button.titleLabel?.font = MQFont.systemFont10
         button.backgroundColor = Colors.ubeDefault
         button.tintColor = Colors.whiteColor
         button.layer.cornerRadius = 10
@@ -34,7 +34,7 @@ class UserAccountViewController: UIViewController {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "Вася Пупкин"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
+        label.font = MQFont.boldSystemFont24
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -58,7 +58,7 @@ class UserAccountViewController: UIViewController {
     private let mailLabel: UILabel = {
         let label = UILabel()
         label.text = "test@mail.com"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = MQFont.systemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

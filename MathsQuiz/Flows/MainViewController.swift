@@ -12,7 +12,7 @@ class MainViewController: UIViewController {
     private let greetingLabel: UILabel = {
         let label = UILabel()
         label.text = "Привет, Данила!"
-        label.font = UIFont.boldSystemFont(ofSize: 30)
+        label.font = MQFont.boldSystemFont30
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -94,8 +94,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainCollectionViewCell.reuseId,
                                                       for: indexPath)
         guard let mainCell = cell as? MainCollectionViewCell else { return cell }
-        let userProgressValues = [0.1, 0.2, 0.9, 1, 0.5]
-        MainCollectionViewData.data[indexPath.row].userProgressValue = userProgressValues[indexPath.row]
+        
+        let userCompleteLevels = [0.2, 0.3, 0.5, 1, 0.2]
+        MainCollectionViewData.data[indexPath.row].userProgressValue = userCompleteLevels[indexPath.row]
         let data = MainCollectionViewData.data[indexPath.row]
         mainCell.configCell(with: data)
         

@@ -31,7 +31,7 @@ class MainCollectionViewCell: UICollectionViewCell, ConfigCell {
     
     private func setupNameLabel(text: String) {
         nameLabel.text = text
-        nameLabel.font = UIFont.systemFont(ofSize: 24)
+        nameLabel.font = MQFont.systemFont24
         nameLabel.textAlignment = .center
         nameLabel.adjustsFontSizeToFitWidth = true
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -62,7 +62,7 @@ class MainCollectionViewCell: UICollectionViewCell, ConfigCell {
     
     private func setupLevelCountLabel(with text: String) {
         levelCountLabel.text = text
-        levelCountLabel.font = UIFont.systemFont(ofSize: 12)
+        levelCountLabel.font = MQFont.systemFont12
         levelCountLabel.textAlignment = .center
         levelCountLabel.adjustsFontSizeToFitWidth = true
         levelCountLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -82,7 +82,7 @@ class MainCollectionViewCell: UICollectionViewCell, ConfigCell {
         circleContainerView.translatesAutoresizingMaskIntoConstraints = false
         
         progressNumLabel.text = "3"
-        progressNumLabel.font = UIFont.systemFont(ofSize: 12)
+        progressNumLabel.font = MQFont.systemFont12
         progressNumLabel.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(circleContainerView)

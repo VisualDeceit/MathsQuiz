@@ -59,7 +59,7 @@ class MathsQuizStandardTextField: UITextField {
     
     func addLabel(with text: String) {
         label.text = text
-        label.font = UIFont.systemFont(ofSize: 11)
+        label.font = MQFont.systemFont11
         label.textColor = Colors.mqGray
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)

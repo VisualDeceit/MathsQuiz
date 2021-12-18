@@ -13,6 +13,8 @@ struct MainCollectionViewData {
     var levelCount: String
     var userProgressValue: Double?
     
+    static var levelsCount = [18, 17, 23, 22, 10]
+    
     static var data: [MainCollectionViewData] = [MainCollectionViewData(name: "Сложение",
                                                                         color: Colors.lavenderLight,
                                                                         levelCount: "18 уровней"),
