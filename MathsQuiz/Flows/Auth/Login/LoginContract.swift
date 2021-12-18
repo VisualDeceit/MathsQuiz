@@ -9,8 +9,9 @@
 
 import Foundation
 
-protocol LoginViewInput: AnyObject {
-    var presenter: (LoginViewOutput & LoginPresenterOutput)? { get set }
+protocol LoginPresenterOutput: AnyObject {
+    var onCompleteAuth: (() -> Void)? { get set }
+    var onSignUpButtonTap: (() -> Void)? { get set }
 }
 
 protocol LoginViewOutput: AnyObject {
@@ -20,11 +21,12 @@ protocol LoginViewOutput: AnyObject {
     func googleButtonTapped()
     func appleButtonTapped()
     func facebookButtonTapped()
-    func createNewAccountButtonTapped()
-    func loginButtonTapped()
+    func onCreateNewAccountButtonTapped()
+    func onLoginButtonTapped(credentials: Credentials)
 }
 
-protocol LoginPresenterOutput: AnyObject {
-    var onCompleteAuth: (() -> Void)? { get set }
-    var onSignUpButtonTap: (() -> Void)? { get set }
+protocol LoginViewInput: AnyObject {
+    var presenter: (LoginViewOutput & LoginPresenterOutput)? { get set }
+    
+    func needShowAlert(title: String, message: String?)
 }

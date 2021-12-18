@@ -7,17 +7,12 @@
 
 import UIKit
 
-fileprivate var onboardingWasShown = false
-fileprivate var isAutorized = false
-
-fileprivate enum LaunchInstructor {
+enum LaunchInstructor {
     case main, auth, onboarding
     
-    static func configure(
-        tutorialWasShown: Bool = onboardingWasShown,
-        isAutorized: Bool = isAutorized) -> LaunchInstructor {
+    static func configure() -> LaunchInstructor {
         
-        switch (tutorialWasShown, isAutorized) {
+        switch (Session.isSeenOnboarding, Session.isAuthorized) {
         case (true, false), (false, false): return .auth
         case (false, true): return .onboarding
         case (true, true): return .main
@@ -40,18 +35,19 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        switch instructor {
-        case .onboarding: runOnboardingFlow()
-        case .auth: runAuthFlow()
-        case .main: runMainFlow()
-        }
+        runAuthFlow() // temp
+//        switch instructor {
+//        case .onboarding: runOnboardingFlow()
+//        case .auth: runAuthFlow()
+//        case .main: runMainFlow()
+//        }
     }
     
     private func runAuthFlow() {
         let coordinator = coordinatorFactory.makeAuthCoordinator(router: router)
         coordinator.finishFlow = { [weak self, weak coordinator] in
             print("finishFlow")
-            isAutorized = true
+//            isAutorized = true
             self?.start()
             self?.removeDependency(coordinator)
         }
@@ -77,4 +73,3 @@ final class AppCoordinator: BaseCoordinator {
         //        coordinator.start()
     }
 }
-

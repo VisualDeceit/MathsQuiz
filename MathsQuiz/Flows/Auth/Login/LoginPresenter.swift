@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import Firebase
 
-class LoginPresenter: LoginViewOutput, LoginPresenterOutput {
+class LoginPresenter: LoginPresenterOutput {
     
     private(set) weak var view: LoginViewInput?
     
@@ -17,7 +18,27 @@ class LoginPresenter: LoginViewOutput, LoginPresenterOutput {
     required init(view: LoginViewInput) {
         self.view = view
     }
+    
+    private func login(with credentials: Credentials) {
+        Auth.auth().signIn(withEmail: credentials.email, password: credentials.password) { [weak self] loginResult, error in
+            guard let loginResult = loginResult, error == nil else {
+                if let error = error,
+                   let errCode = AuthErrorCode(rawValue: error._code) {
+                    self?.view?.needShowAlert(title: "Ошибка",
+                                              message: errCode.errorMessage)
+                }
+                return
+            }
+            UserDefaultsWrapper.uid = loginResult.user.uid
+            print("User email: \(String(describing: loginResult.user.email))")
+            self?.onCompleteAuth?()
+        }
+    }
+}
 
+// MARK: - LoginViewOutput
+extension LoginPresenter: LoginViewOutput {
+    
     func forgotPasswordButtonTapped() {
         print(#function)
     }
@@ -34,13 +55,11 @@ class LoginPresenter: LoginViewOutput, LoginPresenterOutput {
         print(#function)
     }
     
-    func createNewAccountButtonTapped() {
-        //implementation stub
+    func onCreateNewAccountButtonTapped() {
         onSignUpButtonTap?()
     }
     
-    func loginButtonTapped() {
-        //implementation stub
-        onCompleteAuth?()
+    func onLoginButtonTapped(credentials: Credentials) {
+        login(with: credentials)
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController,  LoginViewInput {
+class LoginViewController: UIViewController, LoginViewInput {
     
     private var isKeyboardShown = false
     private let scrollView = UIScrollView()
@@ -16,7 +16,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "dog1")
+        imageView.image = UIImage(named: "login_dog")
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
@@ -27,7 +27,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
         label.text = "или\nавторизироваться с помощью"
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = Colors.mqGray
+        label.textColor = MQColor.gray
         label.font = MQFont.boldSystemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -36,7 +36,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
     private let noAccountYetLabel: UILabel = {
         let label = UILabel()
         label.text = "Еще нет аккаунта?"
-        label.textColor = Colors.mqGray
+        label.textColor = MQColor.gray
         label.font = MQFont.boldSystemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -45,8 +45,8 @@ class LoginViewController: UIViewController,  LoginViewInput {
     private let forgotPasswordButton: UIButton = {
         let button = UIButton()
         button.setTitle("Забыли пароль?", for: .normal)
-        button.setTitleColor(Colors.burntSienna, for: .normal)
-        button.setTitleColor(Colors.ubeDefault, for: .highlighted)
+        button.setTitleColor(MQColor.burntSienna, for: .normal)
+        button.setTitleColor(MQColor.ubeDefault, for: .highlighted)
         button.titleLabel?.font = MQFont.boldSystemFont14
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -82,22 +82,22 @@ class LoginViewController: UIViewController,  LoginViewInput {
     private let createNewAccountButton: UIButton = {
         let button = UIButton()
         button.setTitle("Создайте новый", for: .normal)
-        button.setTitleColor(Colors.burntSienna, for: .normal)
-        button.setTitleColor(Colors.ubeDefault, for: .highlighted)
+        button.setTitleColor(MQColor.burntSienna, for: .normal)
+        button.setTitleColor(MQColor.ubeDefault, for: .highlighted)
         button.titleLabel?.font = MQFont.boldSystemFont14 
-        button.backgroundColor = Colors.whiteColor
+        button.backgroundColor = .white
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
-    private let loginButton = MathsQuizStandardButton(title: "Войти")
-    private let emailTextField = MathsQuizStandardTextField(placeholder: "Email",
-                                                            leftImageName: "mail",
-                                                            autocorrectionType: .no)
-    private let passwordTextField = MathsQuizStandardTextField(placeholder: "Пароль",
-                                                               leftImageName: "block",
-                                                               isSecured: true,
-                                                               autocorrectionType: .no)
+    private let loginButton = MQStandardButton(title: "Войти")
+    private let emailTextField = MQStandardTextField(placeholder: "Email",
+                                                     leftImageName: "mail",
+                                                     autocorrectionType: .no)
+    private let passwordTextField = MQStandardTextField(placeholder: "Пароль",
+                                                        leftImageName: "block",
+                                                        isSecured: true,
+                                                        autocorrectionType: .no)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,10 +117,10 @@ class LoginViewController: UIViewController,  LoginViewInput {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension LoginViewController {
     func setupViews() {
-        view.backgroundColor = Colors.whiteColor
+        view.backgroundColor = .white
         setupScrollView()
         setupImageView()
         setupAuthForm()
@@ -261,11 +261,13 @@ private extension LoginViewController {
     }
     
     @objc func createNewAccountButtonTapped() {
-        presenter?.createNewAccountButtonTapped()
+        presenter?.onCreateNewAccountButtonTapped()
     }
     
     @objc func loginButtonTapped() {
-        presenter?.loginButtonTapped()
+        let credentials = Credentials(email: emailTextField.text ?? "",
+                                      password: passwordTextField.text ?? "")
+        presenter?.onLoginButtonTapped(credentials: credentials)
     }
 }
 
@@ -322,5 +324,13 @@ private extension LoginViewController {
     
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
+    }
+}
+
+// MARK: - LoginViewInput
+extension LoginViewController {
+    
+    func needShowAlert(title: String, message: String?) {
+        showAlert(title: title, message: message)
     }
 }
