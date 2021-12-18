@@ -38,6 +38,7 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
     private func showSignUp() {
         let view = factory.makeSignUpModule()
         view.presenter?.onSignUpComplete = { [weak self] in
+            // TODO: завершить Flow и перейти в Main Flow
             self?.router.popModule()
         }
         

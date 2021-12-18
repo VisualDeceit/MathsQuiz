@@ -13,13 +13,15 @@ protocol SignUpPresenterOutput {
 }
 protocol SignUpViewOutput: AnyObject {
     init(view: SignUpViewInput)
-    
-    func signUpButtonTapped()
+
+    func signUpButtonTapped(data: SignUpData)
     func signInButtonTapped()
 }
 
 protocol SignUpViewInput: AnyObject {
     var presenter: (SignUpViewOutput & SignUpPresenterOutput)? { get set }
+    
+    func needShowAlert(title: String, message: String?)
 }
 
 

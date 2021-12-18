@@ -38,10 +38,8 @@ class SignUpViewController: UIViewController, SignUpViewInput {
     private let alreadyExistLabel: UILabel = {
         let label = UILabel()
         label.text = "Уже есть аккаунт?"
-        label.textAlignment = .center
-        label.numberOfLines = 0
         label.textColor = MQColor.gray
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.systemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -184,7 +182,11 @@ private extension SignUpViewController {
     }
     
     @objc func signUpButtonTapped() {
-        presenter?.signUpButtonTapped()
+        let signUpData = SignUpData(username: nameTextField.text ?? "",
+                                    email: emailTextField.text ?? "" ,
+                                    password: passwordTextField.text ?? "",
+                                    passwordConfirm: confirmPasswordTextField.text ?? "")
+        presenter?.signUpButtonTapped(data: signUpData)
     }
     
     @objc func signInButtonTapped() {
@@ -245,5 +247,12 @@ private extension SignUpViewController {
     
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
+    }
+}
+
+// MARK: - SignUpViewInput
+extension SignUpViewController {
+    func needShowAlert(title: String, message: String?) {
+        showAlert(title: title, message: message)
     }
 }
