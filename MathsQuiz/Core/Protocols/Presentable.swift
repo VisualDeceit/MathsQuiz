@@ -17,9 +17,9 @@ extension UIViewController: Presentable {
     }
     
     func showAlert(title: String, message: String? = nil) {
-        UIAlertController.showAlert(title            : title,
-                                    message          : message,
-                                    inViewController : self,
-                                    actionBlock      : nil)
+        UIAlertController.showAlert(title: title,
+                                    message: message,
+                                    inViewController: self,
+                                    actionBlock: nil)
     }
 }

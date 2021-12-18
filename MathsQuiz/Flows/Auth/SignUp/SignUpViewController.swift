@@ -56,19 +56,19 @@ class SignUpViewController: UIViewController, SignUpViewInput {
     }()
     
     private let nameTextField = MQStandardTextField(placeholder: "Имя и фамилия",
-                                                           leftImageName: "person",
-                                                           autocorrectionType: .no)
+                                                    leftImageName: "person",
+                                                    autocorrectionType: .no)
     private let emailTextField = MQStandardTextField(placeholder: "Email",
-                                                            leftImageName: "mail",
-                                                            autocorrectionType: .no)
+                                                     leftImageName: "mail",
+                                                     autocorrectionType: .no)
     private let passwordTextField = MQStandardTextField(placeholder: "Пароль",
+                                                        leftImageName: "block",
+                                                        isSecured: true,
+                                                        autocorrectionType: .no)
+    private let confirmPasswordTextField = MQStandardTextField(placeholder: "Подтверждение пароля",
                                                                leftImageName: "block",
                                                                isSecured: true,
                                                                autocorrectionType: .no)
-    private let confirmPasswordTextField = MQStandardTextField(placeholder: "Подтверждение пароля",
-                                                                      leftImageName: "block",
-                                                                      isSecured: true,
-                                                                      autocorrectionType: .no)
     private let signUpButton = MQStandardButton(title: "Создать")
     
     override func viewDidLoad() {
@@ -89,7 +89,7 @@ class SignUpViewController: UIViewController, SignUpViewInput {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension SignUpViewController {
     func setupViews() {
         view.backgroundColor = .white

@@ -35,12 +35,12 @@ class LoginPresenter: LoginViewOutput, LoginPresenterOutput {
     }
     
     func createNewAccountButtonTapped() {
-        //implementation stub
+        // implementation stub
         onSignUpButtonTap?()
     }
     
     func loginButtonTapped() {
-        //implementation stub
+        // implementation stub
         onCompleteAuth?()
     }
 }

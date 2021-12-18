@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController,  LoginViewInput {
+class LoginViewController: UIViewController, LoginViewInput {
     
     private var isKeyboardShown = false
     private let scrollView = UIScrollView()
@@ -92,12 +92,12 @@ class LoginViewController: UIViewController,  LoginViewInput {
 
     private let loginButton = MQStandardButton(title: "Войти")
     private let emailTextField = MQStandardTextField(placeholder: "Email",
-                                                            leftImageName: "mail",
-                                                            autocorrectionType: .no)
+                                                     leftImageName: "mail",
+                                                     autocorrectionType: .no)
     private let passwordTextField = MQStandardTextField(placeholder: "Пароль",
-                                                               leftImageName: "block",
-                                                               isSecured: true,
-                                                               autocorrectionType: .no)
+                                                        leftImageName: "block",
+                                                        isSecured: true,
+                                                        autocorrectionType: .no)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +117,7 @@ class LoginViewController: UIViewController,  LoginViewInput {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension LoginViewController {
     func setupViews() {
         view.backgroundColor = .white

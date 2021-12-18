@@ -28,4 +28,3 @@ protocol LoginViewOutput: AnyObject {
     func createNewAccountButtonTapped()
     func loginButtonTapped()
 }
-

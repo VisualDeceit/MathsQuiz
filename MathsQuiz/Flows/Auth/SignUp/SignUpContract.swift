@@ -23,5 +23,3 @@ protocol SignUpViewInput: AnyObject {
     
     func needShowAlert(title: String, message: String?)
 }
-
-

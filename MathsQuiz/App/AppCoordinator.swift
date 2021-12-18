@@ -7,7 +7,7 @@
 
 import UIKit
 
-fileprivate enum LaunchInstructor {
+enum LaunchInstructor {
     case main, auth, onboarding
     
     static func configure() -> LaunchInstructor {
@@ -72,4 +72,3 @@ final class AppCoordinator: BaseCoordinator {
         //        coordinator.start()
     }
 }
-

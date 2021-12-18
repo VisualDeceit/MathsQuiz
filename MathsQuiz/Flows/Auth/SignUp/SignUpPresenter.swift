@@ -20,19 +20,19 @@ class SignUpPresenter: SignUpViewOutput, SignUpPresenterOutput {
     }
     
     private func createUser(from data: SignUpData) {
-        guard data.email != "" else {
+        guard !data.email.isEmpty else {
             self.view?.needShowAlert(title: "Ошибка",
                                      message: "Пожалуйста, введите действующий адрес электронной почты")
             return
         }
         
-        guard data.password != "" else {
+        guard !data.password.isEmpty else {
             self.view?.needShowAlert(title: "Ошибка",
                                      message: "Пожалуйста, введите пароль")
             return
         }
         
-        guard data.passwordConfirm != "" else {
+        guard !data.passwordConfirm.isEmpty else {
             self.view?.needShowAlert(title: "Ошибка",
                                      message: "Пожалуйста, введите подтверждение пароля")
             return
@@ -55,12 +55,12 @@ class SignUpPresenter: SignUpViewOutput, SignUpPresenterOutput {
                 return
             }
             print(String(describing: authResult))
-            // TODO: Добавить пользователя в БД
+            // Добавить пользователя в БД
             self?.onSignUpComplete?()
         }
     }
     
-    // MARK:- SignUpViewOutput
+    // MARK: - SignUpViewOutput
     func signUpButtonTapped(data: SignUpData) {
         createUser(from: data)
     }

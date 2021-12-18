@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- PersistantKeys enum
+// MARK: - PersistantKeys enum
 enum PersistantKeys {
     static let isSeenOnboarding = "kIsSeenOnboarding"
     static let token            = "kToken"
