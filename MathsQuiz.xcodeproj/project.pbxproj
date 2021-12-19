@@ -60,6 +60,8 @@
 		3C0CAAE7276890CE00810069 /* MQColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE6276890CE00810069 /* MQColor.swift */; };
 		3C0CAAEB2768966F00810069 /* MQStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */; };
 		3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAF02768A15000810069 /* MQStandardButton.swift */; };
+		3CD0E1A2276F765500EE255D /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */; };
+		3CD0E1A4276F7AD600EE255D /* OneImageTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A3276F7AD600EE255D /* OneImageTextfield.swift */; };
 		EC22387C3C87C6E08D11C37B /* Pods_MathsQuiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +121,8 @@
 		3C0CAAE6276890CE00810069 /* MQColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQColor.swift; sourceTree = "<group>"; };
 		3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardTextField.swift; sourceTree = "<group>"; };
 		3C0CAAF02768A15000810069 /* MQStandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardButton.swift; sourceTree = "<group>"; };
+		3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
+		3CD0E1A3276F7AD600EE255D /* OneImageTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneImageTextfield.swift; sourceTree = "<group>"; };
 		A3992DCAA111BE9734DDE7C7 /* Pods-MathsQuiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathsQuiz.debug.xcconfig"; path = "Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz.debug.xcconfig"; sourceTree = "<group>"; };
 		FC1C8FE18974E344404A13F0 /* Pods-MathsQuiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathsQuiz.release.xcconfig"; path = "Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -151,6 +155,7 @@
 				1B71BA0F2767BE490056A2FF /* Products */,
 				7A361B884636435F578F350F /* Pods */,
 				0E83B61A8D0C0A1743700777 /* Frameworks */,
+				3CD0E1A0276F764600EE255D /* develop */,
 			);
 			sourceTree = "<group>";
 		};
@@ -438,6 +443,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3CD0E1A0276F764600EE255D /* develop */ = {
+			isa = PBXGroup;
+			children = (
+				3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */,
+				3CD0E1A3276F7AD600EE255D /* OneImageTextfield.swift */,
+			);
+			name = develop;
+			sourceTree = "<group>";
+		};
 		7A361B884636435F578F350F /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -584,6 +598,7 @@
 				1B7C4786276C599600BFD277 /* ModulesFactory.swift in Sources */,
 				1B9BCA05276E52A80084931D /* MQCircularProgressBar.swift in Sources */,
 				1B7C4767276B8B4600BFD277 /* AuthCoordinator.swift in Sources */,
+				3CD0E1A4276F7AD600EE255D /* OneImageTextfield.swift in Sources */,
 				1B9BCA00276E50590084931D /* HomeCollectionViewCell.swift in Sources */,
 				1B7C4783276C463B00BFD277 /* AuthModuleFactory.swift in Sources */,
 				1B7C47A7276C8BD200BFD277 /* SignUpContract.swift in Sources */,
@@ -599,6 +614,7 @@
 				1B9BC9F5276E4FC90084931D /* UserDataViewController.swift in Sources */,
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
 				1B7C4778276C42C600BFD277 /* CoordinatorFactory.swift in Sources */,
+				3CD0E1A2276F765500EE255D /* PasswordResetViewController.swift in Sources */,
 				1B9BC9FC276E50260084931D /* HomeViewController.swift in Sources */,
 				1B7C4797276C6A2D00BFD277 /* RouterImp.swift in Sources */,
 				1BBC5C8C276DC0A4001B5F3E /* SignUpData.swift in Sources */,
