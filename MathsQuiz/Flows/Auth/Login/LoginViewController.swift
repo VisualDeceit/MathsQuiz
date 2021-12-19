@@ -28,7 +28,7 @@ class LoginViewController: UIViewController, LoginViewInput {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.textColor = MQColor.gray
-        label.font = MQFont.boldSystemFont14
+        label.font = MQFont.systemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -37,7 +37,7 @@ class LoginViewController: UIViewController, LoginViewInput {
         let label = UILabel()
         label.text = "Еще нет аккаунта?"
         label.textColor = MQColor.gray
-        label.font = MQFont.boldSystemFont14
+        label.font = MQFont.systemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
