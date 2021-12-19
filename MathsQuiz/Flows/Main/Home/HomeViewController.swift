@@ -22,13 +22,14 @@ class HomeViewController: UIViewController {
         return label
     }()
     
-    private let userPhoto: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "userPhoto")
-        imageView.layer.cornerRadius = imageView.frame.width / 2
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+    private let accountButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.layer.cornerRadius = button.frame.width / 2
+        button.layer.masksToBounds = true
+        button.setImage(UIImage(named: "user_placeholder"), for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(accountButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     private var mainCollectionView: UICollectionView = {
@@ -62,17 +63,17 @@ private extension HomeViewController {
     
     func setupGreetingForm() {
         view.addSubview(greetingLabel)
-        view.addSubview(userPhoto)
+        view.addSubview(accountButton)
         
         NSLayoutConstraint.activate([
-            greetingLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44),
+            greetingLabel.centerYAnchor.constraint(equalTo: accountButton.centerYAnchor),
             greetingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            greetingLabel.trailingAnchor.constraint(equalTo: userPhoto.leadingAnchor, constant: 50),
+            greetingLabel.trailingAnchor.constraint(equalTo: accountButton.leadingAnchor, constant: -16),
             
-            userPhoto.centerYAnchor.constraint(equalTo: greetingLabel.centerYAnchor, constant: -10),
-            userPhoto.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
-            userPhoto.widthAnchor.constraint(equalToConstant: 56),
-            userPhoto.heightAnchor.constraint(equalToConstant: 56)
+            accountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            accountButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            accountButton.widthAnchor.constraint(equalToConstant: 56),
+            accountButton.heightAnchor.constraint(equalToConstant: 56)
         ])
     }
     
@@ -83,16 +84,20 @@ private extension HomeViewController {
         mainCollectionView.delegate = self
         
         NSLayoutConstraint.activate([
-            mainCollectionView.topAnchor.constraint(equalTo: greetingLabel.bottomAnchor, constant: 33),
+            mainCollectionView.topAnchor.constraint(equalTo: accountButton.bottomAnchor, constant: 16),
             mainCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    
+    // Targets
+    @objc func accountButtonTapped() {
+        
+    }
 }
 
 // MARK: - CollectionViewDelegate & CollectionViewDataSource
-
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         activities.count
@@ -114,7 +119,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 // MARK: - CollectionViewDelegateFlowLayout
-
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
@@ -138,6 +142,7 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// MARK: - HomeViewInput
 extension HomeViewController: HomeViewInput {
     func reloadCollection(with activities: [Activity]) {
         self.activities = activities
