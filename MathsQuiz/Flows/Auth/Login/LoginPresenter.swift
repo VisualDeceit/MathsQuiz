@@ -39,27 +39,27 @@ class LoginPresenter: LoginPresenterOutput {
 // MARK: - LoginViewOutput
 extension LoginPresenter: LoginViewOutput {
     
-    func forgotPasswordButtonTapped() {
+    func viewDidPasswordResetButtonTap() {
         print(#function)
     }
     
-    func googleButtonTapped() {
+    func viewDidGoogleButtonTap() {
         print(#function)
     }
     
-    func appleButtonTapped() {
+    func viewDidAppleButtonTap() {
         print(#function)
     }
     
-    func facebookButtonTapped() {
+    func viewDidFacebookButtonTap() {
         print(#function)
     }
     
-    func onCreateNewAccountButtonTapped() {
+    func viewDidSignUpTap() {
         onSignUpButtonTap?()
     }
     
-    func onLoginButtonTapped(credentials: Credentials) {
+    func viewDidLoginButtonTap(credentials: Credentials) {
         login(with: credentials)
     }
 }

@@ -28,6 +28,13 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
         view.presenter?.onSelectActivity = { activityType in
             print(activityType.rawValue)
         }
+        view.presenter?.onAccoutButtonTap = { [weak self] in
+            self?.showAccount()
+        }
         router.setRootModule(view, hideBar: true)
+    }
+    
+    private func showAccount() {
+        print(#function)
     }
 }

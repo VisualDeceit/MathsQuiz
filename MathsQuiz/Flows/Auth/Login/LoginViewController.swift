@@ -245,29 +245,29 @@ private extension LoginViewController {
     }
     
     @objc func forgotPasswordButtonTapped() {
-        presenter?.forgotPasswordButtonTapped()
+        presenter?.viewDidPasswordResetButtonTap()
     }
     
     @objc func googleButtonTapped() {
-        presenter?.googleButtonTapped()
+        presenter?.viewDidGoogleButtonTap()
     }
     
     @objc func appleButtonTapped() {
-        presenter?.appleButtonTapped()
+        presenter?.viewDidAppleButtonTap()
     }
     
     @objc func facebookButtonTapped() {
-        presenter?.facebookButtonTapped()
+        presenter?.viewDidFacebookButtonTap()
     }
     
     @objc func createNewAccountButtonTapped() {
-        presenter?.onCreateNewAccountButtonTapped()
+        presenter?.viewDidSignUpTap()
     }
     
     @objc func loginButtonTapped() {
         let credentials = Credentials(email: emailTextField.text ?? "",
                                       password: passwordTextField.text ?? "")
-        presenter?.onLoginButtonTapped(credentials: credentials)
+        presenter?.viewDidLoginButtonTap(credentials: credentials)
     }
 }
 

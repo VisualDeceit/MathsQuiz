@@ -186,11 +186,11 @@ private extension SignUpViewController {
                                     email: emailTextField.text ?? "" ,
                                     password: passwordTextField.text ?? "",
                                     passwordConfirm: confirmPasswordTextField.text ?? "")
-        presenter?.onSignUpButtonTapped(data: signUpData)
+        presenter?.viewDidSignUpButtonTap(data: signUpData)
     }
     
     @objc func loginButtonTapped() {
-        presenter?.onLoginButtonTapped()
+        presenter?.viewDidLoginButtonTap()
     }
 }
 

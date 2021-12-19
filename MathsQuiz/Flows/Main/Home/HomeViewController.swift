@@ -48,7 +48,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
-        presenter?.onViewDidLoad()
+        presenter?.viewDidLoad()
     }
 }
 
@@ -93,7 +93,7 @@ private extension HomeViewController {
     
     // Targets
     @objc func accountButtonTapped() {
-        
+        presenter?.viewDidAccountButtonTap()
     }
 }
 
@@ -114,7 +114,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.onDidSelectActivity(type: activities[indexPath.row].type)
+        presenter?.viewDidSelectActivity(type: activities[indexPath.row].type)
     }
 }
 
