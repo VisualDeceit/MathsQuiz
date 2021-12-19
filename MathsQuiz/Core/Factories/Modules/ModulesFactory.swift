@@ -9,6 +9,7 @@ import UIKit
 
 final class ModulesFactory {}
 
+// MARK: - Auth Flow
 extension ModulesFactory: AuthModuleFactory {
     func makeLoginModule() -> LoginViewInput & Presentable {
         let view = LoginAssembly.build()
@@ -17,6 +18,14 @@ extension ModulesFactory: AuthModuleFactory {
     
     func makeSignUpModule() -> Presentable & SignUpViewInput {
         let view = SignUpAssembly.build()
+        return view
+    }
+}
+
+// MARK: - Main Flow
+extension ModulesFactory: MainModuleFactory {
+    func makeHomeModule() -> HomeViewInput & Presentable {
+        let view = HomeAssembly.build()
         return view
     }
 }

@@ -15,8 +15,6 @@ protocol LoginPresenterOutput: AnyObject {
 }
 
 protocol LoginViewOutput: AnyObject {
-    init(view: LoginViewInput)
-    
     func forgotPasswordButtonTapped()
     func googleButtonTapped()
     func appleButtonTapped()

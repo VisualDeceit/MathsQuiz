@@ -13,7 +13,12 @@ final class CoordinatorFactoryImp {
 
 // MARK: - CoordinatorFactoryProtocol
 extension CoordinatorFactoryImp: CoordinatorFactory {
+    
     func makeAuthCoordinator(router: Router) -> Coordinator & AuthCoordinatorOutput {
         return  AuthCoordinator(router: router, factory: modulesFactory)
+    }
+    
+    func makeMainCoordinator(router: Router) -> Coordinator & MainCoordinatorOutput {
+        return MainCoordinator(router: router, factory: modulesFactory)
     }
 }

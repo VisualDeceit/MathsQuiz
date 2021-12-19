@@ -11,5 +11,5 @@ protocol ConfigCell {
     associatedtype T
     
     static var reuseId: String { get }
-    func configCell(with value: T)
+    func configure(with value: T)
 }

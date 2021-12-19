@@ -39,7 +39,7 @@ class SignUpViewController: UIViewController, SignUpViewInput {
         let label = UILabel()
         label.text = "Уже есть аккаунт?"
         label.textColor = MQColor.gray
-        label.font = MQFont.boldSystemFont14
+        label.font = MQFont.systemFont14
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

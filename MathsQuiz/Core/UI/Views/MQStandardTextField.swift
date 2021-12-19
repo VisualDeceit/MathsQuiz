@@ -27,6 +27,7 @@ class MQStandardTextField: UITextField {
         self.layer.cornerRadius = 12
         self.backgroundColor = MQColor.ubeLight
         self.textColor = .black
+        self.font = MQFont.systemFont16
         
         self.isAnimatedForm = isAnimatedForm
         
@@ -61,7 +62,12 @@ class MQStandardTextField: UITextField {
     
     func addLabel(with text: String) {
         label.text = text
-        label.font = UIFont.systemFont(ofSize: 16)
+        if !isAnimatedForm {
+            label.font = MQFont.systemFont12
+        } else {
+            label.font = MQFont.systemFont16
+        }
+        
         label.textColor = MQColor.gray
         label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
@@ -124,8 +130,8 @@ class MQStandardTextField: UITextField {
     
     private func placeholderAnimation() -> CAAnimationGroup {
         let toSmallFontSize = CABasicAnimation(keyPath: "transform.scale")
-        toSmallFontSize.fromValue = isEditing ? 1.0 : 0.7
-        toSmallFontSize.toValue = !isEditing ? 1.0 : 0.7
+        toSmallFontSize.fromValue = isEditing ? 1.0 : 0.75
+        toSmallFontSize.toValue = !isEditing ? 1.0 : 0.75
         
         let toChangePosition = CABasicAnimation(keyPath: "position.y")
         toChangePosition.fromValue = label.layer.position.y - ( isEditing ? 0 : 12)

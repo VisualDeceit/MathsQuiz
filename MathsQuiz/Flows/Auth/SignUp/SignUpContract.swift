@@ -12,8 +12,6 @@ protocol SignUpPresenterOutput {
     var onLoginButtonTap: (() -> Void)? { get set }
 }
 protocol SignUpViewOutput: AnyObject {
-    init(view: SignUpViewInput)
-
     func onSignUpButtonTapped(data: SignUpData)
     func onLoginButtonTapped()
 }
