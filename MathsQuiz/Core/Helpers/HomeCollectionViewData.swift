@@ -8,26 +8,22 @@
 import UIKit
 
 struct HomeCollectionViewData {
-    var name: String
-    var color: UIColor
-    var levelCount: String
-    var userProgressValue: Double?
-    
-    static var levelsCount = [18, 17, 23, 22, 10]
-    
-    static var data: [HomeCollectionViewData] = [HomeCollectionViewData(name: "Сложение",
-                                                                        color: MQColor.lavenderLight,
-                                                                        levelCount: "18 уровней"),
-                                                 HomeCollectionViewData(name: "Вычитание",
-                                                                        color: MQColor.pictonBlueLight,
-                                                                        levelCount: "17 уровней"),
-                                                 HomeCollectionViewData(name: "Умножение",
-                                                                        color: MQColor.moonstoneBlueLight,
-                                                                        levelCount: "23 уровня"),
-                                                 HomeCollectionViewData(name: "Деление",
-                                                                        color: MQColor.jasperOrangeLight,
-                                                                        levelCount: "22 уровня"),
-                                                 HomeCollectionViewData(name: "Выражения",
-                                                                        color: MQColor.candyPinkLight,
-                                                                        levelCount: "10 уровней")]
+
+    static var data: [Activity] = [
+        Activity(type: .addition,
+                 progress: 4,
+                 total: 18),
+        Activity(type: .subtraction,
+                 progress: 10,
+                 total: 17),
+        Activity(type: .multiplication,
+                 progress: 1,
+                 total: 23),
+        Activity(type: .division,
+                 progress: 0,
+                 total: 22),
+        Activity(type: .expression,
+                 progress: 0,
+                 total: 10)
+    ]
 }

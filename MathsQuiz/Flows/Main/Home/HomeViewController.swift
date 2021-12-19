@@ -9,6 +9,10 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
+    var presenter: (HomePresenterOutput & HomeViewOutput)?
+    
+    private var activities: [Activity] = []
+    
     private let greetingLabel: UILabel = {
         let label = UILabel()
         label.text = "Привет, Данила!"
@@ -43,6 +47,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+        presenter?.onViewDidLoad()
     }
 }
 
@@ -86,24 +91,29 @@ private extension HomeViewController {
     }
 }
 
+// MARK: - CollectionViewDelegate & CollectionViewDataSource
+
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        HomeCollectionViewData.data.count
+        activities.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.reuseId,
                                                       for: indexPath)
         guard let mainCell = cell as? HomeCollectionViewCell else { return cell }
-        
-        let userCompleteLevels = [0.2, 0.3, 0.5, 1, 0.2]
-        HomeCollectionViewData.data[indexPath.row].userProgressValue = userCompleteLevels[indexPath.row]
-        let data = HomeCollectionViewData.data[indexPath.row]
-        mainCell.configCell(with: data)
+        let data = activities[indexPath.row]
+        mainCell.configure(with: data)
         
         return mainCell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.onDidSelectActivity(type: activities[indexPath.row].type)
+    }
 }
+
+// MARK: - CollectionViewDelegateFlowLayout
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
@@ -125,5 +135,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 18
+    }
+}
+
+extension HomeViewController: HomeViewInput {
+    func reloadCollection(with activities: [Activity]) {
+        self.activities = activities
+        mainCollectionView.reloadData()
     }
 }

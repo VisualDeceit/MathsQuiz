@@ -9,4 +9,5 @@ import Foundation
 
 protocol CoordinatorFactory {
     func makeAuthCoordinator(router: Router) -> Coordinator & AuthCoordinatorOutput
+    func makeMainCoordinator(router: Router) -> Coordinator & MainCoordinatorOutput
 }

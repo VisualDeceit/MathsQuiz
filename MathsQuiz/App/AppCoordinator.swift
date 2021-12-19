@@ -14,7 +14,7 @@ enum LaunchInstructor {
         
         switch (Session.isSeenOnboarding, Session.isAuthorized) {
         case (true, false), (false, false): return .auth
-        case (false, true): return .onboarding
+        case (false, true): return .main // .onboarding
         case (true, true): return .main
         }
     }
@@ -35,12 +35,11 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     override func start() {
-        runAuthFlow() // temp
-//        switch instructor {
-//        case .onboarding: runOnboardingFlow()
-//        case .auth: runAuthFlow()
-//        case .main: runMainFlow()
-//        }
+        switch instructor {
+        case .onboarding: runOnboardingFlow()
+        case .auth: runAuthFlow()
+        case .main: runMainFlow()
+        }
     }
     
     private func runAuthFlow() {
@@ -67,9 +66,12 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     private func runMainFlow() {
-        //        let (coordinator, module) = coordinatorFactory.makeTabbarCoordinator()
-        //        addDependency(coordinator)
-        //        router.setRootModule(module, hideBar: true)
-        //        coordinator.start()
+        let coordinator = coordinatorFactory.makeMainCoordinator(router: router)
+        coordinator.finishFlow = { [weak self, weak coordinator] in
+            self?.start()
+            self?.removeDependency(coordinator)
+        }
+        addDependency(coordinator)
+        coordinator.start()
     }
 }

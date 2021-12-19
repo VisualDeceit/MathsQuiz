@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
-    typealias T = HomeCollectionViewData
+    typealias T = Activity
     
     static var reuseId: String = "HomeCollectionViewCell"
     
@@ -19,14 +19,15 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
     private let progressNumLabel = UILabel()
     private let circularProgressBarView = MQCircularProgressBar(frame: .zero)
     
-    func configCell(with value: HomeCollectionViewData) {
-        self.backgroundColor = value.color
+    func configure(with value: Activity) {
+        self.backgroundColor = value.type.color
         self.layer.cornerRadius = 24
-        setupNameLabel(text: value.name)
+        setupNameLabel(text: value.type.rawValue)
         setupLevelContainerView()
-        setupLevelCountLabel(with: value.levelCount)
+        setupLevelCountLabel(with: "\(value.total)")
         setupProgressForm()
-        setUpCircularProgressBarView(toValue: value.userProgressValue ?? 0)
+        setUpCircularProgressBarView(toValue: Double(value.progress) / Double(value.total))
+        progressNumLabel.text = "\(value.progress)"
     }
     
     private func setupNameLabel(text: String) {
