@@ -43,7 +43,11 @@ final class RouterImp: NSObject, Router {
     }
     
     func push(_ module: Presentable?, hideBottomBar: Bool) {
-        push(module, animated: true, hideBottomBar: hideBottomBar, completion: nil)
+        push(module, animated: true, hideNavBar: false, hideBottomBar: hideBottomBar, completion: nil)
+    }
+    
+    func push(_ module: Presentable?, hideNavBar: Bool) {
+       push(module, animated: true, hideNavBar: hideNavBar, hideBottomBar: false, completion: nil)
     }
     
     func push(_ module: Presentable?, animated: Bool) {
@@ -51,10 +55,10 @@ final class RouterImp: NSObject, Router {
     }
     
     func push(_ module: Presentable?, animated: Bool, completion: (() -> Void)?) {
-        push(module, animated: animated, hideBottomBar: false, completion: completion)
+        push(module, animated: animated, hideNavBar: false, hideBottomBar: false, completion: completion)
     }
     
-    func push(_ module: Presentable?, animated: Bool, hideBottomBar: Bool, completion: (() -> Void)?) {
+    func push(_ module: Presentable?, animated: Bool, hideNavBar: Bool, hideBottomBar: Bool, completion: (() -> Void)?) {
         guard
             let controller = module?.toPresent(),
             (controller is UINavigationController == false)
@@ -65,6 +69,7 @@ final class RouterImp: NSObject, Router {
         }
         controller.hidesBottomBarWhenPushed = hideBottomBar
         rootController?.pushViewController(controller, animated: animated)
+        rootController?.setNavigationBarHidden(hideNavBar, animated: true)
     }
     
     func popModule() {

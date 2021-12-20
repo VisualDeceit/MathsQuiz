@@ -50,6 +50,11 @@ class HomeViewController: UIViewController {
         setupViews()
         presenter?.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
 }
 
 // MARK: - Setup views
