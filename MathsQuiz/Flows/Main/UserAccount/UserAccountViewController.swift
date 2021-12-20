@@ -83,6 +83,11 @@ class UserAccountViewController: UIViewController, UserAccountViewInput {
         setupViews()
         addTargetToButtons()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar()
+    }
 }
 
 // MARK: - Setup views
@@ -97,16 +102,27 @@ private extension UserAccountViewController {
         setupButtons()
     }
     
+    func setupNavigationBar() {
+        navigationController?.navigationBar.tintColor = MQColor.ubeDefault
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+        navigationController?.navigationBar.backItem?.title = "Назад"
+        navigationItem.title = "Профиль"
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    
     func setupScrollView() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
@@ -116,7 +132,7 @@ private extension UserAccountViewController {
         scrollView.addSubview(nameLabel)
         
         NSLayoutConstraint.activate([
-            userPhoto.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
+            userPhoto.topAnchor.constraint(equalTo: scrollView.topAnchor),
             userPhoto.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userPhoto.heightAnchor.constraint(equalToConstant: 120),
             userPhoto.widthAnchor.constraint(equalToConstant: 120),
@@ -212,6 +228,12 @@ private extension UserAccountViewController {
     }
     
     @objc func exitButtonTapped() {
-        presenter?.viewDidLogoutButtonTap()
+        let alert = UIAlertController(title: "Уверены, что хотите выйти из своего профиля?",
+                                      message: nil, preferredStyle: .alert)
+        alert.addCancelAction(title: "Отмена")
+        alert.addAction(title: "Выйти", style: .destructive) { [weak self] _ in
+            self?.presenter?.viewDidLogoutButtonTap()
+        }
+        self.present(alert, animated: true, completion: nil)
     }
 }

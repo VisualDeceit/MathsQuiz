@@ -6,12 +6,26 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 final class UserAccountPresenter: UserAccountPresenterOutput {
+    var onLogout: (() -> Void)?
+    var onMyDataButtonTap: (() -> Void)?
+    
     private weak var view: UserAccountViewInput?
     
-    required init(view: UserAccountViewInput) {
+    init(view: UserAccountViewInput) {
         self.view = view
+    }
+    
+    private func logout() {
+        do {
+            try Auth.auth().signOut()
+        } catch  let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+        UserDefaultsWrapper.uid = nil
+        onLogout?()
     }
 }
 
@@ -22,7 +36,7 @@ extension UserAccountPresenter: UserAccountViewOutput {
     }
     
     func viewDidMyDataButtonTap() {
-        print(#function)
+        onMyDataButtonTap?()
     }
     
     func viewDidChangePasswordButtonTap() {
@@ -30,6 +44,6 @@ extension UserAccountPresenter: UserAccountViewOutput {
     }
     
     func viewDidLogoutButtonTap() {
-        print(#function)
+        logout()
     }
 }

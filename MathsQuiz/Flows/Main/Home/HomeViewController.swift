@@ -50,6 +50,11 @@ class HomeViewController: UIViewController {
         setupViews()
         presenter?.viewDidLoad()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: true)
+    }
 }
 
 // MARK: - Setup views
@@ -87,7 +92,7 @@ private extension HomeViewController {
             mainCollectionView.topAnchor.constraint(equalTo: accountButton.bottomAnchor, constant: 16),
             mainCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mainCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     

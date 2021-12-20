@@ -25,6 +25,5 @@ protocol LoginViewOutput: AnyObject {
 
 protocol LoginViewInput: AnyObject {
     var presenter: (LoginViewOutput & LoginPresenterOutput)? { get set }
-    
     func needShowAlert(title: String, message: String?)
 }

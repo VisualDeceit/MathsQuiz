@@ -7,7 +7,9 @@
 
 import UIKit
 
-class UserDataViewController: UIViewController {
+class UserDataViewController: UIViewController, UserDataViewInput {
+    
+    var presenter: (UserDataPresenterOutput & UserDataViewOutput)?
     
     private var isKeyboardShown = false
     
@@ -40,6 +42,7 @@ class UserDataViewController: UIViewController {
         super.viewWillAppear(animated)
         
         addKeyboardObservers()
+        setupNavigationBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,6 +59,12 @@ private extension UserDataViewController {
         
         setupScrollView()
         setupUserDataForm()
+        setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Мои данные"
     }
     
     func setupScrollView() {
@@ -108,7 +117,9 @@ private extension UserDataViewController {
                              for: .touchUpInside)
     }
     
-    @objc func saveButtonTapped() {}
+    @objc func saveButtonTapped() {
+        presenter?.viewDidSaveButtonTap()
+    }
 }
 
 // MARK: - Setup observers and gestures recognizer
@@ -165,4 +176,8 @@ private extension UserDataViewController {
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
     }
+}
+
+// MARK: - UserDataViewInput
+extension UserDataViewController {
 }

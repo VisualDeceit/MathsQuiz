@@ -36,6 +36,17 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
     
     private func showAccount() {
         let view = factory.makeUserAccountModule()
-        router.push(view, animated: true)
+        view.presenter?.onMyDataButtonTap = { [weak self] in
+            self?.showUserData()
+        }
+        view.presenter?.onLogout = { [weak self] in
+            self?.finishFlow?()
+        }
+        router.push(view, hideNavBar: false)
+    }
+    
+    private func showUserData() {
+        let view = factory.makeUserDataModule()
+        router.push(view)
     }
 }

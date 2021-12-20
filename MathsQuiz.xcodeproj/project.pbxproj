@@ -52,6 +52,9 @@
 		1B9BCA3D277053BA0084931D /* UserAccountContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA3C277053BA0084931D /* UserAccountContract.swift */; };
 		1B9BCA40277053D00084931D /* UserAccountAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA3F277053D00084931D /* UserAccountAssembly.swift */; };
 		1B9BCA43277054BF0084931D /* UserAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA42277054BF0084931D /* UserAccountPresenter.swift */; };
+		1B9BCA4D2770B6610084931D /* UserDataContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA4C2770B6600084931D /* UserDataContract.swift */; };
+		1B9BCA502770B66E0084931D /* UserDataAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA4F2770B66E0084931D /* UserDataAssembly.swift */; };
+		1B9BCA532770B6840084931D /* UserDataPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA522770B6840084931D /* UserDataPresenter.swift */; };
 		1BBC5C7E276DB060001B5F3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */; };
 		1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1BBC5C81276DB547001B5F3E /* FirebaseAuth */; };
 		1BBC5C85276DBAF4001B5F3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C84276DBAF4001B5F3E /* Session.swift */; };
@@ -120,6 +123,9 @@
 		1B9BCA3C277053BA0084931D /* UserAccountContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountContract.swift; sourceTree = "<group>"; };
 		1B9BCA3F277053D00084931D /* UserAccountAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountAssembly.swift; sourceTree = "<group>"; };
 		1B9BCA42277054BF0084931D /* UserAccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountPresenter.swift; sourceTree = "<group>"; };
+		1B9BCA4C2770B6600084931D /* UserDataContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataContract.swift; sourceTree = "<group>"; };
+		1B9BCA4F2770B66E0084931D /* UserDataAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataAssembly.swift; sourceTree = "<group>"; };
+		1B9BCA522770B6840084931D /* UserDataPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataPresenter.swift; sourceTree = "<group>"; };
 		1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BBC5C84276DBAF4001B5F3E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		1BBC5C87276DBB5E001B5F3E /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
@@ -359,7 +365,10 @@
 		1B7C47CF276CD94800BFD277 /* UserData */ = {
 			isa = PBXGroup;
 			children = (
+				1B9BCA4C2770B6600084931D /* UserDataContract.swift */,
+				1B9BCA4F2770B66E0084931D /* UserDataAssembly.swift */,
 				1B9BC9F4276E4FC90084931D /* UserDataViewController.swift */,
+				1B9BCA522770B6840084931D /* UserDataPresenter.swift */,
 			);
 			path = UserData;
 			sourceTree = "<group>";
@@ -616,6 +625,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B9BCA502770B66E0084931D /* UserDataAssembly.swift in Sources */,
 				1BBC5C85276DBAF4001B5F3E /* Session.swift in Sources */,
 				1B71BA5A27691EF70056A2FF /* SignUpViewController.swift in Sources */,
 				1B9BCA29276F09B00084931D /* HomeAssembly.swift in Sources */,
@@ -638,6 +648,7 @@
 				1B9BCA00276E50590084931D /* HomeCollectionViewCell.swift in Sources */,
 				1B7C4783276C463B00BFD277 /* AuthModuleFactory.swift in Sources */,
 				1B7C47A7276C8BD200BFD277 /* SignUpContract.swift in Sources */,
+				1B9BCA532770B6840084931D /* UserDataPresenter.swift in Sources */,
 				1B71BA3B276908560056A2FF /* LoginAssembly.swift in Sources */,
 				3C0CAAE7276890CE00810069 /* MQColor.swift in Sources */,
 				1B9BCA08276E52B70084931D /* ConfigCell.swift in Sources */,
@@ -662,6 +673,7 @@
 				1BBC5C93276DDF51001B5F3E /* AuthErrorCode+Extension.swift in Sources */,
 				1B9BCA3D277053BA0084931D /* UserAccountContract.swift in Sources */,
 				1B7C473C276B574100BFD277 /* BaseCoordinator.swift in Sources */,
+				1B9BCA4D2770B6610084931D /* UserDataContract.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */,
 				1B9BCA43277054BF0084931D /* UserAccountPresenter.swift in Sources */,
 				1B7C4751276B5FC200BFD277 /* AuthCoordinatorOutput.swift in Sources */,
