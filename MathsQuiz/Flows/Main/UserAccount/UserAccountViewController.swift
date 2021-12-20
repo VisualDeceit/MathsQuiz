@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserAccountViewController: UIViewController, UserAccountViewInput {
+class UserAccountViewController: UIViewController, UserAccountViewInput, UIGestureRecognizerDelegate {
     
     var presenter: (UserAccountPresenterOutput & UserAccountViewOutput)?
     
@@ -83,6 +83,11 @@ class UserAccountViewController: UIViewController, UserAccountViewInput {
         setupViews()
         addTargetToButtons()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar()
+    }
 }
 
 // MARK: - Setup views
@@ -95,16 +100,17 @@ private extension UserAccountViewController {
         setupMailForm()
         setupResultContainerView()
         setupButtons()
-        setupNavigationBar()
     }
     
     func setupNavigationBar() {
+        navigationController?.navigationBar.tintColor = MQColor.ubeDefault
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
         navigationController?.navigationBar.backItem?.title = "Назад"
-        navigationController?.navigationBar.tintColor = MQColor.ubeDefault
+        navigationItem.title = "Профиль"
+        navigationController?.navigationBar.prefersLargeTitles = false
     }
     
     func setupScrollView() {

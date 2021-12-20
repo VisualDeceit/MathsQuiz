@@ -8,9 +8,11 @@
 import Foundation
 
 final class UserAccountPresenter: UserAccountPresenterOutput {
+    var onMyDataButtonTap: (() -> Void)?
+    
     private weak var view: UserAccountViewInput?
     
-    required init(view: UserAccountViewInput) {
+    init(view: UserAccountViewInput) {
         self.view = view
     }
 }
@@ -22,7 +24,7 @@ extension UserAccountPresenter: UserAccountViewOutput {
     }
     
     func viewDidMyDataButtonTap() {
-        print(#function)
+        onMyDataButtonTap?()
     }
     
     func viewDidChangePasswordButtonTap() {
