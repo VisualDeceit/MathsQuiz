@@ -92,7 +92,7 @@ private extension HomeViewController {
             mainCollectionView.topAnchor.constraint(equalTo: accountButton.bottomAnchor, constant: 16),
             mainCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            mainCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     

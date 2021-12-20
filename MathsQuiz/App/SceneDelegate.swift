@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = UINavigationController()
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-        //UserDefaultsWrapper.uid = nil
+        // UserDefaultsWrapper.uid = nil
         appCoordinator?.start()
     }
     

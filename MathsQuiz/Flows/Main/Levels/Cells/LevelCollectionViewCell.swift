@@ -18,7 +18,6 @@ class LevelCollectionViewCell: UICollectionViewCell, ConfigCell {
     private var starImageView: [UIImageView] = []
     private let lockImageView = UIImageView()
     
-    
     func configure(with value: ActivityType) {
         self.backgroundColor = value.color
         self.layer.cornerRadius = 20

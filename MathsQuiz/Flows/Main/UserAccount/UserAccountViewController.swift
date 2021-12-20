@@ -95,6 +95,16 @@ private extension UserAccountViewController {
         setupMailForm()
         setupResultContainerView()
         setupButtons()
+        setupNavigationBar()
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+        navigationController?.navigationBar.backItem?.title = "Назад"
+        navigationController?.navigationBar.tintColor = MQColor.ubeDefault
     }
     
     func setupScrollView() {
@@ -103,10 +113,10 @@ private extension UserAccountViewController {
         view.addSubview(scrollView)
         
         NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
@@ -116,7 +126,7 @@ private extension UserAccountViewController {
         scrollView.addSubview(nameLabel)
         
         NSLayoutConstraint.activate([
-            userPhoto.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
+            userPhoto.topAnchor.constraint(equalTo: scrollView.topAnchor),
             userPhoto.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             userPhoto.heightAnchor.constraint(equalToConstant: 120),
             userPhoto.widthAnchor.constraint(equalToConstant: 120),
