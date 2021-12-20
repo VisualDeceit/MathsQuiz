@@ -28,4 +28,9 @@ extension ModulesFactory: MainModuleFactory {
         let view = HomeAssembly.build()
         return view
     }
+    
+    func makeUserAccountModule() -> Presentable & UserAccountViewInput {
+        let view = UserAccountAssembly.build()
+        return view
+    }
 }

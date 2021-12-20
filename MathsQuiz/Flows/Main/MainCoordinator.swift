@@ -35,6 +35,7 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
     }
     
     private func showAccount() {
-        print(#function)
+        let view = factory.makeUserAccountModule()
+        router.push(view, animated: true)
     }
 }

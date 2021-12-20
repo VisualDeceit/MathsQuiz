@@ -9,4 +9,5 @@ import Foundation
 
 protocol MainModuleFactory {
     func makeHomeModule() -> HomeViewInput & Presentable
+    func makeUserAccountModule() -> UserAccountViewInput & Presentable
 }
