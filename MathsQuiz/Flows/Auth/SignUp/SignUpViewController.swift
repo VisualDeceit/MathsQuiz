@@ -44,17 +44,8 @@ class SignUpViewController: UIViewController, SignUpViewInput {
         return label
     }()
     
-    private let signInButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Войти", for: .normal)
-        button.setTitleColor(MQColor.burntSienna, for: .normal)
-        button.setTitleColor(MQColor.ubeDefault, for: .highlighted)
-        button.titleLabel?.font = MQFont.boldSystemFont14
-        button.backgroundColor = .white
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-    
+    private let signInButton = MQPlainButton(title: "Войти")
+
     private let nameTextField = MQStandardTextField(placeholder: "Имя и фамилия",
                                                     leftImageName: "person",
                                                     autocorrectionType: .no)
