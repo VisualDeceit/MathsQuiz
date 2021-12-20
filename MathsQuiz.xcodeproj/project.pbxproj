@@ -242,6 +242,7 @@
 				1B7C4766276B8B4600BFD277 /* AuthCoordinator.swift */,
 				1B71BA302768F4D00056A2FF /* Login */,
 				1B71BA312768F4DF0056A2FF /* SignUp */,
+				1B9BCA492770960D0084931D /* PasswordReset */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -350,6 +351,7 @@
 				1B9BCA04276E52A80084931D /* MQCircularProgressBar.swift */,
 				3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */,
 				1B9BCA392770518B0084931D /* MQPlainButton.swift */,
+				3CD0E1A3276F7AD600EE255D /* OneImageTextfield.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -427,6 +429,8 @@
 		1B9BCA15276E5A830084931D /* Levels */ = {
 			isa = PBXGroup;
 			children = (
+				1B9BCA48277095AD0084931D /* Cells */,
+				3CD0E1A5276F86D900EE255D /* LevelViewController.swift */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -437,6 +441,22 @@
 				1B9BCA20276F08C20084931D /* MainModuleFactory.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		1B9BCA48277095AD0084931D /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3CD0E1A7276F870F00EE255D /* LevelCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1B9BCA492770960D0084931D /* PasswordReset */ = {
+			isa = PBXGroup;
+			children = (
+				3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */,
+			);
+			path = PasswordReset;
 			sourceTree = "<group>";
 		};
 		1BBC5C8A276DC011001B5F3E /* Models */ = {
@@ -462,10 +482,6 @@
 		3CD0E1A0276F764600EE255D /* develop */ = {
 			isa = PBXGroup;
 			children = (
-				3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */,
-				3CD0E1A5276F86D900EE255D /* LevelViewController.swift */,
-				3CD0E1A7276F870F00EE255D /* LevelCollectionViewCell.swift */,
-				3CD0E1A3276F7AD600EE255D /* OneImageTextfield.swift */,
 			);
 			name = develop;
 			sourceTree = "<group>";

@@ -50,6 +50,6 @@ class MQCircularProgressBar: UIView {
     }
 
     func progressTo(value: Double) {
-        progressLayer.strokeEnd = value
+        progressLayer.strokeEnd = CGFloat(value)
     }
 }
