@@ -42,15 +42,7 @@ class LoginViewController: UIViewController, LoginViewInput {
         return label
     }()
     
-    private let forgotPasswordButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Забыли пароль?", for: .normal)
-        button.setTitleColor(MQColor.burntSienna, for: .normal)
-        button.setTitleColor(MQColor.ubeDefault, for: .highlighted)
-        button.titleLabel?.font = MQFont.boldSystemFont14
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private let forgotPasswordButton = MQPlainButton(title: "Забыли пароль?")
     
     private let googleButton: UIButton = {
         let button = UIButton()
@@ -79,16 +71,7 @@ class LoginViewController: UIViewController, LoginViewInput {
         return button
     }()
     
-    private let createNewAccountButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Создайте новый", for: .normal)
-        button.setTitleColor(MQColor.burntSienna, for: .normal)
-        button.setTitleColor(MQColor.ubeDefault, for: .highlighted)
-        button.titleLabel?.font = MQFont.boldSystemFont14 
-        button.backgroundColor = .white
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private let createNewAccountButton = MQPlainButton(title: "Создайте новый")
 
     private let loginButton = MQStandardButton(title: "Войти")
     private let emailTextField = MQStandardTextField(placeholder: "Email",
@@ -245,29 +228,29 @@ private extension LoginViewController {
     }
     
     @objc func forgotPasswordButtonTapped() {
-        presenter?.forgotPasswordButtonTapped()
+        presenter?.viewDidPasswordResetButtonTap()
     }
     
     @objc func googleButtonTapped() {
-        presenter?.googleButtonTapped()
+        presenter?.viewDidGoogleButtonTap()
     }
     
     @objc func appleButtonTapped() {
-        presenter?.appleButtonTapped()
+        presenter?.viewDidAppleButtonTap()
     }
     
     @objc func facebookButtonTapped() {
-        presenter?.facebookButtonTapped()
+        presenter?.viewDidFacebookButtonTap()
     }
     
     @objc func createNewAccountButtonTapped() {
-        presenter?.onCreateNewAccountButtonTapped()
+        presenter?.viewDidSignUpTap()
     }
     
     @objc func loginButtonTapped() {
         let credentials = Credentials(email: emailTextField.text ?? "",
                                       password: passwordTextField.text ?? "")
-        presenter?.onLoginButtonTapped(credentials: credentials)
+        presenter?.viewDidLoginButtonTap(credentials: credentials)
     }
 }
 

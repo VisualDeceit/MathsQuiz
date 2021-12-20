@@ -48,6 +48,10 @@
 		1B9BCA29276F09B00084931D /* HomeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA28276F09B00084931D /* HomeAssembly.swift */; };
 		1B9BCA2C276F09C50084931D /* HomeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA2B276F09C50084931D /* HomeContract.swift */; };
 		1B9BCA2F276F0F170084931D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA2E276F0F170084931D /* Activity.swift */; };
+		1B9BCA3A2770518B0084931D /* MQPlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA392770518B0084931D /* MQPlainButton.swift */; };
+		1B9BCA3D277053BA0084931D /* UserAccountContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA3C277053BA0084931D /* UserAccountContract.swift */; };
+		1B9BCA40277053D00084931D /* UserAccountAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA3F277053D00084931D /* UserAccountAssembly.swift */; };
+		1B9BCA43277054BF0084931D /* UserAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA42277054BF0084931D /* UserAccountPresenter.swift */; };
 		1BBC5C7E276DB060001B5F3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */; };
 		1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1BBC5C81276DB547001B5F3E /* FirebaseAuth */; };
 		1BBC5C85276DBAF4001B5F3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C84276DBAF4001B5F3E /* Session.swift */; };
@@ -112,6 +116,10 @@
 		1B9BCA28276F09B00084931D /* HomeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssembly.swift; sourceTree = "<group>"; };
 		1B9BCA2B276F09C50084931D /* HomeContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContract.swift; sourceTree = "<group>"; };
 		1B9BCA2E276F0F170084931D /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
+		1B9BCA392770518B0084931D /* MQPlainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQPlainButton.swift; sourceTree = "<group>"; };
+		1B9BCA3C277053BA0084931D /* UserAccountContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountContract.swift; sourceTree = "<group>"; };
+		1B9BCA3F277053D00084931D /* UserAccountAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountAssembly.swift; sourceTree = "<group>"; };
+		1B9BCA42277054BF0084931D /* UserAccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountPresenter.swift; sourceTree = "<group>"; };
 		1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BBC5C84276DBAF4001B5F3E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		1BBC5C87276DBB5E001B5F3E /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
@@ -341,6 +349,7 @@
 				3C0CAAF02768A15000810069 /* MQStandardButton.swift */,
 				1B9BCA04276E52A80084931D /* MQCircularProgressBar.swift */,
 				3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */,
+				1B9BCA392770518B0084931D /* MQPlainButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -387,7 +396,10 @@
 		1B9BC9F3276E4FB70084931D /* UserAccount */ = {
 			isa = PBXGroup;
 			children = (
+				1B9BCA3C277053BA0084931D /* UserAccountContract.swift */,
+				1B9BCA3F277053D00084931D /* UserAccountAssembly.swift */,
 				1B9BC9F7276E4FD70084931D /* UserAccountViewController.swift */,
+				1B9BCA42277054BF0084931D /* UserAccountPresenter.swift */,
 			);
 			path = UserAccount;
 			sourceTree = "<group>";
@@ -605,6 +617,7 @@
 				1B7C4786276C599600BFD277 /* ModulesFactory.swift in Sources */,
 				1B9BCA05276E52A80084931D /* MQCircularProgressBar.swift in Sources */,
 				1B7C4767276B8B4600BFD277 /* AuthCoordinator.swift in Sources */,
+				1B9BCA3A2770518B0084931D /* MQPlainButton.swift in Sources */,
 				3CD0E1A4276F7AD600EE255D /* OneImageTextfield.swift in Sources */,
 				1B9BCA00276E50590084931D /* HomeCollectionViewCell.swift in Sources */,
 				1B7C4783276C463B00BFD277 /* AuthModuleFactory.swift in Sources */,
@@ -617,6 +630,7 @@
 				1B9BC9F8276E4FD70084931D /* UserAccountViewController.swift in Sources */,
 				1B9BCA0B276E53E20084931D /* HomeCollectionViewData.swift in Sources */,
 				1B9BCA26276F09A30084931D /* HomePresenter.swift in Sources */,
+				1B9BCA40277053D00084931D /* UserAccountAssembly.swift in Sources */,
 				1B9BCA0E276E547F0084931D /* CollectionCellSize.swift in Sources */,
 				1B9BC9F5276E4FC90084931D /* UserDataViewController.swift in Sources */,
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
@@ -630,8 +644,10 @@
 				1B9BCA2C276F09C50084931D /* HomeContract.swift in Sources */,
 				3C0CAAEB2768966F00810069 /* MQStandardTextField.swift in Sources */,
 				1BBC5C93276DDF51001B5F3E /* AuthErrorCode+Extension.swift in Sources */,
+				1B9BCA3D277053BA0084931D /* UserAccountContract.swift in Sources */,
 				1B7C473C276B574100BFD277 /* BaseCoordinator.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */,
+				1B9BCA43277054BF0084931D /* UserAccountPresenter.swift in Sources */,
 				1B7C4751276B5FC200BFD277 /* AuthCoordinatorOutput.swift in Sources */,
 				3CD0E1A8276F870F00EE255D /* LevelCollectionViewCell.swift in Sources */,
 				1B71BA6727699FD50056A2FF /* SignUpAssembly.swift in Sources */,

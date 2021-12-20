@@ -28,7 +28,6 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
         view.presenter?.onCompleteAuth = { [weak self] in
             self?.finishFlow?()
         }
-        
         view.presenter?.onSignUpButtonTap = { [weak self] in
             self?.showSignUp()
         }
@@ -39,12 +38,10 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
         let view = factory.makeSignUpModule()
         view.presenter?.onSignUpComplete = { [weak self] in
             self?.finishFlow?()
-        }
-        
+        }        
         view.presenter?.onLoginButtonTap = { [weak self] in
             self?.router.popModule()
         }
-        
         router.push(view, animated: true)
     }
     

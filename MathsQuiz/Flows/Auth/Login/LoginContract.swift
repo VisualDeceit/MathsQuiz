@@ -15,12 +15,12 @@ protocol LoginPresenterOutput: AnyObject {
 }
 
 protocol LoginViewOutput: AnyObject {
-    func forgotPasswordButtonTapped()
-    func googleButtonTapped()
-    func appleButtonTapped()
-    func facebookButtonTapped()
-    func onCreateNewAccountButtonTapped()
-    func onLoginButtonTapped(credentials: Credentials)
+    func viewDidPasswordResetButtonTap()
+    func viewDidGoogleButtonTap()
+    func viewDidAppleButtonTap()
+    func viewDidFacebookButtonTap()
+    func viewDidSignUpTap()
+    func viewDidLoginButtonTap(credentials: Credentials)
 }
 
 protocol LoginViewInput: AnyObject {

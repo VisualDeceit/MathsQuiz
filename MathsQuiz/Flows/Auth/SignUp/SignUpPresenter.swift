@@ -64,11 +64,11 @@ class SignUpPresenter: SignUpPresenterOutput {
     // MARK: - SignUpViewOutput
 extension SignUpPresenter: SignUpViewOutput {
     
-    func onSignUpButtonTapped(data: SignUpData) {
+    func viewDidSignUpButtonTap(data: SignUpData) {
         createUser(from: data)
     }
     
-    func onLoginButtonTapped() {
+    func viewDidLoginButtonTap() {
         onLoginButtonTap?()
     }
 }

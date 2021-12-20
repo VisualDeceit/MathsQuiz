@@ -13,10 +13,12 @@ protocol HomeViewInput: AnyObject {
 }
 
 protocol HomeViewOutput: AnyObject {
-    func onDidSelectActivity(type: ActivityType)
-    func onViewDidLoad()
+    func viewDidSelectActivity(type: ActivityType)
+    func viewDidLoad()
+    func viewDidAccountButtonTap()
 }
 
 protocol HomePresenterOutput: AnyObject {
     var onSelectActivity: ((ActivityType) -> Void)? { get set }
+    var onAccoutButtonTap: (() -> Void)? { get set }
 }

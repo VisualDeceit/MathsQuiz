@@ -7,21 +7,24 @@
 
 import UIKit
 
-class UserAccountViewController: UIViewController {
+class UserAccountViewController: UIViewController, UserAccountViewInput {
+    
+    var presenter: (UserAccountPresenterOutput & UserAccountViewOutput)?
     
     private let scrollView = UIScrollView()
     
     private let userPhoto: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "userPhoto")
+        imageView.image = UIImage(named: "user_placeholder")
         imageView.layer.cornerRadius = imageView.frame.width / 2
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.isUserInteractionEnabled = true
         return imageView
     }()
     
     private let changePhotoButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("Изменить", for: .normal)
         button.titleLabel?.font = MQFont.systemFont10
         button.backgroundColor = MQColor.ubeDefault
@@ -58,7 +61,7 @@ class UserAccountViewController: UIViewController {
     private let mailLabel: UILabel = {
         let label = UILabel()
         label.text = "test@mail.com"
-        label.font = MQFont.systemFont14
+        label.font = MQFont.systemFont16
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -196,11 +199,19 @@ private extension UserAccountViewController {
                              for: .touchUpInside)
     }
     
-    @objc func changePhotoButtonTapped() {}
+    @objc func changePhotoButtonTapped() {
+        presenter?.viewDidChangePhotoButtonTap()
+    }
     
-    @objc func myDataButtonTapped() {}
+    @objc func myDataButtonTapped() {
+        presenter?.viewDidMyDataButtonTap()
+    }
     
-    @objc func changePasswordButtonTapped() {}
+    @objc func changePasswordButtonTapped() {
+        presenter?.viewDidChangePasswordButtonTap()
+    }
     
-    @objc func exitButtonTapped() {}
+    @objc func exitButtonTapped() {
+        presenter?.viewDidLogoutButtonTap()
+    }
 }

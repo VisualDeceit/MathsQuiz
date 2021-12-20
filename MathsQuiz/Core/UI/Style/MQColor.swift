@@ -11,6 +11,7 @@ enum MQColor {
     static let ubeDefault = UIColor(rgb: 0x8188C1)
     static let ubeLight = UIColor(rgb: 0xEFF0FE)
     static let burntSienna = UIColor(rgb: 0xED7D5D)
+    static let burntSiennaLight = UIColor(rgb: 0xEF9A80)
     static let gray = UIColor(rgb: 0x999999)
     static let pictonBlueLight = UIColor(rgb: 0xDAE7F6)
     static let moonstoneBlueLight = UIColor(rgb: 0xE0F4F0)
