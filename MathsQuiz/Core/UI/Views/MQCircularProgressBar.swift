@@ -35,8 +35,8 @@ class MQCircularProgressBar: UIView {
         circleLayer.path = circularPath.cgPath
         circleLayer.fillColor = UIColor.clear.cgColor
         circleLayer.lineCap = .round
+        circleLayer.strokeEnd = 1
         circleLayer.lineWidth = 3.0
-        circleLayer.strokeEnd = 1.0
         circleLayer.strokeColor = UIColor(rgb: 0xC4C4C4).cgColor
         layer.addSublayer(circleLayer)
         
@@ -48,13 +48,8 @@ class MQCircularProgressBar: UIView {
         progressLayer.strokeColor = MQColor.lavenderDark.cgColor
         layer.addSublayer(progressLayer)
     }
-    
-    func progressAnimation(duration: TimeInterval, toValue: Double) {
-        let circularProgressAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        circularProgressAnimation.duration = duration
-        circularProgressAnimation.toValue = toValue
-        circularProgressAnimation.fillMode = .forwards
-        circularProgressAnimation.isRemovedOnCompletion = false
-        progressLayer.add(circularProgressAnimation, forKey: "progressAnim")
+
+    func progressTo(value: Double) {
+        progressLayer.strokeEnd = value
     }
 }

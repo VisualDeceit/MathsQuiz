@@ -103,7 +103,7 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
     private func setUpCircularProgressBarView(toValue: Double) {
         circleContainerView.addSubview(circularProgressBarView)
         
-        circularProgressBarView.progressAnimation(duration: 1, toValue: toValue)
+        circularProgressBarView.progressTo(value: toValue)
         
         circularProgressBarView.translatesAutoresizingMaskIntoConstraints = false
 

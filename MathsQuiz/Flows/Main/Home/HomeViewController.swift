@@ -92,7 +92,6 @@ private extension HomeViewController {
 }
 
 // MARK: - CollectionViewDelegate & CollectionViewDataSource
-
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         activities.count
@@ -114,7 +113,6 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
 }
 
 // MARK: - CollectionViewDelegateFlowLayout
-
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
