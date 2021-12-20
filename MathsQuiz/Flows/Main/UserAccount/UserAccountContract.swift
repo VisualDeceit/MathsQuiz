@@ -20,4 +20,5 @@ protocol UserAccountViewOutput: AnyObject {
 
 protocol UserAccountPresenterOutput: AnyObject {
     var onMyDataButtonTap: (() -> Void)? { get set }
+    var onLogout: (() -> Void)? { get set }
 }

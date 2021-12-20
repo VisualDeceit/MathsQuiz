@@ -39,6 +39,9 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
         view.presenter?.onMyDataButtonTap = { [weak self] in
             self?.showUserData()
         }
+        view.presenter?.onLogout = { [weak self] in
+            self?.finishFlow?()
+        }
         router.push(view, hideNavBar: false)
     }
     

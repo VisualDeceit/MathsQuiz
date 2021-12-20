@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserAccountViewController: UIViewController, UserAccountViewInput, UIGestureRecognizerDelegate {
+class UserAccountViewController: UIViewController, UserAccountViewInput {
     
     var presenter: (UserAccountPresenterOutput & UserAccountViewOutput)?
     
@@ -228,6 +228,12 @@ private extension UserAccountViewController {
     }
     
     @objc func exitButtonTapped() {
-        presenter?.viewDidLogoutButtonTap()
+        let alert = UIAlertController(title: "Уверены, что хотите выйти из своего профиля?",
+                                      message: nil, preferredStyle: .alert)
+        alert.addCancelAction(title: "Отмена")
+        alert.addAction(title: "Выйти", style: .destructive) { [weak self] _ in
+            self?.presenter?.viewDidLogoutButtonTap()
+        }
+        self.present(alert, animated: true, completion: nil)
     }
 }
