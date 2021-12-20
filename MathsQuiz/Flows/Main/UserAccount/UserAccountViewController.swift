@@ -61,7 +61,7 @@ class UserAccountViewController: UIViewController, UserAccountViewInput {
     private let mailLabel: UILabel = {
         let label = UILabel()
         label.text = "test@mail.com"
-        label.font = MQFont.systemFont14
+        label.font = MQFont.systemFont16
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
