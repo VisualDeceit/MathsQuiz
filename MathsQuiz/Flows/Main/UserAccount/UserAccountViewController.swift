@@ -7,7 +7,9 @@
 
 import UIKit
 
-class UserAccountViewController: UIViewController {
+class UserAccountViewController: UIViewController, UserAccountViewInput {
+    
+    var presenter: (UserAccountPresenterOutput & UserAccountViewOutput)?
     
     private let scrollView = UIScrollView()
     
