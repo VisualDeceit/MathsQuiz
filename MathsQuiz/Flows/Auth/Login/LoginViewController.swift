@@ -92,7 +92,7 @@ class LoginViewController: UIViewController, LoginViewInput {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         addKeyboardObservers()
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
