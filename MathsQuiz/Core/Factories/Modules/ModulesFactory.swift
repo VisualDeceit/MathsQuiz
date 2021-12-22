@@ -38,4 +38,9 @@ extension ModulesFactory: MainModuleFactory {
         let view = UserDataAssembly.build()
         return view
     }
+    
+    func makeLevelsMoodule() -> LevelsViewInput & Presentable {
+        let view = LevelsAssembly.build()
+        return view
+    }
 }
