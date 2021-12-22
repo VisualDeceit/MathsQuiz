@@ -29,9 +29,9 @@ class ChangePasswordViewController: UIViewController {
                                                         isSecured: true,
                                                         autocorrectionType: .no)
     private let confirmPasswordTextfield = MQStandardTextField(placeholder: "Подтверждение пароля",
-                                                        isAnimatedForm: false,
-                                                        isSecured: true,
-                                                        autocorrectionType: .no)
+                                                               isAnimatedForm: false,
+                                                               isSecured: true,
+                                                               autocorrectionType: .no)
     private let changeButton = MQStandardButton(title: "Изменить")
     
     override func viewDidLoad() {
@@ -54,7 +54,7 @@ class ChangePasswordViewController: UIViewController {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension ChangePasswordViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background

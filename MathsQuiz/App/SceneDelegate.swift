@@ -20,12 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: UIScreen.main.bounds)
-         window?.rootViewController = ChangePasswordViewController()
-//        window?.rootViewController = UINavigationController()
+//        window?.rootViewController = ChangePasswordViewController()
+        window?.rootViewController = UINavigationController()
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-        // UserDefaultsWrapper.uid = nil
-//        appCoordinator?.start()
+        appCoordinator?.start()
     }
     
     private func makeCoordinator() -> Coordinator? {
