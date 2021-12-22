@@ -67,6 +67,7 @@
 		3C0CAAE7276890CE00810069 /* MQColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE6276890CE00810069 /* MQColor.swift */; };
 		3C0CAAEB2768966F00810069 /* MQStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */; };
 		3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAF02768A15000810069 /* MQStandardButton.swift */; };
+		3C25CD562773259700A49DC2 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25CD552773259700A49DC2 /* ChangePasswordViewController.swift */; };
 		3CD0E1A2276F765500EE255D /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */; };
 		3CD0E1A4276F7AD600EE255D /* OneImageTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A3276F7AD600EE255D /* OneImageTextfield.swift */; };
 		3CD0E1A6276F86D900EE255D /* LevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A5276F86D900EE255D /* LevelViewController.swift */; };
@@ -137,6 +138,7 @@
 		3C0CAAE6276890CE00810069 /* MQColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQColor.swift; sourceTree = "<group>"; };
 		3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardTextField.swift; sourceTree = "<group>"; };
 		3C0CAAF02768A15000810069 /* MQStandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardButton.swift; sourceTree = "<group>"; };
+		3C25CD552773259700A49DC2 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		3CD0E1A3276F7AD600EE255D /* OneImageTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneImageTextfield.swift; sourceTree = "<group>"; };
 		3CD0E1A5276F86D900EE255D /* LevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelViewController.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 				1B71BA302768F4D00056A2FF /* Login */,
 				1B71BA312768F4DF0056A2FF /* SignUp */,
 				1B9BCA492770960D0084931D /* PasswordReset */,
+				3C25CD532773256600A49DC2 /* ChangePassword */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -488,6 +491,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		3C25CD532773256600A49DC2 /* ChangePassword */ = {
+			isa = PBXGroup;
+			children = (
+				3C25CD552773259700A49DC2 /* ChangePasswordViewController.swift */,
+			);
+			path = ChangePassword;
+			sourceTree = "<group>";
+		};
 		3CD0E1A0276F764600EE255D /* develop */ = {
 			isa = PBXGroup;
 			children = (
@@ -655,6 +666,7 @@
 				1B7C4736276B42E700BFD277 /* Coordinator.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */,
 				1B9BC9F8276E4FD70084931D /* UserAccountViewController.swift in Sources */,
+				3C25CD562773259700A49DC2 /* ChangePasswordViewController.swift in Sources */,
 				1B9BCA0B276E53E20084931D /* HomeCollectionViewData.swift in Sources */,
 				1B9BCA26276F09A30084931D /* HomePresenter.swift in Sources */,
 				1B9BCA40277053D00084931D /* UserAccountAssembly.swift in Sources */,
