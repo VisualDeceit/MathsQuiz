@@ -127,6 +127,9 @@ private extension UserDataViewController {
         sexPickerView.backgroundColor = MQColor.ubeLight
         
         datePickerView.datePickerMode = .date
+        if #available(iOS 13.4, *) {
+            datePickerView.preferredDatePickerStyle = .wheels
+        }
         datePickerView.backgroundColor = MQColor.ubeLight
         
         sexTextfield.inputView = sexPickerView
