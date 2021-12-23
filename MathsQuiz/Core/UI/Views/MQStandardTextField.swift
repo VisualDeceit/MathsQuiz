@@ -15,13 +15,15 @@ class MQStandardTextField: UITextField {
     
     lazy var label = UILabel()
     
-    convenience init(placeholder: String,
-                     leftImageName: String? = nil,
-                     isAnimatedForm: Bool = true,
-                     isSecured: Bool = false,
-                     accessibilityIdentifier: String? = nil,
-                     autocorrectionType: UITextAutocorrectionType? = nil) {
-        self.init()
+    init(placeholder: String,
+         leftImageName: String? = nil,
+         isAnimatedForm: Bool = true,
+         isSecured: Bool = false,
+         accessibilityIdentifier: String? = nil,
+         autocorrectionType: UITextAutocorrectionType? = nil
+    ) {
+        super.init(frame: .zero)
+        
         self.accessibilityIdentifier = accessibilityIdentifier
         self.isSecureTextEntry = isSecured
         self.layer.cornerRadius = 12
@@ -49,6 +51,10 @@ class MQStandardTextField: UITextField {
             addTargets()
         }
         self.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func addLeftImageView(imageName: String) {
