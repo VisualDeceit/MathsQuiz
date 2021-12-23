@@ -6,6 +6,6 @@ target 'MathsQuiz' do
   use_frameworks!
 
   # Pods for MathsQuiz
-  pod 'SwiftLint'
+  pod 'SwiftLint', '~> 0.45.1'
 
 end
