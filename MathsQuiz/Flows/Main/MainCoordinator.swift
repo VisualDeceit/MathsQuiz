@@ -28,7 +28,7 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
         view.presenter?.onSelectActivity = { [weak self] activityType in
             self?.showLevels(for: activityType)
         }
-        view.presenter?.onAccoutButtonTap = { [weak self] in
+        view.presenter?.onAccountButtonTap = { [weak self] in
             self?.showAccount()
         }
         router.setRootModule(view, hideBar: true)
@@ -52,7 +52,7 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
     
     private func showLevels(for activity: ActivityType) {
         print(activity.rawValue)
-        let view = factory.makeLevelsMoodule()
+        let view = factory.makeLevelsModule()
         router.push(view, hideNavBar: false)
     }
 }

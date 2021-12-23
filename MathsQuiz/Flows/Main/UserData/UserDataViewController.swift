@@ -14,22 +14,22 @@ class UserDataViewController: UIViewController, UserDataViewInput {
     private var isKeyboardShown = false
     
     private let scrollView = UIScrollView()
-    private let cityTextfield = MQStandardTextField(placeholder: "Город",
+    private let cityTextField = MQStandardTextField(placeholder: "Город",
                                                     isAnimatedForm: false,
                                                     autocorrectionType: .no)
-    private let nameTextfield = MQStandardTextField(placeholder: "Имя",
+    private let nameTextField = MQStandardTextField(placeholder: "Имя",
                                                     isAnimatedForm: false,
                                                     autocorrectionType: .no)
-    private let surnameTextfield = MQStandardTextField(placeholder: "Фамилия",
+    private let surnameTextField = MQStandardTextField(placeholder: "Фамилия",
                                                        isAnimatedForm: false,
                                                        autocorrectionType: .no)
-    private let sexTextfield = MQStandardTextField(placeholder: "Пол",
+    private let sexTextField = MQStandardTextField(placeholder: "Пол",
                                                    isAnimatedForm: false,
                                                    autocorrectionType: .no)
-    private let birthdayTextfield = MQStandardTextField(placeholder: "Дата рождения",
-                                                        isAnimatedForm: false,
-                                                        autocorrectionType: .no)
-    private let phoneNumberTextfield = MQStandardTextField(placeholder: "Номер телефона",
+    private let birthdayTextField = MQStandardTextField(placeholder: "Дата рождения",
+                                                            isAnimatedForm: false,
+                                                            autocorrectionType: .no)
+    private let phoneNumberTextField = MQStandardTextField(placeholder: "Номер телефона",
                                                            isAnimatedForm: false)
     private let locationButton: UIButton = {
         let button = UIButton()
@@ -72,7 +72,7 @@ private extension UserDataViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background
         
-        sexTextfield.text = "Мужской"
+        sexTextField.text = "Мужской"
         
         setupNavigationBar()
         setupScrollView()
@@ -101,8 +101,8 @@ private extension UserDataViewController {
     }
     
     func setupPhoneNumberTextfield() {
-        phoneNumberTextfield.keyboardType = .numberPad
-        phoneNumberTextfield.delegate = self
+        phoneNumberTextField.keyboardType = .numberPad
+        phoneNumberTextField.delegate = self
     }
     
     func format(with mask: String, phone: String) -> String {
@@ -133,33 +133,33 @@ private extension UserDataViewController {
         }
         datePickerView.backgroundColor = MQColor.ubeLight
         
-        sexTextfield.inputView = sexPickerView
-        birthdayTextfield.inputView = datePickerView
+        sexTextField.inputView = sexPickerView
+        birthdayTextField.inputView = datePickerView
     }
     
     func setupCityTextfield() {
-        cityTextfield.addSubview(locationButton)
+        cityTextField.addSubview(locationButton)
         
         NSLayoutConstraint.activate([
-            locationButton.centerYAnchor.constraint(equalTo: cityTextfield.centerYAnchor),
-            locationButton.trailingAnchor.constraint(equalTo: cityTextfield.trailingAnchor, constant: -10),
+            locationButton.centerYAnchor.constraint(equalTo: cityTextField.centerYAnchor),
+            locationButton.trailingAnchor.constraint(equalTo: cityTextField.trailingAnchor, constant: -10),
             locationButton.heightAnchor.constraint(equalToConstant: 24),
             locationButton.widthAnchor.constraint(equalToConstant: 24)
         ])
     }
     
     func setupUserDataForm() {
-        let pickerViewsStackView = UIStackView(arrangedSubviews: [sexTextfield,
-                                                                  birthdayTextfield])
+        let pickerViewsStackView = UIStackView(arrangedSubviews: [sexTextField,
+                                                                  birthdayTextField])
         pickerViewsStackView.axis = .horizontal
         pickerViewsStackView.distribution = .fillEqually
         pickerViewsStackView.spacing = 10
         
-        let stackView = UIStackView(arrangedSubviews: [cityTextfield,
-                                                       surnameTextfield,
-                                                       nameTextfield,
+        let stackView = UIStackView(arrangedSubviews: [cityTextField,
+                                                       surnameTextField,
+                                                       nameTextField,
                                                        pickerViewsStackView,
-                                                       phoneNumberTextfield])
+                                                       phoneNumberTextField])
         stackView.axis = .vertical
         stackView.spacing = 19
         stackView.distribution = .fillEqually
@@ -169,7 +169,7 @@ private extension UserDataViewController {
         scrollView.addSubview(saveButton)
         
         NSLayoutConstraint.activate([
-            surnameTextfield.heightAnchor.constraint(equalToConstant: 44),
+            surnameTextField.heightAnchor.constraint(equalToConstant: 44),
             
             stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 24),
             stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
@@ -211,7 +211,7 @@ private extension UserDataViewController {
         formatter.dateStyle = .short
         formatter.timeStyle = .none
         let dateString = formatter.string(from: datePickerView.date)
-        birthdayTextfield.text = dateString
+        birthdayTextField.text = dateString
     }
 }
 
@@ -242,7 +242,7 @@ extension UserDataViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let sex = ["Мужской", "Женский"]
-        sexTextfield.text = sex[row]
+        sexTextField.text = sex[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -265,7 +265,7 @@ private extension UserDataViewController {
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillBeHiden),
+                                               selector: #selector(keyboardWillBeHidden),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
@@ -291,7 +291,7 @@ private extension UserDataViewController {
         isKeyboardShown = true
     }
     
-    @objc func keyboardWillBeHiden() {
+    @objc func keyboardWillBeHidden() {
         guard isKeyboardShown else { return }
         
         let contentInsets = UIEdgeInsets.zero

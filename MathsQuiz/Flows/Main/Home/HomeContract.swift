@@ -21,5 +21,5 @@ protocol HomeViewOutput: AnyObject {
 
 protocol HomePresenterOutput: AnyObject {
     var onSelectActivity: ((ActivityType) -> Void)? { get set }
-    var onAccoutButtonTap: (() -> Void)? { get set }
+    var onAccountButtonTap: (() -> Void)? { get set }
 }

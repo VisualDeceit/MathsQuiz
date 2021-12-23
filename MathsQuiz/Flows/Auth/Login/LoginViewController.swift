@@ -270,7 +270,7 @@ private extension LoginViewController {
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillBeHiden),
+                                               selector: #selector(keyboardWillBeHidden),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
@@ -296,7 +296,7 @@ private extension LoginViewController {
         isKeyboardShown = true
     }
     
-    @objc func keyboardWillBeHiden() {
+    @objc func keyboardWillBeHidden() {
         guard isKeyboardShown else { return }
         
         let contentInsets = UIEdgeInsets.zero

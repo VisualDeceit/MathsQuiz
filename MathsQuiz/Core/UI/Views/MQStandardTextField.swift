@@ -13,15 +13,17 @@ class MQStandardTextField: UITextField {
     private var isAnimatedForm = true
     private var isEdited = false
     
-    lazy var label = UILabel()
+    let label = UILabel()
     
-    convenience init(placeholder: String,
-                     leftImageName: String? = nil,
-                     isAnimatedForm: Bool = true,
-                     isSecured: Bool = false,
-                     accessibilityIdentifier: String? = nil,
-                     autocorrectionType: UITextAutocorrectionType? = nil) {
-        self.init()
+    init(placeholder: String,
+         leftImageName: String? = nil,
+         isAnimatedForm: Bool = true,
+         isSecured: Bool = false,
+         accessibilityIdentifier: String? = nil,
+         autocorrectionType: UITextAutocorrectionType? = nil
+    ) {
+        super.init(frame: .zero)
+        
         self.accessibilityIdentifier = accessibilityIdentifier
         self.isSecureTextEntry = isSecured
         self.layer.cornerRadius = 12
@@ -49,6 +51,10 @@ class MQStandardTextField: UITextField {
             addTargets()
         }
         self.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func addLeftImageView(imageName: String) {
@@ -145,13 +151,13 @@ class MQStandardTextField: UITextField {
 
         return animationGroup
     }
-    @objc func textfieldeditingDidBegin() {
+    @objc func textFieldEditingDidBegin() {
         guard let text = text, text.isEmpty else { return }
         isEdited.toggle()
         label.layer.add(placeholderAnimation(), forKey: "")
     }
     
-    @objc func textfielDidEndEditing() {
+    @objc func textFieldDidEndEditing() {
         guard let text = text, text.isEmpty else { return }
             isEdited.toggle()
             label.layer.add(placeholderAnimation(), forKey: "")
@@ -182,8 +188,8 @@ class MQStandardTextField: UITextField {
     }
     
     func addTargets() {
-        self.addTarget(self, action: #selector(textfieldeditingDidBegin), for: .editingDidBegin)
-        self.addTarget(self, action: #selector(textfielDidEndEditing), for: .editingDidEnd)
+        self.addTarget(self, action: #selector(textFieldEditingDidBegin), for: .editingDidBegin)
+        self.addTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
     }
     
     override func layoutSubviews() {

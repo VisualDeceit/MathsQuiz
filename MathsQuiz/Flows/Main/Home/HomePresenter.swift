@@ -10,7 +10,7 @@ import Foundation
 final class HomePresenter: HomePresenterOutput, HomeViewOutput {
     var activities: [Activity]
     var onSelectActivity: ((ActivityType) -> Void)?
-    var onAccoutButtonTap: (() -> Void)?
+    var onAccountButtonTap: (() -> Void)?
     
     private weak var view: HomeViewInput?
     
@@ -32,6 +32,6 @@ extension HomePresenter {
     }
     
     func viewDidAccountButtonTap() {
-        onAccoutButtonTap?()
+        onAccountButtonTap?()
     }
 }

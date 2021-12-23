@@ -9,11 +9,11 @@ import UIKit
 
 class MQCircularProgressBar: UIView {
     
-    private var circleLayer = CAShapeLayer()
-    private var progressLayer = CAShapeLayer()
+    private let circleLayer = CAShapeLayer()
+    private let progressLayer = CAShapeLayer()
     
-    private var startPoint = CGFloat(-Double.pi / 2)
-    private var endPoint = CGFloat(3 * Double.pi / 2)
+    private let startPoint = CGFloat(-Double.pi / 2)
+    private let endPoint = CGFloat(3 * Double.pi / 2)
     
     override init(frame: CGRect) {
         super.init(frame: frame)

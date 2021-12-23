@@ -30,7 +30,7 @@ class HomeViewController: UIViewController, HomeViewInput {
         return button
     }()
     
-    private var mainCollectionView: UICollectionView = {
+    private let mainCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)

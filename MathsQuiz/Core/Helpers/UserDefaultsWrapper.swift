@@ -9,23 +9,23 @@ import Foundation
 
 struct UserDefaultsWrapper {
     
-    fileprivate static let UserDefaultsStandart = UserDefaults.standard
+    fileprivate static let UserDefaultsStandard = UserDefaults.standard
     
     static var isSeenOnboarding: Bool {
         get {
-            return UserDefaultsStandart.bool(forKey: PersistantKeys.isSeenOnboarding)
+            return UserDefaultsStandard.bool(forKey: PersistantKeys.isSeenOnboarding)
         }
         set {
-            UserDefaultsStandart.set(newValue, forKey: PersistantKeys.isSeenOnboarding)
+            UserDefaultsStandard.set(newValue, forKey: PersistantKeys.isSeenOnboarding)
         }
     }
     
     static var uid: String? {
         get {
-            return UserDefaultsStandart.string(forKey: PersistantKeys.uid)
+            return UserDefaultsStandard.string(forKey: PersistantKeys.uid)
         }
         set {
-            UserDefaultsStandart.set(newValue, forKey: PersistantKeys.uid)
+            UserDefaultsStandard.set(newValue, forKey: PersistantKeys.uid)
         }
     }
 }
