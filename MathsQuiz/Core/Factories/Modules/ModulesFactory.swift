@@ -39,7 +39,7 @@ extension ModulesFactory: MainModuleFactory {
         return view
     }
     
-    func makeLevelsMoodule() -> LevelsViewInput & Presentable {
+    func makeLevelsModule() -> LevelsViewInput & Presentable {
         let view = LevelsAssembly.build()
         return view
     }
