@@ -43,8 +43,8 @@ class PasswordResetViewController: UIViewController {
         return label
     }()
     
-    private let textField: OneImageTextField = {
-        let textField = OneImageTextField()
+    private let textField: MQOneImageTextField = {
+        let textField = MQOneImageTextField()
         textField.layer.cornerRadius = 12
         textField.backgroundColor = MQColor.ubeLight
         textField.textColor = .black

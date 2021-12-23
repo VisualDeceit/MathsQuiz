@@ -10,7 +10,7 @@ import UIKit
 class MQStandardButton: UIButton {
     
     init(title: String,
-        accessibilityIdentifier: String? = nil
+         accessibilityIdentifier: String? = nil
     ) {
         super.init(frame: .zero)
         

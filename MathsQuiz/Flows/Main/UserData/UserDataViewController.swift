@@ -27,8 +27,8 @@ class UserDataViewController: UIViewController, UserDataViewInput {
                                                    isAnimatedForm: false,
                                                    autocorrectionType: .no)
     private let birthdayTextField = MQStandardTextField(placeholder: "Дата рождения",
-                                                            isAnimatedForm: false,
-                                                            autocorrectionType: .no)
+                                                        isAnimatedForm: false,
+                                                        autocorrectionType: .no)
     private let phoneNumberTextField = MQStandardTextField(placeholder: "Номер телефона",
                                                            isAnimatedForm: false)
     private let locationButton: UIButton = {

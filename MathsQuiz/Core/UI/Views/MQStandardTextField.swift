@@ -113,27 +113,6 @@ class MQStandardTextField: UITextField {
         }
     }
     
-    private func setAnchorPoint(anchorPoint: CGPoint, forView view: UIView) {
-        var newPoint = CGPoint(x: view.bounds.size.width * anchorPoint.x,
-                               y: view.bounds.size.height * anchorPoint.y)
-
-        var oldPoint = CGPoint(x: view.bounds.size.width * view.layer.anchorPoint.x,
-                               y: view.bounds.size.height * view.layer.anchorPoint.y)
-
-        newPoint = newPoint.applying(view.transform)
-        oldPoint = oldPoint.applying(view.transform)
-
-        var position = view.layer.position
-        position.x -= oldPoint.x
-        position.x += newPoint.x
-
-        position.y -= oldPoint.y
-        position.y += newPoint.y
-
-        view.layer.position = position
-        view.layer.anchorPoint = anchorPoint
-    }
-    
     private func placeholderAnimation() -> CAAnimationGroup {
         let toSmallFontSize = CABasicAnimation(keyPath: "transform.scale")
         toSmallFontSize.fromValue = isEditing ? 1.0 : 0.75
@@ -195,6 +174,6 @@ class MQStandardTextField: UITextField {
     override func layoutSubviews() {
         super.layoutSubviews()
         label.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        setAnchorPoint(anchorPoint: CGPoint(x: 0, y: 0.5), forView: label)
+        label.setAnchorPoint(anchorPoint: CGPoint(x: 0, y: 0.5))
     }
 }
