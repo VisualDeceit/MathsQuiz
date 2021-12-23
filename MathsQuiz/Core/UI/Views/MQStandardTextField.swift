@@ -13,7 +13,7 @@ class MQStandardTextField: UITextField {
     private var isAnimatedForm = true
     private var isEdited = false
     
-    lazy var label = UILabel()
+    let label = UILabel()
     
     init(placeholder: String,
          leftImageName: String? = nil,
@@ -151,13 +151,13 @@ class MQStandardTextField: UITextField {
 
         return animationGroup
     }
-    @objc func textfieldeditingDidBegin() {
+    @objc func textFieldEditingDidBegin() {
         guard let text = text, text.isEmpty else { return }
         isEdited.toggle()
         label.layer.add(placeholderAnimation(), forKey: "")
     }
     
-    @objc func textfielDidEndEditing() {
+    @objc func textFieldDidEndEditing() {
         guard let text = text, text.isEmpty else { return }
             isEdited.toggle()
             label.layer.add(placeholderAnimation(), forKey: "")
@@ -188,8 +188,8 @@ class MQStandardTextField: UITextField {
     }
     
     func addTargets() {
-        self.addTarget(self, action: #selector(textfieldeditingDidBegin), for: .editingDidBegin)
-        self.addTarget(self, action: #selector(textfielDidEndEditing), for: .editingDidEnd)
+        self.addTarget(self, action: #selector(textFieldEditingDidBegin), for: .editingDidBegin)
+        self.addTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
     }
     
     override func layoutSubviews() {

@@ -61,7 +61,7 @@ class SignUpPresenter: SignUpPresenterOutput {
     }
 }
 
-    // MARK: - SignUpViewOutput
+// MARK: - SignUpViewOutput
 extension SignUpPresenter: SignUpViewOutput {
     
     func viewDidSignUpButtonTap(data: SignUpData) {

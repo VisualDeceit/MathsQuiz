@@ -24,11 +24,11 @@ class ChangePasswordViewController: UIViewController {
         return label
     }()
     
-    private let passwordTextfield = MQStandardTextField(placeholder: "Пароль",
+    private let passwordTextField = MQStandardTextField(placeholder: "Пароль",
                                                         isAnimatedForm: false,
                                                         isSecured: true,
                                                         autocorrectionType: .no)
-    private let confirmPasswordTextfield = MQStandardTextField(placeholder: "Подтверждение пароля",
+    private let confirmPasswordTextField = MQStandardTextField(placeholder: "Подтверждение пароля",
                                                         isAnimatedForm: false,
                                                         isSecured: true,
                                                         autocorrectionType: .no)
@@ -77,8 +77,8 @@ private extension ChangePasswordViewController {
     }
     
     func setupChangePasswordForm() {
-        let stackView = UIStackView(arrangedSubviews: [passwordTextfield,
-                                                       confirmPasswordTextfield])
+        let stackView = UIStackView(arrangedSubviews: [passwordTextField,
+                                                       confirmPasswordTextField])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 16
@@ -89,7 +89,7 @@ private extension ChangePasswordViewController {
         scrollView.addSubview(changeButton)
         
         NSLayoutConstraint.activate([
-            passwordTextfield.heightAnchor.constraint(equalToConstant: 44),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 44),
             
             alertLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
             alertLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 37),
@@ -122,7 +122,7 @@ private extension ChangePasswordViewController {
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillBeHiden),
+                                               selector: #selector(keyboardWillBeHidden),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
@@ -148,7 +148,7 @@ private extension ChangePasswordViewController {
         isKeyboardShown = true
     }
     
-    @objc func keyboardWillBeHiden() {
+    @objc func keyboardWillBeHidden() {
         guard isKeyboardShown else { return }
         
         let contentInsets = UIEdgeInsets.zero

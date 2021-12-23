@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OneImageTextfield: UITextField {
+class OneImageTextField: UITextField {
     
     override func textRect(forBounds bounds: CGRect) -> CGRect {
         return bounds.inset(by: UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 10))

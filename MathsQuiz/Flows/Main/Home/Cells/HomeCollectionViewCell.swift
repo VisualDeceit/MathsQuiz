@@ -10,7 +10,7 @@ import UIKit
 class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
     typealias T = Activity
     
-    static var reuseId: String = "HomeCollectionViewCell"
+    static let reuseId: String = "HomeCollectionViewCell"
     
     private let nameLabel = UILabel()
     private let levelContainerView = UIView()
