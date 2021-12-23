@@ -8,8 +8,8 @@
 import Foundation
 
 protocol MainModuleFactory {
-    func makeHomeModule() -> HomeViewInput & Presentable
-    func makeUserAccountModule() -> UserAccountViewInput & Presentable
-    func makeUserDataModule() -> UserDataViewInput & Presentable
-    func makeLevelsModule() -> LevelsViewInput & Presentable
+    func makeHomeView() -> HomeViewInput & Presentable
+    func makeUserAccountView() -> UserAccountViewInput & Presentable
+    func makeUserDataView() -> UserDataViewInput & Presentable
+    func makeLevelsView() -> LevelsViewInput & Presentable
 }
