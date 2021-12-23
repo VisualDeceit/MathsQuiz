@@ -7,29 +7,28 @@
 
 import Foundation
 
-final class HomePresenter: HomePresenterOutput {
-
+final class HomePresenter: HomePresenterOutput, HomeViewOutput {
+    var activities: [Activity]
     var onSelectActivity: ((ActivityType) -> Void)?
     var onAccoutButtonTap: (() -> Void)?
     
     private weak var view: HomeViewInput?
-    private var model = [Activity]()
     
     init(view: HomeViewInput) {
         self.view = view
+        activities = HomeCollectionViewData.data // stub
     }
 }
 
 // MARK: - HomeViewOutput
-extension HomePresenter: HomeViewOutput {
-
+extension HomePresenter {
+    
     func viewDidSelectActivity(type: ActivityType) {
         onSelectActivity?(type)
     }
     
     func viewDidLoad() {
-        let data = HomeCollectionViewData.data // stub
-        view?.reloadCollection(with: data)
+        view?.reloadCollection()
     }
     
     func viewDidAccountButtonTap() {

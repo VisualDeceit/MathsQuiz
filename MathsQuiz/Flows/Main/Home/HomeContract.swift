@@ -9,13 +9,14 @@ import Foundation
 
 protocol HomeViewInput: AnyObject {
     var presenter: (HomeViewOutput & HomePresenterOutput)? { get set }
-    func reloadCollection(with activities: [Activity])
+    func reloadCollection()
 }
 
 protocol HomeViewOutput: AnyObject {
+    var activities: [Activity] { get set }
     func viewDidSelectActivity(type: ActivityType)
     func viewDidLoad()
-    func viewDidAccountButtonTap()
+    func viewDidAccountButtonTap()    
 }
 
 protocol HomePresenterOutput: AnyObject {
