@@ -1,5 +1,5 @@
 //
-//  LevelViewController.swift
+//  LevelsViewController.swift
 //  MathsQuiz
 //
 //  Created by Karahanyan Levon on 19.12.2021.
@@ -7,8 +7,10 @@
 
 import UIKit
 
-class LevelViewController: UIViewController {
+class LevelsViewController: UIViewController, LevelsViewInput {
     
+    var presenter: (LevelsPresenterOutput & LevelsViewOutput)?
+
     private var activityType: ActivityType?
     
     private var levelCollectionView: UICollectionView = {
@@ -33,11 +35,27 @@ class LevelViewController: UIViewController {
         
         setupViews()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigationBar() 
+    }
 }
 
 // MARK: - Setup views
 
-private extension LevelViewController {
+private extension LevelsViewController {
+    func setupNavigationBar() {
+        navigationController?.navigationBar.tintColor = MQColor.ubeDefault
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.view.backgroundColor = .clear
+        navigationController?.navigationBar.backItem?.title = "Назад"
+        navigationItem.title = "Сложение"
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     func setupViews() {
         view.backgroundColor = MQColor.background
         
@@ -60,7 +78,7 @@ private extension LevelViewController {
 }
 
 // MARK: - CollectionViewDelegate & CollectionViewDataSource
-extension LevelViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         3
     }
@@ -78,7 +96,7 @@ extension LevelViewController: UICollectionViewDataSource, UICollectionViewDeleg
 }
 
 // MARK: - CollectionViewDelegateFlowLayout
-extension LevelViewController: UICollectionViewDelegateFlowLayout {
+extension LevelsViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -99,4 +117,8 @@ extension LevelViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 18
     }
+}
+
+// MARK: - LevelsViewInput
+extension LevelsViewController {
 }

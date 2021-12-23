@@ -25,8 +25,8 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
     
     private func showMain() {
         let view = factory.makeHomeModule()
-        view.presenter?.onSelectActivity = { activityType in
-            print(activityType.rawValue)
+        view.presenter?.onSelectActivity = { [weak self] activityType in
+            self?.showLevels(for: activityType)
         }
         view.presenter?.onAccountButtonTap = { [weak self] in
             self?.showAccount()
@@ -48,5 +48,11 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
     private func showUserData() {
         let view = factory.makeUserDataModule()
         router.push(view)
+    }
+    
+    private func showLevels(for activity: ActivityType) {
+        print(activity.rawValue)
+        let view = factory.makeLevelsMoodule()
+        router.push(view, hideNavBar: false)
     }
 }

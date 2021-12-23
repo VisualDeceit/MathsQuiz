@@ -54,7 +54,7 @@ class ChangePasswordViewController: UIViewController {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension ChangePasswordViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background

@@ -127,6 +127,7 @@ private extension UserDataViewController {
         sexPickerView.backgroundColor = MQColor.ubeLight
         
         datePickerView.datePickerMode = .date
+        datePickerView.locale = Locale(identifier: "Ru_ru")
         if #available(iOS 13.4, *) {
             datePickerView.preferredDatePickerStyle = .wheels
         }
@@ -201,12 +202,12 @@ private extension UserDataViewController {
     }
     
     @objc func locationButtonTapped() {
-        
     }
     
     @objc func dateDidChange() {
         let formatter = DateFormatter()
         formatter.calendar = datePickerView.calendar
+        formatter.locale = Locale(identifier: "Ru_ru")
         formatter.dateStyle = .short
         formatter.timeStyle = .none
         let dateString = formatter.string(from: datePickerView.date)
@@ -214,7 +215,7 @@ private extension UserDataViewController {
     }
 }
 
-//MARK: - Setup extension of textfield
+// MARK: - Setup extension of textfield
 extension UserDataViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return false }
@@ -224,7 +225,7 @@ extension UserDataViewController: UITextFieldDelegate {
     }
 }
 
-//MARK: - Setup extension of pickerView
+// MARK: - Setup extension of pickerVIew
 extension UserDataViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
