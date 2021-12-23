@@ -59,10 +59,11 @@
 		1B9BCA5B2771DD900084931D /* LevelsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA5A2771DD900084931D /* LevelsAssembly.swift */; };
 		1B9BCA5E2771DDA30084931D /* LevelsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA5D2771DDA30084931D /* LevelsPresenter.swift */; };
 		1B9BCA682774BE2E0084931D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA672774BE2E0084931D /* UIView+Extension.swift */; };
+		1B9BCA6E2774C5430084931D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA6D2774C5430084931D /* UIViewController+Extension.swift */; };
+		1B9BCA712774C6030084931D /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA702774C6030084931D /* UserDefaultsStorage.swift */; };
 		1BBC5C7E276DB060001B5F3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */; };
 		1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1BBC5C81276DB547001B5F3E /* FirebaseAuth */; };
 		1BBC5C85276DBAF4001B5F3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C84276DBAF4001B5F3E /* Session.swift */; };
-		1BBC5C88276DBB5F001B5F3E /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C87276DBB5E001B5F3E /* UserDefaultsWrapper.swift */; };
 		1BBC5C8C276DC0A4001B5F3E /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C8B276DC0A4001B5F3E /* SignUpData.swift */; };
 		1BBC5C90276DD0AB001B5F3E /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C8F276DD0AB001B5F3E /* UIAlertController+Extension.swift */; };
 		1BBC5C93276DDF51001B5F3E /* AuthErrorCode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */; };
@@ -135,9 +136,10 @@
 		1B9BCA5A2771DD900084931D /* LevelsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsAssembly.swift; sourceTree = "<group>"; };
 		1B9BCA5D2771DDA30084931D /* LevelsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsPresenter.swift; sourceTree = "<group>"; };
 		1B9BCA672774BE2E0084931D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		1B9BCA6D2774C5430084931D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		1B9BCA702774C6030084931D /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BBC5C84276DBAF4001B5F3E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		1BBC5C87276DBB5E001B5F3E /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		1BBC5C8B276DC0A4001B5F3E /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		1BBC5C8F276DD0AB001B5F3E /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthErrorCode+Extension.swift"; sourceTree = "<group>"; };
@@ -311,7 +313,7 @@
 				1B9BCA0A276E53E20084931D /* HomeCollectionViewData.swift */,
 				1B7C4771276B8D2200BFD277 /* Constants.swift */,
 				1BBC5C84276DBAF4001B5F3E /* Session.swift */,
-				1BBC5C87276DBB5E001B5F3E /* UserDefaultsWrapper.swift */,
+				1B9BCA702774C6030084931D /* UserDefaultsStorage.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -495,10 +497,11 @@
 		3C0CAAED27689DB600810069 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				3C0CAAE32768907E00810069 /* UIColor+Extension.swift */,
 				1B9BCA672774BE2E0084931D /* UIView+Extension.swift */,
+				3C0CAAE32768907E00810069 /* UIColor+Extension.swift */,
 				1BBC5C8F276DD0AB001B5F3E /* UIAlertController+Extension.swift */,
 				1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */,
+				1B9BCA6D2774C5430084931D /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -657,9 +660,9 @@
 				1B7C4740276B58B600BFD277 /* Presentable.swift in Sources */,
 				1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */,
 				1B9BCA1D276F06A50084931D /* MainCoordinator.swift in Sources */,
-				1BBC5C88276DBB5F001B5F3E /* UserDefaultsWrapper.swift in Sources */,
 				1B71BA352768F5680056A2FF /* LoginPresenter.swift in Sources */,
 				1B7C4731276B42D100BFD277 /* AppCoordinator.swift in Sources */,
+				1B9BCA6E2774C5430084931D /* UIViewController+Extension.swift in Sources */,
 				1B9BCA21276F08C20084931D /* MainModuleFactory.swift in Sources */,
 				1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */,
 				1B7C4772276B8D2200BFD277 /* Constants.swift in Sources */,
@@ -704,6 +707,7 @@
 				1B9BCA682774BE2E0084931D /* UIView+Extension.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */,
 				1B9BCA43277054BF0084931D /* UserAccountPresenter.swift in Sources */,
+				1B9BCA712774C6030084931D /* UserDefaultsStorage.swift in Sources */,
 				1B7C4751276B5FC200BFD277 /* AuthCoordinatorOutput.swift in Sources */,
 				3CD0E1A8276F870F00EE255D /* LevelCollectionViewCell.swift in Sources */,
 				1B71BA6727699FD50056A2FF /* SignUpAssembly.swift in Sources */,

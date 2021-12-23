@@ -24,7 +24,7 @@ final class UserAccountPresenter: UserAccountPresenterOutput {
         } catch  let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
-        UserDefaultsWrapper.uid = nil
+        Session.uid = nil
         onLogout?()
     }
 }

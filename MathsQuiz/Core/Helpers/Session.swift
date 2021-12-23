@@ -8,16 +8,13 @@
 import Foundation
 
 struct Session {
-    static var isAuthorized: Bool {
-        return UserDefaultsWrapper.uid != nil
-    }
+    @UserDefaultsStorage(key: PersistantKeys.isSeenOnboarding, defaultValue: false)
+    static var isSeenOnboarding: Bool
     
-    static var isSeenOnboarding: Bool {
-        get {
-            return UserDefaultsWrapper.isSeenOnboarding
-        }
-        set {
-            UserDefaultsWrapper.isSeenOnboarding = newValue
-        }
+    @UserDefaultsStorage(key: PersistantKeys.uid, defaultValue: nil)
+    static var uid: String?
+    
+    static var isAuthorized: Bool {
+        return uid != nil
     }
 }

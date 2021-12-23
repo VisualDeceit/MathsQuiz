@@ -54,7 +54,7 @@ class SignUpPresenter: SignUpPresenterOutput {
                 }
                 return
             }
-            UserDefaultsWrapper.uid = authResult.user.uid
+            Session.uid = authResult.user.uid
             // Добавить пользователя в БД
             self?.onSignUpComplete?()
         }
