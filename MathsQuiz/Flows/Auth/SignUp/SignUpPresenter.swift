@@ -54,14 +54,14 @@ class SignUpPresenter: SignUpPresenterOutput {
                 }
                 return
             }
-            UserDefaultsWrapper.uid = authResult.user.uid
+            Session.uid = authResult.user.uid
             // Добавить пользователя в БД
             self?.onSignUpComplete?()
         }
     }
 }
 
-    // MARK: - SignUpViewOutput
+// MARK: - SignUpViewOutput
 extension SignUpPresenter: SignUpViewOutput {
     
     func viewDidSignUpButtonTap(data: SignUpData) {

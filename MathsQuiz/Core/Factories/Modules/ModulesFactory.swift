@@ -11,36 +11,30 @@ final class ModulesFactory {}
 
 // MARK: - Auth Flow
 extension ModulesFactory: AuthModuleFactory {
-    func makeLoginModule() -> LoginViewInput & Presentable {
-        let view = LoginAssembly.build()
-        return view
+    func makeLoginView() -> LoginViewInput & Presentable {
+        return LoginAssembly.build()
     }
     
-    func makeSignUpModule() -> Presentable & SignUpViewInput {
-        let view = SignUpAssembly.build()
-        return view
+    func makeSignUpView() -> Presentable & SignUpViewInput {
+        return SignUpAssembly.build()
     }
 }
 
 // MARK: - Main Flow
 extension ModulesFactory: MainModuleFactory {
-    func makeHomeModule() -> HomeViewInput & Presentable {
-        let view = HomeAssembly.build()
-        return view
+    func makeHomeView() -> HomeViewInput & Presentable {
+        return HomeAssembly.build()
     }
     
-    func makeUserAccountModule() -> Presentable & UserAccountViewInput {
-        let view = UserAccountAssembly.build()
-        return view
+    func makeUserAccountView() -> Presentable & UserAccountViewInput {
+        return UserAccountAssembly.build()
     }
     
-    func makeUserDataModule() -> Presentable & UserDataViewInput {
-        let view = UserDataAssembly.build()
-        return view
+    func makeUserDataView() -> Presentable & UserDataViewInput {
+        return UserDataAssembly.build()
     }
     
-    func makeLevelsMoodule() -> LevelsViewInput & Presentable {
-        let view = LevelsAssembly.build()
-        return view
+    func makeLevelsView() -> LevelsViewInput & Presentable {
+        return LevelsAssembly.build()
     }
 }

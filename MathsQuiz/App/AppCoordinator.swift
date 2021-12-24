@@ -10,7 +10,7 @@ import UIKit
 enum LaunchInstructor {
     case main, auth, onboarding
     
-    static func configure() -> LaunchInstructor {
+    static func configure() -> Self {
         
         switch (Session.isSeenOnboarding, Session.isAuthorized) {
         case (true, false), (false, false): return .auth

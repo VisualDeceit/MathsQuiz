@@ -43,16 +43,16 @@ class PasswordResetViewController: UIViewController {
         return label
     }()
     
-    private let textfield: OneImageTextfield = {
-        let textfield = OneImageTextfield()
-        textfield.layer.cornerRadius = 12
-        textfield.backgroundColor = MQColor.ubeLight
-        textfield.textColor = .black
-        textfield.font = MQFont.systemFont16
-        textfield.autocorrectionType = .no
-        textfield.leftViewMode = UITextField.ViewMode.always
-        textfield.translatesAutoresizingMaskIntoConstraints = false
-        return textfield
+    private let textField: MQOneImageTextField = {
+        let textField = MQOneImageTextField()
+        textField.layer.cornerRadius = 12
+        textField.backgroundColor = MQColor.ubeLight
+        textField.textColor = .black
+        textField.font = MQFont.systemFont16
+        textField.autocorrectionType = .no
+        textField.leftViewMode = UITextField.ViewMode.always
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        return textField
     }()
     
     private let mailImageView: UIImageView = {
@@ -94,7 +94,7 @@ private extension PasswordResetViewController {
         setupCloseButton()
         setupPasswordResetLabel()
         setupEnterMailLabel()
-        setupTextfield()
+        setupTextField()
         setupSendButton()
     }
     
@@ -140,16 +140,16 @@ private extension PasswordResetViewController {
         ])
     }
     
-    func setupTextfield() {
-        scrollView.addSubview(textfield)
+    func setupTextField() {
+        scrollView.addSubview(textField)
         
-        textfield.leftView = mailImageView
+        textField.leftView = mailImageView
         
         NSLayoutConstraint.activate([
-            textfield.topAnchor.constraint(equalTo: enterMailLabel.bottomAnchor, constant: 24),
-            textfield.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
-            textfield.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
-            textfield.heightAnchor.constraint(equalToConstant: 44)
+            textField.topAnchor.constraint(equalTo: enterMailLabel.bottomAnchor, constant: 24),
+            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
+            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
+            textField.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     
@@ -157,7 +157,7 @@ private extension PasswordResetViewController {
         scrollView.addSubview(sendButton)
         
         NSLayoutConstraint.activate([
-            sendButton.topAnchor.constraint(equalTo: textfield.bottomAnchor, constant: 24),
+            sendButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 24),
             sendButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 54),
             sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -54),
             sendButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
@@ -180,7 +180,7 @@ private extension PasswordResetViewController {
                                                object: nil)
         
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(keyboardWillBeHiden),
+                                               selector: #selector(keyboardWillBeHidden),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
     }
@@ -206,7 +206,7 @@ private extension PasswordResetViewController {
         isKeyboardShown = true
     }
     
-    @objc func keyboardWillBeHiden() {
+    @objc func keyboardWillBeHidden() {
         guard isKeyboardShown else { return }
         
         let contentInsets = UIEdgeInsets.zero

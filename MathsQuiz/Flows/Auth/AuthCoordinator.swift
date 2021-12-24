@@ -24,7 +24,7 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
     
 // MARK: - Run current flow's controllers
     private func showLogin() {
-        let view = factory.makeLoginModule()
+        let view = factory.makeLoginView()
         view.presenter?.onCompleteAuth = { [weak self] in
             self?.finishFlow?()
         }
@@ -35,7 +35,7 @@ final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
     }
     
     private func showSignUp() {
-        let view = factory.makeSignUpModule()
+        let view = factory.makeSignUpView()
         view.presenter?.onSignUpComplete = { [weak self] in
             self?.finishFlow?()
         }        

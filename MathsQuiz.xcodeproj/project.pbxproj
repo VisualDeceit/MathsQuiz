@@ -58,10 +58,12 @@
 		1B9BCA582771DD800084931D /* LevelsContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA572771DD7F0084931D /* LevelsContract.swift */; };
 		1B9BCA5B2771DD900084931D /* LevelsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA5A2771DD900084931D /* LevelsAssembly.swift */; };
 		1B9BCA5E2771DDA30084931D /* LevelsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA5D2771DDA30084931D /* LevelsPresenter.swift */; };
+		1B9BCA682774BE2E0084931D /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA672774BE2E0084931D /* UIView+Extension.swift */; };
+		1B9BCA6E2774C5430084931D /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA6D2774C5430084931D /* UIViewController+Extension.swift */; };
+		1B9BCA712774C6030084931D /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA702774C6030084931D /* UserDefaultsStorage.swift */; };
 		1BBC5C7E276DB060001B5F3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */; };
 		1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1BBC5C81276DB547001B5F3E /* FirebaseAuth */; };
 		1BBC5C85276DBAF4001B5F3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C84276DBAF4001B5F3E /* Session.swift */; };
-		1BBC5C88276DBB5F001B5F3E /* UserDefaultsWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C87276DBB5E001B5F3E /* UserDefaultsWrapper.swift */; };
 		1BBC5C8C276DC0A4001B5F3E /* SignUpData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C8B276DC0A4001B5F3E /* SignUpData.swift */; };
 		1BBC5C90276DD0AB001B5F3E /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C8F276DD0AB001B5F3E /* UIAlertController+Extension.swift */; };
 		1BBC5C93276DDF51001B5F3E /* AuthErrorCode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */; };
@@ -72,7 +74,7 @@
 		3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAF02768A15000810069 /* MQStandardButton.swift */; };
 		3C25CD562773259700A49DC2 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25CD552773259700A49DC2 /* ChangePasswordViewController.swift */; };
 		3CD0E1A2276F765500EE255D /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */; };
-		3CD0E1A4276F7AD600EE255D /* OneImageTextfield.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A3276F7AD600EE255D /* OneImageTextfield.swift */; };
+		3CD0E1A4276F7AD600EE255D /* MQOneImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A3276F7AD600EE255D /* MQOneImageTextField.swift */; };
 		3CD0E1A6276F86D900EE255D /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A5276F86D900EE255D /* LevelsViewController.swift */; };
 		3CD0E1A8276F870F00EE255D /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A7276F870F00EE255D /* LevelCollectionViewCell.swift */; };
 		EC22387C3C87C6E08D11C37B /* Pods_MathsQuiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */; };
@@ -133,9 +135,11 @@
 		1B9BCA572771DD7F0084931D /* LevelsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsContract.swift; sourceTree = "<group>"; };
 		1B9BCA5A2771DD900084931D /* LevelsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsAssembly.swift; sourceTree = "<group>"; };
 		1B9BCA5D2771DDA30084931D /* LevelsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsPresenter.swift; sourceTree = "<group>"; };
+		1B9BCA672774BE2E0084931D /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		1B9BCA6D2774C5430084931D /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		1B9BCA702774C6030084931D /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
 		1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BBC5C84276DBAF4001B5F3E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
-		1BBC5C87276DBB5E001B5F3E /* UserDefaultsWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsWrapper.swift; sourceTree = "<group>"; };
 		1BBC5C8B276DC0A4001B5F3E /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
 		1BBC5C8F276DD0AB001B5F3E /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthErrorCode+Extension.swift"; sourceTree = "<group>"; };
@@ -146,7 +150,7 @@
 		3C0CAAF02768A15000810069 /* MQStandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardButton.swift; sourceTree = "<group>"; };
 		3C25CD552773259700A49DC2 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
-		3CD0E1A3276F7AD600EE255D /* OneImageTextfield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OneImageTextfield.swift; sourceTree = "<group>"; };
+		3CD0E1A3276F7AD600EE255D /* MQOneImageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQOneImageTextField.swift; sourceTree = "<group>"; };
 		3CD0E1A5276F86D900EE255D /* LevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
 		3CD0E1A7276F870F00EE255D /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
 		A3992DCAA111BE9734DDE7C7 /* Pods-MathsQuiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathsQuiz.debug.xcconfig"; path = "Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz.debug.xcconfig"; sourceTree = "<group>"; };
@@ -309,7 +313,7 @@
 				1B9BCA0A276E53E20084931D /* HomeCollectionViewData.swift */,
 				1B7C4771276B8D2200BFD277 /* Constants.swift */,
 				1BBC5C84276DBAF4001B5F3E /* Session.swift */,
-				1BBC5C87276DBB5E001B5F3E /* UserDefaultsWrapper.swift */,
+				1B9BCA702774C6030084931D /* UserDefaultsStorage.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -366,7 +370,7 @@
 				1B9BCA04276E52A80084931D /* MQCircularProgressBar.swift */,
 				3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */,
 				1B9BCA392770518B0084931D /* MQPlainButton.swift */,
-				3CD0E1A3276F7AD600EE255D /* OneImageTextfield.swift */,
+				3CD0E1A3276F7AD600EE255D /* MQOneImageTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -493,9 +497,11 @@
 		3C0CAAED27689DB600810069 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1B9BCA672774BE2E0084931D /* UIView+Extension.swift */,
 				3C0CAAE32768907E00810069 /* UIColor+Extension.swift */,
 				1BBC5C8F276DD0AB001B5F3E /* UIAlertController+Extension.swift */,
 				1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */,
+				1B9BCA6D2774C5430084931D /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -654,9 +660,9 @@
 				1B7C4740276B58B600BFD277 /* Presentable.swift in Sources */,
 				1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */,
 				1B9BCA1D276F06A50084931D /* MainCoordinator.swift in Sources */,
-				1BBC5C88276DBB5F001B5F3E /* UserDefaultsWrapper.swift in Sources */,
 				1B71BA352768F5680056A2FF /* LoginPresenter.swift in Sources */,
 				1B7C4731276B42D100BFD277 /* AppCoordinator.swift in Sources */,
+				1B9BCA6E2774C5430084931D /* UIViewController+Extension.swift in Sources */,
 				1B9BCA21276F08C20084931D /* MainModuleFactory.swift in Sources */,
 				1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */,
 				1B7C4772276B8D2200BFD277 /* Constants.swift in Sources */,
@@ -664,7 +670,7 @@
 				1B9BCA05276E52A80084931D /* MQCircularProgressBar.swift in Sources */,
 				1B7C4767276B8B4600BFD277 /* AuthCoordinator.swift in Sources */,
 				1B9BCA3A2770518B0084931D /* MQPlainButton.swift in Sources */,
-				3CD0E1A4276F7AD600EE255D /* OneImageTextfield.swift in Sources */,
+				3CD0E1A4276F7AD600EE255D /* MQOneImageTextField.swift in Sources */,
 				1B9BCA00276E50590084931D /* HomeCollectionViewCell.swift in Sources */,
 				1B7C4783276C463B00BFD277 /* AuthModuleFactory.swift in Sources */,
 				1B7C47A7276C8BD200BFD277 /* SignUpContract.swift in Sources */,
@@ -698,8 +704,10 @@
 				1B7C473C276B574100BFD277 /* BaseCoordinator.swift in Sources */,
 				1B9BCA4D2770B6610084931D /* UserDataContract.swift in Sources */,
 				1B9BCA5B2771DD900084931D /* LevelsAssembly.swift in Sources */,
+				1B9BCA682774BE2E0084931D /* UIView+Extension.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */,
 				1B9BCA43277054BF0084931D /* UserAccountPresenter.swift in Sources */,
+				1B9BCA712774C6030084931D /* UserDefaultsStorage.swift in Sources */,
 				1B7C4751276B5FC200BFD277 /* AuthCoordinatorOutput.swift in Sources */,
 				3CD0E1A8276F870F00EE255D /* LevelCollectionViewCell.swift in Sources */,
 				1B71BA6727699FD50056A2FF /* SignUpAssembly.swift in Sources */,

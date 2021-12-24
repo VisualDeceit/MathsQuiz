@@ -24,18 +24,18 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
     }
     
     private func showMain() {
-        let view = factory.makeHomeModule()
+        let view = factory.makeHomeView()
         view.presenter?.onSelectActivity = { [weak self] activityType in
             self?.showLevels(for: activityType)
         }
-        view.presenter?.onAccoutButtonTap = { [weak self] in
+        view.presenter?.onAccountButtonTap = { [weak self] in
             self?.showAccount()
         }
         router.setRootModule(view, hideBar: true)
     }
     
     private func showAccount() {
-        let view = factory.makeUserAccountModule()
+        let view = factory.makeUserAccountView()
         view.presenter?.onMyDataButtonTap = { [weak self] in
             self?.showUserData()
         }
@@ -46,13 +46,13 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
     }
     
     private func showUserData() {
-        let view = factory.makeUserDataModule()
+        let view = factory.makeUserDataView()
         router.push(view)
     }
     
     private func showLevels(for activity: ActivityType) {
         print(activity.rawValue)
-        let view = factory.makeLevelsMoodule()
+        let view = factory.makeLevelsView()
         router.push(view, hideNavBar: false)
     }
 }

@@ -13,15 +13,17 @@ class MQStandardTextField: UITextField {
     private var isAnimatedForm = true
     private var isEdited = false
     
-    lazy var label = UILabel()
+    let label = UILabel()
     
-    convenience init(placeholder: String,
-                     leftImageName: String? = nil,
-                     isAnimatedForm: Bool = true,
-                     isSecured: Bool = false,
-                     accessibilityIdentifier: String? = nil,
-                     autocorrectionType: UITextAutocorrectionType? = nil) {
-        self.init()
+    init(placeholder: String,
+         leftImageName: String? = nil,
+         isAnimatedForm: Bool = true,
+         isSecured: Bool = false,
+         accessibilityIdentifier: String? = nil,
+         autocorrectionType: UITextAutocorrectionType? = nil
+    ) {
+        super.init(frame: .zero)
+        
         self.accessibilityIdentifier = accessibilityIdentifier
         self.isSecureTextEntry = isSecured
         self.layer.cornerRadius = 12
@@ -49,6 +51,10 @@ class MQStandardTextField: UITextField {
             addTargets()
         }
         self.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func addLeftImageView(imageName: String) {
@@ -107,27 +113,6 @@ class MQStandardTextField: UITextField {
         }
     }
     
-    private func setAnchorPoint(anchorPoint: CGPoint, forView view: UIView) {
-        var newPoint = CGPoint(x: view.bounds.size.width * anchorPoint.x,
-                               y: view.bounds.size.height * anchorPoint.y)
-
-        var oldPoint = CGPoint(x: view.bounds.size.width * view.layer.anchorPoint.x,
-                               y: view.bounds.size.height * view.layer.anchorPoint.y)
-
-        newPoint = newPoint.applying(view.transform)
-        oldPoint = oldPoint.applying(view.transform)
-
-        var position = view.layer.position
-        position.x -= oldPoint.x
-        position.x += newPoint.x
-
-        position.y -= oldPoint.y
-        position.y += newPoint.y
-
-        view.layer.position = position
-        view.layer.anchorPoint = anchorPoint
-    }
-    
     private func placeholderAnimation() -> CAAnimationGroup {
         let toSmallFontSize = CABasicAnimation(keyPath: "transform.scale")
         toSmallFontSize.fromValue = isEditing ? 1.0 : 0.75
@@ -145,13 +130,13 @@ class MQStandardTextField: UITextField {
 
         return animationGroup
     }
-    @objc func textfieldeditingDidBegin() {
+    @objc func textFieldEditingDidBegin() {
         guard let text = text, text.isEmpty else { return }
         isEdited.toggle()
         label.layer.add(placeholderAnimation(), forKey: "")
     }
     
-    @objc func textfielDidEndEditing() {
+    @objc func textFieldDidEndEditing() {
         guard let text = text, text.isEmpty else { return }
             isEdited.toggle()
             label.layer.add(placeholderAnimation(), forKey: "")
@@ -182,13 +167,13 @@ class MQStandardTextField: UITextField {
     }
     
     func addTargets() {
-        self.addTarget(self, action: #selector(textfieldeditingDidBegin), for: .editingDidBegin)
-        self.addTarget(self, action: #selector(textfielDidEndEditing), for: .editingDidEnd)
+        self.addTarget(self, action: #selector(textFieldEditingDidBegin), for: .editingDidBegin)
+        self.addTarget(self, action: #selector(textFieldDidEndEditing), for: .editingDidEnd)
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         label.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        setAnchorPoint(anchorPoint: CGPoint(x: 0, y: 0.5), forView: label)
+        label.setAnchorPoint(anchorPoint: CGPoint(x: 0, y: 0.5))
     }
 }

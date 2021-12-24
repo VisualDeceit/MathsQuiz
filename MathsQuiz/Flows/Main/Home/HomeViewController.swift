@@ -7,11 +7,9 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, HomeViewInput {
     
     var presenter: (HomePresenterOutput & HomeViewOutput)?
-    
-    private var activities: [Activity] = []
     
     private let greetingLabel: UILabel = {
         let label = UILabel()
@@ -22,7 +20,7 @@ class HomeViewController: UIViewController {
         return label
     }()
     
-    private let accountButton: UIButton = {
+    private(set) lazy var accountButton: UIButton = {
         let button = UIButton(type: .system)
         button.layer.cornerRadius = button.frame.width / 2
         button.layer.masksToBounds = true
@@ -32,7 +30,7 @@ class HomeViewController: UIViewController {
         return button
     }()
     
-    private var mainCollectionView: UICollectionView = {
+    private let mainCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -105,21 +103,23 @@ private extension HomeViewController {
 // MARK: - CollectionViewDelegate & CollectionViewDataSource
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        activities.count
+        presenter?.activities.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.reuseId,
                                                       for: indexPath)
         guard let mainCell = cell as? HomeCollectionViewCell else { return cell }
-        let data = activities[indexPath.row]
-        mainCell.configure(with: data)
-        
+        if let activity = presenter?.activities[indexPath.row] {
+            mainCell.configure(with: activity)
+        }
         return mainCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter?.viewDidSelectActivity(type: activities[indexPath.row].type)
+        if let selectedActivity = presenter?.activities[indexPath.row] {
+            presenter?.viewDidSelectActivity(type: selectedActivity.type)
+        }
     }
 }
 
@@ -148,9 +148,8 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 }
 
 // MARK: - HomeViewInput
-extension HomeViewController: HomeViewInput {
-    func reloadCollection(with activities: [Activity]) {
-        self.activities = activities
+extension HomeViewController {
+    func reloadCollection() {
         mainCollectionView.reloadData()
     }
 }

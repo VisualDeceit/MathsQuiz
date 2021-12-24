@@ -29,7 +29,7 @@ class LoginPresenter: LoginPresenterOutput {
                 }
                 return
             }
-            UserDefaultsWrapper.uid = loginResult.user.uid
+            Session.uid = loginResult.user.uid
             print("User email: \(String(describing: loginResult.user.email))")
             self?.onCompleteAuth?()
         }

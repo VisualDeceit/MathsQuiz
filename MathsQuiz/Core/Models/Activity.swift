@@ -31,7 +31,7 @@ enum ActivityType: String {
 }
 
 struct Activity {
-    var type: ActivityType
-    var progress: Int // прогресс активности
-    var total: Int // всего уровней
+    let type: ActivityType
+    let progress: Int // прогресс активности
+    let total: Int // всего уровней
 }
