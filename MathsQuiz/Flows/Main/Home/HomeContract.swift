@@ -10,6 +10,7 @@ import Foundation
 protocol HomeViewInput: AnyObject {
     var presenter: (HomeViewOutput & HomePresenterOutput)? { get set }
     func reloadCollection()
+    func setGreeting(message: String)
 }
 
 protocol HomeViewOutput: AnyObject {

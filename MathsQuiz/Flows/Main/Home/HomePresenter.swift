@@ -28,6 +28,22 @@ extension HomePresenter {
     }
     
     func viewDidLoad() {
+        FirestoreManager.shared.readUser(uid: Session.uid) {[weak self] (result) in
+            switch result {
+            case .success(let profile):
+                if let profile = profile {
+                    if let name = profile.firstName {
+                        self?.view?.setGreeting(message: "Привет, \(name)!")
+                    } else {
+                        self?.view?.setGreeting(message: "Привет, дружище!")
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            case .failure(let error):
+                print("Error decoding city: \(error.localizedDescription)")
+            }
+        }
         view?.reloadCollection()
     }
     
