@@ -28,7 +28,7 @@ extension HomePresenter {
     }
     
     func viewDidLoad() {
-        FirestoreManager.shared.readUser(uid: Session.uid) {[weak self] (result) in
+        FirestoreManager.shared.readUser {[weak self] (result) in
             switch result {
             case .success(let profile):
                 if let profile = profile {
@@ -41,7 +41,7 @@ extension HomePresenter {
                     print("Document does not exist")
                 }
             case .failure(let error):
-                print("Error decoding city: \(error.localizedDescription)")
+                print("Error decoding profile: \(error.localizedDescription)")
             }
         }
         view?.reloadCollection()

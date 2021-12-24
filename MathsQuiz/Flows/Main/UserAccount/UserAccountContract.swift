@@ -9,6 +9,7 @@ import Foundation
 
 protocol UserAccountViewInput: AnyObject {
     var presenter: (UserAccountViewOutput & UserAccountPresenterOutput)? { get set }
+    func updateProfile(name: String, email: String)
 }
 
 protocol UserAccountViewOutput: AnyObject {
@@ -16,6 +17,7 @@ protocol UserAccountViewOutput: AnyObject {
     func viewDidMyDataButtonTap()
     func viewDidChangePasswordButtonTap()
     func viewDidLogoutButtonTap()
+    func viewDidLoad()
 }
 
 protocol UserAccountPresenterOutput: AnyObject {

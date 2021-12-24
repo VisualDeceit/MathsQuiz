@@ -31,6 +31,24 @@ final class UserAccountPresenter: UserAccountPresenterOutput {
 
 // MARK: - HomeViewOutput
 extension UserAccountPresenter: UserAccountViewOutput {
+    func viewDidLoad() {
+        FirestoreManager.shared.readUser {[weak self] (result) in
+            switch result {
+            case .success(let profile):
+                var userName = ""
+                if let firstName = profile?.firstName {
+                    userName = "\(firstName) "
+                }
+                if let lastName = profile?.lastName {
+                    userName.append(lastName)
+                }
+                self?.view?.updateProfile(name: userName, email: profile?.email ?? "")
+            case .failure(let error):
+                print("Error decoding profile: \(error.localizedDescription)")
+            }
+        }
+    }
+    
     func viewDidChangePhotoButtonTap() {
         print(#function)
     }

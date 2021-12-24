@@ -31,7 +31,10 @@ class FirestoreManager {
     private let db = Firestore.firestore()
     private init() {}
 
-    func saveUser(uid: String, profile: UserProfile) throws {
+    func saveUser(profile: UserProfile) throws {
+        guard let uid = Session.uid, !uid.isEmpty else {
+            throw FirestoreError.emptyPath
+        }
         do {
             try db.collection("users").document(uid).setData(from: profile)
         } catch let error {
@@ -39,8 +42,8 @@ class FirestoreManager {
         }
     }
     
-    func readUser(uid: String?, completion: @escaping (Result<UserProfile?, Error>) -> Void) {
-        guard let uid = uid, !uid.isEmpty else {
+    func readUser(completion: @escaping (Result<UserProfile?, Error>) -> Void) {
+        guard let uid = Session.uid, !uid.isEmpty else {
             completion(.failure(FirestoreError.emptyPath))
             return
         }

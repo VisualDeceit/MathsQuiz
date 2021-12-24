@@ -87,6 +87,7 @@ class UserAccountViewController: UIViewController, UserAccountViewInput {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+        presenter?.viewDidLoad()
     }
 }
 
@@ -235,5 +236,12 @@ private extension UserAccountViewController {
             self?.presenter?.viewDidLogoutButtonTap()
         }
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension UserAccountViewController {
+    func updateProfile(name: String, email: String) {
+        nameLabel.text = name
+        mailLabel.text = email
     }
 }

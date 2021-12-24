@@ -68,7 +68,7 @@ class SignUpPresenter: SignUpPresenterOutput {
                                       birthday: nil)
             
             do {
-                try FirestoreManager.shared.saveUser(uid: authResult.user.uid, profile: profile)
+                try FirestoreManager.shared.saveUser(profile: profile)
             } catch let error {
                 // delete user
                 let user = Auth.auth().currentUser
