@@ -11,6 +11,7 @@ import FirebaseAuth
 final class UserProfilePresenter: UserProfilePresenterOutput {
     var onLogout: (() -> Void)?
     var onMyDataButtonTap: (() -> Void)?
+    var onPasswordChangeTap: (() -> Void)?
     
     private weak var view: UserProfileViewInput?
     
@@ -57,8 +58,8 @@ extension UserProfilePresenter: UserProfileViewOutput {
         onMyDataButtonTap?()
     }
     
-    func viewDidChangePasswordButtonTap() {
-        print(#function)
+    func viewDidPasswordChangeButtonTap() {
+        onPasswordChangeTap?()
     }
     
     func viewDidLogoutButtonTap() {

@@ -67,6 +67,9 @@
 		1B9BCA872775A07E0084931D /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA862775A07E0084931D /* UserProfile.swift */; };
 		1B9BCA8A27764CA50084931D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA8927764CA40084931D /* String+Extension.swift */; };
 		1B9BCA8D27764CB50084931D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA8C27764CB50084931D /* Date+Extension.swift */; };
+		1B9BCA9E27773CAB0084931D /* PasswordChangeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA9D27773CAB0084931D /* PasswordChangeContract.swift */; };
+		1B9BCAA127773CBD0084931D /* PasswordChangeAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAA027773CBD0084931D /* PasswordChangeAssembly.swift */; };
+		1B9BCAA427773CCC0084931D /* PasswordChangePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAA327773CCC0084931D /* PasswordChangePresenter.swift */; };
 		1BBC5C7E276DB060001B5F3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */; };
 		1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1BBC5C81276DB547001B5F3E /* FirebaseAuth */; };
 		1BBC5C85276DBAF4001B5F3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C84276DBAF4001B5F3E /* Session.swift */; };
@@ -78,7 +81,7 @@
 		3C0CAAE7276890CE00810069 /* MQColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE6276890CE00810069 /* MQColor.swift */; };
 		3C0CAAEB2768966F00810069 /* MQStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */; };
 		3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAF02768A15000810069 /* MQStandardButton.swift */; };
-		3C25CD562773259700A49DC2 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25CD552773259700A49DC2 /* ChangePasswordViewController.swift */; };
+		3C25CD562773259700A49DC2 /* PasswordChangeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C25CD552773259700A49DC2 /* PasswordChangeViewController.swift */; };
 		3CD0E1A2276F765500EE255D /* PasswordResetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */; };
 		3CD0E1A4276F7AD600EE255D /* MQOneImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A3276F7AD600EE255D /* MQOneImageTextField.swift */; };
 		3CD0E1A6276F86D900EE255D /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A5276F86D900EE255D /* LevelsViewController.swift */; };
@@ -148,6 +151,9 @@
 		1B9BCA862775A07E0084931D /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		1B9BCA8927764CA40084931D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		1B9BCA8C27764CB50084931D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		1B9BCA9D27773CAB0084931D /* PasswordChangeContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeContract.swift; sourceTree = "<group>"; };
+		1B9BCAA027773CBD0084931D /* PasswordChangeAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeAssembly.swift; sourceTree = "<group>"; };
+		1B9BCAA327773CCC0084931D /* PasswordChangePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangePresenter.swift; sourceTree = "<group>"; };
 		1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BBC5C84276DBAF4001B5F3E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		1BBC5C8B276DC0A4001B5F3E /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
@@ -158,7 +164,7 @@
 		3C0CAAE6276890CE00810069 /* MQColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQColor.swift; sourceTree = "<group>"; };
 		3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardTextField.swift; sourceTree = "<group>"; };
 		3C0CAAF02768A15000810069 /* MQStandardButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardButton.swift; sourceTree = "<group>"; };
-		3C25CD552773259700A49DC2 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		3C25CD552773259700A49DC2 /* PasswordChangeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangeViewController.swift; sourceTree = "<group>"; };
 		3CD0E1A1276F765500EE255D /* PasswordResetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetViewController.swift; sourceTree = "<group>"; };
 		3CD0E1A3276F7AD600EE255D /* MQOneImageTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQOneImageTextField.swift; sourceTree = "<group>"; };
 		3CD0E1A5276F86D900EE255D /* LevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
@@ -274,7 +280,6 @@
 				1B71BA302768F4D00056A2FF /* Login */,
 				1B71BA312768F4DF0056A2FF /* SignUp */,
 				1B9BCA492770960D0084931D /* PasswordReset */,
-				3C25CD532773256600A49DC2 /* ChangePassword */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -507,10 +512,22 @@
 		1B9BCA932776FEAF0084931D /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				1B9BCA9B27773C0E0084931D /* PasswordChange */,
 				1B9BC9F3276E4FB70084931D /* UserProfile */,
 				1B7C47CF276CD94800BFD277 /* UserProfileDetail */,
 			);
 			path = Account;
+			sourceTree = "<group>";
+		};
+		1B9BCA9B27773C0E0084931D /* PasswordChange */ = {
+			isa = PBXGroup;
+			children = (
+				1B9BCA9D27773CAB0084931D /* PasswordChangeContract.swift */,
+				1B9BCAA027773CBD0084931D /* PasswordChangeAssembly.swift */,
+				3C25CD552773259700A49DC2 /* PasswordChangeViewController.swift */,
+				1B9BCAA327773CCC0084931D /* PasswordChangePresenter.swift */,
+			);
+			path = PasswordChange;
 			sourceTree = "<group>";
 		};
 		1BBC5C8A276DC011001B5F3E /* Models */ = {
@@ -536,14 +553,6 @@
 				1B9BCA8927764CA40084931D /* String+Extension.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		3C25CD532773256600A49DC2 /* ChangePassword */ = {
-			isa = PBXGroup;
-			children = (
-				3C25CD552773259700A49DC2 /* ChangePasswordViewController.swift */,
-			);
-			path = ChangePassword;
 			sourceTree = "<group>";
 		};
 		3CD0E1A0276F764600EE255D /* develop */ = {
@@ -693,12 +702,14 @@
 				1B9BCA1A276F068B0084931D /* MainCoordinatorOutput.swift in Sources */,
 				1B7C4740276B58B600BFD277 /* Presentable.swift in Sources */,
 				1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */,
+				1B9BCA9E27773CAB0084931D /* PasswordChangeContract.swift in Sources */,
 				1B9BCA1D276F06A50084931D /* MainCoordinator.swift in Sources */,
 				1B71BA352768F5680056A2FF /* LoginPresenter.swift in Sources */,
 				1B7C4731276B42D100BFD277 /* AppCoordinator.swift in Sources */,
 				1B9BCA6E2774C5430084931D /* UIViewController+Extension.swift in Sources */,
 				1B9BCA21276F08C20084931D /* MainModuleFactory.swift in Sources */,
 				1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */,
+				1B9BCAA427773CCC0084931D /* PasswordChangePresenter.swift in Sources */,
 				1B7C4772276B8D2200BFD277 /* Constants.swift in Sources */,
 				1B7C4786276C599600BFD277 /* ModulesFactory.swift in Sources */,
 				1B9BCA872775A07E0084931D /* UserProfile.swift in Sources */,
@@ -708,6 +719,7 @@
 				3CD0E1A4276F7AD600EE255D /* MQOneImageTextField.swift in Sources */,
 				1B9BCA00276E50590084931D /* HomeCollectionViewCell.swift in Sources */,
 				1B7C4783276C463B00BFD277 /* AuthModuleFactory.swift in Sources */,
+				1B9BCAA127773CBD0084931D /* PasswordChangeAssembly.swift in Sources */,
 				1B7C47A7276C8BD200BFD277 /* SignUpContract.swift in Sources */,
 				1B9BCA532770B6840084931D /* UserProfileDetailPresenter.swift in Sources */,
 				1B9BCA8D27764CB50084931D /* Date+Extension.swift in Sources */,
@@ -719,7 +731,7 @@
 				1B9BCA5E2771DDA30084931D /* LevelsPresenter.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */,
 				1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */,
-				3C25CD562773259700A49DC2 /* ChangePasswordViewController.swift in Sources */,
+				3C25CD562773259700A49DC2 /* PasswordChangeViewController.swift in Sources */,
 				1B9BCA0B276E53E20084931D /* HomeCollectionViewData.swift in Sources */,
 				1B9BCA26276F09A30084931D /* HomePresenter.swift in Sources */,
 				1B9BCA40277053D00084931D /* UserProfileAssembly.swift in Sources */,

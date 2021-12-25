@@ -1,5 +1,5 @@
 //
-//  ChangePasswordViewController.swift
+//  PasswordChangeViewController.swift
 //  MathsQuiz
 //
 //  Created by Karahanyan Levon on 22.12.2021.
@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ChangePasswordViewController: UIViewController {
+class PasswordChangeViewController: UIViewController, PasswordChangeViewInput {
+
+    var presenter: (PasswordChangePresenterOutput & PasswordChangeViewOutput)?
     
     private var isKeyboardShown = false
     
@@ -38,6 +40,7 @@ class ChangePasswordViewController: UIViewController {
         super.viewDidLoad()
         
         setupViews()
+        assignTargets()
         addTapGestureRecognizer()
     }
     
@@ -45,6 +48,7 @@ class ChangePasswordViewController: UIViewController {
         super.viewWillAppear(animated)
         
         addKeyboardObservers()
+        setupNavigationBar()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -55,12 +59,17 @@ class ChangePasswordViewController: UIViewController {
 }
 
 // MARK: - Setup views
-private extension ChangePasswordViewController {
+private extension PasswordChangeViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background
         
         setupScrollView()
         setupChangePasswordForm()
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "Изменить пароль"
     }
     
     func setupScrollView() {
@@ -105,10 +114,19 @@ private extension ChangePasswordViewController {
             changeButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
         ])
     }
+
+    func assignTargets() {
+        changeButton.addTarget(self, action: #selector(changeButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func changeButtonTapped() {
+        presenter?.viewDidChangePasswordButtonTap((password: passwordTextField.text,
+                                                   confirm: confirmPasswordTextField.text))
+    }
 }
 
 // MARK: - Setup observers and gestures recognizer
-private extension ChangePasswordViewController {
+private extension PasswordChangeViewController {
     func addTapGestureRecognizer() {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self,
                                                          action: #selector(hideKeyboard))
@@ -160,5 +178,13 @@ private extension ChangePasswordViewController {
     
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
+    }
+}
+
+// MARK: - PasswordChangeViewInput
+extension PasswordChangeViewController {
+    
+    func displayAlert(_ message: String) {
+        self.showAlert(title: "Ошибка", message: message)
     }
 }
