@@ -26,12 +26,12 @@ extension ModulesFactory: MainModuleFactory {
         return HomeAssembly.build()
     }
     
-    func makeUserAccountView() -> Presentable & UserAccountViewInput {
-        return UserAccountAssembly.build()
+    func makeUserProfileView() -> Presentable & UserProfileViewInput {
+        return UserProfileAssembly.build()
     }
     
-    func makeUserDataView() -> Presentable & UserDataViewInput {
-        return UserDataAssembly.build()
+    func makeUserProfileDetailView() -> Presentable & UserProfileDetailViewInput {
+        return UserProfileDetailAssembly.build()
     }
     
     func makeLevelsView() -> LevelsViewInput & Presentable {

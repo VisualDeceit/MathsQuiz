@@ -13,7 +13,7 @@ class HomeViewController: UIViewController, HomeViewInput {
     
     private let greetingLabel: UILabel = {
         let label = UILabel()
-        label.text = "Привет, Данила!"
+        label.text = ""
         label.font = MQFont.boldSystemFont30
         label.adjustsFontSizeToFitWidth = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -44,14 +44,13 @@ class HomeViewController: UIViewController, HomeViewInput {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupViews()
-        presenter?.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: true)
+        presenter?.viewDidLoad()
     }
 }
 
@@ -151,5 +150,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 extension HomeViewController {
     func reloadCollection() {
         mainCollectionView.reloadData()
+    }
+    
+    func setGreeting(message: String) {
+        greetingLabel.text = message
     }
 }

@@ -54,10 +54,45 @@ class SignUpPresenter: SignUpPresenterOutput {
                 }
                 return
             }
+            
             Session.uid = authResult.user.uid
+            
             // Добавить пользователя в БД
+            let name = self?.splitOnFirstAndLast(name: data.username)
+            let profile = UserProfile(email: data.email,
+                                      phone: nil,
+                                      city: nil,
+                                      lastName: name?.last,
+                                      firstName: name?.first,
+                                      sex: nil,
+                                      birthday: nil)
+            
+            do {
+                try FirestoreManager.shared.saveUserProfile(profile: profile)
+            } catch let error {
+                // delete user
+                let user = Auth.auth().currentUser
+                user?.delete()
+                Session.uid = nil
+                self?.view?.needShowAlert(title: "Ошибка",
+                                          message: error.localizedDescription)
+                return
+            }
             self?.onSignUpComplete?()
         }
+    }
+    
+    private func splitOnFirstAndLast(name: String) -> (first: String, last: String) {
+        var firstName = ""
+        var lastName = ""
+        var components = name.components(separatedBy: " ")
+        if !components.isEmpty {
+            firstName = components.removeFirst()
+            lastName = components.joined(separator: " ")
+        } else {
+            firstName = name
+        }
+        return (firstName, lastName)
     }
 }
 

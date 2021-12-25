@@ -7,18 +7,20 @@
 
 import Foundation
 
-protocol UserAccountViewInput: AnyObject {
-    var presenter: (UserAccountViewOutput & UserAccountPresenterOutput)? { get set }
+protocol UserProfileViewInput: AnyObject {
+    var presenter: (UserProfileViewOutput & UserProfilePresenterOutput)? { get set }
+    func displayProfile(userName: String, email: String)
 }
 
-protocol UserAccountViewOutput: AnyObject {
+protocol UserProfileViewOutput: AnyObject {
     func viewDidChangePhotoButtonTap()
     func viewDidMyDataButtonTap()
     func viewDidChangePasswordButtonTap()
     func viewDidLogoutButtonTap()
+    func viewDidLoad()
 }
 
-protocol UserAccountPresenterOutput: AnyObject {
+protocol UserProfilePresenterOutput: AnyObject {
     var onMyDataButtonTap: (() -> Void)? { get set }
     var onLogout: (() -> Void)? { get set }
 }

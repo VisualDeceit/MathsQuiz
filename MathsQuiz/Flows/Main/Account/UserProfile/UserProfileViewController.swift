@@ -7,9 +7,9 @@
 
 import UIKit
 
-class UserAccountViewController: UIViewController, UserAccountViewInput {
+class UserProfileViewController: UIViewController, UserProfileViewInput {
     
-    var presenter: (UserAccountPresenterOutput & UserAccountViewOutput)?
+    var presenter: (UserProfilePresenterOutput & UserProfileViewOutput)?
     
     private let scrollView = UIScrollView()
     
@@ -87,11 +87,12 @@ class UserAccountViewController: UIViewController, UserAccountViewInput {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupNavigationBar()
+        presenter?.viewDidLoad()
     }
 }
 
 // MARK: - Setup views
-private extension UserAccountViewController {
+private extension UserProfileViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background
         
@@ -199,7 +200,7 @@ private extension UserAccountViewController {
 }
 
 // MARK: - Setup targets
-private extension UserAccountViewController {
+private extension UserProfileViewController {
     func addTargetToButtons() {
         changePhotoButton.addTarget(self,
                                     action: #selector(changePhotoButtonTapped),
@@ -235,5 +236,12 @@ private extension UserAccountViewController {
             self?.presenter?.viewDidLogoutButtonTap()
         }
         self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension UserProfileViewController {
+    func displayProfile(userName: String, email: String) {
+        nameLabel.text = userName
+        mailLabel.text = email
     }
 }

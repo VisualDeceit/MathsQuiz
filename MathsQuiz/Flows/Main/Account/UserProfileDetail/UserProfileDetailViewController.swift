@@ -1,5 +1,5 @@
 //
-//  UserDataViewController.swift
+//  UserProfileDetailViewController.swift
 //  MathsQuiz
 //
 //  Created by Karahanyan Levon on 16.12.2021.
@@ -7,12 +7,11 @@
 
 import UIKit
 
-class UserDataViewController: UIViewController, UserDataViewInput {
+class UserProfileDetailViewController: UIViewController, UserProfileDetailViewInput {
     
-    var presenter: (UserDataPresenterOutput & UserDataViewOutput)?
+    var presenter: (UserProfileDetailPresenterOutput & UserProfileDetailViewOutput)?
     
     private var isKeyboardShown = false
-    
     private let scrollView = UIScrollView()
     private let cityTextField = MQStandardTextField(placeholder: "Город",
                                                     isAnimatedForm: false,
@@ -50,6 +49,7 @@ class UserDataViewController: UIViewController, UserDataViewInput {
         
         setupViews()
         addTargetToButtons()
+        addTargetToTextFields()
         addTapGestureRecognizer()
     }
     
@@ -58,21 +58,21 @@ class UserDataViewController: UIViewController, UserDataViewInput {
         
         addKeyboardObservers()
         setupNavigationBar()
+        presenter?.viewDidLoad()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         removeKeyboardObservers()
     }
 }
 
 // MARK: - Setup views
-private extension UserDataViewController {
+private extension UserProfileDetailViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background
         
-        sexTextField.text = "Мужской"
+        sexTextField.text = "Выбрать"
         
         setupNavigationBar()
         setupScrollView()
@@ -184,7 +184,7 @@ private extension UserDataViewController {
 }
 
 // MARK: - Setup targets
-private extension UserDataViewController {
+private extension UserProfileDetailViewController {
     func addTargetToButtons() {
         saveButton.addTarget(self,
                              action: #selector(saveButtonTapped),
@@ -197,52 +197,61 @@ private extension UserDataViewController {
                                  for: .valueChanged)
     }
     
+    func addTargetToTextFields() {
+        sexTextField.addTarget(self, action: #selector(sexTextFieldActivate), for: .editingDidBegin)
+    }
+    
+    @objc func sexTextFieldActivate() {
+        if let sex = presenter?.userProfile?.sex {
+            sexTextField.text = sex.rawValue
+        } else {
+            sexTextField.text = SexType.allCases[0].rawValue
+        }
+    }
+    
     @objc func saveButtonTapped() {
-        presenter?.viewDidSaveButtonTap()
+        presenter?.viewDidSaveButtonTap(city: cityTextField.text,
+                                        lastName: surnameTextField.text,
+                                        firstName: nameTextField.text,
+                                        sex: sexTextField.text,
+                                        birthday: birthdayTextField.text,
+                                        phone: phoneNumberTextField.text)
     }
     
     @objc func locationButtonTapped() {
     }
     
     @objc func dateDidChange() {
-        let formatter = DateFormatter()
-        formatter.calendar = datePickerView.calendar
-        formatter.locale = Locale(identifier: "Ru_ru")
-        formatter.dateStyle = .short
-        formatter.timeStyle = .none
-        let dateString = formatter.string(from: datePickerView.date)
-        birthdayTextField.text = dateString
+        birthdayTextField.text = datePickerView.date.toString()
     }
 }
 
 // MARK: - Setup extension of textfield
-extension UserDataViewController: UITextFieldDelegate {
+extension UserProfileDetailViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let text = textField.text else { return false }
         let newString = (text as NSString).replacingCharacters(in: range, with: string)
-        textField.text = format(with: "+X (XXX) XXX-XXXX", phone: newString)
+        textField.text = format(with: "+X (XXX) XXX-XX-XX", phone: newString)
         return false
     }
 }
 
 // MARK: - Setup extension of pickerVIew
-extension UserDataViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension UserProfileDetailViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        2
+        return SexType.allCases.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let sex = ["Мужской", "Женский"]
-        return sex[row]
+        return SexType.allCases[row].rawValue
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let sex = ["Мужской", "Женский"]
-        sexTextField.text = sex[row]
+        sexTextField.text = SexType.allCases[row].rawValue
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -251,7 +260,7 @@ extension UserDataViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 }
 
 // MARK: - Setup observers and gestures recognizer
-private extension UserDataViewController {
+private extension UserProfileDetailViewController {
     func addTapGestureRecognizer() {
         let hideKeyboardGesture = UITapGestureRecognizer(target: self,
                                                          action: #selector(hideKeyboard))
@@ -306,6 +315,25 @@ private extension UserDataViewController {
     }
 }
 
-// MARK: - UserDataViewInput
-extension UserDataViewController {
+// MARK: - UserProfileDetailViewInput
+extension UserProfileDetailViewController {
+    
+    func displayUserProfile() {
+        cityTextField.text = presenter?.userProfile?.city
+        nameTextField.text = presenter?.userProfile?.firstName
+        surnameTextField.text = presenter?.userProfile?.lastName
+
+        if let sex = presenter?.userProfile?.sex,
+           let index = SexType.allCases.firstIndex(of: sex) {
+            sexPickerView.selectRow(index, inComponent: 0, animated: false)
+            sexTextField.text = sex.rawValue
+        }
+        if let date = presenter?.userProfile?.birthday {
+            datePickerView.date = date
+            birthdayTextField.text = date.toString()
+        }
+        
+        phoneNumberTextField.text = format(with: "+X (XXX) XXX-XX-XX",
+                                           phone: presenter?.userProfile?.phone ?? "")
+    }
 }
