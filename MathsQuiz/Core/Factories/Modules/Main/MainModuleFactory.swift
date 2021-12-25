@@ -10,6 +10,6 @@ import Foundation
 protocol MainModuleFactory {
     func makeHomeView() -> HomeViewInput & Presentable
     func makeUserAccountView() -> UserAccountViewInput & Presentable
-    func makeUserDataView() -> UserDataViewInput & Presentable
+    func makeUserDataView() -> UserProfileDetailViewInput & Presentable
     func makeLevelsView() -> LevelsViewInput & Presentable
 }

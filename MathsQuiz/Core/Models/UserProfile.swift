@@ -7,12 +7,13 @@
 
 import Foundation
 
-enum SexType: String, Codable {
-    case male, female
+enum SexType: String, Codable, CaseIterable {
+    case male = "Мужской"
+    case female = "Женский"
 }
 
 struct UserProfile: Codable {
-    let email: String
+    let email: String?
     let phone: String?
     let city: String?
     let lastName: String?

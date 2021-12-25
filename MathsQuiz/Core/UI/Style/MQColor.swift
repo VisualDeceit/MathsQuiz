@@ -10,6 +10,8 @@ import UIKit
 enum MQColor {
     static let ubeDefault = UIColor(rgb: 0x8188C1)
     static let ubeLight = UIColor(rgb: 0xEFF0FE)
+    static let ubeHighlighted = UIColor(rgb: 0x9398C2)
+    static let ubeDark = UIColor(rgb: 0x3D478E)
     static let burntSienna = UIColor(rgb: 0xED7D5D)
     static let burntSiennaLight = UIColor(rgb: 0xEF9A80)
     static let gray = UIColor(rgb: 0x999999)

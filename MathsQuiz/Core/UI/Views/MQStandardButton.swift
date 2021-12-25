@@ -15,8 +15,10 @@ class MQStandardButton: UIButton {
         super.init(frame: .zero)
         
         self.setTitle(title, for: .normal)
+        self.setTitleColor(.white, for: .normal)
         self.backgroundColor = MQColor.ubeDefault
-        self.tintColor = MQColor.background
+        self.setTitleColor(.white, for: .normal)
+        self.setTitleColor(MQColor.ubeHighlighted, for: .highlighted)
         self.layer.cornerRadius = 22
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: 44).isActive = true

@@ -31,7 +31,7 @@ class FirestoreManager {
     private let db = Firestore.firestore()
     private init() {}
 
-    func saveUser(profile: UserProfile) throws {
+    func saveUserProfile(profile: UserProfile) throws {
         guard let uid = Session.uid, !uid.isEmpty else {
             throw FirestoreError.emptyPath
         }
@@ -42,7 +42,7 @@ class FirestoreManager {
         }
     }
     
-    func readUser(completion: @escaping (Result<UserProfile?, Error>) -> Void) {
+    func readUserProfile(completion: @escaping (Result<UserProfile?, Error>) -> Void) {
         guard let uid = Session.uid, !uid.isEmpty else {
             completion(.failure(FirestoreError.emptyPath))
             return

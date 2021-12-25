@@ -9,7 +9,7 @@ import Foundation
 
 protocol UserAccountViewInput: AnyObject {
     var presenter: (UserAccountViewOutput & UserAccountPresenterOutput)? { get set }
-    func updateProfile(name: String, email: String)
+    func displayProfile(userName: String, email: String)
 }
 
 protocol UserAccountViewOutput: AnyObject {

@@ -64,11 +64,11 @@ class SignUpPresenter: SignUpPresenterOutput {
                                       city: nil,
                                       lastName: name?.last,
                                       firstName: name?.first,
-                                      sex: .female,
+                                      sex: nil,
                                       birthday: nil)
             
             do {
-                try FirestoreManager.shared.saveUser(profile: profile)
+                try FirestoreManager.shared.saveUserProfile(profile: profile)
             } catch let error {
                 // delete user
                 let user = Auth.auth().currentUser

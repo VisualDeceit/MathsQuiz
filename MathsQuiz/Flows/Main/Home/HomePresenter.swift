@@ -28,7 +28,7 @@ extension HomePresenter {
     }
     
     func viewDidLoad() {
-        FirestoreManager.shared.readUser {[weak self] (result) in
+        FirestoreManager.shared.readUserProfile {[weak self] (result) in
             switch result {
             case .success(let profile):
                 if let profile = profile {

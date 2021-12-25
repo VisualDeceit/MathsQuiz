@@ -240,8 +240,8 @@ private extension UserAccountViewController {
 }
 
 extension UserAccountViewController {
-    func updateProfile(name: String, email: String) {
-        nameLabel.text = name
+    func displayProfile(userName: String, email: String) {
+        nameLabel.text = userName
         mailLabel.text = email
     }
 }

@@ -30,8 +30,8 @@ extension ModulesFactory: MainModuleFactory {
         return UserAccountAssembly.build()
     }
     
-    func makeUserDataView() -> Presentable & UserDataViewInput {
-        return UserDataAssembly.build()
+    func makeUserDataView() -> Presentable & UserProfileDetailViewInput {
+        return UserProfileDetailAssembly.build()
     }
     
     func makeLevelsView() -> LevelsViewInput & Presentable {
