@@ -8,13 +8,13 @@
 import Foundation
 import FirebaseAuth
 
-final class UserAccountPresenter: UserAccountPresenterOutput {
+final class UserProfilePresenter: UserProfilePresenterOutput {
     var onLogout: (() -> Void)?
     var onMyDataButtonTap: (() -> Void)?
     
-    private weak var view: UserAccountViewInput?
+    private weak var view: UserProfileViewInput?
     
-    init(view: UserAccountViewInput) {
+    init(view: UserProfileViewInput) {
         self.view = view
     }
     
@@ -30,7 +30,7 @@ final class UserAccountPresenter: UserAccountPresenterOutput {
 }
 
 // MARK: - HomeViewOutput
-extension UserAccountPresenter: UserAccountViewOutput {
+extension UserProfilePresenter: UserProfileViewOutput {
     func viewDidLoad() {
         FirestoreManager.shared.readUserProfile {[weak self] (result) in
             switch result {

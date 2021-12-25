@@ -7,9 +7,9 @@
 
 import UIKit
 
-class UserAccountViewController: UIViewController, UserAccountViewInput {
+class UserProfileViewController: UIViewController, UserProfileViewInput {
     
-    var presenter: (UserAccountPresenterOutput & UserAccountViewOutput)?
+    var presenter: (UserProfilePresenterOutput & UserProfileViewOutput)?
     
     private let scrollView = UIScrollView()
     
@@ -92,7 +92,7 @@ class UserAccountViewController: UIViewController, UserAccountViewInput {
 }
 
 // MARK: - Setup views
-private extension UserAccountViewController {
+private extension UserProfileViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background
         
@@ -200,7 +200,7 @@ private extension UserAccountViewController {
 }
 
 // MARK: - Setup targets
-private extension UserAccountViewController {
+private extension UserProfileViewController {
     func addTargetToButtons() {
         changePhotoButton.addTarget(self,
                                     action: #selector(changePhotoButtonTapped),
@@ -239,7 +239,7 @@ private extension UserAccountViewController {
     }
 }
 
-extension UserAccountViewController {
+extension UserProfileViewController {
     func displayProfile(userName: String, email: String) {
         nameLabel.text = userName
         mailLabel.text = email

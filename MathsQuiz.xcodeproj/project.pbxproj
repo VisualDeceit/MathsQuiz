@@ -34,7 +34,7 @@
 		1B7C47A7276C8BD200BFD277 /* SignUpContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C47A6276C8BD200BFD277 /* SignUpContract.swift */; };
 		1B9BC9F1276E4D530084931D /* MQFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9F0276E4D530084931D /* MQFont.swift */; };
 		1B9BC9F5276E4FC90084931D /* UserProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9F4276E4FC90084931D /* UserProfileDetailViewController.swift */; };
-		1B9BC9F8276E4FD70084931D /* UserAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9F7276E4FD70084931D /* UserAccountViewController.swift */; };
+		1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9F7276E4FD70084931D /* UserProfileViewController.swift */; };
 		1B9BC9FC276E50260084931D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9FB276E50260084931D /* HomeViewController.swift */; };
 		1B9BCA00276E50590084931D /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9FF276E50590084931D /* HomeCollectionViewCell.swift */; };
 		1B9BCA05276E52A80084931D /* MQCircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA04276E52A80084931D /* MQCircularProgressBar.swift */; };
@@ -49,9 +49,9 @@
 		1B9BCA2C276F09C50084931D /* HomeContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA2B276F09C50084931D /* HomeContract.swift */; };
 		1B9BCA2F276F0F170084931D /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA2E276F0F170084931D /* Activity.swift */; };
 		1B9BCA3A2770518B0084931D /* MQPlainButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA392770518B0084931D /* MQPlainButton.swift */; };
-		1B9BCA3D277053BA0084931D /* UserAccountContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA3C277053BA0084931D /* UserAccountContract.swift */; };
-		1B9BCA40277053D00084931D /* UserAccountAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA3F277053D00084931D /* UserAccountAssembly.swift */; };
-		1B9BCA43277054BF0084931D /* UserAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA42277054BF0084931D /* UserAccountPresenter.swift */; };
+		1B9BCA3D277053BA0084931D /* UserProfileContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA3C277053BA0084931D /* UserProfileContract.swift */; };
+		1B9BCA40277053D00084931D /* UserProfileAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA3F277053D00084931D /* UserProfileAssembly.swift */; };
+		1B9BCA43277054BF0084931D /* UserProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA42277054BF0084931D /* UserProfilePresenter.swift */; };
 		1B9BCA4D2770B6610084931D /* UserProfileDetailContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA4C2770B6600084931D /* UserProfileDetailContract.swift */; };
 		1B9BCA502770B66E0084931D /* UserProfileDetailAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA4F2770B66E0084931D /* UserProfileDetailAssembly.swift */; };
 		1B9BCA532770B6840084931D /* UserProfileDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA522770B6840084931D /* UserProfileDetailPresenter.swift */; };
@@ -117,7 +117,7 @@
 		1B7C47A6276C8BD200BFD277 /* SignUpContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpContract.swift; sourceTree = "<group>"; };
 		1B9BC9F0276E4D530084931D /* MQFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQFont.swift; sourceTree = "<group>"; };
 		1B9BC9F4276E4FC90084931D /* UserProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileDetailViewController.swift; sourceTree = "<group>"; };
-		1B9BC9F7276E4FD70084931D /* UserAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountViewController.swift; sourceTree = "<group>"; };
+		1B9BC9F7276E4FD70084931D /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
 		1B9BC9FB276E50260084931D /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1B9BC9FF276E50590084931D /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		1B9BCA04276E52A80084931D /* MQCircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQCircularProgressBar.swift; sourceTree = "<group>"; };
@@ -132,9 +132,9 @@
 		1B9BCA2B276F09C50084931D /* HomeContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeContract.swift; sourceTree = "<group>"; };
 		1B9BCA2E276F0F170084931D /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		1B9BCA392770518B0084931D /* MQPlainButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQPlainButton.swift; sourceTree = "<group>"; };
-		1B9BCA3C277053BA0084931D /* UserAccountContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountContract.swift; sourceTree = "<group>"; };
-		1B9BCA3F277053D00084931D /* UserAccountAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountAssembly.swift; sourceTree = "<group>"; };
-		1B9BCA42277054BF0084931D /* UserAccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountPresenter.swift; sourceTree = "<group>"; };
+		1B9BCA3C277053BA0084931D /* UserProfileContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileContract.swift; sourceTree = "<group>"; };
+		1B9BCA3F277053D00084931D /* UserProfileAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileAssembly.swift; sourceTree = "<group>"; };
+		1B9BCA42277054BF0084931D /* UserProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePresenter.swift; sourceTree = "<group>"; };
 		1B9BCA4C2770B6600084931D /* UserProfileDetailContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileDetailContract.swift; sourceTree = "<group>"; };
 		1B9BCA4F2770B66E0084931D /* UserProfileDetailAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileDetailAssembly.swift; sourceTree = "<group>"; };
 		1B9BCA522770B6840084931D /* UserProfileDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileDetailPresenter.swift; sourceTree = "<group>"; };
@@ -422,23 +422,22 @@
 			children = (
 				1B9BCA19276F068B0084931D /* MainCoordinatorOutput.swift */,
 				1B9BCA1C276F06A50084931D /* MainCoordinator.swift */,
-				1B9BCA15276E5A830084931D /* Levels */,
 				1B9BC9FA276E4FEA0084931D /* Home */,
-				1B9BC9F3276E4FB70084931D /* UserAccount */,
-				1B7C47CF276CD94800BFD277 /* UserProfileDetail */,
+				1B9BCA932776FEAF0084931D /* Account */,
+				1B9BCA15276E5A830084931D /* Levels */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		1B9BC9F3276E4FB70084931D /* UserAccount */ = {
+		1B9BC9F3276E4FB70084931D /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
-				1B9BCA3C277053BA0084931D /* UserAccountContract.swift */,
-				1B9BCA3F277053D00084931D /* UserAccountAssembly.swift */,
-				1B9BC9F7276E4FD70084931D /* UserAccountViewController.swift */,
-				1B9BCA42277054BF0084931D /* UserAccountPresenter.swift */,
+				1B9BCA3C277053BA0084931D /* UserProfileContract.swift */,
+				1B9BCA3F277053D00084931D /* UserProfileAssembly.swift */,
+				1B9BC9F7276E4FD70084931D /* UserProfileViewController.swift */,
+				1B9BCA42277054BF0084931D /* UserProfilePresenter.swift */,
 			);
-			path = UserAccount;
+			path = UserProfile;
 			sourceTree = "<group>";
 		};
 		1B9BC9FA276E4FEA0084931D /* Home */ = {
@@ -503,6 +502,15 @@
 				1B9BCA82277591E10084931D /* FirestoreManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		1B9BCA932776FEAF0084931D /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				1B9BC9F3276E4FB70084931D /* UserProfile */,
+				1B7C47CF276CD94800BFD277 /* UserProfileDetail */,
+			);
+			path = Account;
 			sourceTree = "<group>";
 		};
 		1BBC5C8A276DC011001B5F3E /* Models */ = {
@@ -710,11 +718,11 @@
 				1B7C4736276B42E700BFD277 /* Coordinator.swift in Sources */,
 				1B9BCA5E2771DDA30084931D /* LevelsPresenter.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */,
-				1B9BC9F8276E4FD70084931D /* UserAccountViewController.swift in Sources */,
+				1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */,
 				3C25CD562773259700A49DC2 /* ChangePasswordViewController.swift in Sources */,
 				1B9BCA0B276E53E20084931D /* HomeCollectionViewData.swift in Sources */,
 				1B9BCA26276F09A30084931D /* HomePresenter.swift in Sources */,
-				1B9BCA40277053D00084931D /* UserAccountAssembly.swift in Sources */,
+				1B9BCA40277053D00084931D /* UserProfileAssembly.swift in Sources */,
 				1B9BCA0E276E547F0084931D /* CollectionCellSize.swift in Sources */,
 				1B9BC9F5276E4FC90084931D /* UserProfileDetailViewController.swift in Sources */,
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
@@ -729,13 +737,13 @@
 				3C0CAAEB2768966F00810069 /* MQStandardTextField.swift in Sources */,
 				1B9BCA582771DD800084931D /* LevelsContract.swift in Sources */,
 				1BBC5C93276DDF51001B5F3E /* AuthErrorCode+Extension.swift in Sources */,
-				1B9BCA3D277053BA0084931D /* UserAccountContract.swift in Sources */,
+				1B9BCA3D277053BA0084931D /* UserProfileContract.swift in Sources */,
 				1B7C473C276B574100BFD277 /* BaseCoordinator.swift in Sources */,
 				1B9BCA4D2770B6610084931D /* UserProfileDetailContract.swift in Sources */,
 				1B9BCA5B2771DD900084931D /* LevelsAssembly.swift in Sources */,
 				1B9BCA682774BE2E0084931D /* UIView+Extension.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */,
-				1B9BCA43277054BF0084931D /* UserAccountPresenter.swift in Sources */,
+				1B9BCA43277054BF0084931D /* UserProfilePresenter.swift in Sources */,
 				1B9BCA8A27764CA50084931D /* String+Extension.swift in Sources */,
 				1B9BCA712774C6030084931D /* UserDefaultsStorage.swift in Sources */,
 				1B7C4751276B5FC200BFD277 /* AuthCoordinatorOutput.swift in Sources */,
