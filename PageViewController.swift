@@ -90,50 +90,6 @@ private extension PageViewController {
     }
 }
 
-//MARK: - PageViewController extensions
-extension PageViewController: UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
-        
-        checkCurrentPageToChangeButtonTitle()
-        
-        if currentIndex == 0 {
-            return nil
-        } else {
-            return pages[currentIndex - 1]
-        }
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
-        
-        checkCurrentPageToChangeButtonTitle()
-        
-        if currentIndex < pages.count - 1 {
-            return pages[currentIndex + 1]
-        } else {
-            return nil
-        }
-    }
-}
-
-extension PageViewController: UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard let viewController = pageViewController.viewControllers else { return }
-        guard let currentIndex = pages.firstIndex(of: viewController[0]) else { return }
-        
-        pageControl.currentPage = currentIndex
-    }
-    
-    private func hideControls() {
-        pageControlBottomAnchor?.constant = -80
-    }
-    
-    private func showControls() {
-        pageControlBottomAnchor?.constant = 16
-    }
-}
-
 //MARK: - Setup targets
 private extension PageViewController {
     func addTargets() {
@@ -153,7 +109,7 @@ private extension PageViewController {
                            direction: .forward,
                            animated: true,
                            completion: nil)
-        checkCurrentPageToChangeButtonTitle()
+        setBottomButtonTitle()
     }
     
     @objc func skipButtonTapped() {
@@ -180,7 +136,7 @@ private extension PageViewController {
         guard let currentPage = viewControllers?[0] else { return }
         guard let nextPage = dataSource?.pageViewController(self, viewControllerAfter: currentPage) else { return }
         
-        checkCurrentPageToChangeButtonTitle()
+        setBottomButtonTitle()
         
         setViewControllers([nextPage], direction: .forward, animated: animated, completion: completion)
     }
@@ -198,14 +154,58 @@ private extension PageViewController {
                            direction: .forward,
                            animated: true,
                            completion: nil)
-        checkCurrentPageToChangeButtonTitle()
+        setBottomButtonTitle()
     }
     
-    func checkCurrentPageToChangeButtonTitle() {
+    func setBottomButtonTitle() {
         if pageControl.currentPage == 3 {
             bottomButton.changeTitle(to: "Начать")
         } else {
             bottomButton.changeTitle(to: "Далее")
         }
+    }
+}
+
+//MARK: - PageViewController extensions
+extension PageViewController: UIPageViewControllerDataSource {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
+        
+        setBottomButtonTitle()
+        
+        if currentIndex == 0 {
+            return nil
+        } else {
+            return pages[currentIndex - 1]
+        }
+    }
+    
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
+        
+        setBottomButtonTitle()
+        
+        if currentIndex < pages.count - 1 {
+            return pages[currentIndex + 1]
+        } else {
+            return nil
+        }
+    }
+}
+
+extension PageViewController: UIPageViewControllerDelegate {
+    func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        guard let viewController = pageViewController.viewControllers else { return }
+        guard let currentIndex = pages.firstIndex(of: viewController[0]) else { return }
+        
+        pageControl.currentPage = currentIndex
+    }
+    
+    private func hideControls() {
+        pageControlBottomAnchor?.constant = -80
+    }
+    
+    private func showControls() {
+        pageControlBottomAnchor?.constant = 16
     }
 }
