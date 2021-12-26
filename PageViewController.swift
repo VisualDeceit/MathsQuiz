@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class PageViewController: UIPageViewController {
     
@@ -13,44 +14,47 @@ class PageViewController: UIPageViewController {
     private let initialPage = 0
     
     private let pageControl = UIPageControl()
+    private let skipButton = MQPlainButton(title: "Пропустить")
+    private let bottomButton = MQStandardButton(title: "Далее")
     
     private var pageControlBottomAnchor: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        addTargets()
     }
 }
 
 //MARK: - Setup views
 private extension PageViewController {
     func setupViews() {
+        view.backgroundColor = MQColor.background
+        
         setupPageViewController()
         setupPageControl()
+        setupPageForm()
     }
     
     func setupPageViewController() {
         dataSource = self
         delegate = self
         
-        pageControl.addTarget(self,
-                               action: #selector(pageControlTapped),
-                               for: .valueChanged)
-        let testPage = OnboardingViewController(title: "Maths Quiz",
-                                                image: UIImage(named: "onboarding1")!,
-                                                describe: "В нашем приложении школьник сможет тренироваться в решении заданий по курсу математики. Maths Quiz призвано не только помочь ученику в освоении учебного материала, но и облегчить переход из начальной школы в основную.")
-        let page1 = OnboardingViewController(title: "Активности",
+        let page1 = OnboardingViewController(title: "Maths Quiz",
+                                             image: UIImage(named: "onboardingLarge")!,
+                                             describe: "В нашем приложении школьник сможет тренироваться в решении заданий по курсу математики. Maths Quiz призвано не только помочь ученику в освоении учебного материала, но и облегчить переход из начальной школы в основную.",
+                                             isFirstPage: true)
+        let page2 = OnboardingViewController(title: "Активности",
                                              image: UIImage(named: "onboarding1")!,
                                              describe: "Выбирай одну из пяти активностей.")
-        let page2 = OnboardingViewController(title: "Уровни",
+        let page3 = OnboardingViewController(title: "Уровни",
                                              image: UIImage(named: "onboarding1")!,
                                              describe: "Для каждой активности представлено несколько десятков уровней с различной сложностью.")
-        let page3 = OnboardingViewController(title: "Примеры",
+        let page4 = OnboardingViewController(title: "Примеры",
                                              image: UIImage(named: "onboarding1")!,
                                              describe: "Каждый раз задание генерируется случайным образом. На решение отводится три попытки.")
-        let page4 = LoginViewController()
         
-        pages.append(contentsOf: [testPage, page1, page2, page3, page4])
+        pages.append(contentsOf: [page1, page2, page3, page4])
         setViewControllers([pages[initialPage]],
                            direction: .forward,
                            animated: true,
@@ -63,44 +67,52 @@ private extension PageViewController {
         pageControl.numberOfPages = pages.count
         pageControl.currentPage = initialPage
         pageControl.translatesAutoresizingMaskIntoConstraints = false
-        
+    }
+    
+    func setupPageForm() {
+        view.addSubview(skipButton)
         view.addSubview(pageControl)
+        view.addSubview(bottomButton)
         
         NSLayoutConstraint.activate([
-//            pageControl.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -5),
+            skipButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 4),
+            skipButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            
+            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
+            bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
+            bottomButton.heightAnchor.constraint(equalToConstant: 44),
+            
+            pageControl.bottomAnchor.constraint(equalTo: bottomButton.topAnchor, constant: -10),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.heightAnchor.constraint(equalToConstant: 20),
             pageControl.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
-    
-//        pageControlBottomAnchor = view.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -5)
-//
-        pageControlBottomAnchor = view.bottomAnchor.constraint(equalToSystemSpacingBelow: pageControl.bottomAnchor, multiplier: 2)
-
-        pageControlBottomAnchor?.isActive = true
     }
 }
-
 
 //MARK: - PageViewController extensions
 extension PageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
         
+        checkCurrentPageToChangeButtonTitle()
+        
         if currentIndex == 0 {
-            return pages.last
+            return nil
         } else {
             return pages[currentIndex - 1]
         }
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let currnetIndex = pages.firstIndex(of: viewController) else { return nil }
+        guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
         
-        if currnetIndex < pages.count - 1 {
-            return pages[currnetIndex + 1]
+        checkCurrentPageToChangeButtonTitle()
+        
+        if currentIndex < pages.count - 1 {
+            return pages[currentIndex + 1]
         } else {
-            return pages.first
+            return nil
         }
     }
 }
@@ -111,21 +123,6 @@ extension PageViewController: UIPageViewControllerDelegate {
         guard let currentIndex = pages.firstIndex(of: viewController[0]) else { return }
         
         pageControl.currentPage = currentIndex
-        animateControlsIfNeeded()
-    }
-    
-    private func animateControlsIfNeeded() {
-        let lastPage = pageControl.currentPage == pages.count - 1
-        
-        if lastPage {
-            hideControls()
-        } else {
-            showControls()
-        }
-        
-        UIViewPropertyAnimator.runningPropertyAnimator(withDuration: 0.5, delay: 0, options: [.curveEaseOut], animations: {
-            self.view.layoutIfNeeded()
-        }, completion: nil)
     }
     
     private func hideControls() {
@@ -137,14 +134,26 @@ extension PageViewController: UIPageViewControllerDelegate {
     }
 }
 
-//MARK: - Setup actions
-extension PageViewController {
+//MARK: - Setup targets
+private extension PageViewController {
+    func addTargets() {
+        pageControl.addTarget(self,
+                              action: #selector(pageControlTapped),
+                              for: .valueChanged)
+        skipButton.addTarget(self,
+                             action: #selector(skipButtonTapped),
+                             for: .touchUpInside)
+        bottomButton.addTarget(self,
+                               action: #selector(bottomButtonTapped),
+                               for: .touchUpInside)
+    }
+    
     @objc func pageControlTapped(_ sender: UIPageControl) {
         setViewControllers([pages[sender.currentPage]],
                            direction: .forward,
                            animated: true,
                            completion: nil)
-        animateControlsIfNeeded()
+        checkCurrentPageToChangeButtonTitle()
     }
     
     @objc func skipButtonTapped() {
@@ -152,21 +161,26 @@ extension PageViewController {
         pageControl.currentPage = lastPageIndex
         
         goToSpecificPage(index: lastPageIndex, ofViewControllers: pages)
-        animateControlsIfNeeded()
     }
     
-    @objc func nextButtonTapped() {
+    @objc func bottomButtonTapped(_ sender: UIButton) {
         pageControl.currentPage += 1
-        goToNextPage()
-        animateControlsIfNeeded()
+        if sender.titleLabel?.text == "Далее" {
+            goToNextPage()
+        } else if sender.titleLabel?.text == "Начать" {
+            print("hello")
+        }
     }
 }
 
-extension UIPageViewController {
+//MARK: - Setup general functions
+private extension PageViewController {
     func goToNextPage(animated: Bool = true,
                       completion: ((Bool) -> Void)? = nil) {
         guard let currentPage = viewControllers?[0] else { return }
         guard let nextPage = dataSource?.pageViewController(self, viewControllerAfter: currentPage) else { return }
+        
+        checkCurrentPageToChangeButtonTitle()
         
         setViewControllers([nextPage], direction: .forward, animated: animated, completion: completion)
     }
@@ -184,5 +198,14 @@ extension UIPageViewController {
                            direction: .forward,
                            animated: true,
                            completion: nil)
+        checkCurrentPageToChangeButtonTitle()
+    }
+    
+    func checkCurrentPageToChangeButtonTitle() {
+        if pageControl.currentPage == 3 {
+            bottomButton.changeTitle(to: "Начать")
+        } else {
+            bottomButton.changeTitle(to: "Далее")
+        }
     }
 }

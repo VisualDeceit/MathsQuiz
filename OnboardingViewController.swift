@@ -9,6 +9,8 @@ import UIKit
 
 class OnboardingViewController: UIViewController {
     
+    private var isFirstPage = false
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = MQFont.boldSystemFont30
@@ -21,7 +23,7 @@ class OnboardingViewController: UIViewController {
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -37,12 +39,13 @@ class OnboardingViewController: UIViewController {
         return label
     }()
     
-    init(title: String, image: UIImage, describe: String) {
+    init(title: String, image: UIImage, describe: String, isFirstPage: Bool = false) {
         super.init(nibName: nil, bundle: nil)
         
         titleLabel.text = title
         imageView.image = image
         describeLabel.text = describe
+        self.isFirstPage = isFirstPage
     }
     
     required init?(coder: NSCoder) {
@@ -69,16 +72,27 @@ private extension OnboardingViewController {
         view.addSubview(imageView)
         view.addSubview(describeLabel)
         
+        if !isFirstPage {
+            NSLayoutConstraint.activate([
+                imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+                imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
+                imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
+                imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+                imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4)
+            ])
+        }
+        
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
             titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
             titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
             titleLabel.heightAnchor.constraint(equalToConstant: 45),
-            
-            imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-            imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
-            imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5),
             
             describeLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
             describeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),

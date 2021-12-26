@@ -24,6 +24,10 @@ class MQStandardButton: UIButton {
         self.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
     
+    func changeTitle(to title: String) {
+        self.setTitle(title, for: .normal)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
