@@ -10,4 +10,5 @@ import UIKit
 protocol AuthModuleFactory {
     func makeLoginView() -> LoginViewInput & Presentable
     func makeSignUpView() -> SignUpViewInput & Presentable
+    func makePasswordResetView() -> PasswordResetViewInput & Presentable
 }

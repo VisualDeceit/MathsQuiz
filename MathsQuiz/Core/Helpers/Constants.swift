@@ -9,6 +9,7 @@ import Foundation
 
 // MARK: - Typealias
 typealias PasswordPair = (password: String?, confirm: String?)
+typealias CompletionBlock = () -> Void
 
 // MARK: - PersistantKeys enum
 enum PersistantKeys {

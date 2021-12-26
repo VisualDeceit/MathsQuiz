@@ -18,6 +18,10 @@ extension ModulesFactory: AuthModuleFactory {
     func makeSignUpView() -> Presentable & SignUpViewInput {
         return SignUpAssembly.build()
     }
+    
+    func makePasswordResetView() -> PasswordResetViewInput & Presentable {
+        return PasswordResetAssembly.build()
+    }
 }
 
 // MARK: - Main Flow
