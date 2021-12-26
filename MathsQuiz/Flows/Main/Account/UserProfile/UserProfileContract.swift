@@ -15,12 +15,13 @@ protocol UserProfileViewInput: AnyObject {
 protocol UserProfileViewOutput: AnyObject {
     func viewDidChangePhotoButtonTap()
     func viewDidMyDataButtonTap()
-    func viewDidChangePasswordButtonTap()
+    func viewDidPasswordChangeButtonTap()
     func viewDidLogoutButtonTap()
     func viewDidLoad()
 }
 
 protocol UserProfilePresenterOutput: AnyObject {
     var onMyDataButtonTap: (() -> Void)? { get set }
+    var onPasswordChangeTap: (() -> Void)? { get set }
     var onLogout: (() -> Void)? { get set }
 }

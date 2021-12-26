@@ -37,4 +37,8 @@ extension ModulesFactory: MainModuleFactory {
     func makeLevelsView() -> LevelsViewInput & Presentable {
         return LevelsAssembly.build()
     }
+    
+    func makePasswordChangeView() -> PasswordChangeViewInput & Presentable {
+        return PasswordChangeAssembly.build()
+    }
 }

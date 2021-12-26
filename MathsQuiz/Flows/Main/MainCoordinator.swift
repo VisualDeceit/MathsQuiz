@@ -25,27 +25,47 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
     
     private func showMain() {
         let view = factory.makeHomeView()
+        
         view.presenter?.onSelectActivity = { [weak self] activityType in
             self?.showLevels(for: activityType)
         }
+        
         view.presenter?.onAccountButtonTap = { [weak self] in
-            self?.showAccount()
+            self?.showUserProfile()
         }
+        
         router.setRootModule(view, hideBar: true)
     }
     
-    private func showAccount() {
+    private func showUserProfile() {
         let view = factory.makeUserProfileView()
+        
         view.presenter?.onMyDataButtonTap = { [weak self] in
-            self?.showUserData()
+            self?.showUserProfileDetail()
         }
+        
+        view.presenter?.onPasswordChangeTap = { [weak self] in
+            self?.showPasswordChange()
+        }
+        
         view.presenter?.onLogout = { [weak self] in
             self?.finishFlow?()
         }
+        
         router.push(view, hideNavBar: false)
     }
     
-    private func showUserData() {
+    private func showPasswordChange() {
+        let view = factory.makePasswordChangeView()
+        
+        view.presenter?.onSuccess = { [weak self] in
+            self?.finishFlow?()
+        }
+        
+        router.push(view, hideNavBar: false)
+    }
+    
+    private func showUserProfileDetail() {
         let view = factory.makeUserProfileDetailView()
         router.push(view)
     }
@@ -53,6 +73,7 @@ final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
     private func showLevels(for activity: ActivityType) {
         print(activity.rawValue)
         let view = factory.makeLevelsView()
+        
         router.push(view, hideNavBar: false)
     }
 }

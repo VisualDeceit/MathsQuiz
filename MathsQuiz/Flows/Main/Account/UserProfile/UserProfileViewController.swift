@@ -225,7 +225,7 @@ private extension UserProfileViewController {
     }
     
     @objc func changePasswordButtonTapped() {
-        presenter?.viewDidChangePasswordButtonTap()
+        presenter?.viewDidPasswordChangeButtonTap()
     }
     
     @objc func exitButtonTapped() {

@@ -12,4 +12,5 @@ protocol MainModuleFactory {
     func makeUserProfileView() -> UserProfileViewInput & Presentable
     func makeUserProfileDetailView() -> UserProfileDetailViewInput & Presentable
     func makeLevelsView() -> LevelsViewInput & Presentable
+    func makePasswordChangeView() -> PasswordChangeViewInput & Presentable
 }
