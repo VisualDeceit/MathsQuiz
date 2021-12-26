@@ -24,12 +24,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: UIScreen.main.bounds)
-//        window?.rootViewController = ChangePasswordViewController()
-        window?.rootViewController = UINavigationController()
+        window?.rootViewController = PageViewController(transitionStyle: .scroll,
+                                                        navigationOrientation: .horizontal,
+                                                        options: nil)
+//        window?.rootViewController = OnboardingViewController(title: "Активности",
+//                                                              image: UIImage(named: "onboarding1")!,
+//                                                              describe: "Выбирай одну из пяти активностей.")
+//        window?.rootViewController = UINavigationController()
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-        appCoordinator = makeCoordinator()
-        appCoordinator.start()
+//        appCoordinator = makeCoordinator()
+//        appCoordinator.start()
     }
     
     private func makeCoordinator() -> Coordinator {
