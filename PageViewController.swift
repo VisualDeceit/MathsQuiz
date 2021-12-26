@@ -62,8 +62,8 @@ private extension PageViewController {
     }
     
     func setupPageControl() {
-        pageControl.currentPageIndicatorTintColor = .black
-        pageControl.pageIndicatorTintColor = .systemGray2
+        pageControl.currentPageIndicatorTintColor = MQColor.ubeDefault
+        pageControl.pageIndicatorTintColor = MQColor.ubeLight
         pageControl.numberOfPages = pages.count
         pageControl.currentPage = initialPage
         pageControl.translatesAutoresizingMaskIntoConstraints = false
