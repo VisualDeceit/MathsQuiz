@@ -10,10 +10,11 @@ import Firebase
 
 class LoginPresenter: LoginPresenterOutput {
     
-    private(set) weak var view: LoginViewInput?
+    var onCompleteAuth: CompletionBlock?
+    var onSignUpButtonTap: CompletionBlock?
+    var onPasswordReset: CompletionBlock?
     
-    var onCompleteAuth: (() -> Void)?
-    var onSignUpButtonTap: (() -> Void)?
+    private weak var view: LoginViewInput?
     
     required init(view: LoginViewInput) {
         self.view = view
@@ -40,7 +41,7 @@ class LoginPresenter: LoginPresenterOutput {
 extension LoginPresenter: LoginViewOutput {
     
     func viewDidPasswordResetButtonTap() {
-        print(#function)
+        onPasswordReset?()
     }
     
     func viewDidGoogleButtonTap() {

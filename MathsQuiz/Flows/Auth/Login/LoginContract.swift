@@ -10,8 +10,9 @@
 import Foundation
 
 protocol LoginPresenterOutput: AnyObject {
-    var onCompleteAuth: (() -> Void)? { get set }
-    var onSignUpButtonTap: (() -> Void)? { get set }
+    var onCompleteAuth: CompletionBlock? { get set }
+    var onSignUpButtonTap: CompletionBlock? { get set }
+    var onPasswordReset: CompletionBlock? { get set }
 }
 
 protocol LoginViewOutput: AnyObject {

@@ -7,24 +7,18 @@
 
 import UIKit
 
-class PasswordResetViewController: UIViewController {
+class PasswordResetViewController: UIViewController, PasswordResetViewInput {
+    
+    var presenter: (PasswordResetPresenterOutput & PasswordResetViewOutput)?
     
     private var isKeyboardShown = false
     private let scrollView = UIScrollView()
     
-    private let closeButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Закрыть", for: .normal)
-        button.setTitleColor(MQColor.ubeDefault, for: .normal)
-        button.setTitleColor(MQColor.gray, for: .highlighted)
-        button.titleLabel?.font = MQFont.systemFont16
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
+    private let closeButton = MQPlainButton(title: "Закрыть")
     
     private let passwordResetLabel: UILabel = {
         let label = UILabel()
-        label.text = "Привет, Данила!"
+        label.text = "Восстановление пароля"
         label.font = MQFont.boldSystemFont24
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
@@ -43,25 +37,9 @@ class PasswordResetViewController: UIViewController {
         return label
     }()
     
-    private let textField: MQOneImageTextField = {
-        let textField = MQOneImageTextField()
-        textField.layer.cornerRadius = 12
-        textField.backgroundColor = MQColor.ubeLight
-        textField.textColor = .black
-        textField.font = MQFont.systemFont16
-        textField.autocorrectionType = .no
-        textField.leftViewMode = UITextField.ViewMode.always
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        return textField
-    }()
-    
-    private let mailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.contentMode = .scaleToFill
-        let image = UIImage(named: "mail")
-        imageView.image = image
-        return imageView
-    }()
+    private let textField = MQStandardTextField(placeholder: "Email",
+                                                leftImageName: "mail",
+                                                autocorrectionType: .no)
     
     private let sendButton = MQStandardButton(title: "Отправить")
     
@@ -70,6 +48,7 @@ class PasswordResetViewController: UIViewController {
         
         setupViews()
         addTapGestureRecognizer()
+        assignTargets()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -143,8 +122,6 @@ private extension PasswordResetViewController {
     func setupTextField() {
         scrollView.addSubview(textField)
         
-        textField.leftView = mailImageView
-        
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: enterMailLabel.bottomAnchor, constant: 24),
             textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
@@ -162,6 +139,22 @@ private extension PasswordResetViewController {
             sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -54),
             sendButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ])
+    }
+}
+
+// MARK: - Targets
+private extension PasswordResetViewController {
+    func assignTargets() {
+        sendButton.addTarget(self, action: #selector(sendButtonTapped), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(closeButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func sendButtonTapped() {
+        presenter?.viewDidSendButtonTap(textField.text)
+    }
+    
+    @objc func closeButtonTapped() {
+        presenter?.viewDidCloseButtonTap()
     }
 }
 
@@ -218,5 +211,12 @@ private extension PasswordResetViewController {
     
     @objc func hideKeyboard() {
         scrollView.endEditing(true)
+    }
+}
+
+// MARK: - PasswordResetViewInput
+extension PasswordResetViewController {
+    func displayAlert(_ message: String) {
+        self.showAlert(title: "Ошибка", message: message)
     }
 }

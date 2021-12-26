@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol Router: Presentable {
+protocol Router: Presentable, AnyObject {
     
     func present(_ module: Presentable?)
     func present(_ module: Presentable?, animated: Bool)
