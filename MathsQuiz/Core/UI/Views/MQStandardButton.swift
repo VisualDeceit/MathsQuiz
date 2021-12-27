@@ -16,12 +16,16 @@ class MQStandardButton: UIButton {
         
         self.setTitle(title, for: .normal)
         self.setTitleColor(.white, for: .normal)
+        self.setTitleColor(MQColor.ubeHighlighted, for: .highlighted)
         self.backgroundColor = MQColor.ubeDefault
         self.setTitleColor(.white, for: .normal)
-        self.setTitleColor(MQColor.ubeHighlighted, for: .highlighted)
         self.layer.cornerRadius = 22
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: 44).isActive = true
+    }
+    
+    func changeTitle(to title: String) {
+        self.setTitle(title, for: .normal)
     }
     
     required init?(coder: NSCoder) {
