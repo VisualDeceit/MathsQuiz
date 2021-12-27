@@ -9,22 +9,23 @@
 
 import Foundation
 
-protocol LoginPresenterOutput: AnyObject {
-    var onCompleteAuth: CompletionBlock? { get set }
-    var onSignUpButtonTap: CompletionBlock? { get set }
-    var onPasswordReset: CompletionBlock? { get set }
-}
-
-protocol LoginViewOutput: AnyObject {
-    func viewDidPasswordResetButtonTap()
-    func viewDidGoogleButtonTap()
-    func viewDidAppleButtonTap()
-    func viewDidFacebookButtonTap()
-    func viewDidSignUpTap()
-    func viewDidLoginButtonTap(credentials: Credentials)
+enum AuthProvider {
+    case google, apple, facebook, emailPassword
 }
 
 protocol LoginViewInput: AnyObject {
     var presenter: (LoginViewOutput & LoginPresenterOutput)? { get set }
-    func needShowAlert(title: String, message: String?)
+    func displayAlert(_ message: String?)
+}
+
+protocol LoginViewOutput: AnyObject {
+    func viewDidSignInButtonTap(provider: AuthProvider, credentials: Credentials?)
+    func viewDidPasswordResetButtonTap()
+    func viewDidSignUpTap()
+}
+
+protocol LoginPresenterOutput: AnyObject {
+    var onCompleteAuth: CompletionBlock? { get set }
+    var onSignUpButtonTap: CompletionBlock? { get set }
+    var onPasswordReset: CompletionBlock? { get set }
 }

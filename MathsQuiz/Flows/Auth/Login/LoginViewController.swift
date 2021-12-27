@@ -228,30 +228,30 @@ private extension LoginViewController {
                               for: .touchUpInside)
     }
     
-    @objc func forgotPasswordButtonTapped() {
-        presenter?.viewDidPasswordResetButtonTap()
-    }
-    
     @objc func googleButtonTapped() {
-        presenter?.viewDidGoogleButtonTap()
+        presenter?.viewDidSignInButtonTap(provider: .google, credentials: nil)
     }
     
     @objc func appleButtonTapped() {
-        presenter?.viewDidAppleButtonTap()
+        presenter?.viewDidSignInButtonTap(provider: .apple, credentials: nil)
     }
     
     @objc func facebookButtonTapped() {
-        presenter?.viewDidFacebookButtonTap()
+        presenter?.viewDidSignInButtonTap(provider: .facebook, credentials: nil)
+    }
+    
+    @objc func loginButtonTapped() {
+        let credentials = Credentials(email: emailTextField.text ?? "",
+                                      password: passwordTextField.text ?? "")
+        presenter?.viewDidSignInButtonTap(provider: .emailPassword, credentials: credentials)
     }
     
     @objc func createNewAccountButtonTapped() {
         presenter?.viewDidSignUpTap()
     }
     
-    @objc func loginButtonTapped() {
-        let credentials = Credentials(email: emailTextField.text ?? "",
-                                      password: passwordTextField.text ?? "")
-        presenter?.viewDidLoginButtonTap(credentials: credentials)
+    @objc func forgotPasswordButtonTapped() {
+        presenter?.viewDidPasswordResetButtonTap()
     }
 }
 
@@ -314,7 +314,7 @@ private extension LoginViewController {
 // MARK: - LoginViewInput
 extension LoginViewController {
     
-    func needShowAlert(title: String, message: String?) {
-        showAlert(title: title, message: message)
+    func displayAlert(_ message: String?) {
+        showAlert(title: "Ошибка", message: message)
     }
 }

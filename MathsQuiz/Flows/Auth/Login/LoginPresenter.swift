@@ -6,9 +6,9 @@
 //
 
 import Foundation
-import Firebase
+import FirebaseAuth
 
-class LoginPresenter: LoginPresenterOutput {
+class LoginPresenter: LoginViewOutput, LoginPresenterOutput {
     
     var onCompleteAuth: CompletionBlock?
     var onSignUpButtonTap: CompletionBlock?
@@ -20,47 +20,49 @@ class LoginPresenter: LoginPresenterOutput {
         self.view = view
     }
     
-    private func login(with credentials: Credentials) {
-        Auth.auth().signIn(withEmail: credentials.email, password: credentials.password) { [weak self] loginResult, error in
-            guard let loginResult = loginResult, error == nil else {
-                if let error = error,
-                   let errCode = AuthErrorCode(rawValue: error._code) {
-                    self?.view?.needShowAlert(title: "Ошибка",
-                                              message: errCode.errorMessage)
-                }
-                return
-            }
-            Session.uid = loginResult.user.uid
-            print("User email: \(String(describing: loginResult.user.email))")
-            self?.onCompleteAuth?()
-        }
-    }
-}
-
-// MARK: - LoginViewOutput
-extension LoginPresenter: LoginViewOutput {
-    
     func viewDidPasswordResetButtonTap() {
         onPasswordReset?()
-    }
-    
-    func viewDidGoogleButtonTap() {
-        print(#function)
-    }
-    
-    func viewDidAppleButtonTap() {
-        print(#function)
-    }
-    
-    func viewDidFacebookButtonTap() {
-        print(#function)
     }
     
     func viewDidSignUpTap() {
         onSignUpButtonTap?()
     }
+
+    func viewDidSignInButtonTap(provider: AuthProvider, credentials: Credentials? = nil) {
+        switch provider {
+        case .google:
+            performGoogleSignInFlow()
+        case .apple:
+            performAppleSignInFlow()
+        case .facebook:
+            performFacebookSignInFlow()
+        case .emailPassword:
+            if let credentials = credentials {
+                performEmailPasswordLoginFlow(with: credentials)
+            }
+        }
+    }
     
-    func viewDidLoginButtonTap(credentials: Credentials) {
-        login(with: credentials)
+    private func performEmailPasswordLoginFlow(with credentials: Credentials) {
+        Auth.auth().signIn(withEmail: credentials.email, password: credentials.password) { [weak self] loginResult, error in
+            guard let loginResult = loginResult, error == nil else {
+                if let error = error,
+                   let errCode = AuthErrorCode(rawValue: error._code) {
+                    self?.view?.displayAlert(errCode.errorMessage)
+                }
+                return
+            }
+            Session.uid = loginResult.user.uid
+            self?.onCompleteAuth?()
+        }
+    }
+    
+    private func performGoogleSignInFlow() {
+    }
+    
+    private func  performAppleSignInFlow() {
+    }
+    
+    private func performFacebookSignInFlow() {
     }
 }
