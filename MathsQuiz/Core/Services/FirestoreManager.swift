@@ -66,4 +66,15 @@ class FirestoreManager {
             completion(result)
         }
     }
+    
+    func isUserProfileExist(uid: String?, completion: @escaping ((Bool) -> Void)) {
+        let docRef = db.collection("users").document(uid ?? "uid")
+        docRef.getDocument { (document, _) in
+            guard let document = document, document.exists else {
+                completion(false)
+                return
+            }
+            completion(true)
+        }
+    }
 }

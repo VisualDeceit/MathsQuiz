@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import FirebaseAuth
+import Firebase
+import GoogleSignIn
 
 class LoginPresenter: LoginViewOutput, LoginPresenterOutput {
     
@@ -58,6 +59,73 @@ class LoginPresenter: LoginViewOutput, LoginPresenterOutput {
     }
     
     private func performGoogleSignInFlow() {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+        guard let view = view as? UIViewController else { return }
+        
+        let config = GIDConfiguration(clientID: clientID)
+        
+        GIDSignIn.sharedInstance.signIn(with: config,
+                                        presenting: view) { [weak self] user, error in
+            
+            guard error == nil else {
+                if let error = error {
+                    self?.view?.displayAlert(error.localizedDescription)
+                }
+                return
+            }
+            
+            guard
+                let authentication = user?.authentication,
+                let idToken = authentication.idToken
+            else {
+                let error = NSError(
+                    domain: "GIDSignInError",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unexpected sign in result: required authentication data is missing."
+                    ]
+                )
+                self?.view?.displayAlert(error.localizedDescription)
+                return
+            }
+            
+            let credential = GoogleAuthProvider.credential(withIDToken: idToken,
+                                                           accessToken: authentication.accessToken)
+            
+            Auth.auth().signIn(with: credential) { [weak self] loginResult, error in
+                guard let loginResult = loginResult, error == nil else {
+                    if let error = error,
+                       let errCode = AuthErrorCode(rawValue: error._code) {
+                        self?.view?.displayAlert(errCode.errorMessage)
+                    }
+                    return
+                }
+                
+                Session.uid = loginResult.user.uid
+                
+                FirestoreManager.shared.isUserProfileExist(uid: Session.uid) { exist in
+                    if !exist {
+                        let userProfile = UserProfile(email: user?.profile?.email,
+                                                      phone: loginResult.user.phoneNumber,
+                                                      city: nil,
+                                                      lastName: user?.profile?.familyName,
+                                                      firstName: user?.profile?.givenName,
+                                                      sex: nil,
+                                                      birthday: nil)
+                        do {
+                            try FirestoreManager.shared.saveUserProfile(profile: userProfile)
+                        } catch let error {
+                            let user = Auth.auth().currentUser
+                            user?.delete()
+                            Session.uid = nil
+                            self?.view?.displayAlert(error.localizedDescription)
+                            return
+                        }
+                    }
+                    self?.onCompleteAuth?()
+                }
+            }
+        }
     }
     
     private func  performAppleSignInFlow() {
