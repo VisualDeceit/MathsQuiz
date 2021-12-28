@@ -25,7 +25,7 @@ class OnboardingViewController: UIPageViewController {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension OnboardingViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background
@@ -40,18 +40,18 @@ private extension OnboardingViewController {
         delegate = self
         
         let page1 = OnboardingTemplateViewController(title: "Maths Quiz",
-                                             image: UIImage(named: "onboardingLarge")!,
-                                             describe: "В нашем приложении школьник сможет тренироваться в решении заданий по курсу математики. Maths Quiz призвано не только помочь ученику в освоении учебного материала, но и облегчить переход из начальной школы в основную.",
-                                             isFirstPage: true)
+                                                     image: UIImage(named: "onboardingLarge") ?? UIImage(),
+                                                     describe: "В нашем приложении школьник сможет тренироваться в решении заданий по курсу математики. Maths Quiz призвано не только помочь ученику в освоении учебного материала, но и облегчить переход из начальной школы в основную.",
+                                                     isFirstPage: true)
         let page2 = OnboardingTemplateViewController(title: "Активности",
-                                             image: UIImage(named: "onboarding1")!,
-                                             describe: "Выбирай одну из пяти активностей.")
+                                                     image: UIImage(named: "onboarding1") ?? UIImage(),
+                                                     describe: "Выбирай одну из пяти активностей.")
         let page3 = OnboardingTemplateViewController(title: "Уровни",
-                                             image: UIImage(named: "onboarding1")!,
-                                             describe: "Для каждой активности представлено несколько десятков уровней с различной сложностью.")
+                                                     image: UIImage(named: "onboarding1") ?? UIImage(),
+                                                     describe: "Для каждой активности представлено несколько десятков уровней с различной сложностью.")
         let page4 = OnboardingTemplateViewController(title: "Примеры",
-                                             image: UIImage(named: "onboarding1")!,
-                                             describe: "Каждый раз задание генерируется случайным образом. На решение отводится три попытки.")
+                                                     image: UIImage(named: "onboarding1") ?? UIImage(),
+                                                     describe: "Каждый раз задание генерируется случайным образом. На решение отводится три попытки.")
         
         pages.append(contentsOf: [page1, page2, page3, page4])
         setViewControllers([pages[initialPage]],
@@ -89,7 +89,7 @@ private extension OnboardingViewController {
     }
 }
 
-//MARK: - Setup targets
+// MARK: - Setup targets
 private extension OnboardingViewController {
     func addTargets() {
         pageControl.addTarget(self,
@@ -128,7 +128,7 @@ private extension OnboardingViewController {
     }
 }
 
-//MARK: - Setup general functions
+// MARK: - Setup general functions
 private extension OnboardingViewController {
     func goToNextPage(animated: Bool = true,
                       completion: ((Bool) -> Void)? = nil) {
@@ -167,7 +167,7 @@ private extension OnboardingViewController {
     }
 }
 
-//MARK: - PageViewController extensions
+// MARK: - PageViewController extensions
 extension OnboardingViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }

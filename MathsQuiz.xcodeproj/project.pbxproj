@@ -270,6 +270,7 @@
 		1B71BA292767BF070056A2FF /* Flows */ = {
 			isa = PBXGroup;
 			children = (
+				1B9BCAD3277AF79B0084931D /* Onboarding */,
 				1B7C47D6276CDEBA00BFD277 /* Main */,
 				1B71BA2F2768F3280056A2FF /* Auth */,
 			);
@@ -545,6 +546,15 @@
 			path = PasswordChange;
 			sourceTree = "<group>";
 		};
+		1B9BCAD3277AF79B0084931D /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				3C5CE3CF27785CDF00896ABD /* OnboardingTemplateViewController.swift */,
+				3C5CE3D12778654C00896ABD /* OnboardingViewController.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		1BBC5C8A276DC011001B5F3E /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -573,8 +583,6 @@
 		3CD0E1A0276F764600EE255D /* develop */ = {
 			isa = PBXGroup;
 			children = (
-				3C5CE3CF27785CDF00896ABD /* OnboardingTemplateViewController.swift */,
-				3C5CE3D12778654C00896ABD /* OnboardingViewController.swift */,
 			);
 			name = develop;
 			sourceTree = "<group>";
