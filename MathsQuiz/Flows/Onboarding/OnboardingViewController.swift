@@ -7,16 +7,23 @@
 
 import UIKit
 
-class OnboardingViewController: UIPageViewController {
+class OnboardingViewController: UIPageViewController, OnboardingViewInput {
+    
+    var presenter: (OnboardingPresenterOutput & OnboardingViewOutput)?
     
     private var pages: [UIViewController] = []
     private let initialPage = 0
+    private var onboardingContent = [OnboardingContent]()
     
     private let pageControl = UIPageControl()
-    private let skipButton = MQPlainButton(title: "Пропустить")
+    private let skipButton = MQPlainButton(title: "Начать")
     private let bottomButton = MQStandardButton(title: "Далее")
     
     private var pageControlBottomAnchor: NSLayoutConstraint?
+    
+    convenience init(transitionStyle style: UIPageViewController.TransitionStyle) {
+        self.init(transitionStyle: style, navigationOrientation: .horizontal)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,41 +37,60 @@ private extension OnboardingViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background
         
+        fetchOnboardingContent()
         setupPageViewController()
         setupPageControl()
         setupPageForm()
+    }
+    
+    func fetchOnboardingContent() {
+        if let path = Bundle.main.path(forResource: "onboarding", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
+                onboardingContent.append(contentsOf: try JSONDecoder().decode([OnboardingContent].self, from: data))
+            } catch let error {
+                print("parse error: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    func getViewController(at index: Int) -> UIViewController? {
+        guard index >= 0, index < onboardingContent.count   else {
+            return nil
+        }
+        let image = UIImage(named: onboardingContent[index].image) ?? UIImage()
+        let vc = OnboardingTemplateViewController(title: onboardingContent[index].title,
+                                                  image: image,
+                                                  describe: onboardingContent[index].describe,
+                                                  index: index)
+        return vc
+    }
+    
+    func updateButtons(with index: Int) {
+        if index >= onboardingContent.count - 1 {
+            bottomButton.changeTitle(to: "Начать")
+            skipButton.isHidden = true
+        } else {
+            bottomButton.changeTitle(to: "Далее")
+            skipButton.isHidden = false
+        }
     }
     
     func setupPageViewController() {
         dataSource = self
         delegate = self
         
-        let page1 = OnboardingTemplateViewController(title: "Maths Quiz",
-                                                     image: UIImage(named: "onboardingLarge") ?? UIImage(),
-                                                     describe: "В нашем приложении школьник сможет тренироваться в решении заданий по курсу математики. Maths Quiz призвано не только помочь ученику в освоении учебного материала, но и облегчить переход из начальной школы в основную.",
-                                                     isFirstPage: true)
-        let page2 = OnboardingTemplateViewController(title: "Активности",
-                                                     image: UIImage(named: "onboarding1") ?? UIImage(),
-                                                     describe: "Выбирай одну из пяти активностей.")
-        let page3 = OnboardingTemplateViewController(title: "Уровни",
-                                                     image: UIImage(named: "onboarding1") ?? UIImage(),
-                                                     describe: "Для каждой активности представлено несколько десятков уровней с различной сложностью.")
-        let page4 = OnboardingTemplateViewController(title: "Примеры",
-                                                     image: UIImage(named: "onboarding1") ?? UIImage(),
-                                                     describe: "Каждый раз задание генерируется случайным образом. На решение отводится три попытки.")
-        
-        pages.append(contentsOf: [page1, page2, page3, page4])
-        setViewControllers([pages[initialPage]],
-                           direction: .forward,
-                           animated: true,
-                           completion: nil)
+        if let startVC = getViewController(at: 0) {
+            setViewControllers([startVC], direction: .forward, animated: true)
+            
+            pageControl.currentPage = 0
+            pageControl.numberOfPages = onboardingContent.count
+        }
     }
     
     func setupPageControl() {
         pageControl.currentPageIndicatorTintColor = MQColor.ubeDefault
         pageControl.pageIndicatorTintColor = MQColor.ubeLight
-        pageControl.numberOfPages = pages.count
-        pageControl.currentPage = initialPage
         pageControl.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -92,9 +118,6 @@ private extension OnboardingViewController {
 // MARK: - Setup targets
 private extension OnboardingViewController {
     func addTargets() {
-        pageControl.addTarget(self,
-                              action: #selector(pageControlTapped),
-                              for: .valueChanged)
         skipButton.addTarget(self,
                              action: #selector(skipButtonTapped),
                              for: .touchUpInside)
@@ -103,66 +126,21 @@ private extension OnboardingViewController {
                                for: .touchUpInside)
     }
     
-    @objc func pageControlTapped(_ sender: UIPageControl) {
-        setViewControllers([pages[sender.currentPage]],
-                           direction: .forward,
-                           animated: true,
-                           completion: nil)
-        setBottomButtonTitle()
-    }
-    
     @objc func skipButtonTapped() {
-        let lastPageIndex = pages.count - 1
-        pageControl.currentPage = lastPageIndex
-        
-        goToSpecificPage(index: lastPageIndex, ofViewControllers: pages)
+        presenter?.viewDidBeginButtonTap()
     }
     
     @objc func bottomButtonTapped(_ sender: UIButton) {
-        pageControl.currentPage += 1
-        if sender.titleLabel?.text == "Далее" {
-            goToNextPage()
-        } else if sender.titleLabel?.text == "Начать" {
-            print("hello")
-        }
-    }
-}
-
-// MARK: - Setup general functions
-private extension OnboardingViewController {
-    func goToNextPage(animated: Bool = true,
-                      completion: ((Bool) -> Void)? = nil) {
-        guard let currentPage = viewControllers?[0] else { return }
-        guard let nextPage = dataSource?.pageViewController(self, viewControllerAfter: currentPage) else { return }
-        
-        setBottomButtonTitle()
-        
-        setViewControllers([nextPage], direction: .forward, animated: animated, completion: completion)
-    }
-    
-    func goToPreviousPage(animated: Bool = true,
-                          completion: ((Bool) -> Void)? = nil) {
-        guard let currentPage = viewControllers?[0] else { return }
-        guard let previousPage = dataSource?.pageViewController(self, viewControllerBefore: currentPage) else { return }
-        
-        setViewControllers([previousPage], direction: .forward, animated: animated, completion: completion)
-    }
-    
-    func goToSpecificPage(index: Int, ofViewControllers pages: [UIViewController]) {
-        setViewControllers([pages[index]],
-                           direction: .forward,
-                           animated: true,
-                           completion: nil)
-        setBottomButtonTitle()
-    }
-    
-    func setBottomButtonTitle() {
-        if pageControl.currentPage == 3 {
-            bottomButton.changeTitle(to: "Начать")
-            skipButton.isHidden = true
+        if let index = (viewControllers?.first as? OnboardingTemplateViewController)?.index,
+           let vc = getViewController(at: index + 1) {
+            setViewControllers([vc],
+                               direction: .forward,
+                               animated: true) { [weak self] _ in
+                self?.pageControl.currentPage = index + 1
+                self?.updateButtons(with: index + 1)
+            }
         } else {
-            bottomButton.changeTitle(to: "Далее")
-            skipButton.isHidden = false
+            presenter?.viewDidBeginButtonTap()
         }
     }
 }
@@ -170,35 +148,29 @@ private extension OnboardingViewController {
 // MARK: - PageViewController extensions
 extension OnboardingViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
-        
-        setBottomButtonTitle()
-        
-        if currentIndex == 0 {
-            return nil
-        } else {
-            return pages[currentIndex - 1]
+        if var index = (viewController as? OnboardingTemplateViewController)?.index {
+            index -= 1
+            return getViewController(at: index)
         }
+        return nil
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let currentIndex = pages.firstIndex(of: viewController) else { return nil }
-        
-        setBottomButtonTitle()
-        
-        if currentIndex < pages.count - 1 {
-            return pages[currentIndex + 1]
-        } else {
-            return nil
+        if var index = (viewController as? OnboardingTemplateViewController)?.index {
+            index += 1
+            return getViewController(at: index)
         }
+        return nil
     }
 }
 
 extension OnboardingViewController: UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        guard let viewController = pageViewController.viewControllers else { return }
-        guard let currentIndex = pages.firstIndex(of: viewController[0]) else { return }
-        
-        pageControl.currentPage = currentIndex
+        if completed {
+            if let index = (pageViewController.viewControllers?.first as? OnboardingTemplateViewController)?.index {
+                pageControl.currentPage = index
+                updateButtons(with: index)
+            }
+        }
     }
 }

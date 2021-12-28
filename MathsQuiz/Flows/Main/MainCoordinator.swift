@@ -7,9 +7,7 @@
 
 import Foundation
 
-final class MainCoordinator: BaseCoordinator, MainCoordinatorOutput {
-    
-    var finishFlow: (() -> Void)?
+final class MainCoordinator: BaseCoordinator {
     
     private let factory: MainModuleFactory
     private let router: Router
