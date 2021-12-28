@@ -78,6 +78,8 @@
 		1B9BCAF0277B5E2B0084931D /* OnboardingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAEF277B5E2B0084931D /* OnboardingAssembly.swift */; };
 		1B9BCAF3277B5E3D0084931D /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAF2277B5E3D0084931D /* OnboardingPresenter.swift */; };
 		1B9BCAFA277B6B4D0084931D /* OnboardingModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAF9277B6B4D0084931D /* OnboardingModuleFactory.swift */; };
+		1B9BCAFE277B728E0084931D /* OnboardingContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAFD277B728E0084931D /* OnboardingContent.swift */; };
+		1B9BCB01277B760A0084931D /* onboarding.json in Resources */ = {isa = PBXBuildFile; fileRef = 1B9BCB00277B760A0084931D /* onboarding.json */; };
 		1BBC5C7E276DB060001B5F3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */; };
 		1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1BBC5C81276DB547001B5F3E /* FirebaseAuth */; };
 		1BBC5C85276DBAF4001B5F3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C84276DBAF4001B5F3E /* Session.swift */; };
@@ -171,6 +173,8 @@
 		1B9BCAEF277B5E2B0084931D /* OnboardingAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAssembly.swift; sourceTree = "<group>"; };
 		1B9BCAF2277B5E3D0084931D /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
 		1B9BCAF9277B6B4D0084931D /* OnboardingModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModuleFactory.swift; sourceTree = "<group>"; };
+		1B9BCAFD277B728E0084931D /* OnboardingContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContent.swift; sourceTree = "<group>"; };
+		1B9BCB00277B760A0084931D /* onboarding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = onboarding.json; sourceTree = "<group>"; };
 		1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BBC5C84276DBAF4001B5F3E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		1BBC5C8B276DC0A4001B5F3E /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
@@ -289,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				1B71BA1A2767BE4A0056A2FF /* Assets.xcassets */,
+				1B9BCB00277B760A0084931D /* onboarding.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -582,6 +587,7 @@
 				1B9BCA2E276F0F170084931D /* Activity.swift */,
 				1BBC5C9D276E0D81001B5F3E /* Credentials.swift */,
 				1B9BCA862775A07E0084931D /* UserProfile.swift */,
+				1B9BCAFD277B728E0084931D /* OnboardingContent.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -687,6 +693,7 @@
 			files = (
 				1B71BA1E2767BE4A0056A2FF /* LaunchScreen.storyboard in Resources */,
 				1B71BA1B2767BE4A0056A2FF /* Assets.xcassets in Resources */,
+				1B9BCB01277B760A0084931D /* onboarding.json in Resources */,
 				1BBC5C7E276DB060001B5F3E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -773,6 +780,7 @@
 				1B9BCAE7277B5DE40084931D /* OnboardingCoordinator.swift in Sources */,
 				1B71BA3B276908560056A2FF /* LoginAssembly.swift in Sources */,
 				3C0CAAE7276890CE00810069 /* MQColor.swift in Sources */,
+				1B9BCAFE277B728E0084931D /* OnboardingContent.swift in Sources */,
 				3C5CE3D027785CDF00896ABD /* OnboardingTemplateViewController.swift in Sources */,
 				1B9BCAFA277B6B4D0084931D /* OnboardingModuleFactory.swift in Sources */,
 				1B9BCA08276E52B70084931D /* ConfigCell.swift in Sources */,

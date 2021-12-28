@@ -9,7 +9,7 @@ import UIKit
 
 class OnboardingTemplateViewController: UIViewController {
     
-    private var isFirstPage = false
+    var index: Int
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -39,13 +39,13 @@ class OnboardingTemplateViewController: UIViewController {
         return label
     }()
     
-    init(title: String, image: UIImage, describe: String, isFirstPage: Bool = false) {
-        super.init(nibName: nil, bundle: nil)
-        
+    init(title: String, image: UIImage, describe: String, index: Int) {
+        self.index = index
         titleLabel.text = title
         imageView.image = image
         describeLabel.text = describe
-        self.isFirstPage = isFirstPage
+        
+        super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder: NSCoder) {
@@ -72,7 +72,7 @@ private extension OnboardingTemplateViewController {
         view.addSubview(imageView)
         view.addSubview(describeLabel)
         
-        if !isFirstPage {
+        if index > 0 {
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
                 imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
@@ -90,13 +90,13 @@ private extension OnboardingTemplateViewController {
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5),
-            titleLabel.heightAnchor.constraint(equalToConstant: 45),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            titleLabel.heightAnchor.constraint(equalToConstant: 44),
             
-            describeLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
-            describeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
-            describeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -5)
+            describeLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24),
+            describeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            describeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
         ])
     }
 }
