@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AuthenticationServices
 
 class LoginViewController: UIViewController, LoginViewInput {
     
@@ -313,8 +314,17 @@ private extension LoginViewController {
 
 // MARK: - LoginViewInput
 extension LoginViewController {
-    
     func displayAlert(_ message: String?) {
         showAlert(title: "Ошибка", message: message)
+    }
+}
+
+// MARK: - ASAuthorizationControllerPresentationContextProviding
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        guard let window = view.window else {
+            return UIWindow()
+        }
+        return window
     }
 }

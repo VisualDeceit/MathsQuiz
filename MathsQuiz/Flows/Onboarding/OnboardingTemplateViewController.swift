@@ -59,7 +59,7 @@ class OnboardingTemplateViewController: UIViewController {
     }
 }
 
-//MARK: - Setup views
+// MARK: - Setup views
 private extension OnboardingTemplateViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background
