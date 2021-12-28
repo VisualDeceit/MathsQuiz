@@ -14,7 +14,7 @@ enum LaunchInstructor {
         
         switch (Session.isSeenOnboarding, Session.isAuthorized) {
         case (true, false), (false, false): return .auth
-        case (false, true): return .main // .onboarding
+        case (false, true): return .onboarding
         case (true, true): return .main
         }
     }
@@ -53,14 +53,14 @@ final class AppCoordinator: BaseCoordinator {
     }
     
     private func runOnboardingFlow() {
-        //        let coordinator = coordinatorFactory.makeOnboardingCoordinator(router: router)
-        //        coordinator.finishFlow = { [weak self, weak coordinator] in
-        //            onboardingWasShown = true
-        //            self?.start()
-        //            self?.removeDependency(coordinator)
-        //        }
-        //        addDependency(coordinator)
-        //        coordinator.start()
+        let coordinator = coordinatorFactory.makeOnboardingCoordinator(router: router)
+        coordinator.finishFlow = { [weak self, weak coordinator] in
+            Session.isSeenOnboarding = true
+            self?.start()
+            self?.removeDependency(coordinator)
+        }
+        addDependency(coordinator)
+        coordinator.start()
     }
     
     private func runMainFlow() {

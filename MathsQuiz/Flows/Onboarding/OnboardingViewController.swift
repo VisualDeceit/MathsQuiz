@@ -7,7 +7,9 @@
 
 import UIKit
 
-class OnboardingViewController: UIPageViewController {
+class OnboardingViewController: UIPageViewController, OnboardingViewInput {
+    
+    var presenter: (OnboardingPresenterOutput & OnboardingViewOutput)?
     
     private var pages: [UIViewController] = []
     private let initialPage = 0
@@ -112,10 +114,11 @@ private extension OnboardingViewController {
     }
     
     @objc func skipButtonTapped() {
-        let lastPageIndex = pages.count - 1
-        pageControl.currentPage = lastPageIndex
-        
-        goToSpecificPage(index: lastPageIndex, ofViewControllers: pages)
+        presenter?.viewDidBeginButtonTap()
+//        let lastPageIndex = pages.count - 1
+//        pageControl.currentPage = lastPageIndex
+//
+//        goToSpecificPage(index: lastPageIndex, ofViewControllers: pages)
     }
     
     @objc func bottomButtonTapped(_ sender: UIButton) {
@@ -123,7 +126,7 @@ private extension OnboardingViewController {
         if sender.titleLabel?.text == "Далее" {
             goToNextPage()
         } else if sender.titleLabel?.text == "Начать" {
-            print("hello")
+            presenter?.viewDidBeginButtonTap()
         }
     }
 }

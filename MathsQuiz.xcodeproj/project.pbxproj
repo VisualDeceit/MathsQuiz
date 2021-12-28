@@ -22,7 +22,6 @@
 		1B7C473C276B574100BFD277 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C473B276B574100BFD277 /* BaseCoordinator.swift */; };
 		1B7C4740276B58B600BFD277 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C473F276B58B600BFD277 /* Presentable.swift */; };
 		1B7C4743276B58EA00BFD277 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C4742276B58EA00BFD277 /* Router.swift */; };
-		1B7C4751276B5FC200BFD277 /* AuthCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C4750276B5FC200BFD277 /* AuthCoordinatorOutput.swift */; };
 		1B7C4767276B8B4600BFD277 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C4766276B8B4600BFD277 /* AuthCoordinator.swift */; };
 		1B7C4772276B8D2200BFD277 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C4771276B8D2200BFD277 /* Constants.swift */; };
 		1B7C4778276C42C600BFD277 /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C4777276C42C600BFD277 /* CoordinatorFactory.swift */; };
@@ -41,7 +40,6 @@
 		1B9BCA08276E52B70084931D /* ConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA07276E52B70084931D /* ConfigCell.swift */; };
 		1B9BCA0B276E53E20084931D /* HomeCollectionViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA0A276E53E20084931D /* HomeCollectionViewData.swift */; };
 		1B9BCA0E276E547F0084931D /* CollectionCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA0D276E547F0084931D /* CollectionCellSize.swift */; };
-		1B9BCA1A276F068B0084931D /* MainCoordinatorOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA19276F068B0084931D /* MainCoordinatorOutput.swift */; };
 		1B9BCA1D276F06A50084931D /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA1C276F06A50084931D /* MainCoordinator.swift */; };
 		1B9BCA21276F08C20084931D /* MainModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA20276F08C20084931D /* MainModuleFactory.swift */; };
 		1B9BCA26276F09A30084931D /* HomePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA25276F09A30084931D /* HomePresenter.swift */; };
@@ -75,6 +73,11 @@
 		1B9BCAAF2778553C0084931D /* PasswordResetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAAE2778553C0084931D /* PasswordResetPresenter.swift */; };
 		1B9BCAB52779D7E90084931D /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 1B9BCAB42779D7E90084931D /* GoogleSignIn */; };
 		1B9BCADC277B05E90084931D /* Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCADB277B05E80084931D /* Nonce.swift */; };
+		1B9BCAE7277B5DE40084931D /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAE6277B5DE30084931D /* OnboardingCoordinator.swift */; };
+		1B9BCAED277B5E170084931D /* OnboardingContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAEC277B5E170084931D /* OnboardingContract.swift */; };
+		1B9BCAF0277B5E2B0084931D /* OnboardingAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAEF277B5E2B0084931D /* OnboardingAssembly.swift */; };
+		1B9BCAF3277B5E3D0084931D /* OnboardingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAF2277B5E3D0084931D /* OnboardingPresenter.swift */; };
+		1B9BCAFA277B6B4D0084931D /* OnboardingModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAF9277B6B4D0084931D /* OnboardingModuleFactory.swift */; };
 		1BBC5C7E276DB060001B5F3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */; };
 		1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1BBC5C81276DB547001B5F3E /* FirebaseAuth */; };
 		1BBC5C85276DBAF4001B5F3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C84276DBAF4001B5F3E /* Session.swift */; };
@@ -115,7 +118,6 @@
 		1B7C473B276B574100BFD277 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		1B7C473F276B58B600BFD277 /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		1B7C4742276B58EA00BFD277 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
-		1B7C4750276B5FC200BFD277 /* AuthCoordinatorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinatorOutput.swift; sourceTree = "<group>"; };
 		1B7C4766276B8B4600BFD277 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
 		1B7C4771276B8D2200BFD277 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		1B7C4777276C42C600BFD277 /* CoordinatorFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
@@ -134,7 +136,6 @@
 		1B9BCA07276E52B70084931D /* ConfigCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigCell.swift; sourceTree = "<group>"; };
 		1B9BCA0A276E53E20084931D /* HomeCollectionViewData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewData.swift; sourceTree = "<group>"; };
 		1B9BCA0D276E547F0084931D /* CollectionCellSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCellSize.swift; sourceTree = "<group>"; };
-		1B9BCA19276F068B0084931D /* MainCoordinatorOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinatorOutput.swift; sourceTree = "<group>"; };
 		1B9BCA1C276F06A50084931D /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		1B9BCA20276F08C20084931D /* MainModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModuleFactory.swift; sourceTree = "<group>"; };
 		1B9BCA25276F09A30084931D /* HomePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePresenter.swift; sourceTree = "<group>"; };
@@ -165,6 +166,11 @@
 		1B9BCAAB2778552E0084931D /* PasswordResetAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetAssembly.swift; sourceTree = "<group>"; };
 		1B9BCAAE2778553C0084931D /* PasswordResetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetPresenter.swift; sourceTree = "<group>"; };
 		1B9BCADB277B05E80084931D /* Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nonce.swift; sourceTree = "<group>"; };
+		1B9BCAE6277B5DE30084931D /* OnboardingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingCoordinator.swift; sourceTree = "<group>"; };
+		1B9BCAEC277B5E170084931D /* OnboardingContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingContract.swift; sourceTree = "<group>"; };
+		1B9BCAEF277B5E2B0084931D /* OnboardingAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingAssembly.swift; sourceTree = "<group>"; };
+		1B9BCAF2277B5E3D0084931D /* OnboardingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPresenter.swift; sourceTree = "<group>"; };
+		1B9BCAF9277B6B4D0084931D /* OnboardingModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingModuleFactory.swift; sourceTree = "<group>"; };
 		1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BBC5C84276DBAF4001B5F3E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		1BBC5C8B276DC0A4001B5F3E /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
@@ -290,7 +296,6 @@
 		1B71BA2F2768F3280056A2FF /* Auth */ = {
 			isa = PBXGroup;
 			children = (
-				1B7C4750276B5FC200BFD277 /* AuthCoordinatorOutput.swift */,
 				1B7C4766276B8B4600BFD277 /* AuthCoordinator.swift */,
 				1B71BA302768F4D00056A2FF /* Login */,
 				1B71BA312768F4DF0056A2FF /* SignUp */,
@@ -374,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				1B7C4785276C599600BFD277 /* ModulesFactory.swift */,
+				1B9BCAF8277B6B090084931D /* Onboarding */,
 				1B9BCA1F276F089F0084931D /* Main */,
 				1B7C477D276C444F00BFD277 /* Auth */,
 			);
@@ -441,7 +447,6 @@
 		1B7C47D6276CDEBA00BFD277 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				1B9BCA19276F068B0084931D /* MainCoordinatorOutput.swift */,
 				1B9BCA1C276F06A50084931D /* MainCoordinator.swift */,
 				1B9BC9FA276E4FEA0084931D /* Home */,
 				1B9BCA932776FEAF0084931D /* Account */,
@@ -554,6 +559,18 @@
 			children = (
 				3C5CE3CF27785CDF00896ABD /* OnboardingTemplateViewController.swift */,
 				3C5CE3D12778654C00896ABD /* OnboardingViewController.swift */,
+				1B9BCAE6277B5DE30084931D /* OnboardingCoordinator.swift */,
+				1B9BCAEC277B5E170084931D /* OnboardingContract.swift */,
+				1B9BCAEF277B5E2B0084931D /* OnboardingAssembly.swift */,
+				1B9BCAF2277B5E3D0084931D /* OnboardingPresenter.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		1B9BCAF8277B6B090084931D /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				1B9BCAF9277B6B4D0084931D /* OnboardingModuleFactory.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -729,7 +746,6 @@
 				1B71BA5A27691EF70056A2FF /* SignUpViewController.swift in Sources */,
 				1B9BCA29276F09B00084931D /* HomeAssembly.swift in Sources */,
 				3CD0E1A6276F86D900EE255D /* LevelsViewController.swift in Sources */,
-				1B9BCA1A276F068B0084931D /* MainCoordinatorOutput.swift in Sources */,
 				1B7C4740276B58B600BFD277 /* Presentable.swift in Sources */,
 				1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */,
 				1B9BCA9E27773CAB0084931D /* PasswordChangeContract.swift in Sources */,
@@ -753,14 +769,18 @@
 				1B7C47A7276C8BD200BFD277 /* SignUpContract.swift in Sources */,
 				1B9BCA532770B6840084931D /* UserProfileDetailPresenter.swift in Sources */,
 				1B9BCA8D27764CB50084931D /* Date+Extension.swift in Sources */,
+				1B9BCAF0277B5E2B0084931D /* OnboardingAssembly.swift in Sources */,
+				1B9BCAE7277B5DE40084931D /* OnboardingCoordinator.swift in Sources */,
 				1B71BA3B276908560056A2FF /* LoginAssembly.swift in Sources */,
 				3C0CAAE7276890CE00810069 /* MQColor.swift in Sources */,
 				3C5CE3D027785CDF00896ABD /* OnboardingTemplateViewController.swift in Sources */,
+				1B9BCAFA277B6B4D0084931D /* OnboardingModuleFactory.swift in Sources */,
 				1B9BCA08276E52B70084931D /* ConfigCell.swift in Sources */,
 				1B9BCA83277591E10084931D /* FirestoreManager.swift in Sources */,
 				1B7C4736276B42E700BFD277 /* Coordinator.swift in Sources */,
 				1B9BCA5E2771DDA30084931D /* LevelsPresenter.swift in Sources */,
 				3C5CE3D22778654C00896ABD /* OnboardingViewController.swift in Sources */,
+				1B9BCAF3277B5E3D0084931D /* OnboardingPresenter.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */,
 				1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */,
 				3C25CD562773259700A49DC2 /* PasswordChangeViewController.swift in Sources */,
@@ -791,10 +811,10 @@
 				1B9BCA5B2771DD900084931D /* LevelsAssembly.swift in Sources */,
 				1B9BCA682774BE2E0084931D /* UIView+Extension.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */,
+				1B9BCAED277B5E170084931D /* OnboardingContract.swift in Sources */,
 				1B9BCA43277054BF0084931D /* UserProfilePresenter.swift in Sources */,
 				1B9BCA8A27764CA50084931D /* String+Extension.swift in Sources */,
 				1B9BCA712774C6030084931D /* UserDefaultsStorage.swift in Sources */,
-				1B7C4751276B5FC200BFD277 /* AuthCoordinatorOutput.swift in Sources */,
 				3CD0E1A8276F870F00EE255D /* LevelCollectionViewCell.swift in Sources */,
 				1B71BA6727699FD50056A2FF /* SignUpAssembly.swift in Sources */,
 				1B71BA6327699B290056A2FF /* SignUpPresenter.swift in Sources */,

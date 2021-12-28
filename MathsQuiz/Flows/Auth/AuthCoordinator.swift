@@ -7,8 +7,7 @@
 
 import Foundation
 
-final class AuthCoordinator: BaseCoordinator, AuthCoordinatorOutput {
-    var finishFlow: (() -> Void)?
+final class AuthCoordinator: BaseCoordinator {
     
     private let factory: AuthModuleFactory
     private let router: Router

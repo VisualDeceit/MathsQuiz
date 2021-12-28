@@ -8,5 +8,6 @@
 import Foundation
 
 protocol Coordinator: AnyObject {
+    var finishFlow: CompletionBlock? { get set }
     func start()
 }

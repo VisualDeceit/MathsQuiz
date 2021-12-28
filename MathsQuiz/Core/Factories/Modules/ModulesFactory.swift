@@ -46,3 +46,10 @@ extension ModulesFactory: MainModuleFactory {
         return PasswordChangeAssembly.build()
     }
 }
+
+// MARK: - Onboarding Flow
+extension ModulesFactory: OnboardingModuleFactory {
+    func makeOnboardingView() -> OnboardingViewInput & Presentable {
+        return OnboardingAssembly.build()
+    }
+}
