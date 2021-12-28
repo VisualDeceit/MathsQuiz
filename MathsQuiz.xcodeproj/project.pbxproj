@@ -74,6 +74,7 @@
 		1B9BCAAC2778552E0084931D /* PasswordResetAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAAB2778552E0084931D /* PasswordResetAssembly.swift */; };
 		1B9BCAAF2778553C0084931D /* PasswordResetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAAE2778553C0084931D /* PasswordResetPresenter.swift */; };
 		1B9BCAB52779D7E90084931D /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 1B9BCAB42779D7E90084931D /* GoogleSignIn */; };
+		1B9BCADC277B05E90084931D /* Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCADB277B05E80084931D /* Nonce.swift */; };
 		1BBC5C7E276DB060001B5F3E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */; };
 		1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 1BBC5C81276DB547001B5F3E /* FirebaseAuth */; };
 		1BBC5C85276DBAF4001B5F3E /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C84276DBAF4001B5F3E /* Session.swift */; };
@@ -163,6 +164,7 @@
 		1B9BCAA8277855180084931D /* PasswordResetContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetContract.swift; sourceTree = "<group>"; };
 		1B9BCAAB2778552E0084931D /* PasswordResetAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetAssembly.swift; sourceTree = "<group>"; };
 		1B9BCAAE2778553C0084931D /* PasswordResetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordResetPresenter.swift; sourceTree = "<group>"; };
+		1B9BCADB277B05E80084931D /* Nonce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nonce.swift; sourceTree = "<group>"; };
 		1BBC5C7D276DB060001B5F3E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1BBC5C84276DBAF4001B5F3E /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		1BBC5C8B276DC0A4001B5F3E /* SignUpData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpData.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				1B7C4771276B8D2200BFD277 /* Constants.swift */,
 				1BBC5C84276DBAF4001B5F3E /* Session.swift */,
 				1B9BCA702774C6030084931D /* UserDefaultsStorage.swift */,
+				1B9BCADB277B05E80084931D /* Nonce.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -775,6 +778,7 @@
 				1B7C4797276C6A2D00BFD277 /* RouterImp.swift in Sources */,
 				1BBC5C8C276DC0A4001B5F3E /* SignUpData.swift in Sources */,
 				1B7C478C276C63D500BFD277 /* LoginContract.swift in Sources */,
+				1B9BCADC277B05E90084931D /* Nonce.swift in Sources */,
 				1B7C4743276B58EA00BFD277 /* Router.swift in Sources */,
 				1B9BCA2C276F09C50084931D /* HomeContract.swift in Sources */,
 				3C0CAAEB2768966F00810069 /* MQStandardTextField.swift in Sources */,

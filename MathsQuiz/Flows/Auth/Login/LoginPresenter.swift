@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import GoogleSignIn
 import AuthenticationServices
-import CryptoKit
+import FBSDKLoginKit
 
 class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
     
@@ -98,49 +98,17 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: authentication.accessToken)
             
-            Auth.auth().signIn(with: credential) { [weak self] loginResult, error in
-                guard let loginResult = loginResult, error == nil else {
-                    if let error = error,
-                       let errCode = AuthErrorCode(rawValue: error._code) {
-                        self?.view?.displayAlert(errCode.errorMessage)
-                    }
-                    return
-                }
-                
-                Session.uid = loginResult.user.uid
-                
-                FirestoreManager.shared.isUserProfileExist(uid: Session.uid) { [weak self] exist in
-                    if !exist {
-                        let userProfile = UserProfile(email: user?.profile?.email,
-                                                      phone: loginResult.user.phoneNumber,
-                                                      city: nil,
-                                                      lastName: user?.profile?.familyName,
-                                                      firstName: user?.profile?.givenName,
-                                                      sex: nil,
-                                                      birthday: nil)
-                        do {
-                            try FirestoreManager.shared.saveUserProfile(profile: userProfile)
-                        } catch let error {
-                            let user = Auth.auth().currentUser
-                            user?.delete()
-                            Session.uid = nil
-                            self?.view?.displayAlert(error.localizedDescription)
-                            return
-                        }
-                    }
-                    self?.onCompleteAuth?()
-                }
-            }
+            self?.signIn(with: credential)
         }
     }
     
     private func  performAppleSignInFlow() {
-        let nonce = randomNonceString()
+        let nonce = Nonce.randomNonceString()
         currentNonce = nonce
         let appleIDProvider = ASAuthorizationAppleIDProvider()
         let request = appleIDProvider.createRequest()
         request.requestedScopes = [.fullName, .email]
-        request.nonce = sha256(nonce)
+        request.nonce = Nonce.sha256(nonce)
         
         let authorizationController = ASAuthorizationController(authorizationRequests: [request])
         authorizationController.delegate = self
@@ -149,50 +117,61 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
     }
     
     private func performFacebookSignInFlow() {
-    }
-    
-    private func randomNonceString(length: Int = 32) -> String {
-        precondition(length > 0)
-        let charset: [Character] =
-            Array("0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._")
-        var result = ""
-        var remainingLength = length
+        let loginManager = LoginManager()
+        guard let configuration = LoginConfiguration(
+            permissions: ["email", "public_profile"],
+            tracking: .enabled,
+            messengerPageId: nil,
+            authType: nil
+        )
+        else {
+            return
+        }
         
-        while remainingLength > 0 {
-            let randoms: [UInt8] = (0 ..< 16).map { _ in
-                var random: UInt8 = 0
-                let errorCode = SecRandomCopyBytes(kSecRandomDefault, 1, &random)
-                if errorCode != errSecSuccess {
-                    fatalError(
-                        "Unable to generate nonce. SecRandomCopyBytes failed with OSStatus \(errorCode)"
-                    )
+        loginManager.logIn(configuration: configuration) { [weak self] (result) in
+            switch result {
+            case .success(_, _, token: let token):
+                if let token = token {
+                    let credential = FacebookAuthProvider.credential(withAccessToken: token.tokenString)
+                    self?.signIn(with: credential)
                 }
-                return random
-            }
-            
-            randoms.forEach { random in
-                if remainingLength == 0 {
-                    return
-                }
-                
-                if random < charset.count {
-                    result.append(charset[Int(random)])
-                    remainingLength -= 1
-                }
+            case .cancelled:
+                break
+            case .failed (let error):
+                self?.view?.displayAlert(error.localizedDescription)
             }
         }
-        return result
     }
     
-    @available(iOS 13, *)
-    private func sha256(_ input: String) -> String {
-        let inputData = Data(input.utf8)
-        let hashedData = SHA256.hash(data: inputData)
-        let hashString = hashedData.compactMap {
-            String(format: "%02x", $0)
-        }.joined()
-        
-        return hashString
+    private func signIn(with credential: AuthCredential) {
+        Auth.auth().signIn(with: credential) { [weak self] (authResult, error) in
+            if let error = error {
+                self?.view?.displayAlert(error.localizedDescription)
+                return
+            }
+            Session.uid = authResult?.user.uid
+            FirestoreManager.shared.isUserProfileExist(uid: Session.uid) { [weak self] exist in
+                if !exist {
+                    let userProfile = UserProfile(email: authResult?.user.email,
+                                                  phone: authResult?.user.phoneNumber,
+                                                  city: nil,
+                                                  lastName: nil,
+                                                  firstName: authResult?.user.displayName,
+                                                  sex: nil,
+                                                  birthday: nil)
+                    do {
+                        try FirestoreManager.shared.saveUserProfile(profile: userProfile)
+                    } catch let error {
+                        let user = Auth.auth().currentUser
+                        user?.delete()
+                        Session.uid = nil
+                        self?.view?.displayAlert(error.localizedDescription)
+                        return
+                    }
+                }
+                self?.onCompleteAuth?()
+            }
+        }
     }
 }
 
