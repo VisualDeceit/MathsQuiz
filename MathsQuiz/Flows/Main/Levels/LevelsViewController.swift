@@ -100,6 +100,24 @@ extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDele
         }
         return levelCell
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.1) {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? LevelCollectionViewCell else {
+                return
+            }
+            cell.transform = .init(scaleX: 0.95, y: 0.95)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.1) {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? LevelCollectionViewCell else {
+                return
+            }
+            cell.transform = .identity
+        }
+    }
 }
 
 // MARK: - CollectionViewDelegateFlowLayout

@@ -58,6 +58,7 @@ class HomeViewController: UIViewController, HomeViewInput {
 private extension HomeViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background
+        mainCollectionView.delaysContentTouches = false
         
         setupGreetingForm()
         setupMainCollectionView()
@@ -120,6 +121,24 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let selectedActivity = presenter?.activities?[indexPath.row] {
             presenter?.viewDidSelectActivity(type: selectedActivity.type)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.1) {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell else {
+                return
+            }
+            cell.transform = .init(scaleX: 0.95, y: 0.95)
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didUnhighlightItemAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.1) {
+            guard let cell = collectionView.cellForItem(at: indexPath) as? HomeCollectionViewCell else {
+                return
+            }
+            cell.transform = .identity
         }
     }
 }
