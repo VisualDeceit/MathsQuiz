@@ -8,7 +8,7 @@
 import Foundation
 
 final class HomePresenter: HomePresenterOutput, HomeViewOutput {
-    var activities: [Activity]
+    var activities: [Activity]?
     var onSelectActivity: ((ActivityType) -> Void)?
     var onAccountButtonTap: (() -> Void)?
     
@@ -16,7 +16,6 @@ final class HomePresenter: HomePresenterOutput, HomeViewOutput {
     
     init(view: HomeViewInput) {
         self.view = view
-        activities = HomeCollectionViewData.data // stub
     }
 }
 
@@ -28,6 +27,7 @@ extension HomePresenter {
     }
     
     func viewDidLoad() {
+        activities = Stub.activities // stub
         FirestoreManager.shared.readUserProfile {[weak self] (result) in
             switch result {
             case .success(let profile):
