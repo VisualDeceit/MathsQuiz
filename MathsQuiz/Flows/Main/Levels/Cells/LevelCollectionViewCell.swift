@@ -7,39 +7,41 @@
 
 import UIKit
 
-class LevelCollectionViewCell: UICollectionViewCell, ConfigCell {
-    typealias T = ActivityType
+class LevelCollectionViewCell: UICollectionViewCell {
     
-    static var reuseId: String = "UICollectionViewCell"
-    
-    var isCellBlocked = false
+    static var reuseId: String = "kLevelCollectionViewCell"
     
     private let levelNumLabel = UILabel()
     private var starImageView: [UIImageView] = []
     private let lockImageView = UIImageView()
     
-    func configure(with value: ActivityType) {
-        self.backgroundColor = value.color
+    func configure(level: Level, type: ActivityType) {
+        self.backgroundColor = type.color
         self.layer.cornerRadius = 20
-        if isCellBlocked {
-            setupBlockedCellForm()
+
+        if -1 == level.completion {
+            setupBlockedCellForm(type: type)
         } else {
-            setupUnblockedCellForm()
+            setupUnblockedCellForm(level: level, type: type)
         }
     }
     
-    func setupUnblockedCellForm() {
-        levelNumLabel.text = "1"
+    func setupUnblockedCellForm(level: Level, type: ActivityType) {
+        levelNumLabel.text = "\(level.index)"
         levelNumLabel.font = MQFont.systemFont48
         levelNumLabel.textAlignment = .center
         levelNumLabel.adjustsFontSizeToFitWidth = true
         levelNumLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        for _ in 0...2 {
+        for i in 1...3 {
             let image = UIImageView()
             image.image = UIImage(systemName: "star.fill")
             image.contentMode = .scaleAspectFit
-            image.tintColor = MQColor.background
+            if i <= level.completion {
+                image.tintColor = type.highlightedСolor
+            } else {
+                image.tintColor = MQColor.background
+            }
             image.transform = .init(rotationAngle: 0.26)
             image.heightAnchor.constraint(equalToConstant: 26).isActive = true
             starImageView.append(image)
@@ -65,9 +67,9 @@ class LevelCollectionViewCell: UICollectionViewCell, ConfigCell {
         ])
     }
     
-    func setupBlockedCellForm() {
+    func setupBlockedCellForm(type: ActivityType) {
         lockImageView.image = UIImage(systemName: "lock.fill")
-        lockImageView.tintColor = MQColor.lavenderDark
+        lockImageView.tintColor = type.highlightedСolor
         lockImageView.contentMode = .scaleAspectFit
         lockImageView.translatesAutoresizingMaskIntoConstraints = false
         

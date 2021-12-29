@@ -28,6 +28,21 @@ enum ActivityType: String {
             return MQColor.candyPinkLight
         }
     }
+    
+    var highlightedСolor: UIColor {
+        switch self {
+        case .addition:
+            return  MQColor.lavenderDark
+        case .subtraction:
+            return MQColor.pictonBlueDark
+        case .multiplication:
+            return MQColor.moonstoneBlueDark
+        case .division:
+            return MQColor.jasperOrangeDark
+        case .expression:
+            return MQColor.candyPinkDark
+        }
+    }
 }
 
 struct Activity {

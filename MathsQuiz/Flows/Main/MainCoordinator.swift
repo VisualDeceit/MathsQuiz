@@ -35,6 +35,13 @@ final class MainCoordinator: BaseCoordinator {
         router.setRootModule(view, hideBar: true)
     }
     
+    private func showLevels(for activity: ActivityType) {
+        print(activity.rawValue)
+        let view = factory.makeLevelsView(activity: activity)
+        
+        router.push(view, hideNavBar: false)
+    }
+    
     private func showUserProfile() {
         let view = factory.makeUserProfileView()
         
@@ -66,12 +73,5 @@ final class MainCoordinator: BaseCoordinator {
     private func showUserProfileDetail() {
         let view = factory.makeUserProfileDetailView()
         router.push(view)
-    }
-    
-    private func showLevels(for activity: ActivityType) {
-        print(activity.rawValue)
-        let view = factory.makeLevelsView()
-        
-        router.push(view, hideNavBar: false)
     }
 }

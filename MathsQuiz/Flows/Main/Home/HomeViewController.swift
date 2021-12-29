@@ -102,21 +102,23 @@ private extension HomeViewController {
 // MARK: - CollectionViewDelegate & CollectionViewDataSource
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter?.activities.count ?? 0
+        presenter?.activities?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionViewCell.reuseId,
                                                       for: indexPath)
-        guard let mainCell = cell as? HomeCollectionViewCell else { return cell }
-        if let activity = presenter?.activities[indexPath.row] {
+        guard let mainCell = cell as? HomeCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        if let activity = presenter?.activities?[indexPath.row] {
             mainCell.configure(with: activity)
         }
         return mainCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let selectedActivity = presenter?.activities[indexPath.row] {
+        if let selectedActivity = presenter?.activities?[indexPath.row] {
             presenter?.viewDidSelectActivity(type: selectedActivity.type)
         }
     }

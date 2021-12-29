@@ -38,8 +38,8 @@ extension ModulesFactory: MainModuleFactory {
         return UserProfileDetailAssembly.build()
     }
     
-    func makeLevelsView() -> LevelsViewInput & Presentable {
-        return LevelsAssembly.build()
+    func makeLevelsView(activity: ActivityType) -> LevelsViewInput & Presentable {
+        return LevelsAssembly.build(activity: activity)
     }
     
     func makePasswordChangeView() -> PasswordChangeViewInput & Presentable {

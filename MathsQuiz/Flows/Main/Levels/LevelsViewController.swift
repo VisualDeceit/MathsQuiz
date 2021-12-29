@@ -11,7 +11,7 @@ class LevelsViewController: UIViewController, LevelsViewInput {
     
     var presenter: (LevelsPresenterOutput & LevelsViewOutput)?
 
-    private var activityType: ActivityType?
+    var activity: ActivityType
     
     private var levelCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -25,9 +25,13 @@ class LevelsViewController: UIViewController, LevelsViewInput {
         return collectionView
     }()
     
-    convenience init(activityType: ActivityType) {
-        self.init()
-        self.activityType = activityType
+    init(activity: ActivityType) {
+        self.activity = activity
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -38,7 +42,8 @@ class LevelsViewController: UIViewController, LevelsViewInput {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setupNavigationBar() 
+        setupNavigationBar()
+        presenter?.viewDidLoad()
     }
 }
 
@@ -52,7 +57,7 @@ private extension LevelsViewController {
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear
         navigationController?.navigationBar.backItem?.title = "Назад"
-        navigationItem.title = "Сложение"
+        navigationItem.title = activity.rawValue
         navigationController?.navigationBar.prefersLargeTitles = true
     }
     
@@ -80,17 +85,19 @@ private extension LevelsViewController {
 // MARK: - CollectionViewDelegate & CollectionViewDataSource
 extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        presenter?.levels?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LevelCollectionViewCell.reuseId,
                                                       for: indexPath)
-        guard let levelCell = cell as? LevelCollectionViewCell else { return cell }
-//        let data = activities[indexPath.row]
-        let data = ActivityType.addition
-        levelCell.configure(with: data)
+        guard let levelCell = cell as? LevelCollectionViewCell else {
+            return UICollectionViewCell()
+        }
         
+        if let level = presenter?.levels?[indexPath.row] {
+            levelCell.configure(level: level, type: activity)
+        }
         return levelCell
     }
 }
@@ -121,4 +128,7 @@ extension LevelsViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - LevelsViewInput
 extension LevelsViewController {
+    func reloadCollection() {
+        levelCollectionView.reloadData()
+    }
 }
