@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1B2EB5B0277C588800FFDD9E /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5AF277C588800FFDD9E /* Level.swift */; };
+		1B2EB5B9277C9BC200FFDD9E /* ActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */; };
+		1B2EB5C1277C9C1700FFDD9E /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C0277C9C1700FFDD9E /* Input.swift */; };
+		1B2EB5C5277CA14D00FFDD9E /* AdditionActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */; };
 		1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA112767BE490056A2FF /* AppDelegate.swift */; };
 		1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA132767BE490056A2FF /* SceneDelegate.swift */; };
 		1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA152767BE490056A2FF /* LoginViewController.swift */; };
@@ -105,6 +108,9 @@
 /* Begin PBXFileReference section */
 		14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathsQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B2EB5AF277C588800FFDD9E /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStrategy.swift; sourceTree = "<group>"; };
+		1B2EB5C0277C9C1700FFDD9E /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionActivityStrategy.swift; sourceTree = "<group>"; };
 		1B71BA0E2767BE490056A2FF /* MathsQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathsQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B71BA112767BE490056A2FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B71BA132767BE490056A2FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -222,6 +228,48 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		1B2EB5B3277C9B2900FFDD9E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1BBC5C8A276DC011001B5F3E /* Models */,
+				1B7C47D2276CDAD300BFD277 /* UI */,
+				1B7C4794276C69CA00BFD277 /* Router */,
+				1B7C4775276C423D00BFD277 /* Factories */,
+				1B9BCA812775919B0084931D /* Services */,
+				1B7C4770276B8D0C00BFD277 /* Helpers */,
+				1B7C475D276B886100BFD277 /* Protocols */,
+				3C0CAAED27689DB600810069 /* Extensions */,
+				1B7C475E276B89BB00BFD277 /* Base */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		1B2EB5B6277C9B3900FFDD9E /* BusinessLogics */ = {
+			isa = PBXGroup;
+			children = (
+				1B2EB5BB277C9BDE00FFDD9E /* Models */,
+				1B2EB5B7277C9B6E00FFDD9E /* Strategy */,
+			);
+			path = BusinessLogics;
+			sourceTree = "<group>";
+		};
+		1B2EB5B7277C9B6E00FFDD9E /* Strategy */ = {
+			isa = PBXGroup;
+			children = (
+				1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */,
+				1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */,
+			);
+			path = Strategy;
+			sourceTree = "<group>";
+		};
+		1B2EB5BB277C9BDE00FFDD9E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1B2EB5C0277C9C1700FFDD9E /* Input.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		1B71BA052767BE490056A2FF = {
 			isa = PBXGroup;
 			children = (
@@ -268,15 +316,8 @@
 		1B71BA282767BEF30056A2FF /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				1BBC5C8A276DC011001B5F3E /* Models */,
-				1B7C47D2276CDAD300BFD277 /* UI */,
-				1B7C4794276C69CA00BFD277 /* Router */,
-				1B7C4775276C423D00BFD277 /* Factories */,
-				1B9BCA812775919B0084931D /* Services */,
-				1B7C4770276B8D0C00BFD277 /* Helpers */,
-				1B7C475D276B886100BFD277 /* Protocols */,
-				3C0CAAED27689DB600810069 /* Extensions */,
-				1B7C475E276B89BB00BFD277 /* Base */,
+				1B2EB5B6277C9B3900FFDD9E /* BusinessLogics */,
+				1B2EB5B3277C9B2900FFDD9E /* Common */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -759,6 +800,7 @@
 				1B7C4740276B58B600BFD277 /* Presentable.swift in Sources */,
 				1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */,
 				1B9BCA9E27773CAB0084931D /* PasswordChangeContract.swift in Sources */,
+				1B2EB5C1277C9C1700FFDD9E /* Input.swift in Sources */,
 				1B9BCA1D276F06A50084931D /* MainCoordinator.swift in Sources */,
 				1B71BA352768F5680056A2FF /* LoginPresenter.swift in Sources */,
 				1B7C4731276B42D100BFD277 /* AppCoordinator.swift in Sources */,
@@ -800,6 +842,7 @@
 				1B9BCA40277053D00084931D /* UserProfileAssembly.swift in Sources */,
 				1B9BCAAF2778553C0084931D /* PasswordResetPresenter.swift in Sources */,
 				1B9BCA0E276E547F0084931D /* CollectionCellSize.swift in Sources */,
+				1B2EB5B9277C9BC200FFDD9E /* ActivityStrategy.swift in Sources */,
 				1B9BCAA9277855190084931D /* PasswordResetContract.swift in Sources */,
 				1B9BC9F5276E4FC90084931D /* UserProfileDetailViewController.swift in Sources */,
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
@@ -820,6 +863,7 @@
 				1B7C473C276B574100BFD277 /* BaseCoordinator.swift in Sources */,
 				1B9BCA4D2770B6610084931D /* UserProfileDetailContract.swift in Sources */,
 				1B9BCA5B2771DD900084931D /* LevelsAssembly.swift in Sources */,
+				1B2EB5C5277CA14D00FFDD9E /* AdditionActivityStrategy.swift in Sources */,
 				1B9BCA682774BE2E0084931D /* UIView+Extension.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */,
 				1B9BCAED277B5E170084931D /* OnboardingContract.swift in Sources */,

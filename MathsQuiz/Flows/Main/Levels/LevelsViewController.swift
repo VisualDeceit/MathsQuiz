@@ -52,10 +52,10 @@ class LevelsViewController: UIViewController, LevelsViewInput {
 private extension LevelsViewController {
     func setupNavigationBar() {
         navigationController?.navigationBar.tintColor = MQColor.ubeDefault
-        // navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.view.backgroundColor = .clear
+        navigationController?.view.backgroundColor = .white
         navigationController?.navigationBar.backItem?.title = "Назад"
         navigationItem.title = activity.rawValue
         navigationController?.navigationBar.prefersLargeTitles = true
