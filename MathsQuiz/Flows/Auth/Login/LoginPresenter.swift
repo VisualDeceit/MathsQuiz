@@ -51,11 +51,12 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
     }
     
     private func performEmailPasswordLoginFlow(with credentials: Credentials) {
-        Auth.auth().signIn(withEmail: credentials.email, password: credentials.password) { [weak self] loginResult, error in
-            guard let loginResult = loginResult, error == nil else {
-                if let error = error,
-                   let errCode = AuthErrorCode(rawValue: error._code) {
-                    self?.view?.displayAlert(errCode.errorMessage)
+        Auth.auth().signIn(withEmail: credentials.email,
+                           password: credentials.password) { [weak self] loginResult, error in
+            guard let loginResult = loginResult else {
+                if let error = error {
+                    let errCode = AuthErrorCode(rawValue: error._code)
+                    self?.view?.displayAlert(errCode?.errorMessage)
                 }
                 return
             }
@@ -72,11 +73,8 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
         
         GIDSignIn.sharedInstance.signIn(with: config,
                                         presenting: view) { [weak self] user, error in
-            
-            guard error == nil else {
-                if let error = error {
-                    self?.view?.displayAlert(error.localizedDescription)
-                }
+            if let error = error {
+                self?.view?.displayAlert(error.localizedDescription)
                 return
             }
             
@@ -84,20 +82,12 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
                 let authentication = user?.authentication,
                 let idToken = authentication.idToken
             else {
-                let error = NSError(
-                    domain: "GIDSignInError",
-                    code: -1,
-                    userInfo: [
-                        NSLocalizedDescriptionKey: "Unexpected sign in result: required authentication data is missing."
-                    ]
-                )
-                self?.view?.displayAlert(error.localizedDescription)
+                self?.view?.displayAlert("Unexpected sign in result: required authentication data is missing")
                 return
             }
             
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: authentication.accessToken)
-            
             self?.signIn(with: credential)
         }
     }
@@ -198,9 +188,6 @@ extension LoginPresenter: ASAuthorizationControllerDelegate {
             // Sign in with Firebase.
             Auth.auth().signIn(with: credential) { [weak self] (authResult, error) in
                 if let error = error {
-                    // Error. If error.code == .MissingOrInvalidNonce, make sure
-                    // you're sending the SHA256-hashed nonce as a hex string with
-                    // your request to Apple.
                     self?.view?.displayAlert(error.localizedDescription)
                     return
                 }
