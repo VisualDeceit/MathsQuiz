@@ -25,11 +25,15 @@ extension FirestoreError: LocalizedError {
     }
 }
 
-class FirestoreManager {
-    static let shared = FirestoreManager()
+protocol FirestoreProtocol {
+    func saveUserProfile(profile: UserProfile) throws
+    func readUserProfile(completion: @escaping (Result<UserProfile?, Error>) -> Void)
+    func isUserProfileExist(uid: String?, completion: @escaping ((Bool) -> Void))
+}
+
+class FirestoreManager: FirestoreProtocol {
     
     private let db = Firestore.firestore()
-    private init() {}
 
     func saveUserProfile(profile: UserProfile) throws {
         guard let uid = Session.uid, !uid.isEmpty else {
