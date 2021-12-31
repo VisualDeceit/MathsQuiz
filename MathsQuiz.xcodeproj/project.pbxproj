@@ -11,6 +11,7 @@
 		1B2EB5B9277C9BC200FFDD9E /* ActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */; };
 		1B2EB5C1277C9C1700FFDD9E /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C0277C9C1700FFDD9E /* Input.swift */; };
 		1B2EB5C5277CA14D00FFDD9E /* AdditionActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */; };
+		1B2EB5CA277D698C00FFDD9E /* Digit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C9277D698C00FFDD9E /* Digit.swift */; };
 		1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA112767BE490056A2FF /* AppDelegate.swift */; };
 		1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA132767BE490056A2FF /* SceneDelegate.swift */; };
 		1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA152767BE490056A2FF /* LoginViewController.swift */; };
@@ -111,6 +112,7 @@
 		1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStrategy.swift; sourceTree = "<group>"; };
 		1B2EB5C0277C9C1700FFDD9E /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionActivityStrategy.swift; sourceTree = "<group>"; };
+		1B2EB5C9277D698C00FFDD9E /* Digit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digit.swift; sourceTree = "<group>"; };
 		1B71BA0E2767BE490056A2FF /* MathsQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathsQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B71BA112767BE490056A2FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B71BA132767BE490056A2FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				1B2EB5C0277C9C1700FFDD9E /* Input.swift */,
+				1B2EB5C9277D698C00FFDD9E /* Digit.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -863,6 +866,7 @@
 				1B7C473C276B574100BFD277 /* BaseCoordinator.swift in Sources */,
 				1B9BCA4D2770B6610084931D /* UserProfileDetailContract.swift in Sources */,
 				1B9BCA5B2771DD900084931D /* LevelsAssembly.swift in Sources */,
+				1B2EB5CA277D698C00FFDD9E /* Digit.swift in Sources */,
 				1B2EB5C5277CA14D00FFDD9E /* AdditionActivityStrategy.swift in Sources */,
 				1B9BCA682774BE2E0084931D /* UIView+Extension.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */,
