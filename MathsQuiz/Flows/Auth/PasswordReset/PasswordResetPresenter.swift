@@ -10,12 +10,15 @@ import FirebaseAuth
 
 final class PasswordResetPresenter: PasswordResetViewOutput, PasswordResetPresenterOutput {
 
-    var onSuccessSend: CompletionBlock?
+    var onSuccessSend: (() -> Void)?
+    
+    var authService: AuthorizationService
     
     private weak var view: PasswordResetViewInput?
     
-    init(view: PasswordResetViewInput) {
+    init(view: PasswordResetViewInput, authService: AuthorizationService) {
         self.view = view
+        self.authService = authService
     }
     
     func viewDidSendButtonTap(_ email: String?) {
@@ -32,12 +35,10 @@ final class PasswordResetPresenter: PasswordResetViewOutput, PasswordResetPresen
     }
     
     private func sendPasswordReset(email: String) {
-        Auth.auth().sendPasswordReset(withEmail: email) {[weak self] error in
-            guard error == nil else {
-                if let error = error,
-                   let errCode = AuthErrorCode(rawValue: error._code) {
-                    self?.view?.displayAlert(errCode.errorMessage)
-                }
+        authService.sendPasswordReset(to: email) {[weak self] error in
+            if let error = error {
+                let errCode = AuthErrorCode(rawValue: error._code)
+                self?.view?.displayAlert(errCode?.errorMessage)
                 return
             }
             self?.onSuccessSend?()

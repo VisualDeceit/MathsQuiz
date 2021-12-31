@@ -244,4 +244,8 @@ extension UserProfileViewController {
         nameLabel.text = userName
         mailLabel.text = email
     }
+    
+    func displayAlert(_ message: String?) {
+        showAlert(title: "Ошибка", message: message)
+    }
 }

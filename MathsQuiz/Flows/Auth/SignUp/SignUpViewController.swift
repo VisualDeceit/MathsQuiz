@@ -244,8 +244,7 @@ private extension SignUpViewController {
 
 // MARK: - SignUpViewInput
 extension SignUpViewController {
-    
-    func needShowAlert(title: String, message: String?) {
-        showAlert(title: title, message: message)
+    func displayAlert(_ message: String?) {
+        showAlert(title: "Ошибка", message: message)
     }
 }

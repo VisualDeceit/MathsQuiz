@@ -13,16 +13,23 @@ import FBSDKLoginKit
 
 class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
     
-    var onCompleteAuth: CompletionBlock?
-    var onSignUpButtonTap: CompletionBlock?
-    var onPasswordReset: CompletionBlock?
+    var onCompleteAuth: (() -> Void)?
+    var onSignUpButtonTap: (() -> Void)?
+    var onPasswordReset: (() -> Void)?
+    
+    var authService: AuthorizationService
+    var firestoreManager: StorageManager
     
     private weak var view: LoginViewInput?
-    
+
     fileprivate var currentNonce: String?
     
-    required init(view: LoginViewInput) {
+    required init(view: LoginViewInput,
+                  authService: AuthorizationService,
+                  firestoreManager: StorageManager) {
         self.view = view
+        self.authService = authService
+        self.firestoreManager = firestoreManager
     }
     
     func viewDidPasswordResetButtonTap() {
@@ -51,17 +58,15 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
     }
     
     private func performEmailPasswordLoginFlow(with credentials: Credentials) {
-        Auth.auth().signIn(withEmail: credentials.email,
-                           password: credentials.password) { [weak self] loginResult, error in
-            guard let loginResult = loginResult else {
-                if let error = error {
-                    let errCode = AuthErrorCode(rawValue: error._code)
-                    self?.view?.displayAlert(errCode?.errorMessage)
-                }
-                return
+        authService.signIn(with: credentials) {[weak self] result in
+            switch result {
+            case .success(let loginResult):
+                Session.uid = loginResult.user.uid
+                self?.onCompleteAuth?()
+            case .failure(let error):
+                let errCode = AuthErrorCode(rawValue: error._code)
+                self?.view?.displayAlert(errCode?.errorMessage)
             }
-            Session.uid = loginResult.user.uid
-            self?.onCompleteAuth?()
         }
     }
     
@@ -88,7 +93,7 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
             
             let credential = GoogleAuthProvider.credential(withIDToken: idToken,
                                                            accessToken: authentication.accessToken)
-            self?.signIn(with: credential)
+            self?.loginFirebase(with: credential)
         }
     }
     
@@ -123,7 +128,7 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
             case .success(_, _, token: let token):
                 if let token = token {
                     let credential = FacebookAuthProvider.credential(withAccessToken: token.tokenString)
-                    self?.signIn(with: credential)
+                    self?.loginFirebase(with: credential)
                 }
             case .cancelled:
                 break
@@ -133,33 +138,34 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
         }
     }
     
-    private func signIn(with credential: AuthCredential) {
-        Auth.auth().signIn(with: credential) { [weak self] (authResult, error) in
-            if let error = error {
-                self?.view?.displayAlert(error.localizedDescription)
-                return
-            }
-            Session.uid = authResult?.user.uid
-            FirestoreManager.shared.isUserProfileExist(uid: Session.uid) { [weak self] exist in
-                if !exist {
-                    let userProfile = UserProfile(email: authResult?.user.email,
-                                                  phone: authResult?.user.phoneNumber,
-                                                  city: nil,
-                                                  lastName: nil,
-                                                  firstName: authResult?.user.displayName,
-                                                  sex: nil,
-                                                  birthday: nil)
-                    do {
-                        try FirestoreManager.shared.saveUserProfile(profile: userProfile)
-                    } catch let error {
-                        let user = Auth.auth().currentUser
-                        user?.delete()
-                        Session.uid = nil
-                        self?.view?.displayAlert(error.localizedDescription)
-                        return
+    private func loginFirebase(with credential: AuthCredential) {
+        authService.signIn(with: credential) {  [weak self] result in
+            switch result {
+            case .success(let loginResult):
+                Session.uid = loginResult.user.uid
+                self?.firestoreManager.isUserProfileExist(uid: Session.uid) { [weak self] exist in
+                    if !exist {
+                        let userProfile = UserProfile(email: loginResult.user.email,
+                                                      phone: loginResult.user.phoneNumber,
+                                                      city: nil,
+                                                      lastName: nil,
+                                                      firstName: loginResult.user.displayName,
+                                                      sex: nil,
+                                                      birthday: nil)
+                        do {
+                            try self?.firestoreManager.saveUserProfile(profile: userProfile)
+                        } catch let error {
+                            self?.authService.deleteCurrentUser { _ in }
+                            Session.uid = nil
+                            self?.view?.displayAlert(error.localizedDescription)
+                            return
+                        }
                     }
                 }
                 self?.onCompleteAuth?()
+            case .failure(let error):
+                let errCode = AuthErrorCode(rawValue: error._code)
+                self?.view?.displayAlert(errCode?.errorMessage)
             }
         }
     }
@@ -181,41 +187,11 @@ extension LoginPresenter: ASAuthorizationControllerDelegate {
                 print("Unable to serialize token string from data: \(appleIDToken.debugDescription)")
                 return
             }
-            // Initialize a Firebase credential.
+            
             let credential = OAuthProvider.credential(withProviderID: "apple.com",
                                                       idToken: idTokenString,
                                                       rawNonce: nonce)
-            // Sign in with Firebase.
-            Auth.auth().signIn(with: credential) { [weak self] (authResult, error) in
-                if let error = error {
-                    self?.view?.displayAlert(error.localizedDescription)
-                    return
-                }
-                
-                Session.uid = authResult?.user.uid
-                
-                FirestoreManager.shared.isUserProfileExist(uid: Session.uid) { [weak self] exist in
-                    if !exist {
-                        let userProfile = UserProfile(email: authResult?.user.email,
-                                                      phone: authResult?.user.phoneNumber,
-                                                      city: nil,
-                                                      lastName: nil,
-                                                      firstName: authResult?.user.displayName,
-                                                      sex: nil,
-                                                      birthday: nil)
-                        do {
-                            try FirestoreManager.shared.saveUserProfile(profile: userProfile)
-                        } catch let error {
-                            let user = Auth.auth().currentUser
-                            user?.delete()
-                            Session.uid = nil
-                            self?.view?.displayAlert(error.localizedDescription)
-                            return
-                        }
-                    }
-                    self?.onCompleteAuth?()
-                }
-            }
+            loginFirebase(with: credential)
         }
     }
     

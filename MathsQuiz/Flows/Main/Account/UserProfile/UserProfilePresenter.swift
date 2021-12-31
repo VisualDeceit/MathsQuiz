@@ -13,17 +13,24 @@ final class UserProfilePresenter: UserProfilePresenterOutput {
     var onMyDataButtonTap: (() -> Void)?
     var onPasswordChangeTap: (() -> Void)?
     
+    var authService: AuthorizationService
+    var firestoreManager: StorageManager
+    
     private weak var view: UserProfileViewInput?
     
-    init(view: UserProfileViewInput) {
+    init(view: UserProfileViewInput,
+         authService: AuthorizationService,
+         firestoreManager: StorageManager) {
         self.view = view
+        self.authService = authService
+        self.firestoreManager = firestoreManager
     }
     
     private func logout() {
-        do {
-            try Auth.auth().signOut()
-        } catch  let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+        authService.signOut {[weak self] error in
+            if let error = error {
+                self?.view?.displayAlert(error.localizedDescription)
+            }
         }
         Session.uid = nil
         onLogout?()
@@ -33,7 +40,7 @@ final class UserProfilePresenter: UserProfilePresenterOutput {
 // MARK: - HomeViewOutput
 extension UserProfilePresenter: UserProfileViewOutput {
     func viewDidLoad() {
-        FirestoreManager.shared.readUserProfile {[weak self] (result) in
+        firestoreManager.readUserProfile {[weak self] (result) in
             switch result {
             case .success(let profile):
                 var userName = ""

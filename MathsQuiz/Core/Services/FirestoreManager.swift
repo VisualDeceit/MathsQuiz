@@ -25,13 +25,13 @@ extension FirestoreError: LocalizedError {
     }
 }
 
-protocol FirestoreProtocol {
+protocol StorageManager {
     func saveUserProfile(profile: UserProfile) throws
     func readUserProfile(completion: @escaping (Result<UserProfile?, Error>) -> Void)
     func isUserProfileExist(uid: String?, completion: @escaping ((Bool) -> Void))
 }
 
-class FirestoreManager: FirestoreProtocol {
+class FirestoreManager: StorageManager {
     
     private let db = Firestore.firestore()
 

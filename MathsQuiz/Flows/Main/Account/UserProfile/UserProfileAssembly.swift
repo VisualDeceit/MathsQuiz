@@ -10,7 +10,9 @@ import Foundation
 final class UserProfileAssembly {
     static func build() -> UserProfileViewInput & Presentable {
         let view = UserProfileViewController()
-        let presenter = UserProfilePresenter(view: view)
+        let presenter = UserProfilePresenter(view: view,
+                                             authService: FirebaseAuthService(),
+                                             firestoreManager: FirestoreManager())
         view.presenter = presenter
         return view
     }

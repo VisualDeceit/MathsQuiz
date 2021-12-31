@@ -9,13 +9,16 @@ import Foundation
 import FirebaseAuth
 
 final class PasswordChangePresenter: PasswordChangeViewOutput, PasswordChangePresenterOutput {
-
-    private weak var view: PasswordChangeViewInput?
     
     var onSuccess: (() -> Void)?
     
-    init(view: PasswordChangeViewInput) {
+    var authService: AuthorizationService
+
+    private weak var view: PasswordChangeViewInput?
+    
+    init(view: PasswordChangeViewInput, authService: AuthorizationService) {
         self.view = view
+        self.authService = authService
     }
     
     func viewDidChangePasswordButtonTap(_ passwordPair: PasswordPair) {
@@ -41,18 +44,17 @@ final class PasswordChangePresenter: PasswordChangeViewOutput, PasswordChangePre
     }
     
     private func changePassword(newPassword: String) {
-        Auth.auth().currentUser?.updatePassword(to: newPassword) { [weak self] error in
-            guard error == nil else {
-                if let error = error,
-                   let errCode = AuthErrorCode(rawValue: error._code) {
-                    self?.view?.displayAlert(errCode.errorMessage)
-                }
+        authService.updatePassword(to: newPassword) {[weak self] error in
+            if let error = error {
+                let errCode = AuthErrorCode(rawValue: error._code)
+                self?.view?.displayAlert(errCode?.errorMessage)
                 return
             }
-            do {
-                try Auth.auth().signOut()
-            } catch  let signOutError as NSError {
-                self?.view?.displayAlert("Error signing out: \(signOutError.debugDescription)")
+            self?.authService.signOut {[weak self] error in
+                if let error = error {
+                    self?.view?.displayAlert("Error signing out: \(error.localizedDescription)")
+                    return
+                }
             }
             Session.uid = nil
             self?.onSuccess?()

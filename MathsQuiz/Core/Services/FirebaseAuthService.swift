@@ -1,5 +1,5 @@
 //
-//  AuthorizationService.swift
+//  FirebaseAuthService.swift
 //  MathsQuiz
 //
 //  Created by Александр Фомин on 31.12.2021.
@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 
-protocol AuthorizationProtocol: AnyObject {
+protocol AuthorizationService: AnyObject {
     var currentUser: User? { get }
     
     func createUser(with email: String,
@@ -26,7 +26,7 @@ protocol AuthorizationProtocol: AnyObject {
     func deleteCurrentUser(_ completion: @escaping (Error?) -> Void)
 }
 
-class AuthorizationService: AuthorizationProtocol {
+class FirebaseAuthService: AuthorizationService {
     
     var currentUser: User? {
         return Auth.auth().currentUser

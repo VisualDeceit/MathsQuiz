@@ -184,7 +184,7 @@ private extension PasswordChangeViewController {
 // MARK: - PasswordChangeViewInput
 extension PasswordChangeViewController {
     
-    func displayAlert(_ message: String) {
+    func displayAlert(_ message: String?) {
         self.showAlert(title: "Ошибка", message: message)
     }
 }

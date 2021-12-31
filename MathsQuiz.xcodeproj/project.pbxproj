@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B2EB5B0277C588800FFDD9E /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5AF277C588800FFDD9E /* Level.swift */; };
+		1B2EB5CE277EF7B900FFDD9E /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */; };
 		1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA112767BE490056A2FF /* AppDelegate.swift */; };
 		1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA132767BE490056A2FF /* SceneDelegate.swift */; };
 		1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA152767BE490056A2FF /* LoginViewController.swift */; };
@@ -105,6 +106,7 @@
 /* Begin PBXFileReference section */
 		14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathsQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B2EB5AF277C588800FFDD9E /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		1B71BA0E2767BE490056A2FF /* MathsQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathsQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B71BA112767BE490056A2FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B71BA132767BE490056A2FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -536,6 +538,7 @@
 			isa = PBXGroup;
 			children = (
 				1B9BCA82277591E10084931D /* FirestoreManager.swift */,
+				1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -833,6 +836,7 @@
 				1B9BCA2F276F0F170084931D /* Activity.swift in Sources */,
 				1B9BC9F1276E4D530084931D /* MQFont.swift in Sources */,
 				1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */,
+				1B2EB5CE277EF7B900FFDD9E /* FirebaseAuthService.swift in Sources */,
 				1B7C4792276C663C00BFD277 /* CoordinatorFactoryImp.swift in Sources */,
 				1BBC5C90276DD0AB001B5F3E /* UIAlertController+Extension.swift in Sources */,
 			);
