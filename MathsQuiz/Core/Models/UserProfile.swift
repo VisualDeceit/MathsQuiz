@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SexType: String, Codable, CaseIterable {
+enum Sex: String, Codable, CaseIterable {
     case male = "Мужской"
     case female = "Женский"
 }
@@ -18,6 +18,6 @@ struct UserProfile: Codable {
     let city: String?
     let lastName: String?
     let firstName: String?
-    let sex: SexType?
+    let sex: Sex?
     let birthday: Date?
 }

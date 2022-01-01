@@ -205,7 +205,7 @@ private extension UserProfileDetailViewController {
         if let sex = presenter?.userProfile?.sex {
             sexTextField.text = sex.rawValue
         } else {
-            sexTextField.text = SexType.allCases[0].rawValue
+            sexTextField.text = Sex.allCases[0].rawValue
         }
     }
     
@@ -243,15 +243,15 @@ extension UserProfileDetailViewController: UIPickerViewDelegate, UIPickerViewDat
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return SexType.allCases.count
+        return Sex.allCases.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return SexType.allCases[row].rawValue
+        return Sex.allCases[row].rawValue
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        sexTextField.text = SexType.allCases[row].rawValue
+        sexTextField.text = Sex.allCases[row].rawValue
     }
     
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
@@ -324,7 +324,7 @@ extension UserProfileDetailViewController {
         surnameTextField.text = presenter?.userProfile?.lastName
 
         if let sex = presenter?.userProfile?.sex,
-           let index = SexType.allCases.firstIndex(of: sex) {
+           let index = Sex.allCases.firstIndex(of: sex) {
             sexPickerView.selectRow(index, inComponent: 0, animated: false)
             sexTextField.text = sex.rawValue
         }

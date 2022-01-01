@@ -33,7 +33,7 @@ extension UserProfileDetailPresenter {
                                   city: city,
                                   lastName: lastName,
                                   firstName: firstName,
-                                  sex: SexType(rawValue: sex ?? ""),
+                                  sex: Sex(rawValue: sex ?? ""),
                                   birthday: birthday?.toDate())
         do {
             try firestoreManager.saveUserProfile(profile: profile)
