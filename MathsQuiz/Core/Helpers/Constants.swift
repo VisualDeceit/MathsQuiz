@@ -8,7 +8,6 @@
 import Foundation
 
 // MARK: - Typealias
-typealias PasswordPair = (password: String?, confirm: String?)
 
 // MARK: - PersistantKeys enum
 enum PersistantKeys {

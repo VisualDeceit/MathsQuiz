@@ -120,8 +120,8 @@ private extension PasswordChangeViewController {
     }
     
     @objc func changeButtonTapped() {
-        presenter?.viewDidChangePasswordButtonTap((password: passwordTextField.text,
-                                                   confirm: confirmPasswordTextField.text))
+        presenter?.viewDidChangePasswordButtonTap(.init(password: passwordTextField.text,
+                                                        confirm: confirmPasswordTextField.text))
     }
 }
 
