@@ -28,13 +28,19 @@ extension UserProfileDetailPresenter {
                               sex: String?,
                               birthday: String?,
                               phone: String?) {
+        
+        var birthdayDate: Date?
+        if let birthday = birthday {
+            birthdayDate = DateFormatter.shortLocalStyle.date(from: birthday)
+        }
+        
         let profile = UserProfile(email: self.userProfile?.email,
                                   phone: phone,
                                   city: city,
                                   lastName: lastName,
                                   firstName: firstName,
                                   sex: Sex(rawValue: sex ?? ""),
-                                  birthday: birthday?.toDate())
+                                  birthday: birthdayDate)
         do {
             try firestoreManager.saveUserProfile(profile: profile)
         } catch let error {

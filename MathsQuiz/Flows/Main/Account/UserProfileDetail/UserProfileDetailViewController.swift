@@ -222,7 +222,7 @@ private extension UserProfileDetailViewController {
     }
     
     @objc func dateDidChange() {
-        birthdayTextField.text = datePickerView.date.toString()
+        birthdayTextField.text = DateFormatter.shortLocalStyle.string(from: datePickerView.date)
     }
 }
 
@@ -330,7 +330,7 @@ extension UserProfileDetailViewController {
         }
         if let date = presenter?.userProfile?.birthday {
             datePickerView.date = date
-            birthdayTextField.text = date.toString()
+            birthdayTextField.text = DateFormatter.shortLocalStyle.string(from: date)
         }
         
         phoneNumberTextField.text = format(with: "+X (XXX) XXX-XX-XX",
