@@ -12,6 +12,8 @@ protocol ExampleViewInput: AnyObject {
 }
 
 protocol ExampleViewOutput: AnyObject {
+    var activity: ActivityType { get set }
+    
     func viewDidLoad()
 }
 

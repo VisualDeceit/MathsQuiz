@@ -9,12 +9,14 @@ import Foundation
 
 protocol LevelsViewInput: AnyObject {
     var presenter: (LevelsViewOutput & LevelsPresenterOutput)? { get set }
-    var activity: ActivityType { get set }
+    
     func reloadCollection()
 }
 
 protocol LevelsViewOutput: AnyObject {
     var levels: [Level]? { get set }
+    var activity: ActivityType { get set }
+    
     func viewDidSelectLevel(_ level: Level)
     func viewDidLoad()
 }

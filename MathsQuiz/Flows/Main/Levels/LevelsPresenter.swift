@@ -16,9 +16,9 @@ final class LevelsPresenter: LevelsPresenterOutput {
     
     private weak var view: LevelsViewInput?
     
-    init(view: LevelsViewInput) {
+    init(view: LevelsViewInput, activity: ActivityType) {
         self.view = view
-        self.activity = view.activity
+        self.activity = activity
     }
 }
 
