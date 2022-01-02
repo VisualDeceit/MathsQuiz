@@ -9,7 +9,7 @@ import Foundation
 
 protocol PasswordResetViewInput: AnyObject {
     var presenter: (PasswordResetViewOutput & PasswordResetPresenterOutput)? { get set }
-    func displayAlert(_ message: String)
+    func displayAlert(_ message: String?)
 }
 
 protocol PasswordResetViewOutput: AnyObject {
@@ -18,5 +18,5 @@ protocol PasswordResetViewOutput: AnyObject {
 }
 
 protocol PasswordResetPresenterOutput: AnyObject {
-    var onSuccessSend: CompletionBlock? { get set }
+    var onSuccessSend: (() -> Void)? { get set }
 }

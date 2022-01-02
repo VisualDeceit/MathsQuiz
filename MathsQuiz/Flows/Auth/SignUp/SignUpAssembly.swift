@@ -10,7 +10,9 @@ import UIKit
 final class SignUpAssembly {
     static func build() -> SignUpViewInput & Presentable {
         let view = SignUpViewController()
-        let presenter = SignUpPresenter(view: view)
+        let presenter = SignUpPresenter(view: view,
+                                        authService: FirebaseAuthService(),
+                                        firestoreManager: FirestoreManager())
         view.presenter = presenter
         return view
     }

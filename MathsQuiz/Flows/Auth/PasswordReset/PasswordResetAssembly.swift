@@ -11,7 +11,8 @@ final class PasswordResetAssembly {
     
     static func build() -> Presentable & PasswordResetViewInput {
         let view = PasswordResetViewController()
-        let presenter = PasswordResetPresenter(view: view)
+        let presenter = PasswordResetPresenter(view: view,
+                                               authService: FirebaseAuthService())
         view.presenter = presenter
         return view
     }

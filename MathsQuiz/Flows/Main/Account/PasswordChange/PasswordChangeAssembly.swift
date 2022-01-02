@@ -10,7 +10,7 @@ import Foundation
 final class PasswordChangeAssembly {
     static func build() -> Presentable & PasswordChangeViewInput {
         let view = PasswordChangeViewController()
-        let presenter = PasswordChangePresenter(view: view)
+        let presenter = PasswordChangePresenter(view: view, authService: FirebaseAuthService())
         view.presenter = presenter
         return view
     }

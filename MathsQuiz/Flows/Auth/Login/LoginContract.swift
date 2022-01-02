@@ -25,7 +25,7 @@ protocol LoginViewOutput: AnyObject {
 }
 
 protocol LoginPresenterOutput: AnyObject {
-    var onCompleteAuth: CompletionBlock? { get set }
-    var onSignUpButtonTap: CompletionBlock? { get set }
-    var onPasswordReset: CompletionBlock? { get set }
+    var onCompleteAuth: (() -> Void)? { get set }
+    var onSignUpButtonTap: (() -> Void)? { get set }
+    var onPasswordReset: (() -> Void)? { get set }
 }

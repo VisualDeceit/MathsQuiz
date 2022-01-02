@@ -9,7 +9,7 @@ import Foundation
 
 protocol PasswordChangeViewInput: AnyObject {
     var presenter: (PasswordChangeViewOutput & PasswordChangePresenterOutput)? { get set }
-    func displayAlert(_ message: String)
+    func displayAlert(_ message: String?)
 }
 
 protocol PasswordChangeViewOutput {

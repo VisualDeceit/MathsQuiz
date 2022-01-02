@@ -19,5 +19,5 @@ protocol SignUpViewOutput: AnyObject {
 protocol SignUpViewInput: AnyObject {
     var presenter: (SignUpViewOutput & SignUpPresenterOutput)? { get set }
     
-    func needShowAlert(title: String, message: String?)
+    func displayAlert(_ message: String?)
 }

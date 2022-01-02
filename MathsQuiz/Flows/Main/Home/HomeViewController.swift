@@ -58,7 +58,6 @@ class HomeViewController: UIViewController, HomeViewInput {
 private extension HomeViewController {
     func setupViews() {
         view.backgroundColor = MQColor.background
-        mainCollectionView.delaysContentTouches = false
         
         setupGreetingForm()
         setupMainCollectionView()

@@ -16,5 +16,5 @@ protocol OnboardingViewOutput: AnyObject {
 }
 
 protocol OnboardingPresenterOutput: AnyObject {
-    var onFinish: CompletionBlock? { get set }
+    var onFinish: (() -> Void)? { get set }
 }

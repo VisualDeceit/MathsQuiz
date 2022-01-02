@@ -9,7 +9,7 @@ import UIKit
 
 class BaseCoordinator: Coordinator {
     
-    var finishFlow: CompletionBlock?
+    var finishFlow: (() -> Void)?
     var childCoordinators: [Coordinator] = []
     
     func start() {}
