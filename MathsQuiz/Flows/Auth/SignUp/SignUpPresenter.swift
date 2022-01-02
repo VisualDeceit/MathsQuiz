@@ -10,75 +10,67 @@ import FirebaseAuth
 
 class SignUpPresenter: SignUpPresenterOutput {
 
-    private(set) weak var view: SignUpViewInput?
-    
     var onSignUpComplete: (() -> Void)?
     var onLoginButtonTap: (() -> Void)?
     
-    required init(view: SignUpViewInput) {
+    var authService: AuthorizationService
+    var firestoreManager: StorageManager
+    
+    private(set) weak var view: SignUpViewInput?
+    
+    required init(view: SignUpViewInput, authService: AuthorizationService, firestoreManager: StorageManager) {
         self.view = view
+        self.authService = authService
+        self.firestoreManager = firestoreManager
     }
     
     private func createUser(from data: SignUpData) {
         guard !data.email.isEmpty else {
-            self.view?.needShowAlert(title: "Ошибка",
-                                     message: "Пожалуйста, введите действующий адрес электронной почты")
+            self.view?.displayAlert("Пожалуйста, введите действующий адрес электронной почты")
             return
         }
         
         guard !data.password.isEmpty else {
-            self.view?.needShowAlert(title: "Ошибка",
-                                     message: "Пожалуйста, введите пароль")
+            self.view?.displayAlert("Пожалуйста, введите пароль")
             return
         }
         
         guard !data.passwordConfirm.isEmpty else {
-            self.view?.needShowAlert(title: "Ошибка",
-                                     message: "Пожалуйста, введите подтверждение пароля")
+            self.view?.displayAlert("Пожалуйста, введите подтверждение пароля")
             return
         }
         
         guard data.password == data.passwordConfirm else {
-            self.view?.needShowAlert(title: "Ошибка",
-                                     message: "Подтверждение пароля не совпадает с паролем")
+            self.view?.displayAlert("Подтверждение пароля не совпадает с паролем")
             return
         }
- 
-        Auth.auth().createUser(withEmail: data.email,
-                               password: data.password) { [weak self] (authResult, error) in
-            guard let authResult = authResult, error == nil else {
-                if let error = error,
-                   let errCode = AuthErrorCode(rawValue: error._code) {
-                    self?.view?.needShowAlert(title: "Ошибка",
-                                              message: errCode.errorMessage)
+        
+        authService.createUser(with: data.email, password: data.password) {[weak self] result in
+            switch result {
+            case .success(let loginResult):
+                Session.uid = loginResult.user.uid
+                let name = self?.splitOnFirstAndLast(name: data.username)
+                let profile = UserProfile(email: data.email,
+                                          phone: nil,
+                                          city: nil,
+                                          lastName: name?.last,
+                                          firstName: name?.first,
+                                          sex: nil,
+                                          birthday: nil)
+                
+                do {
+                    try self?.firestoreManager.saveUserProfile(profile: profile)
+                } catch let error {
+                    self?.authService.deleteCurrentUser { _ in }
+                    Session.uid = nil
+                    self?.view?.displayAlert(error.localizedDescription)
+                    return
                 }
-                return
+                self?.onSignUpComplete?()
+            case .failure(let error):
+                let errCode = AuthErrorCode(rawValue: error._code)
+                self?.view?.displayAlert(errCode?.errorMessage)
             }
-            
-            Session.uid = authResult.user.uid
-            
-            // Добавить пользователя в БД
-            let name = self?.splitOnFirstAndLast(name: data.username)
-            let profile = UserProfile(email: data.email,
-                                      phone: nil,
-                                      city: nil,
-                                      lastName: name?.last,
-                                      firstName: name?.first,
-                                      sex: nil,
-                                      birthday: nil)
-            
-            do {
-                try FirestoreManager.shared.saveUserProfile(profile: profile)
-            } catch let error {
-                // delete user
-                let user = Auth.auth().currentUser
-                user?.delete()
-                Session.uid = nil
-                self?.view?.needShowAlert(title: "Ошибка",
-                                          message: error.localizedDescription)
-                return
-            }
-            self?.onSignUpComplete?()
         }
     }
     

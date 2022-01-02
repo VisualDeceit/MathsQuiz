@@ -12,7 +12,9 @@ import UIKit
 final class LoginAssembly {
     static func build() -> LoginViewInput & Presentable {
         let view = LoginViewController()
-        let presenter = LoginPresenter(view: view)
+        let presenter = LoginPresenter(view: view,
+                                       authService: FirebaseAuthService(),
+                                       firestoreManager: FirestoreManager())
         view.presenter = presenter
         return view
     }

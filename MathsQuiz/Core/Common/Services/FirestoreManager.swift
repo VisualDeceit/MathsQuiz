@@ -25,21 +25,21 @@ extension FirestoreError: LocalizedError {
     }
 }
 
-class FirestoreManager {
-    static let shared = FirestoreManager()
+protocol StorageManager {
+    func saveUserProfile(profile: UserProfile) throws
+    func readUserProfile(completion: @escaping (Result<UserProfile?, Error>) -> Void)
+    func isUserProfileExist(uid: String?, completion: @escaping ((Bool) -> Void))
+}
+
+class FirestoreManager: StorageManager {
     
     private let db = Firestore.firestore()
-    private init() {}
 
     func saveUserProfile(profile: UserProfile) throws {
         guard let uid = Session.uid, !uid.isEmpty else {
             throw FirestoreError.emptyPath
         }
-        do {
-            try db.collection("users").document(uid).setData(from: profile)
-        } catch let error {
-           throw error
-        }
+        try db.collection("users").document(uid).setData(from: profile)
     }
     
     func readUserProfile(completion: @escaping (Result<UserProfile?, Error>) -> Void) {
@@ -50,10 +50,8 @@ class FirestoreManager {
         
         let docRef = db.collection("users").document(uid)
         docRef.getDocument { (document, error) in
-            guard error == nil else {
-                if let error = error {
-                    completion(.failure(error))
-                }
+            if let error = error {
+                completion(.failure(error))
                 return
             }
             guard let document = document, document.exists else {

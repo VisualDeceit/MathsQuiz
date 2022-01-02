@@ -12,8 +12,11 @@ final class UserProfileDetailPresenter: UserProfileDetailPresenterOutput, UserPr
     
     private weak var view: UserProfileDetailViewInput?
     
-    init(view: UserProfileDetailViewInput) {
+    var firestoreManager: StorageManager
+    
+    init(view: UserProfileDetailViewInput, firestoreManager: StorageManager) {
         self.view = view
+        self.firestoreManager = firestoreManager
     }
 }
 
@@ -25,15 +28,21 @@ extension UserProfileDetailPresenter {
                               sex: String?,
                               birthday: String?,
                               phone: String?) {
+        
+        var birthdayDate: Date?
+        if let birthday = birthday {
+            birthdayDate = DateFormatter.shortLocalStyle.date(from: birthday)
+        }
+        
         let profile = UserProfile(email: self.userProfile?.email,
                                   phone: phone,
                                   city: city,
                                   lastName: lastName,
                                   firstName: firstName,
-                                  sex: SexType(rawValue: sex ?? ""),
-                                  birthday: birthday?.toDate())
+                                  sex: Sex(rawValue: sex ?? ""),
+                                  birthday: birthdayDate)
         do {
-            try FirestoreManager.shared.saveUserProfile(profile: profile)
+            try firestoreManager.saveUserProfile(profile: profile)
         } catch let error {
                 print("Error update profile: \(error.localizedDescription)")
             return
@@ -41,7 +50,7 @@ extension UserProfileDetailPresenter {
     }
     
     func viewDidLoad() {
-        FirestoreManager.shared.readUserProfile {[weak self] (result) in
+        firestoreManager.readUserProfile {[weak self] (result) in
             switch result {
             case .success(let profile):
                 if let profile = profile {

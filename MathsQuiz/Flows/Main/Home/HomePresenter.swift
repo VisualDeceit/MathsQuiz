@@ -12,10 +12,13 @@ final class HomePresenter: HomePresenterOutput, HomeViewOutput {
     var onSelectActivity: ((ActivityType) -> Void)?
     var onAccountButtonTap: (() -> Void)?
     
+    var firestoreManager: StorageManager
+    
     private weak var view: HomeViewInput?
     
-    init(view: HomeViewInput) {
+    init(view: HomeViewInput, firestoreManager: StorageManager) {
         self.view = view
+        self.firestoreManager = firestoreManager
     }
 }
 
@@ -28,7 +31,7 @@ extension HomePresenter {
     
     func viewDidLoad() {
         activities = Stub.activities // stub
-        FirestoreManager.shared.readUserProfile {[weak self] (result) in
+        firestoreManager.readUserProfile {[weak self] (result) in
             switch result {
             case .success(let profile):
                 if let profile = profile {

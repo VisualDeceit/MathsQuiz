@@ -10,7 +10,7 @@ import Foundation
 final class HomeAssembly {
     static func build() -> HomeViewInput & Presentable {
         let view = HomeViewController()
-        let presenter = HomePresenter(view: view)
+        let presenter = HomePresenter(view: view, firestoreManager: FirestoreManager())
         view.presenter = presenter
         return view
     }

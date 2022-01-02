@@ -9,7 +9,9 @@ import Foundation
 
 protocol UserProfileViewInput: AnyObject {
     var presenter: (UserProfileViewOutput & UserProfilePresenterOutput)? { get set }
+    
     func displayProfile(userName: String, email: String)
+    func displayAlert(_ message: String?)
 }
 
 protocol UserProfileViewOutput: AnyObject {

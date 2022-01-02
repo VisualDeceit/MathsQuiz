@@ -9,7 +9,7 @@ import Foundation
 
 final class OnboardingPresenter: OnboardingViewOutput, OnboardingPresenterOutput {
     
-    var onFinish: CompletionBlock?
+    var onFinish: (() -> Void)?
     weak var view: OnboardingViewInput?
     
     init(view: OnboardingViewInput) {

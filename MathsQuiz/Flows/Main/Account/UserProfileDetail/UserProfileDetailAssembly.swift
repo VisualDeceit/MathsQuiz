@@ -10,7 +10,7 @@ import Foundation
 final class UserProfileDetailAssembly {
     static func build() -> UserProfileDetailViewInput & Presentable {
         let view = UserProfileDetailViewController()
-        let presenter = UserProfileDetailPresenter(view: view)
+        let presenter = UserProfileDetailPresenter(view: view, firestoreManager: FirestoreManager())
         view.presenter = presenter
         return view
     }
