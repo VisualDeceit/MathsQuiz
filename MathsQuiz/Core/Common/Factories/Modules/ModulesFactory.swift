@@ -45,6 +45,10 @@ extension ModulesFactory: MainModuleFactory {
     func makePasswordChangeView() -> PasswordChangeViewInput & Presentable {
         return PasswordChangeAssembly.build()
     }
+
+    func makeExampleView(activity: ActivityType, level: Level) -> ExampleViewInput & Presentable {
+        return ExampleAssembly.build(activity: activity, level: level)
+    }
 }
 
 // MARK: - Onboarding Flow

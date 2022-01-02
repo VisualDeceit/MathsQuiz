@@ -8,13 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		1B2EB5B0277C588800FFDD9E /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5AF277C588800FFDD9E /* Level.swift */; };
-		1B2EB5CE277EF7B900FFDD9E /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */; };
-		1B2EB5D3278041F800FFDD9E /* PasswordPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5D2278041F800FFDD9E /* PasswordPair.swift */; };
-		1B2EB5D62780459700FFDD9E /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5D52780459600FFDD9E /* DateFormatter+Extension.swift */; };
 		1B2EB5B9277C9BC200FFDD9E /* ActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */; };
 		1B2EB5C1277C9C1700FFDD9E /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C0277C9C1700FFDD9E /* Input.swift */; };
 		1B2EB5C5277CA14D00FFDD9E /* AdditionActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */; };
 		1B2EB5CA277D698C00FFDD9E /* Digit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C9277D698C00FFDD9E /* Digit.swift */; };
+		1B2EB5CE277EF7B900FFDD9E /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */; };
+		1B2EB5D3278041F800FFDD9E /* PasswordPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5D2278041F800FFDD9E /* PasswordPair.swift */; };
+		1B2EB5D62780459700FFDD9E /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5D52780459600FFDD9E /* DateFormatter+Extension.swift */; };
+		1B2EB5E02781D39600FFDD9E /* ExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5DF2781D39600FFDD9E /* ExampleViewController.swift */; };
+		1B2EB5E42781D3C000FFDD9E /* ExampleContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5E32781D3C000FFDD9E /* ExampleContract.swift */; };
+		1B2EB5E72781D3D200FFDD9E /* ExampleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5E62781D3D200FFDD9E /* ExampleAssembly.swift */; };
+		1B2EB5EA2781D3EA00FFDD9E /* ExamplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5E92781D3EA00FFDD9E /* ExamplePresenter.swift */; };
 		1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA112767BE490056A2FF /* AppDelegate.swift */; };
 		1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA132767BE490056A2FF /* SceneDelegate.swift */; };
 		1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA152767BE490056A2FF /* LoginViewController.swift */; };
@@ -110,13 +114,17 @@
 /* Begin PBXFileReference section */
 		14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathsQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B2EB5AF277C588800FFDD9E /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
-		1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
-		1B2EB5D2278041F800FFDD9E /* PasswordPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordPair.swift; sourceTree = "<group>"; };
-		1B2EB5D52780459600FFDD9E /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStrategy.swift; sourceTree = "<group>"; };
 		1B2EB5C0277C9C1700FFDD9E /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
 		1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionActivityStrategy.swift; sourceTree = "<group>"; };
 		1B2EB5C9277D698C00FFDD9E /* Digit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digit.swift; sourceTree = "<group>"; };
+		1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		1B2EB5D2278041F800FFDD9E /* PasswordPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordPair.swift; sourceTree = "<group>"; };
+		1B2EB5D52780459600FFDD9E /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		1B2EB5DF2781D39600FFDD9E /* ExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewController.swift; sourceTree = "<group>"; };
+		1B2EB5E32781D3C000FFDD9E /* ExampleContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleContract.swift; sourceTree = "<group>"; };
+		1B2EB5E62781D3D200FFDD9E /* ExampleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAssembly.swift; sourceTree = "<group>"; };
+		1B2EB5E92781D3EA00FFDD9E /* ExamplePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePresenter.swift; sourceTree = "<group>"; };
 		1B71BA0E2767BE490056A2FF /* MathsQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathsQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B71BA112767BE490056A2FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B71BA132767BE490056A2FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -273,6 +281,17 @@
 				1B2EB5C9277D698C00FFDD9E /* Digit.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		1B2EB5DE2781D35600FFDD9E /* Example */ = {
+			isa = PBXGroup;
+			children = (
+				1B2EB5DF2781D39600FFDD9E /* ExampleViewController.swift */,
+				1B2EB5E32781D3C000FFDD9E /* ExampleContract.swift */,
+				1B2EB5E62781D3D200FFDD9E /* ExampleAssembly.swift */,
+				1B2EB5E92781D3EA00FFDD9E /* ExamplePresenter.swift */,
+			);
+			path = Example;
 			sourceTree = "<group>";
 		};
 		1B71BA052767BE490056A2FF = {
@@ -504,6 +523,7 @@
 				1B9BC9FA276E4FEA0084931D /* Home */,
 				1B9BCA932776FEAF0084931D /* Account */,
 				1B9BCA15276E5A830084931D /* Levels */,
+				1B2EB5DE2781D35600FFDD9E /* Example */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -805,6 +825,7 @@
 				3CD0E1A6276F86D900EE255D /* LevelsViewController.swift in Sources */,
 				1B7C4740276B58B600BFD277 /* Presentable.swift in Sources */,
 				1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */,
+				1B2EB5EA2781D3EA00FFDD9E /* ExamplePresenter.swift in Sources */,
 				1B9BCA9E27773CAB0084931D /* PasswordChangeContract.swift in Sources */,
 				1B2EB5C1277C9C1700FFDD9E /* Input.swift in Sources */,
 				1B9BCA1D276F06A50084931D /* MainCoordinator.swift in Sources */,
@@ -850,11 +871,13 @@
 				1B9BCA0E276E547F0084931D /* CollectionCellSize.swift in Sources */,
 				1B2EB5D62780459700FFDD9E /* DateFormatter+Extension.swift in Sources */,
 				1B2EB5B9277C9BC200FFDD9E /* ActivityStrategy.swift in Sources */,
+				1B2EB5E72781D3D200FFDD9E /* ExampleAssembly.swift in Sources */,
 				1B9BCAA9277855190084931D /* PasswordResetContract.swift in Sources */,
 				1B9BC9F5276E4FC90084931D /* UserProfileDetailViewController.swift in Sources */,
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
 				1B7C4778276C42C600BFD277 /* CoordinatorFactory.swift in Sources */,
 				3CD0E1A2276F765500EE255D /* PasswordResetViewController.swift in Sources */,
+				1B2EB5E42781D3C000FFDD9E /* ExampleContract.swift in Sources */,
 				1B9BC9FC276E50260084931D /* HomeViewController.swift in Sources */,
 				1B7C4797276C6A2D00BFD277 /* RouterImp.swift in Sources */,
 				1BBC5C8C276DC0A4001B5F3E /* SignUpData.swift in Sources */,
@@ -887,6 +910,7 @@
 				1B2EB5CE277EF7B900FFDD9E /* FirebaseAuthService.swift in Sources */,
 				1B7C4792276C663C00BFD277 /* CoordinatorFactoryImp.swift in Sources */,
 				1BBC5C90276DD0AB001B5F3E /* UIAlertController+Extension.swift in Sources */,
+				1B2EB5E02781D39600FFDD9E /* ExampleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

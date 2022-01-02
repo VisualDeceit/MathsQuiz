@@ -15,9 +15,10 @@ protocol LevelsViewInput: AnyObject {
 
 protocol LevelsViewOutput: AnyObject {
     var levels: [Level]? { get set }
-    func viewDidSelectLevel()
+    func viewDidSelectLevel(_ level: Level)
     func viewDidLoad()
 }
 
 protocol LevelsPresenterOutput: AnyObject {
+    var onSelectLevel: ((Level) -> Void)? { get set }
 }

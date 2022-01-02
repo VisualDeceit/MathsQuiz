@@ -101,6 +101,12 @@ extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDele
         return levelCell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let selectedLevel = presenter?.levels?[indexPath.row] {
+            presenter?.viewDidSelectLevel(selectedLevel)
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.1) {
             guard let cell = collectionView.cellForItem(at: indexPath) as? LevelCollectionViewCell else {
