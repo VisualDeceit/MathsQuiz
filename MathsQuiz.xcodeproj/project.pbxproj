@@ -19,6 +19,7 @@
 		1B2EB5E42781D3C000FFDD9E /* ExampleContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5E32781D3C000FFDD9E /* ExampleContract.swift */; };
 		1B2EB5E72781D3D200FFDD9E /* ExampleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5E62781D3D200FFDD9E /* ExampleAssembly.swift */; };
 		1B2EB5EA2781D3EA00FFDD9E /* ExamplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5E92781D3EA00FFDD9E /* ExamplePresenter.swift */; };
+		1B2EB5EE2781FB2D00FFDD9E /* KeypadDigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5ED2781FB2D00FFDD9E /* KeypadDigitView.swift */; };
 		1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA112767BE490056A2FF /* AppDelegate.swift */; };
 		1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA132767BE490056A2FF /* SceneDelegate.swift */; };
 		1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA152767BE490056A2FF /* LoginViewController.swift */; };
@@ -125,6 +126,7 @@
 		1B2EB5E32781D3C000FFDD9E /* ExampleContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleContract.swift; sourceTree = "<group>"; };
 		1B2EB5E62781D3D200FFDD9E /* ExampleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAssembly.swift; sourceTree = "<group>"; };
 		1B2EB5E92781D3EA00FFDD9E /* ExamplePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePresenter.swift; sourceTree = "<group>"; };
+		1B2EB5ED2781FB2D00FFDD9E /* KeypadDigitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadDigitView.swift; sourceTree = "<group>"; };
 		1B71BA0E2767BE490056A2FF /* MathsQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathsQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B71BA112767BE490056A2FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B71BA132767BE490056A2FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -286,12 +288,21 @@
 		1B2EB5DE2781D35600FFDD9E /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				1B2EB5EC2781F8E900FFDD9E /* Views */,
 				1B2EB5DF2781D39600FFDD9E /* ExampleViewController.swift */,
 				1B2EB5E32781D3C000FFDD9E /* ExampleContract.swift */,
 				1B2EB5E62781D3D200FFDD9E /* ExampleAssembly.swift */,
 				1B2EB5E92781D3EA00FFDD9E /* ExamplePresenter.swift */,
 			);
 			path = Example;
+			sourceTree = "<group>";
+		};
+		1B2EB5EC2781F8E900FFDD9E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1B2EB5ED2781FB2D00FFDD9E /* KeypadDigitView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		1B71BA052767BE490056A2FF = {
@@ -875,6 +886,7 @@
 				1B9BCAA9277855190084931D /* PasswordResetContract.swift in Sources */,
 				1B9BC9F5276E4FC90084931D /* UserProfileDetailViewController.swift in Sources */,
 				1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */,
+				1B2EB5EE2781FB2D00FFDD9E /* KeypadDigitView.swift in Sources */,
 				1B7C4778276C42C600BFD277 /* CoordinatorFactory.swift in Sources */,
 				3CD0E1A2276F765500EE255D /* PasswordResetViewController.swift in Sources */,
 				1B2EB5E42781D3C000FFDD9E /* ExampleContract.swift in Sources */,

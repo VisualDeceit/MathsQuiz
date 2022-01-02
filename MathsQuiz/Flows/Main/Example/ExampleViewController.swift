@@ -11,10 +11,12 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     
     var presenter: (ExamplePresenterOutput & ExampleViewOutput)?
     
+    private let checkButton = MQStandardButton(title: "Проверить")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = MQColor.background
+        setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -26,6 +28,11 @@ class ExampleViewController: UIViewController, ExampleViewInput {
 }
 
 private extension ExampleViewController {
+    
+    func setupViews() {
+        view.backgroundColor = MQColor.background
+    }
+    
     func setupNavigationBar() {
         title = "Пример"
         navigationController?.navigationBar.tintColor = MQColor.ubeDefault
