@@ -14,13 +14,13 @@ class KeypadDigitView: UIView {
     private(set) lazy var digitLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = MQFont.systemFont24
+        label.font = MQFont.keypadFont
         label.textColor = .black
         return label
     }()
     
-    init(digit: String) {
-        self.digit = Int(digit)
+    init(digit: Int) {
+        self.digit = digit
         super.init(frame: .zero)
         setupView()
     }
@@ -30,6 +30,13 @@ class KeypadDigitView: UIView {
     }
     
     private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .clear
+        
+        NSLayoutConstraint.activate([
+           widthAnchor.constraint(equalTo: heightAnchor)
+        ])
+        
         if let digit = digit {
             self.digitLabel.text = "\(digit)"
             
@@ -43,11 +50,6 @@ class KeypadDigitView: UIView {
     }
     
     override func draw(_ rect: CGRect) {
-        guard let context = UIGraphicsGetCurrentContext() else { return }
-        
-        context.saveGState()
-        defer { context.restoreGState() }
-        
         let rectWidth = rect.width
         let rectHeight = rect.height
         
@@ -64,10 +66,24 @@ class KeypadDigitView: UIView {
                                     startAngle: 330 * CGFloat.pi / 180,
                                     endAngle: -30 * CGFloat.pi / 180,
                                     clockwise: false)
-
-        context.addPath(clipPath.cgPath)
-        context.setFillColor(UIColor.systemGray4.cgColor)
-        context.closePath()
-        context.fillPath()
+        UIColor.systemGray6.setFill()
+        clipPath.fill()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        UIView.animate(withDuration: 0.1) {
+            self.transform = .init(scaleX: 0.95, y: 0.95)
+        }
+        super.touchesBegan(touches, with: event)
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        transform = .identity
+        super.touchesEnded(touches, with: event)
+    }
+    
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        transform = .identity
+        super.touchesCancelled(touches, with: event)
     }
 }
