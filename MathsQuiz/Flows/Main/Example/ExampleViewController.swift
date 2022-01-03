@@ -10,6 +10,7 @@ import UIKit
 class ExampleViewController: UIViewController, ExampleViewInput {
     
     var presenter: (ExamplePresenterOutput & ExampleViewOutput)?
+    var relativeLocation = CGPoint()
     
     private let topKeypadStack: UIStackView = {
         let sv = UIStackView()
@@ -32,6 +33,17 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
+    
+    private let keypadDraggableLabel: UILabel = {
+        let label = UILabel(frame: CGRect(origin: .zero, size: CGSize(width: 50, height: 50)))
+        label.isHidden = true
+        label.font = MQFont.keypadFont
+        label.textColor = .black
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let panGestureRecognizer = UIPanGestureRecognizer()
     
     private let checkButton = MQStandardButton(title: "Проверить")
     
@@ -57,6 +69,8 @@ private extension ExampleViewController {
         view.backgroundColor = MQColor.background
         setupKeypad()
         setupButtons()
+        view.addSubview(keypadDraggableLabel)
+        setupGestureRecognizers()
     }
     
     func setupNavigationBar() {
@@ -110,5 +124,42 @@ private extension ExampleViewController {
             checkButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
                                                 constant: -Constants.Indent.single)
         ])
+    }
+}
+
+// MARK: - UIPanGestureRecognizer
+private extension ExampleViewController {
+    
+    func setupGestureRecognizers() {
+        view.addGestureRecognizer(panGestureRecognizer)
+        panGestureRecognizer.addTarget(self, action: #selector(panGesture(sender:)))
+    }
+    
+    @objc func panGesture(sender: UIPanGestureRecognizer) {
+        switch sender.state {
+        case .began:
+            relativeLocation = sender.location(in: self.view)
+            for button in keypad {
+                let frame = button.convert(button.bounds, to: view)
+                if frame.contains(relativeLocation) {
+                    relativeLocation.y -= 25
+                    keypadDraggableLabel.text = "\(button.digit)"
+                    keypadDraggableLabel.center = relativeLocation
+                    keypadDraggableLabel.isHidden = false
+                    break
+                }
+            }
+        case .changed:
+            let translation = sender.translation(in: sender.view)
+            let newCenter = CGPoint(x: relativeLocation.x + translation.x,
+                                    y: relativeLocation.y + translation.y)
+            keypadDraggableLabel.center = newCenter
+        case .ended:
+            keypadDraggableLabel.isHidden = true
+        case .cancelled, .failed:
+            keypadDraggableLabel.isHidden = true
+        default:
+            break
+        }
     }
 }

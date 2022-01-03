@@ -9,7 +9,7 @@ import UIKit
 
 class KeypadDigitView: UIView {
     
-    var digit: Int?
+    var digit: Int
     
     private(set) lazy var digitLabel: UILabel = {
         let label = UILabel()
@@ -33,20 +33,14 @@ class KeypadDigitView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
         
-        NSLayoutConstraint.activate([
-           widthAnchor.constraint(equalTo: heightAnchor)
-        ])
+        digitLabel.text = "\(digit)"
+        addSubview(digitLabel)
         
-        if let digit = digit {
-            self.digitLabel.text = "\(digit)"
-            
-            self.addSubview(digitLabel)
-            
-            NSLayoutConstraint.activate([
-                digitLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                digitLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-            ])
-        }
+        NSLayoutConstraint.activate([
+            widthAnchor.constraint(equalTo: heightAnchor),
+            digitLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            digitLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
+        ])
     }
     
     override func draw(_ rect: CGRect) {
