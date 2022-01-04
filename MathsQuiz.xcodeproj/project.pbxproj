@@ -20,6 +20,9 @@
 		1B2EB5E72781D3D200FFDD9E /* ExampleAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5E62781D3D200FFDD9E /* ExampleAssembly.swift */; };
 		1B2EB5EA2781D3EA00FFDD9E /* ExamplePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5E92781D3EA00FFDD9E /* ExamplePresenter.swift */; };
 		1B2EB5EE2781FB2D00FFDD9E /* KeypadDigitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5ED2781FB2D00FFDD9E /* KeypadDigitView.swift */; };
+		1B2EB5F4278426D400FFDD9E /* Resolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5F3278426D300FFDD9E /* Resolver.swift */; };
+		1B2EB5F9278428E100FFDD9E /* ExampleResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5F8278428E100FFDD9E /* ExampleResolver.swift */; };
+		1B2EB5FC27842A0900FFDD9E /* ResolveResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5FB27842A0900FFDD9E /* ResolveResult.swift */; };
 		1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA112767BE490056A2FF /* AppDelegate.swift */; };
 		1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA132767BE490056A2FF /* SceneDelegate.swift */; };
 		1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA152767BE490056A2FF /* LoginViewController.swift */; };
@@ -127,6 +130,9 @@
 		1B2EB5E62781D3D200FFDD9E /* ExampleAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleAssembly.swift; sourceTree = "<group>"; };
 		1B2EB5E92781D3EA00FFDD9E /* ExamplePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExamplePresenter.swift; sourceTree = "<group>"; };
 		1B2EB5ED2781FB2D00FFDD9E /* KeypadDigitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeypadDigitView.swift; sourceTree = "<group>"; };
+		1B2EB5F3278426D300FFDD9E /* Resolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resolver.swift; sourceTree = "<group>"; };
+		1B2EB5F8278428E100FFDD9E /* ExampleResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleResolver.swift; sourceTree = "<group>"; };
+		1B2EB5FB27842A0900FFDD9E /* ResolveResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResolveResult.swift; sourceTree = "<group>"; };
 		1B71BA0E2767BE490056A2FF /* MathsQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathsQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B71BA112767BE490056A2FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B71BA132767BE490056A2FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -261,6 +267,8 @@
 		1B2EB5B6277C9B3900FFDD9E /* BusinessLogics */ = {
 			isa = PBXGroup;
 			children = (
+				1B2EB5F7278428A100FFDD9E /* Classes */,
+				1B2EB5F22784269B00FFDD9E /* Protocols */,
 				1B2EB5BB277C9BDE00FFDD9E /* Models */,
 				1B2EB5B7277C9B6E00FFDD9E /* Strategy */,
 			);
@@ -281,6 +289,7 @@
 			children = (
 				1B2EB5C0277C9C1700FFDD9E /* Input.swift */,
 				1B2EB5C9277D698C00FFDD9E /* Digit.swift */,
+				1B2EB5FB27842A0900FFDD9E /* ResolveResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -303,6 +312,22 @@
 				1B2EB5ED2781FB2D00FFDD9E /* KeypadDigitView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		1B2EB5F22784269B00FFDD9E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1B2EB5F3278426D300FFDD9E /* Resolver.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		1B2EB5F7278428A100FFDD9E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				1B2EB5F8278428E100FFDD9E /* ExampleResolver.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		1B71BA052767BE490056A2FF = {
@@ -835,6 +860,7 @@
 				1B9BCA29276F09B00084931D /* HomeAssembly.swift in Sources */,
 				3CD0E1A6276F86D900EE255D /* LevelsViewController.swift in Sources */,
 				1B7C4740276B58B600BFD277 /* Presentable.swift in Sources */,
+				1B2EB5FC27842A0900FFDD9E /* ResolveResult.swift in Sources */,
 				1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */,
 				1B2EB5EA2781D3EA00FFDD9E /* ExamplePresenter.swift in Sources */,
 				1B9BCA9E27773CAB0084931D /* PasswordChangeContract.swift in Sources */,
@@ -875,6 +901,7 @@
 				3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */,
 				1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */,
 				3C25CD562773259700A49DC2 /* PasswordChangeViewController.swift in Sources */,
+				1B2EB5F9278428E100FFDD9E /* ExampleResolver.swift in Sources */,
 				1B9BCA0B276E53E20084931D /* Stub.swift in Sources */,
 				1B9BCA26276F09A30084931D /* HomePresenter.swift in Sources */,
 				1B9BCA40277053D00084931D /* UserProfileAssembly.swift in Sources */,
@@ -909,6 +936,7 @@
 				1B2EB5C5277CA14D00FFDD9E /* AdditionActivityStrategy.swift in Sources */,
 				1B9BCA682774BE2E0084931D /* UIView+Extension.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */,
+				1B2EB5F4278426D400FFDD9E /* Resolver.swift in Sources */,
 				1B9BCAED277B5E170084931D /* OnboardingContract.swift in Sources */,
 				1B9BCA43277054BF0084931D /* UserProfilePresenter.swift in Sources */,
 				1B9BCA712774C6030084931D /* UserDefaultsStorage.swift in Sources */,
