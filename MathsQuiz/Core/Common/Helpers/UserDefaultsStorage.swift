@@ -13,7 +13,7 @@ private protocol OptionalProtocol {
 
 extension Optional: OptionalProtocol {
     var isNil: Bool {
-        return self == nil
+        self == nil
     }
 }
 

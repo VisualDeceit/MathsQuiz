@@ -96,33 +96,33 @@ private extension ExampleViewController {
         view.addSubview(bottomKeypadStack)
         
         NSLayoutConstraint.activate([
-            topKeypadStack.heightAnchor.constraint(equalToConstant: Constants.Keypad.buttonSize),
+            topKeypadStack.heightAnchor.constraint(equalToConstant: Keypad.buttonSize),
             topKeypadStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                                    constant: Constants.Indent.single),
+                                                    constant: Indent.single),
             topKeypadStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                                     constant: -Constants.Indent.single)
+                                                     constant: -Indent.single)
         ])
         
         NSLayoutConstraint.activate([
-            bottomKeypadStack.heightAnchor.constraint(equalToConstant: Constants.Keypad.buttonSize),
+            bottomKeypadStack.heightAnchor.constraint(equalToConstant: Keypad.buttonSize),
             bottomKeypadStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                                       constant: Constants.Indent.single),
+                                                       constant: Indent.single),
             bottomKeypadStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                                        constant: -Constants.Indent.single),
+                                                        constant: -Indent.single),
             bottomKeypadStack.topAnchor.constraint(equalTo: topKeypadStack.bottomAnchor,
-                                                   constant: Constants.Indent.single)
+                                                   constant: Indent.single)
         ])
     }
     
     func setupButtons() {
         view.addSubview(checkButton)
         NSLayoutConstraint.activate([
-            checkButton.widthAnchor.constraint(equalToConstant: Constants.Keypad.checkButtonWidth),
+            checkButton.widthAnchor.constraint(equalToConstant: Keypad.checkButtonWidth),
             checkButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             checkButton.topAnchor.constraint(equalTo: bottomKeypadStack.bottomAnchor,
-                                             constant: Constants.Indent.single),
+                                             constant: Indent.single),
             checkButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                                constant: -Constants.Indent.single)
+                                                constant: -Indent.single)
         ])
     }
 }

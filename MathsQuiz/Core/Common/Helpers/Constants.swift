@@ -15,12 +15,12 @@ enum PersistantKeys {
     static let uid = "kUID"
 }
 
-struct Constants {
-    enum Keypad {
-        static let buttonSize: CGFloat = 60
-        static let checkButtonWidth: CGFloat = 200
-    }
-    enum Indent {
-        static let single: CGFloat = 8
-    }
+// MARK: - Constants
+enum Keypad {
+    static let buttonSize: CGFloat = 60
+    static let checkButtonWidth: CGFloat = 200
+}
+
+enum Indent {
+    static let single: CGFloat = 8
 }
