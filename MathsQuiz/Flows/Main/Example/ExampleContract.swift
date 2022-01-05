@@ -12,7 +12,7 @@ protocol ExampleViewInput: AnyObject {
 }
 
 protocol ExampleViewOutput: AnyObject {
-    var activity: ActivityType { get set }
+    var activity: ActivityType { get }
     
     func viewDidLoad()
 }

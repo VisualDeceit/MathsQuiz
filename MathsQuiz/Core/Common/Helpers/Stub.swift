@@ -29,7 +29,7 @@ struct Stub {
     static var levels: [Level] = {
         var array = Array(repeating: -1, count: 20)
             .enumerated()
-            .map { Level(index: $0.offset + 1, completion: $0.element) }
+            .map { Level(number: $0.offset + 1, completion: $0.element) }
       
         array[0].completion = 3
         array[1].completion = 2

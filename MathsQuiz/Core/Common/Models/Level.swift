@@ -8,6 +8,6 @@
 import Foundation
 
 struct Level {
-    var index: Int
+    var number: Int
     var completion: Int
 }

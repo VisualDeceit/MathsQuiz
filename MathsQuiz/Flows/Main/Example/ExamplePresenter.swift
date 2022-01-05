@@ -10,17 +10,19 @@ import Foundation
 final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
 
     weak var view: ExampleViewInput?
+
+    let factory: ExampleFactory
+    let activity: ActivityType
     
     var level: Level
-    var activity: ActivityType
     
-    init(view: ExampleViewInput, activity: ActivityType, level: Level) {
+    init(view: ExampleViewInput, factory: ExampleFactory, level: Level) {
         self.view = view
-        self.activity = activity
         self.level = level
+        self.factory = factory
+        self.activity = factory.type
     }
     
     func viewDidLoad() {
-        print(level)
     }
 }

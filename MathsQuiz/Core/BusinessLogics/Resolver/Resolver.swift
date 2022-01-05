@@ -8,5 +8,6 @@
 import Foundation
 
 protocol Resolver {
-    func resolve() -> ResolveResult
+    var type: ActivityType { get }
+    func resolve(input: Input) -> ResolveResult
 }

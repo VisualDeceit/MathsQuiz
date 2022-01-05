@@ -8,18 +8,16 @@
 import Foundation
 
 class ExampleResolver: Resolver {
-    private var input: Input
-    private var type: ActivityType
+    let type: ActivityType
     
-    init(input: Input, type: ActivityType) {
-        self.input = input
+    init(type: ActivityType) {
         self.type = type
     }
-    
-    func resolve() -> ResolveResult {
+
+    func resolve(input: Input) -> ResolveResult {
         switch type {
         case .addition:
-            return additionHandler()
+            return additionHandler(input: input)
         case .subtraction:
             return subtractionHandler()
         case .multiplication:
@@ -34,7 +32,7 @@ class ExampleResolver: Resolver {
 
 private extension ExampleResolver {
     
-    func additionHandler() -> ResolveResult {
+    func additionHandler(input: Input) -> ResolveResult {
         
         let firstNumber = String(input.firstNumber)
             .reversed()
