@@ -44,12 +44,14 @@ class HomeViewController: UIViewController, HomeViewInput {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: true)
+        
+        setupNavigationBar()
         presenter?.viewDidLoad()
     }
 }
@@ -61,6 +63,11 @@ private extension HomeViewController {
         
         setupGreetingForm()
         setupMainCollectionView()
+    }
+    
+    func setupNavigationBar() {
+        navigationController?.setNavigationBarHidden(true, animated: true)
+        navigationItem.backButtonTitle = ""
     }
     
     func setupGreetingForm() {

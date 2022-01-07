@@ -8,20 +8,24 @@
 import Foundation
 
 final class LevelsPresenter: LevelsPresenterOutput {
-    private weak var view: LevelsViewInput?
+   
+    var onSelectLevel: ((Level) -> Void)?
+    
     var levels: [Level]?
     var activity: ActivityType
     
-    init(view: LevelsViewInput) {
+    private weak var view: LevelsViewInput?
+    
+    init(view: LevelsViewInput, activity: ActivityType) {
         self.view = view
-        self.activity = view.activity
+        self.activity = activity
     }
 }
 
 // MARK: - LevelsViewOutput
 extension LevelsPresenter: LevelsViewOutput {
-    func viewDidSelectLevel() {
-        print(#function)
+    func viewDidSelectLevel(_ level: Level) {
+        onSelectLevel?(level)
     }
     
     func viewDidLoad() {

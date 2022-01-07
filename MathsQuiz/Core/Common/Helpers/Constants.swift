@@ -5,7 +5,7 @@
 //  Created by Александр Фомин on 16.12.2021.
 //
 
-import Foundation
+import UIKit
 
 // MARK: - Typealias
 
@@ -13,4 +13,14 @@ import Foundation
 enum PersistantKeys {
     static let isSeenOnboarding = "kIsSeenOnboarding"
     static let uid = "kUID"
+}
+
+// MARK: - Constants
+enum Keypad {
+    static let buttonSize: CGFloat = 60
+    static let checkButtonWidth: CGFloat = 200
+}
+
+enum Indent {
+    static let single: CGFloat = 8
 }

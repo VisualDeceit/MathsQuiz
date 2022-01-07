@@ -10,8 +10,6 @@ import UIKit
 class LevelsViewController: UIViewController, LevelsViewInput {
     
     var presenter: (LevelsPresenterOutput & LevelsViewOutput)?
-
-    var activity: ActivityType
     
     private var levelCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -24,15 +22,6 @@ class LevelsViewController: UIViewController, LevelsViewInput {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-    
-    init(activity: ActivityType) {
-        self.activity = activity
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,14 +40,14 @@ class LevelsViewController: UIViewController, LevelsViewInput {
 
 private extension LevelsViewController {
     func setupNavigationBar() {
+        title = presenter?.activity.rawValue
         navigationController?.navigationBar.tintColor = MQColor.ubeDefault
-        // navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.view.backgroundColor = .clear
-        navigationController?.navigationBar.backItem?.title = "Назад"
-        navigationItem.title = activity.rawValue
+        navigationController?.view.backgroundColor = .white
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.backButtonTitle = ""
     }
     
     func setupViews() {
@@ -95,10 +84,17 @@ extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDele
             return UICollectionViewCell()
         }
         
-        if let level = presenter?.levels?[indexPath.row] {
+        if let level = presenter?.levels?[indexPath.row],
+           let activity = presenter?.activity {
             levelCell.configure(level: level, type: activity)
         }
         return levelCell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let selectedLevel = presenter?.levels?[indexPath.row] {
+            presenter?.viewDidSelectLevel(selectedLevel)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {

@@ -36,10 +36,19 @@ final class MainCoordinator: BaseCoordinator {
     }
     
     private func showLevels(for activity: ActivityType) {
-        print(activity.rawValue)
         let view = factory.makeLevelsView(activity: activity)
         
+        view.presenter?.onSelectLevel = { [weak self] level in
+            self?.showExample(for: activity, level: level)
+        }
+        
         router.push(view, hideNavBar: false)
+    }
+    
+    private func showExample(for activity: ActivityType, level: Level) {
+        let view = factory.makeExampleView(activity: activity, level: level)
+        
+        router.push(view)
     }
     
     private func showUserProfile() {
