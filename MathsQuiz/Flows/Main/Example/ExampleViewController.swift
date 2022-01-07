@@ -12,6 +12,12 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     var presenter: (ExamplePresenterOutput & ExampleViewOutput)?
     var relativeLocation = CGPoint()
     
+    private let exampleWorkspaceView: UIView = {
+        let view = UIView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
     private let topKeypadStack: UIStackView = {
         let sv = UIStackView()
         sv.alignment = .fill
@@ -71,6 +77,19 @@ private extension ExampleViewController {
         setupButtons()
         view.addSubview(keypadDraggableLabel)
         setupGestureRecognizers()
+        setupWorkspace()
+    }
+    
+    func setupWorkspace() {
+        view.addSubview(exampleWorkspaceView)
+        view.sendSubviewToBack(exampleWorkspaceView)
+        
+        NSLayoutConstraint.activate([
+            exampleWorkspaceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            exampleWorkspaceView.bottomAnchor.constraint(equalTo: topKeypadStack.topAnchor),
+            exampleWorkspaceView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            exampleWorkspaceView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
     }
     
     func setupNavigationBar() {
@@ -161,5 +180,18 @@ private extension ExampleViewController {
         default:
             break
         }
+    }
+}
+
+// MARK: - ExampleViewInput
+extension ExampleViewController {
+    
+    func displayExample(view: UIView) {
+        exampleWorkspaceView.addSubview(view)
+        
+        NSLayoutConstraint.activate([
+            view.centerXAnchor.constraint(equalTo: exampleWorkspaceView.centerXAnchor),
+            view.centerYAnchor.constraint(equalTo: exampleWorkspaceView.centerYAnchor)
+        ])
     }
 }

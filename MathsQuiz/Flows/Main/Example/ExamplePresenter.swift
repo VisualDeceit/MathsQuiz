@@ -24,5 +24,8 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     }
     
     func viewDidLoad() {
+        if let exampleView = factory.makeAdditionExample(for: level) {
+            view?.displayExample(view: exampleView)
+        }
     }
 }

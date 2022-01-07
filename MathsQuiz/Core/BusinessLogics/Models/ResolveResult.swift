@@ -10,5 +10,5 @@ import Foundation
 struct ResolveResult {
     var firstNumber: [Digit]
     var secondNumber: [Digit]
-    var solution: [Digit]
+    var result: [Digit]
 }

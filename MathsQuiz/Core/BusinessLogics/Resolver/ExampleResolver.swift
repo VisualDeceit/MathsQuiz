@@ -45,7 +45,7 @@ private extension ExampleResolver {
         let digitCount = max(firstNumber.count, secondNumber.count)
         
         var carry = 0
-        var result = ResolveResult(firstNumber: [], secondNumber: [], solution: [])
+        var output = ResolveResult(firstNumber: [], secondNumber: [], result: [])
         
         for i in 0..<digitCount {
             var d1 = 0
@@ -53,15 +53,15 @@ private extension ExampleResolver {
             
             if i >= 0 && i < firstNumber.count {
                 d1 = firstNumber[i]
-                result.firstNumber.append(Digit(value: d1, carry: carry))
+                output.firstNumber.append(Digit(value: d1, carry: carry))
             }
             
             if i >= 0 && i < secondNumber.count {
                 d2 = secondNumber[i]
                 if i > firstNumber.count - 1 {
-                    result.secondNumber.append(Digit(value: d2, carry: carry))
+                    output.secondNumber.append(Digit(value: d2, carry: carry))
                 } else {
-                    result.secondNumber.append(Digit(value: d2, carry: 0))
+                    output.secondNumber.append(Digit(value: d2, carry: 0))
                 }
             }
             
@@ -73,33 +73,33 @@ private extension ExampleResolver {
                 carry = 0
             }
             
-            result.solution.append(Digit(value: sum, carry: 0))
+            output.result.append(Digit(value: sum, carry: 0))
         }
         
         if carry == 1 {
-            result.solution.append(Digit(value: 1, carry: 0))
+            output.result.append(Digit(value: 1, carry: 0))
         }
         
-        result.firstNumber.reverse()
-        result.secondNumber.reverse()
-        result.solution.reverse()
+        output.firstNumber.reverse()
+        output.secondNumber.reverse()
+        output.result.reverse()
         
-        return result
+        return output
     }
     
     func subtractionHandler() -> ResolveResult {
-        ResolveResult(firstNumber: [], secondNumber: [], solution: [])
+        ResolveResult(firstNumber: [], secondNumber: [], result: [])
     }
     
     func multiplicationHandler() -> ResolveResult {
-        ResolveResult(firstNumber: [], secondNumber: [], solution: [])
+        ResolveResult(firstNumber: [], secondNumber: [], result: [])
     }
     
     func divisionHandler() -> ResolveResult {
-        ResolveResult(firstNumber: [], secondNumber: [], solution: [])
+        ResolveResult(firstNumber: [], secondNumber: [], result: [])
     }
     
     func expressionHandler() -> ResolveResult {
-        ResolveResult(firstNumber: [], secondNumber: [], solution: [])
+        ResolveResult(firstNumber: [], secondNumber: [], result: [])
     }
 }

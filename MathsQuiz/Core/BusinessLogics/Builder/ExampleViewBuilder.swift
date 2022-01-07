@@ -73,7 +73,7 @@ class ExampleViewBuilder {
                 digitView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 
                 view.widthAnchor.constraint(equalToConstant: 50),
-                view.heightAnchor.constraint(equalToConstant: 70 + carryFrameSize),
+                view.heightAnchor.constraint(equalToConstant: 70 + carryFrameSize)
             ])
         } else {
             NSLayoutConstraint.activate([
@@ -83,12 +83,11 @@ class ExampleViewBuilder {
                 digitView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
                 
                 view.widthAnchor.constraint(equalToConstant: 50),
-                view.heightAnchor.constraint(equalToConstant: 70),
+                view.heightAnchor.constraint(equalToConstant: 70)
             ])
         }
     }
 
-    
     func addSign(_ sign: ActivityType) {
         let digitView = ExampleDigitView(sign: sign)
         horizontalStackView?.addArrangedSubview(digitView)
@@ -117,4 +116,3 @@ class ExampleViewBuilder {
         return verticalStackView
     }
 }
-
