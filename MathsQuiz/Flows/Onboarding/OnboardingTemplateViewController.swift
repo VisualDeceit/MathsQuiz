@@ -74,14 +74,14 @@ private extension OnboardingTemplateViewController {
         
         if index > 0 {
             NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
-                imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 80),
-                imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80),
+                imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: MQOffset.single * 4),
+                imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.double * 10),
+                imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double * 10),
                 imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
             ])
         } else {
             NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 16),
+                imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: MQOffset.single * 4),
                 imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4)
@@ -89,14 +89,14 @@ private extension OnboardingTemplateViewController {
         }
         
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 25),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            titleLabel.heightAnchor.constraint(equalToConstant: 44),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: MQOffset.double * 3),
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.single * 4),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.single * 4),
+            titleLabel.heightAnchor.constraint(equalToConstant: MQOffset.single * 11),
             
-            describeLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24),
-            describeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            describeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+            describeLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: MQOffset.double * 3),
+            describeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.single * 4),
+            describeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.single * 4)
         ])
     }
 }

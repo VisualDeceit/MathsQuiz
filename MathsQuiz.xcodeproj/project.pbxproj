@@ -100,6 +100,9 @@
 		3CD0E1A4276F7AD600EE255D /* MQOneImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A3276F7AD600EE255D /* MQOneImageTextField.swift */; };
 		3CD0E1A6276F86D900EE255D /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A5276F86D900EE255D /* LevelsViewController.swift */; };
 		3CD0E1A8276F870F00EE255D /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A7276F870F00EE255D /* LevelCollectionViewCell.swift */; };
+		E89B6BAF278844CF00363D31 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = E89B6BAE278844CF00363D31 /* FacebookCore */; };
+		E89B6BB1278844CF00363D31 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = E89B6BB0278844CF00363D31 /* FacebookLogin */; };
+		E89B6BB327884AD200363D31 /* MQOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89B6BB227884AD200363D31 /* MQOffset.swift */; };
 		EC22387C3C87C6E08D11C37B /* Pods_MathsQuiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */; };
 /* End PBXBuildFile section */
 
@@ -197,6 +200,7 @@
 		3CD0E1A5276F86D900EE255D /* LevelsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelsViewController.swift; sourceTree = "<group>"; };
 		3CD0E1A7276F870F00EE255D /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
 		A3992DCAA111BE9734DDE7C7 /* Pods-MathsQuiz.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathsQuiz.debug.xcconfig"; path = "Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz.debug.xcconfig"; sourceTree = "<group>"; };
+		E89B6BB227884AD200363D31 /* MQOffset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQOffset.swift; sourceTree = "<group>"; };
 		FC1C8FE18974E344404A13F0 /* Pods-MathsQuiz.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MathsQuiz.release.xcconfig"; path = "Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -206,9 +210,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B9BCAB52779D7E90084931D /* GoogleSignIn in Frameworks */,
+				E89B6BAF278844CF00363D31 /* FacebookCore in Frameworks */,
 				1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */,
 				1B9BCA80277591730084931D /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				EC22387C3C87C6E08D11C37B /* Pods_MathsQuiz.framework in Frameworks */,
+				E89B6BB1278844CF00363D31 /* FacebookLogin in Frameworks */,
 				1B9BCA7E2775912C0084931D /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,6 +621,7 @@
 		3CD0E1A0276F764600EE255D /* develop */ = {
 			isa = PBXGroup;
 			children = (
+				E89B6BB227884AD200363D31 /* MQOffset.swift */,
 			);
 			name = develop;
 			sourceTree = "<group>";
@@ -651,6 +658,8 @@
 				1B9BCA7D2775912C0084931D /* FirebaseFirestore */,
 				1B9BCA7F277591730084931D /* FirebaseFirestoreSwift-Beta */,
 				1B9BCAB42779D7E90084931D /* GoogleSignIn */,
+				E89B6BAE278844CF00363D31 /* FacebookCore */,
+				E89B6BB0278844CF00363D31 /* FacebookLogin */,
 			);
 			productName = MathsQuiz;
 			productReference = 1B71BA0E2767BE490056A2FF /* MathsQuiz.app */;
@@ -682,6 +691,7 @@
 			packageReferences = (
 				1BBC5C80276DB547001B5F3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				1B9BCAB32779D7E80084931D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			productRefGroup = 1B71BA0F2767BE490056A2FF /* Products */;
 			projectDirPath = "";
@@ -794,6 +804,7 @@
 				1B7C4736276B42E700BFD277 /* Coordinator.swift in Sources */,
 				1B9BCA5E2771DDA30084931D /* LevelsPresenter.swift in Sources */,
 				3C5CE3D22778654C00896ABD /* OnboardingViewController.swift in Sources */,
+				E89B6BB327884AD200363D31 /* MQOffset.swift in Sources */,
 				1B9BCAF3277B5E3D0084931D /* OnboardingPresenter.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */,
 				1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */,
@@ -1054,6 +1065,14 @@
 				minimumVersion = 8.10.0;
 			};
 		};
+		E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
+			requirement = {
+				kind = exactVersion;
+				version = 12.2.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1076,6 +1095,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1BBC5C80276DB547001B5F3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		E89B6BAE278844CF00363D31 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		E89B6BB0278844CF00363D31 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

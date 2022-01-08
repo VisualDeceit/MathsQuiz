@@ -41,8 +41,8 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         
         NSLayoutConstraint.activate([
             nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
+            nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: MQOffset.single),
+            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.single)
         ])
     }
     
@@ -54,9 +54,9 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         self.addSubview(levelContainerView)
         
         NSLayoutConstraint.activate([
-            levelContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            levelContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 22),
-            levelContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -22),
+            levelContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -MQOffset.double),
+            levelContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: MQOffset.single * 5),
+            levelContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.single * 5),
             levelContainerView.heightAnchor.constraint(equalToConstant: 22)
         ])
     }
@@ -72,8 +72,8 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         
         NSLayoutConstraint.activate([
             levelCountLabel.centerYAnchor.constraint(equalTo: levelContainerView.centerYAnchor),
-            levelCountLabel.leadingAnchor.constraint(equalTo: levelContainerView.leadingAnchor, constant: 2),
-            levelCountLabel.trailingAnchor.constraint(equalTo: levelContainerView.trailingAnchor, constant: -2)
+            levelCountLabel.leadingAnchor.constraint(equalTo: levelContainerView.leadingAnchor, constant: MQOffset.single),
+            levelCountLabel.trailingAnchor.constraint(equalTo: levelContainerView.trailingAnchor, constant: -MQOffset.single)
         ])
     }
     
@@ -90,10 +90,10 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         circleContainerView.addSubview(progressNumLabel)
         
         NSLayoutConstraint.activate([
-            circleContainerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            circleContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            circleContainerView.heightAnchor.constraint(equalToConstant: 36),
-            circleContainerView.widthAnchor.constraint(equalToConstant: 36),
+            circleContainerView.topAnchor.constraint(equalTo: self.topAnchor, constant: MQOffset.double * 2),
+            circleContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.double),
+            circleContainerView.heightAnchor.constraint(equalToConstant: MQOffset.single * 9),
+            circleContainerView.widthAnchor.constraint(equalToConstant: MQOffset.single * 9),
             
             progressNumLabel.centerXAnchor.constraint(equalTo: circleContainerView.centerXAnchor),
             progressNumLabel.centerYAnchor.constraint(equalTo: circleContainerView.centerYAnchor)
@@ -110,8 +110,8 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         NSLayoutConstraint.activate([
             circularProgressBarView.centerXAnchor.constraint(equalTo: circleContainerView.centerXAnchor),
             circularProgressBarView.centerYAnchor.constraint(equalTo: circleContainerView.centerYAnchor),
-            circularProgressBarView.heightAnchor.constraint(equalToConstant: 25),
-            circularProgressBarView.widthAnchor.constraint(equalToConstant: 25)
+            circularProgressBarView.heightAnchor.constraint(equalToConstant: MQOffset.double * 3),
+            circularProgressBarView.widthAnchor.constraint(equalToConstant: MQOffset.double * 3)
         ])
     }
 }

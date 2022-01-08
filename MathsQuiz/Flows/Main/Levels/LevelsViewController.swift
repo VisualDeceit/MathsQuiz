@@ -52,7 +52,6 @@ class LevelsViewController: UIViewController, LevelsViewInput {
 private extension LevelsViewController {
     func setupNavigationBar() {
         navigationController?.navigationBar.tintColor = MQColor.ubeDefault
-        // navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.view.backgroundColor = .clear

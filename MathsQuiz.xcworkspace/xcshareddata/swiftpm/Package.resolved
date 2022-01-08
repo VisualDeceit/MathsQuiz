@@ -30,7 +30,7 @@
       },
       {
         "package": "Facebook",
-        "repositoryURL": "git@github.com:facebook/facebook-ios-sdk.git",
+        "repositoryURL": "https://github.com/facebook/facebook-ios-sdk.git",
         "state": {
           "branch": null,
           "revision": "d22dbb4c7065fd00d2c037415f927921dfffceee",
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/google/GoogleUtilities.git",
         "state": {
           "branch": null,
-          "revision": "797005ad8a1f0614063933e2fa010a5d13cb09d0",
-          "version": "7.6.0"
+          "revision": "b3bb0c5551fb3f80ca939829639ab5b093edd14f",
+          "version": "7.7.0"
         }
       },
       {

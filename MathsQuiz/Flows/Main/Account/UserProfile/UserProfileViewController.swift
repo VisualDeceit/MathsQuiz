@@ -135,15 +135,15 @@ private extension UserProfileViewController {
         NSLayoutConstraint.activate([
             userPhoto.topAnchor.constraint(equalTo: scrollView.topAnchor),
             userPhoto.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            userPhoto.heightAnchor.constraint(equalToConstant: 120),
-            userPhoto.widthAnchor.constraint(equalToConstant: 120),
+            userPhoto.heightAnchor.constraint(equalToConstant: MQOffset.double * 15),
+            userPhoto.widthAnchor.constraint(equalToConstant: MQOffset.double * 15),
             
-            changePhotoButton.topAnchor.constraint(equalTo: userPhoto.bottomAnchor, constant: -15),
+            changePhotoButton.topAnchor.constraint(equalTo: userPhoto.bottomAnchor, constant: -MQOffset.double * 2),
             changePhotoButton.centerXAnchor.constraint(equalTo: userPhoto.centerXAnchor),
-            changePhotoButton.widthAnchor.constraint(equalToConstant: 73),
-            changePhotoButton.heightAnchor.constraint(equalToConstant: 20),
+            changePhotoButton.widthAnchor.constraint(equalToConstant: MQOffset.double * 9),
+            changePhotoButton.heightAnchor.constraint(equalToConstant: MQOffset.single * 5),
             
-            nameLabel.topAnchor.constraint(equalTo: changePhotoButton.bottomAnchor, constant: 14),
+            nameLabel.topAnchor.constraint(equalTo: changePhotoButton.bottomAnchor, constant: MQOffset.single * 3),
             nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
@@ -154,17 +154,17 @@ private extension UserProfileViewController {
         mailContainerView.addSubview(mailLabel)
         
         NSLayoutConstraint.activate([
-            mailContainerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 7),
-            mailContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
-            mailContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
-            mailContainerView.heightAnchor.constraint(equalToConstant: 44),
+            mailContainerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: MQOffset.double),
+            mailContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.double * 3),
+            mailContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double * 3),
+            mailContainerView.heightAnchor.constraint(equalToConstant: MQOffset.single * 11),
             
-            mailImageView.topAnchor.constraint(equalTo: mailContainerView.topAnchor, constant: 10),
-            mailImageView.leadingAnchor.constraint(equalTo: mailContainerView.leadingAnchor, constant: 10),
-            mailImageView.bottomAnchor.constraint(equalTo: mailContainerView.bottomAnchor, constant: -10),
+            mailImageView.topAnchor.constraint(equalTo: mailContainerView.topAnchor, constant: MQOffset.double),
+            mailImageView.leadingAnchor.constraint(equalTo: mailContainerView.leadingAnchor, constant: MQOffset.double),
+            mailImageView.bottomAnchor.constraint(equalTo: mailContainerView.bottomAnchor, constant: -MQOffset.double),
             
             mailLabel.centerYAnchor.constraint(equalTo: mailImageView.centerYAnchor),
-            mailLabel.leadingAnchor.constraint(equalTo: mailImageView.trailingAnchor, constant: 6)
+            mailLabel.leadingAnchor.constraint(equalTo: mailImageView.trailingAnchor, constant: MQOffset.double)
         ])
     }
     
@@ -172,10 +172,10 @@ private extension UserProfileViewController {
         scrollView.addSubview(resultContainerView)
         
         NSLayoutConstraint.activate([
-            resultContainerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 67),
-            resultContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
-            resultContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
-            resultContainerView.heightAnchor.constraint(equalToConstant: 160)
+            resultContainerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: MQOffset.double * 8),
+            resultContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.single * 3),
+            resultContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.single * 3),
+            resultContainerView.heightAnchor.constraint(equalToConstant: MQOffset.double * 20)
         ])
     }
     
@@ -191,10 +191,10 @@ private extension UserProfileViewController {
         scrollView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: resultContainerView.bottomAnchor, constant: 16),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 54),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -54),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
+            stackView.topAnchor.constraint(equalTo: resultContainerView.bottomAnchor, constant: MQOffset.double * 2),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.double * 7),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double * 7),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.single * 5)
         ])
     }
 }

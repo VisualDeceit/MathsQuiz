@@ -58,12 +58,12 @@ class LevelCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             levelNumLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            levelNumLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            levelNumLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: MQOffset.single * 5),
         
-            stackView.topAnchor.constraint(equalTo: levelNumLabel.bottomAnchor, constant: 2),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)
+            stackView.topAnchor.constraint(equalTo: levelNumLabel.bottomAnchor, constant: MQOffset.single),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: MQOffset.single),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.single),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -MQOffset.single)
         ])
     }
     
@@ -76,10 +76,10 @@ class LevelCollectionViewCell: UICollectionViewCell {
         self.addSubview(lockImageView)
         
         NSLayoutConstraint.activate([
-            lockImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
-            lockImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            lockImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            lockImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12)
+            lockImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: MQOffset.single * 3),
+            lockImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: MQOffset.single * 3),
+            lockImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.single * 3),
+            lockImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -MQOffset.single * 3)
         ])
     }
 }
