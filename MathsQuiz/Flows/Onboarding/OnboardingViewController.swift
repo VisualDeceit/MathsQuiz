@@ -100,9 +100,9 @@ private extension OnboardingViewController {
             skipButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset8),
             
             bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -MQOffset.offset8),
-            bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
-            bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
-            bottomButton.heightAnchor.constraint(equalToConstant: 44),
+            bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset64),
+            bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset64),
+            bottomButton.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
             
             pageControl.bottomAnchor.constraint(equalTo: bottomButton.topAnchor, constant: -MQOffset.offset8),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),

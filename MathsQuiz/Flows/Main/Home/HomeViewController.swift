@@ -81,8 +81,8 @@ private extension HomeViewController {
             
             accountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset16),
             accountButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: MQOffset.offset16),
-            accountButton.widthAnchor.constraint(equalToConstant: 56),
-            accountButton.heightAnchor.constraint(equalToConstant: 56)
+            accountButton.widthAnchor.constraint(equalToConstant: MQOffset.offset56),
+            accountButton.heightAnchor.constraint(equalToConstant: MQOffset.offset56)
         ])
     }
     

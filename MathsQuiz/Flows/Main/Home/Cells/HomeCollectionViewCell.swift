@@ -92,8 +92,8 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         NSLayoutConstraint.activate([
             circleContainerView.topAnchor.constraint(equalTo: self.topAnchor, constant: MQOffset.offset16),
             circleContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.offset8),
-            circleContainerView.heightAnchor.constraint(equalToConstant: 36),
-            circleContainerView.widthAnchor.constraint(equalToConstant: 36),
+            circleContainerView.heightAnchor.constraint(equalToConstant: MQOffset.offset36),
+            circleContainerView.widthAnchor.constraint(equalToConstant: MQOffset.offset36),
             
             progressNumLabel.centerXAnchor.constraint(equalTo: circleContainerView.centerXAnchor),
             progressNumLabel.centerYAnchor.constraint(equalTo: circleContainerView.centerYAnchor)
