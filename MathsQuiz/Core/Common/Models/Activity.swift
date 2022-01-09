@@ -14,6 +14,19 @@ enum ActivityType: String {
     case division = "Деление"
     case expression = "Выражения"
     
+    var sign: String {
+        switch self {
+        case .addition:
+            return "+"
+        case .subtraction:
+            return "-"
+        case .multiplication:
+            return "x"
+        default:
+            return ""
+        }
+    }
+    
     var color: UIColor {
         switch self {
         case .addition:

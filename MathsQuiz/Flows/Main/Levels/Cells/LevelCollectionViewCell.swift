@@ -27,7 +27,7 @@ class LevelCollectionViewCell: UICollectionViewCell {
     }
     
     func setupUnblockedCellForm(level: Level, type: ActivityType) {
-        levelNumLabel.text = "\(level.index)"
+        levelNumLabel.text = "\(level.number)"
         levelNumLabel.font = MQFont.systemFont48
         levelNumLabel.textAlignment = .center
         levelNumLabel.adjustsFontSizeToFitWidth = true

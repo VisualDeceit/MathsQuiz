@@ -11,14 +11,10 @@ class OnboardingViewController: UIPageViewController, OnboardingViewInput {
     
     var presenter: (OnboardingPresenterOutput & OnboardingViewOutput)?
     
-    private var pages: [UIViewController] = []
-    private let initialPage = 0
     private var onboardingContent = [OnboardingContent]()
-    
     private let pageControl = UIPageControl()
     private let skipButton = MQPlainButton(title: "Начать")
     private let bottomButton = MQStandardButton(title: "Далее")
-    
     private var pageControlBottomAnchor: NSLayoutConstraint?
     
     convenience init(transitionStyle style: UIPageViewController.TransitionStyle) {
