@@ -109,13 +109,13 @@ private extension SignUpViewController {
         scrollView.addSubview(createNewAccountLabel)
         
         NSLayoutConstraint.activate([
-            newAccountLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.double * 6),
-            newAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.single * 5),
-            newAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.single * 5),
+            newAccountLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 48),
+            newAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            newAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            createNewAccountLabel.topAnchor.constraint(equalTo: newAccountLabel.bottomAnchor, constant: MQOffset.double),
-            createNewAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.double * 6),
-            createNewAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double * 6)
+            createNewAccountLabel.topAnchor.constraint(equalTo: newAccountLabel.bottomAnchor, constant: 7),
+            createNewAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 51),
+            createNewAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -51)
         ])
     }
     
@@ -133,15 +133,15 @@ private extension SignUpViewController {
         scrollView.addSubview(signUpButton)
         
         NSLayoutConstraint.activate([
-            nameTextField.heightAnchor.constraint(equalToConstant: MQOffset.single * 11),
+            nameTextField.heightAnchor.constraint(equalToConstant: 44),
             
-            stackView.topAnchor.constraint(equalTo: createNewAccountLabel.bottomAnchor, constant: MQOffset.double * 3),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.double * 3),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double * 3),
+            stackView.topAnchor.constraint(equalTo: createNewAccountLabel.bottomAnchor, constant: 24),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
             
-            signUpButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: MQOffset.double * 3),
-            signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.single * 13),
-            signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.single * 13)
+            signUpButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 24),
+            signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 54),
+            signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -54)
         ])
     }
     
@@ -155,9 +155,9 @@ private extension SignUpViewController {
         scrollView.addSubview(stackView)
         
         NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: signUpButton.bottomAnchor, constant: MQOffset.double * 3),
+            stackView.topAnchor.constraint(equalTo: signUpButton.bottomAnchor, constant: 24),
             stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.double)
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
         ])
     }
 }

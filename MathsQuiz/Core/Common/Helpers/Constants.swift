@@ -24,3 +24,15 @@ enum Keypad {
 enum Indent {
     static let single: CGFloat = 8
 }
+
+enum MQOffset {
+    static let offset4 = 4.0
+    static let offset8 = 8.0
+    static let offset12 = 12.0
+    static let offset16 = 16.0
+    static let offset20 = 20.0
+    static let offset24 = 24.0
+    static let offset28 = 28.0
+    static let offset32 = 32.0
+    static let offset36 = 36.0
+}

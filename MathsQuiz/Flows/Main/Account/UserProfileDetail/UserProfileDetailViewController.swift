@@ -108,7 +108,7 @@ private extension UserProfileDetailViewController {
     func format(with mask: String, phone: String) -> String {
         let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""
-        var index = numbers.startIndex
+        var index = numbers.startIndex // numbers iterator
 
         for ch in mask where index < numbers.endIndex {
             if ch == "X" {
@@ -142,9 +142,9 @@ private extension UserProfileDetailViewController {
         
         NSLayoutConstraint.activate([
             locationButton.centerYAnchor.constraint(equalTo: cityTextField.centerYAnchor),
-            locationButton.trailingAnchor.constraint(equalTo: cityTextField.trailingAnchor, constant: -MQOffset.double),
-            locationButton.heightAnchor.constraint(equalToConstant: MQOffset.double * 3),
-            locationButton.widthAnchor.constraint(equalToConstant: MQOffset.double * 3)
+            locationButton.trailingAnchor.constraint(equalTo: cityTextField.trailingAnchor, constant: -MQOffset.offset8),
+            locationButton.heightAnchor.constraint(equalToConstant: MQOffset.offset24),
+            locationButton.widthAnchor.constraint(equalToConstant: MQOffset.offset24)
         ])
     }
     
@@ -169,16 +169,16 @@ private extension UserProfileDetailViewController {
         scrollView.addSubview(saveButton)
         
         NSLayoutConstraint.activate([
-            surnameTextField.heightAnchor.constraint(equalToConstant: MQOffset.single * 11),
+            surnameTextField.heightAnchor.constraint(equalToConstant: 44),
             
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.double * 3),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.single * 7),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.single * 7),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.offset24),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset28),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset28),
             
-            saveButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: MQOffset.double * 3),
-            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.double * 7),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double * 7),
-            saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.double)
+            saveButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: MQOffset.offset24),
+            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 54),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -54),
+            saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.offset8)
         ])
     }
 }

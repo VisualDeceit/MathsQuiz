@@ -94,8 +94,8 @@ private extension PasswordResetViewController {
         scrollView.addSubview(closeButton)
         
         NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.double * 2),
-            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double)
+            closeButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
+            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
         ])
     }
     
@@ -103,9 +103,9 @@ private extension PasswordResetViewController {
         scrollView.addSubview(passwordResetLabel)
         
         NSLayoutConstraint.activate([
-            passwordResetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.double * 6),
-            passwordResetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.single * 5),
-            passwordResetLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.single * 5)
+            passwordResetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 50),
+            passwordResetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            passwordResetLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ])
     }
     
@@ -113,9 +113,9 @@ private extension PasswordResetViewController {
         scrollView.addSubview(enterMailLabel)
         
         NSLayoutConstraint.activate([
-            enterMailLabel.topAnchor.constraint(equalTo: passwordResetLabel.bottomAnchor, constant: MQOffset.double * 3),
-            enterMailLabel.leadingAnchor.constraint(equalTo: passwordResetLabel.leadingAnchor, constant: MQOffset.single * 5),
-            enterMailLabel.trailingAnchor.constraint(equalTo: passwordResetLabel.trailingAnchor, constant: -MQOffset.single * 5)
+            enterMailLabel.topAnchor.constraint(equalTo: passwordResetLabel.bottomAnchor, constant: 24),
+            enterMailLabel.leadingAnchor.constraint(equalTo: passwordResetLabel.leadingAnchor, constant: 20),
+            enterMailLabel.trailingAnchor.constraint(equalTo: passwordResetLabel.trailingAnchor, constant: -20)
         ])
     }
     
@@ -123,10 +123,10 @@ private extension PasswordResetViewController {
         scrollView.addSubview(textField)
         
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: enterMailLabel.bottomAnchor, constant: MQOffset.double * 3),
-            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.single * 7),
-            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.single * 7),
-            textField.heightAnchor.constraint(equalToConstant: MQOffset.single * 11)
+            textField.topAnchor.constraint(equalTo: enterMailLabel.bottomAnchor, constant: 24),
+            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
+            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
+            textField.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     
@@ -134,10 +134,10 @@ private extension PasswordResetViewController {
         scrollView.addSubview(sendButton)
         
         NSLayoutConstraint.activate([
-            sendButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: MQOffset.double * 3),
-            sendButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.double * 7),
-            sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double * 7),
-            sendButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.single * 5)
+            sendButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 24),
+            sendButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 54),
+            sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -54),
+            sendButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -20)
         ])
     }
 }

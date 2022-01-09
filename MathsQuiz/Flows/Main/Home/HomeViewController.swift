@@ -76,13 +76,13 @@ private extension HomeViewController {
         
         NSLayoutConstraint.activate([
             greetingLabel.centerYAnchor.constraint(equalTo: accountButton.centerYAnchor),
-            greetingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.double * 2),
-            greetingLabel.trailingAnchor.constraint(equalTo: accountButton.leadingAnchor, constant: -MQOffset.double * 2),
+            greetingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset16),
+            greetingLabel.trailingAnchor.constraint(equalTo: accountButton.leadingAnchor, constant: -MQOffset.offset16),
             
-            accountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double * 2),
-            accountButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: MQOffset.double * 2),
-            accountButton.widthAnchor.constraint(equalToConstant: MQOffset.double * 7),
-            accountButton.heightAnchor.constraint(equalToConstant: MQOffset.double * 7)
+            accountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset16),
+            accountButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: MQOffset.offset16),
+            accountButton.widthAnchor.constraint(equalToConstant: 56),
+            accountButton.heightAnchor.constraint(equalToConstant: 56)
         ])
     }
     
@@ -93,7 +93,7 @@ private extension HomeViewController {
         mainCollectionView.delegate = self
         
         NSLayoutConstraint.activate([
-            mainCollectionView.topAnchor.constraint(equalTo: accountButton.bottomAnchor, constant: MQOffset.double * 2),
+            mainCollectionView.topAnchor.constraint(equalTo: accountButton.bottomAnchor, constant: MQOffset.offset16),
             mainCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)

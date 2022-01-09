@@ -96,15 +96,15 @@ private extension OnboardingViewController {
         view.addSubview(bottomButton)
         
         NSLayoutConstraint.activate([
-            skipButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: MQOffset.single),
-            skipButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double),
+            skipButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: MQOffset.offset4),
+            skipButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset8),
             
-            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -MQOffset.double),
-            bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.double * 8),
-            bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.double * 8),
-            bottomButton.heightAnchor.constraint(equalToConstant: MQOffset.single * 11),
+            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -MQOffset.offset8),
+            bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 64),
+            bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -64),
+            bottomButton.heightAnchor.constraint(equalToConstant: 44),
             
-            pageControl.bottomAnchor.constraint(equalTo: bottomButton.topAnchor, constant: -MQOffset.double),
+            pageControl.bottomAnchor.constraint(equalTo: bottomButton.topAnchor, constant: -MQOffset.offset8),
             pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             pageControl.widthAnchor.constraint(equalTo: view.widthAnchor)
         ])
