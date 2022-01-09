@@ -17,7 +17,6 @@ class LevelCollectionViewCell: UICollectionViewCell {
     
     func configure(level: Level, type: ActivityType) {
         self.backgroundColor = type.color
-        self.layer.cornerRadius = 20
 
         if -1 == level.completion {
             setupBlockedCellForm(type: type)
@@ -81,5 +80,10 @@ class LevelCollectionViewCell: UICollectionViewCell {
             lockImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.offset12),
             lockImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -MQOffset.offset12)
         ])
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = 20
     }
 }

@@ -48,7 +48,6 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
     
     private func setupLevelContainerView() {
         levelContainerView.backgroundColor = MQColor.background
-        levelContainerView.layer.cornerRadius = self.frame.width / 15
         levelContainerView.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(levelContainerView)
@@ -79,7 +78,6 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
     
     private func setupProgressForm() {
         circleContainerView.backgroundColor = MQColor.background
-        circleContainerView.layer.cornerRadius = 18
         circleContainerView.translatesAutoresizingMaskIntoConstraints = false
         
         progressNumLabel.text = "3"
@@ -113,5 +111,12 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
             circularProgressBarView.heightAnchor.constraint(equalToConstant: MQOffset.offset24),
             circularProgressBarView.widthAnchor.constraint(equalToConstant: MQOffset.offset24)
         ])
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = 24
+        levelContainerView.layer.cornerRadius = self.frame.width / 15
+        circleContainerView.layer.cornerRadius = 18
     }
 }

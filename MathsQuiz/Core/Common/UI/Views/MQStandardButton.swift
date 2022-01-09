@@ -19,7 +19,6 @@ class MQStandardButton: UIButton {
         self.setTitleColor(MQColor.ubeHighlighted, for: .highlighted)
         self.backgroundColor = MQColor.ubeDefault
         self.setTitleColor(.white, for: .normal)
-        self.layer.cornerRadius = 22
         self.translatesAutoresizingMaskIntoConstraints = false
         self.heightAnchor.constraint(equalToConstant: 44).isActive = true
     }
@@ -45,5 +44,10 @@ class MQStandardButton: UIButton {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         isHighlighted = false
         super.touchesCancelled(touches, with: event)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = 22
     }
 }

@@ -26,7 +26,6 @@ class MQStandardTextField: UITextField {
         
         self.accessibilityIdentifier = accessibilityIdentifier
         self.isSecureTextEntry = isSecured
-        self.layer.cornerRadius = 12
         self.backgroundColor = MQColor.ubeLight
         self.textColor = .black
         self.font = MQFont.systemFont16
@@ -175,5 +174,6 @@ class MQStandardTextField: UITextField {
         super.layoutSubviews()
         label.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
         label.setAnchorPoint(anchorPoint: CGPoint(x: 0, y: 0.5))
+        self.layer.cornerRadius = 12
     }
 }
