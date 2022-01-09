@@ -8,6 +8,6 @@
 import Foundation
 
 enum MQOffset {
-    static var single = 4.0
-    static var double = 8.0
+    static let single = 4.0
+    static let double = 8.0
 }

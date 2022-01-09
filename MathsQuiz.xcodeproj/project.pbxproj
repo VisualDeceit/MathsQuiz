@@ -117,7 +117,6 @@
 		3CD0E1A4276F7AD600EE255D /* MQOneImageTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A3276F7AD600EE255D /* MQOneImageTextField.swift */; };
 		3CD0E1A6276F86D900EE255D /* LevelsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A5276F86D900EE255D /* LevelsViewController.swift */; };
 		3CD0E1A8276F870F00EE255D /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CD0E1A7276F870F00EE255D /* LevelCollectionViewCell.swift */; };
-		E89B6BAF278844CF00363D31 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = E89B6BAE278844CF00363D31 /* FacebookCore */; };
 		E89B6BB1278844CF00363D31 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = E89B6BB0278844CF00363D31 /* FacebookLogin */; };
 		E89B6BB327884AD200363D31 /* MQOffset.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89B6BB227884AD200363D31 /* MQOffset.swift */; };
 		EC22387C3C87C6E08D11C37B /* Pods_MathsQuiz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */; };
@@ -244,7 +243,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B9BCAB52779D7E90084931D /* GoogleSignIn in Frameworks */,
-				E89B6BAF278844CF00363D31 /* FacebookCore in Frameworks */,
 				1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */,
 				1B9BCA80277591730084931D /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				EC22387C3C87C6E08D11C37B /* Pods_MathsQuiz.framework in Frameworks */,
@@ -789,7 +787,6 @@
 				1B9BCA7D2775912C0084931D /* FirebaseFirestore */,
 				1B9BCA7F277591730084931D /* FirebaseFirestoreSwift-Beta */,
 				1B9BCAB42779D7E90084931D /* GoogleSignIn */,
-				E89B6BAE278844CF00363D31 /* FacebookCore */,
 				E89B6BB0278844CF00363D31 /* FacebookLogin */,
 			);
 			productName = MathsQuiz;
@@ -1243,11 +1240,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1BBC5C80276DB547001B5F3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
-		};
-		E89B6BAE278844CF00363D31 /* FacebookCore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
-			productName = FacebookCore;
 		};
 		E89B6BB0278844CF00363D31 /* FacebookLogin */ = {
 			isa = XCSwiftPackageProductDependency;
