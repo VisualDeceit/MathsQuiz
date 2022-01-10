@@ -98,20 +98,20 @@ private extension PasswordChangeViewController {
         scrollView.addSubview(changeButton)
         
         NSLayoutConstraint.activate([
-            passwordTextField.heightAnchor.constraint(equalToConstant: 44),
+            passwordTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
             
-            alertLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 20),
-            alertLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 37),
-            alertLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -37),
+            alertLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.offset20),
+            alertLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset36),
+            alertLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset36),
             
-            stackView.topAnchor.constraint(equalTo: alertLabel.bottomAnchor, constant: 24),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
+            stackView.topAnchor.constraint(equalTo: alertLabel.bottomAnchor, constant: MQOffset.offset24),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset24),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset24),
             
-            changeButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 24),
-            changeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 54),
-            changeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -54),
-            changeButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
+            changeButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: MQOffset.offset24),
+            changeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset56),
+            changeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset56),
+            changeButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.offset8)
         ])
     }
 

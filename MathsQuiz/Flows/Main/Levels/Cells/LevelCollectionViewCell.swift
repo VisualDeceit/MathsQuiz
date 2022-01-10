@@ -17,7 +17,6 @@ class LevelCollectionViewCell: UICollectionViewCell {
     
     func configure(level: Level, type: ActivityType) {
         self.backgroundColor = type.color
-        self.layer.cornerRadius = 20
 
         if -1 == level.completion {
             setupBlockedCellForm(type: type)
@@ -58,12 +57,12 @@ class LevelCollectionViewCell: UICollectionViewCell {
         
         NSLayoutConstraint.activate([
             levelNumLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            levelNumLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 20),
+            levelNumLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: MQOffset.offset20),
         
-            stackView.topAnchor.constraint(equalTo: levelNumLabel.bottomAnchor, constant: 2),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5)
+            stackView.topAnchor.constraint(equalTo: levelNumLabel.bottomAnchor, constant: MQOffset.offset4),
+            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: MQOffset.offset4),
+            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.offset4),
+            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -MQOffset.offset4)
         ])
     }
     
@@ -76,10 +75,15 @@ class LevelCollectionViewCell: UICollectionViewCell {
         self.addSubview(lockImageView)
         
         NSLayoutConstraint.activate([
-            lockImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: 12),
-            lockImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 12),
-            lockImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -12),
-            lockImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -12)
+            lockImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: MQOffset.offset12),
+            lockImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: MQOffset.offset12),
+            lockImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.offset12),
+            lockImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -MQOffset.offset12)
         ])
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = 20
     }
 }

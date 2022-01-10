@@ -22,7 +22,7 @@ class LevelsViewController: UIViewController, LevelsViewInput {
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -96,7 +96,7 @@ extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDele
             presenter?.viewDidSelectLevel(selectedLevel)
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         UIView.animate(withDuration: 0.1) {
             guard let cell = collectionView.cellForItem(at: indexPath) as? LevelCollectionViewCell else {

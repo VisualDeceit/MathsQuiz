@@ -142,9 +142,9 @@ private extension UserProfileDetailViewController {
         
         NSLayoutConstraint.activate([
             locationButton.centerYAnchor.constraint(equalTo: cityTextField.centerYAnchor),
-            locationButton.trailingAnchor.constraint(equalTo: cityTextField.trailingAnchor, constant: -10),
-            locationButton.heightAnchor.constraint(equalToConstant: 24),
-            locationButton.widthAnchor.constraint(equalToConstant: 24)
+            locationButton.trailingAnchor.constraint(equalTo: cityTextField.trailingAnchor, constant: -MQOffset.offset8),
+            locationButton.heightAnchor.constraint(equalToConstant: MQOffset.offset24),
+            locationButton.widthAnchor.constraint(equalToConstant: MQOffset.offset24)
         ])
     }
     
@@ -169,16 +169,16 @@ private extension UserProfileDetailViewController {
         scrollView.addSubview(saveButton)
         
         NSLayoutConstraint.activate([
-            surnameTextField.heightAnchor.constraint(equalToConstant: 44),
+            surnameTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
             
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 24),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 27),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -27),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.offset24),
+            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset28),
+            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset28),
             
-            saveButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 24),
-            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 54),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -54),
-            saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
+            saveButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: MQOffset.offset24),
+            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset56),
+            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset56),
+            saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.offset8)
         ])
     }
 }

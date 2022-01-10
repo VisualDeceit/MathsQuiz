@@ -41,23 +41,22 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         
         NSLayoutConstraint.activate([
             nameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5),
-            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5)
+            nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: MQOffset.offset4),
+            nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.offset4)
         ])
     }
     
     private func setupLevelContainerView() {
         levelContainerView.backgroundColor = MQColor.background
-        levelContainerView.layer.cornerRadius = self.frame.width / 15
         levelContainerView.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(levelContainerView)
         
         NSLayoutConstraint.activate([
-            levelContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-            levelContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 22),
-            levelContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -22),
-            levelContainerView.heightAnchor.constraint(equalToConstant: 22)
+            levelContainerView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -MQOffset.offset8),
+            levelContainerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: MQOffset.offset24),
+            levelContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.offset24),
+            levelContainerView.heightAnchor.constraint(equalToConstant: MQOffset.offset24)
         ])
     }
     
@@ -72,14 +71,13 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         
         NSLayoutConstraint.activate([
             levelCountLabel.centerYAnchor.constraint(equalTo: levelContainerView.centerYAnchor),
-            levelCountLabel.leadingAnchor.constraint(equalTo: levelContainerView.leadingAnchor, constant: 2),
-            levelCountLabel.trailingAnchor.constraint(equalTo: levelContainerView.trailingAnchor, constant: -2)
+            levelCountLabel.leadingAnchor.constraint(equalTo: levelContainerView.leadingAnchor, constant: MQOffset.offset4),
+            levelCountLabel.trailingAnchor.constraint(equalTo: levelContainerView.trailingAnchor, constant: -MQOffset.offset4)
         ])
     }
     
     private func setupProgressForm() {
         circleContainerView.backgroundColor = MQColor.background
-        circleContainerView.layer.cornerRadius = 18
         circleContainerView.translatesAutoresizingMaskIntoConstraints = false
         
         progressNumLabel.text = "3"
@@ -90,10 +88,10 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         circleContainerView.addSubview(progressNumLabel)
         
         NSLayoutConstraint.activate([
-            circleContainerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 16),
-            circleContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
-            circleContainerView.heightAnchor.constraint(equalToConstant: 36),
-            circleContainerView.widthAnchor.constraint(equalToConstant: 36),
+            circleContainerView.topAnchor.constraint(equalTo: self.topAnchor, constant: MQOffset.offset16),
+            circleContainerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.offset8),
+            circleContainerView.heightAnchor.constraint(equalToConstant: MQOffset.offset36),
+            circleContainerView.widthAnchor.constraint(equalToConstant: MQOffset.offset36),
             
             progressNumLabel.centerXAnchor.constraint(equalTo: circleContainerView.centerXAnchor),
             progressNumLabel.centerYAnchor.constraint(equalTo: circleContainerView.centerYAnchor)
@@ -110,8 +108,15 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         NSLayoutConstraint.activate([
             circularProgressBarView.centerXAnchor.constraint(equalTo: circleContainerView.centerXAnchor),
             circularProgressBarView.centerYAnchor.constraint(equalTo: circleContainerView.centerYAnchor),
-            circularProgressBarView.heightAnchor.constraint(equalToConstant: 25),
-            circularProgressBarView.widthAnchor.constraint(equalToConstant: 25)
+            circularProgressBarView.heightAnchor.constraint(equalToConstant: MQOffset.offset24),
+            circularProgressBarView.widthAnchor.constraint(equalToConstant: MQOffset.offset24)
         ])
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.layer.cornerRadius = 24
+        levelContainerView.layer.cornerRadius = self.frame.width / 15
+        circleContainerView.layer.cornerRadius = 18
     }
 }
