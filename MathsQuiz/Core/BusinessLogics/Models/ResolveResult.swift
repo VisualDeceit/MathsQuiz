@@ -8,7 +8,7 @@
 import Foundation
 
 struct ResolveResult {
-    var firstNumber: [Digit]
-    var secondNumber: [Digit]
-    var result: [Digit]
+    var firstNumber: [Digit] = []
+    var secondNumber: [Digit] = []
+    var result: [Int: Digit] = [:]
 }

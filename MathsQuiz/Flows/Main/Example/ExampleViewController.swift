@@ -11,6 +11,7 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     
     var presenter: (ExamplePresenterOutput & ExampleViewOutput)?
     var relativeLocation = CGPoint()
+    var isDigitCaptured = false
     
     private let exampleWorkspaceView: UIView = {
         let view = UIView(frame: .zero)
@@ -78,6 +79,7 @@ private extension ExampleViewController {
         view.addSubview(keypadDraggableLabel)
         setupGestureRecognizers()
         setupWorkspace()
+        setupTargets()
     }
     
     func setupWorkspace() {
@@ -144,6 +146,14 @@ private extension ExampleViewController {
                                                 constant: -Indent.single)
         ])
     }
+    
+    func setupTargets() {
+        checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func checkButtonTapped() {
+        presenter?.viewDidCheckButtonTap()
+    }
 }
 
 // MARK: - UIPanGestureRecognizer
@@ -161,6 +171,7 @@ private extension ExampleViewController {
             for button in keypad {
                 let frame = button.convert(button.bounds, to: view)
                 if frame.contains(relativeLocation) {
+                    isDigitCaptured = true
                     relativeLocation.y -= 25
                     keypadDraggableLabel.text = "\(button.digit)"
                     keypadDraggableLabel.center = relativeLocation
@@ -175,8 +186,18 @@ private extension ExampleViewController {
             keypadDraggableLabel.center = newCenter
         case .ended:
             keypadDraggableLabel.isHidden = true
+            if let targetDigitView = self.view.hitTest(keypadDraggableLabel.center,
+                                                       with: .none) as? ExampleDigitView,
+               isDigitCaptured {
+                let value = Int(keypadDraggableLabel.text ?? "") ?? 0
+                let index = targetDigitView.index
+                targetDigitView.setDigit("\(value)")
+                presenter?.viewDidSetDigit(value: value, at: index)
+            }
+            isDigitCaptured = false
         case .cancelled, .failed:
             keypadDraggableLabel.isHidden = true
+            isDigitCaptured = false
         default:
             break
         }
