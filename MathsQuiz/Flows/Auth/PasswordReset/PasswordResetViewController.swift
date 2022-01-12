@@ -150,7 +150,11 @@ private extension PasswordResetViewController {
     }
     
     @objc func sendButtonTapped() {
-        presenter?.viewDidSendButtonTap(textField.text)
+//        presenter?.viewDidSendButtonTap(textField.text)
+        let vc = ScoreViewController()
+        vc.modalPresentationStyle = .automatic
+        vc.modalTransitionStyle = .coverVertical
+        self.present(vc, animated: true, completion: nil)
     }
     
     @objc func closeButtonTapped() {
