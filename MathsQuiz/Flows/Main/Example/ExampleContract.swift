@@ -17,6 +17,8 @@ protocol ExampleViewOutput: AnyObject {
     var activity: ActivityType { get }
     
     func viewDidLoad()
+    func viewDidSetDigit(value: Int, at index: Int)
+    func viewDidCheckButtonTap()
 }
 
 protocol ExamplePresenterOutput {
