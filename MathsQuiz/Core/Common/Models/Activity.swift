@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum ActivityType: String {
+enum ActivityType: String, Codable {
     case addition = "Cложение"
     case subtraction = "Вычитание"
     case multiplication = "Умножение"
@@ -58,8 +58,9 @@ enum ActivityType: String {
     }
 }
 
-struct Activity {
+struct Activity: Codable {
+    let index: Int // порядок на экране
     let type: ActivityType
-    let progress: Int // прогресс активности
+    let levels: [Level] //
     let total: Int // всего уровней
 }

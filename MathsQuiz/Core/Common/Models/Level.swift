@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct Level {
+struct Level: Codable {
     var number: Int
     var completion: Int
+    
+    static var empty: Level {
+        Level(number: 0, completion: 0)
+    }
 }

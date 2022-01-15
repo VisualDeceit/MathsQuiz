@@ -30,13 +30,21 @@ extension HomePresenter {
     }
     
     func viewDidLoad() {
-        activities = Stub.activities // stub
         firestoreManager.readUserProfile {[weak self] (result) in
             switch result {
             case .success(let profile):
                 if let profile = profile {
                     if let name = profile.firstName {
                         self?.view?.setGreeting(message: "Привет, \(name)!")
+                        self?.firestoreManager.loadUserProgress(completion: { (result) in
+                            switch result {
+                            case .success(let activities):
+                                self?.activities = activities
+                                self?.view?.reloadCollection()
+                            case .failure(let error):
+                                print(error)
+                            }
+                        })
                     } else {
                         self?.view?.setGreeting(message: "Привет, дружище!")
                     }
@@ -47,7 +55,6 @@ extension HomePresenter {
                 print("Error decoding profile: \(error.localizedDescription)")
             }
         }
-        view?.reloadCollection()
     }
     
     func viewDidAccountButtonTap() {
