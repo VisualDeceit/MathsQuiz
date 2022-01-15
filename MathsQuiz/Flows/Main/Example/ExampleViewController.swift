@@ -50,6 +50,15 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         return label
     }()
     
+    private let attemptsStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.distribution = .fillEqually
+        sv.axis = .horizontal
+        sv.spacing = 1
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+    
     private let panGestureRecognizer = UIPanGestureRecognizer()
     
     private let checkButton = MQStandardButton(title: "Проверить")
@@ -80,6 +89,7 @@ private extension ExampleViewController {
         setupGestureRecognizers()
         setupWorkspace()
         setupTargets()
+        setupUserStateBar()
     }
     
     func setupWorkspace() {
@@ -154,6 +164,18 @@ private extension ExampleViewController {
     @objc func checkButtonTapped() {
         presenter?.viewDidCheckButtonTap()
     }
+    
+    func setupUserStateBar() {
+        view.addSubview(attemptsStackView)
+        
+        NSLayoutConstraint.activate([
+            attemptsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                       constant: Indent.single),
+            attemptsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                                   constant: Indent.single),
+            attemptsStackView.widthAnchor.constraint(equalToConstant: 100)
+        ])
+    }
 }
 
 // MARK: - UIPanGestureRecognizer
@@ -214,5 +236,23 @@ extension ExampleViewController {
             view.centerXAnchor.constraint(equalTo: exampleWorkspaceView.centerXAnchor),
             view.centerYAnchor.constraint(equalTo: exampleWorkspaceView.centerYAnchor)
         ])
+    }
+    
+    func refreshAttemptsView(with attempts: Int) {
+        attemptsStackView.subviews.forEach { (view) in view.removeFromSuperview() }
+        for i in 1...3 {
+            let image = UIImageView()
+            if i <= attempts {
+                image.image = UIImage(systemName: "star.fill")
+            } else {
+                image.image = UIImage(systemName: "star")
+            }
+            image.contentMode = .scaleAspectFit
+            image.tintColor = presenter?.activity.highlightedСolor
+            image.transform = .init(rotationAngle: 0.26)
+            image.heightAnchor.constraint(equalToConstant: 26).isActive = true
+            attemptsStackView.addArrangedSubview(image)
+        }
+        attemptsStackView.setNeedsLayout()
     }
 }

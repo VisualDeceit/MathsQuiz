@@ -14,6 +14,7 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     
     var level: Level
     var userResult = [Int: Digit]()
+    var attempts = 3
     
     weak var view: ExampleViewInput?
     
@@ -27,6 +28,7 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     func viewDidLoad() {
         if let exampleView = factory.makeAdditionExample(for: level) {
             view?.displayExample(view: exampleView)
+            view?.refreshAttemptsView(with: attempts)
         }
     }
     
@@ -39,6 +41,11 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
         if userResult == factory.solution.result {
             print("Correct decision!")
         } else {
+            attempts -= 1
+            if attempts < 0 {
+                attempts = 0
+            }
+            view?.refreshAttemptsView(with: attempts)
             print("Incorrect decision :(")
         }
     }

@@ -11,6 +11,7 @@ protocol ExampleViewInput: AnyObject {
     var presenter: (ExampleViewOutput & ExamplePresenterOutput)? { get set }
     
     func displayExample(view: UIView)
+    func refreshAttemptsView(with attempts: Int)
 }
 
 protocol ExampleViewOutput: AnyObject {
