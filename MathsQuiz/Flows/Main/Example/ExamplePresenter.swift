@@ -9,13 +9,13 @@ import Foundation
 
 final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
 
-    weak var view: ExampleViewInput?
-
     let factory: ExampleFactory
     let activity: ActivityType
     
     var level: Level
     var userResult = [Int: Digit]()
+    
+    weak var view: ExampleViewInput?
     
     init(view: ExampleViewInput, factory: ExampleFactory, level: Level) {
         self.view = view
