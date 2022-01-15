@@ -86,4 +86,12 @@ class LevelCollectionViewCell: UICollectionViewCell {
         super.layoutSubviews()
         self.layer.cornerRadius = 20
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        levelNumLabel.text = nil
+        starImageView.forEach { $0.image = nil }
+        starImageView.removeAll()
+        lockImageView.image = nil
+    }
 }

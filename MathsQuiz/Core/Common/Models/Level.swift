@@ -12,6 +12,10 @@ struct Level: Codable {
     var completion: Int
     
     static var empty: Level {
-        Level(number: 0, completion: 0)
+        Level(number: 1, completion: 0)
+    }
+    
+    static var blocked: Level {
+        Level(number: 0, completion: -1)
     }
 }

@@ -35,7 +35,8 @@ protocol StorageManager {
     func saveUserProfile(profile: UserProfile) throws
     func readUserProfile(completion: @escaping (Result<UserProfile?, Error>) -> Void)
     func isUserProfileExist(uid: String?, completion: @escaping ((Bool) -> Void))
-    func loadUserProgress(completion: @escaping (Result<[Activity], Error>) -> Void)
+    func loadActivities(_ completion: @escaping (Result<[Activity], Error>) -> Void)
+    func loadLevels(for activity: ActivityType, completion: @escaping (Result<[Level], Error>) -> Void)
 }
 
 class FirestoreManager: StorageManager {
@@ -83,7 +84,7 @@ class FirestoreManager: StorageManager {
         }
     }
     
-    func loadUserProgress(completion: @escaping (Result<[Activity], Error>) -> Void) {
+    func loadActivities(_ completion: @escaping (Result<[Activity], Error>) -> Void) {
         guard let uid = Session.uid, !uid.isEmpty else {
             completion(.failure(FirestoreError.emptyPath))
             return
@@ -118,6 +119,27 @@ class FirestoreManager: StorageManager {
                 }
                 
                 completion(.success(activities.sorted { $0.index < $1.index }))
+            }
+        }
+    }
+    
+    func loadLevels(for activity: ActivityType, completion: @escaping (Result<[Level], Error>) -> Void) {
+        guard let uid = Session.uid, !uid.isEmpty else {
+            completion(.failure(FirestoreError.emptyPath))
+            return
+        }
+        
+        let collectionRef = db.collection("users").document(uid).collection("activity")
+        collectionRef.whereField("type", isEqualTo: activity.rawValue).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let document = querySnapshot?.documents.first,
+                      let activity = try? document.data(as: Activity.self) else {
+                    completion(.failure(FirestoreError.levelIsEmpty))
+                    return
+                }
+                completion(.success(activity.levels))
             }
         }
     }

@@ -11,24 +11,19 @@ struct Stub {
     static var activities: [Activity] = [
         Activity(index: 0,
                  type: .addition,
-                 levels: [Level.empty],
-                 total: AdditionActivityStrategy.total),
+                 levels: [Level.empty]),
         Activity(index: 1,
                  type: .subtraction,
-                 levels: [Level.empty],
-                 total: 0),
+                 levels: [Level.empty]),
         Activity(index: 2,
                  type: .multiplication,
-                 levels: [Level.empty],
-                 total: 0),
+                 levels: [Level.empty]),
         Activity(index: 3,
                  type: .division,
-                 levels: [Level.empty],
-                 total: 0),
+                 levels: [Level.empty]),
         Activity(index: 5,
                  type: .expression,
-                 levels: [Level.empty],
-                 total: 0)
+                 levels: [Level.empty])
     ]
     
     static var levels: [Level] = {

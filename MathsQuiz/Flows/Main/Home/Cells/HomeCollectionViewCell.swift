@@ -24,12 +24,12 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         self.layer.cornerRadius = 24
         setupNameLabel(text: value.type.rawValue)
         setupLevelContainerView()
-        setupLevelCountLabel(with: value.total)
+        setupLevelCountLabel(with: value.type.totalLevels)
         setupProgressForm()
-        if value.total == 0 {
+        if value.type.totalLevels == 0 {
             setUpCircularProgressBarView(toValue: 0)
         } else {
-            setUpCircularProgressBarView(toValue: Double(value.levels.count - 1) / Double(value.total))
+            setUpCircularProgressBarView(toValue: Double(value.levels.count - 1) / Double(value.type.totalLevels))
         }
         progressNumLabel.text = "\(value.levels.count - 1)"
     }

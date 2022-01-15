@@ -27,6 +27,21 @@ enum ActivityType: String, Codable {
         }
     }
     
+    var totalLevels: Int {
+        switch self {
+        case .addition:
+            return AdditionActivityStrategy.total
+        case .subtraction:
+            return 0
+        case .multiplication:
+            return 0
+        case .division:
+            return 0
+        case .expression:
+            return 0
+        }
+    }
+    
     var color: UIColor {
         switch self {
         case .addition:
@@ -59,8 +74,7 @@ enum ActivityType: String, Codable {
 }
 
 struct Activity: Codable {
-    let index: Int // порядок на экране
+    let index: Int
     let type: ActivityType
-    let levels: [Level] //
-    let total: Int // всего уровней
+    let levels: [Level]
 }
