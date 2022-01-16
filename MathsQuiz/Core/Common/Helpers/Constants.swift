@@ -21,6 +21,10 @@ enum Keypad {
     static let checkButtonWidth: CGFloat = 200
 }
 
+enum ExampleView {
+    static let attemptsWidth: CGFloat = 100
+}
+
 enum Indent {
     static let single: CGFloat = 8
 }

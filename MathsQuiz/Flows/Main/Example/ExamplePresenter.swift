@@ -15,6 +15,8 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     var level: Level
     var userResult = [Int: Digit]()
     var attempts = 3
+    var timer: Timer?
+    var timeInterval = 0
     
     weak var view: ExampleViewInput?
     
@@ -29,6 +31,7 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
         if let exampleView = factory.makeAdditionExample(for: level) {
             view?.displayExample(view: exampleView)
             view?.refreshAttemptsView(with: attempts)
+            createTimer()
         }
     }
     
@@ -48,5 +51,35 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
             view?.refreshAttemptsView(with: attempts)
             print("Incorrect decision :(")
         }
+    }
+    
+    private func createTimer() {
+        if timer == nil {
+            let timer = Timer(timeInterval: 1.0,
+                              target: self,
+                              selector: #selector(timerHandler),
+                              userInfo: nil,
+                              repeats: true)
+            RunLoop.current.add(timer, forMode: .common)
+            timer.tolerance = 0.1
+            self.timer = timer
+        }
+    }
+    
+    private func stopTimer() {
+        timer?.invalidate()
+        timer = nil
+        timeInterval = 0
+    }
+    
+    private func timeFormatted(_ totalSeconds: Int) -> String {
+        let seconds: Int = totalSeconds % 60
+        let minutes: Int = (totalSeconds / 60) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
+    @objc func timerHandler() {
+        timeInterval += 1
+        view?.refreshTimerView(with: timeFormatted(timeInterval))
     }
 }

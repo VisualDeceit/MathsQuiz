@@ -59,6 +59,15 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         return sv
     }()
     
+    private let timerLabel: UILabel = {
+       let label = UILabel()
+        label.text = "00:00"
+        label.font = MQFont.timerFont
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let panGestureRecognizer = UIPanGestureRecognizer()
     
     private let checkButton = MQStandardButton(title: "Проверить")
@@ -167,13 +176,20 @@ private extension ExampleViewController {
     
     func setupUserStateBar() {
         view.addSubview(attemptsStackView)
-        
         NSLayoutConstraint.activate([
             attemptsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
                                                        constant: Indent.single),
             attemptsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                                    constant: Indent.single),
-            attemptsStackView.widthAnchor.constraint(equalToConstant: 100)
+            attemptsStackView.widthAnchor.constraint(equalToConstant: ExampleView.attemptsWidth)
+        ])
+        
+        view.addSubview(timerLabel)
+        NSLayoutConstraint.activate([
+            timerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                            constant: Indent.single),
+            timerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                constant: -Indent.single)
         ])
     }
 }
@@ -254,5 +270,9 @@ extension ExampleViewController {
             attemptsStackView.addArrangedSubview(image)
         }
         attemptsStackView.setNeedsLayout()
+    }
+    
+    func refreshTimerView(with time: String) {
+        timerLabel.text = time
     }
 }

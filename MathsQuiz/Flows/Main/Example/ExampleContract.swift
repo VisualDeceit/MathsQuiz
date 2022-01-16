@@ -12,6 +12,7 @@ protocol ExampleViewInput: AnyObject {
     
     func displayExample(view: UIView)
     func refreshAttemptsView(with attempts: Int)
+    func refreshTimerView(with time: String)
 }
 
 protocol ExampleViewOutput: AnyObject {
