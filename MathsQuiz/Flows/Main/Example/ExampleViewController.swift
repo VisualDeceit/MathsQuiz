@@ -189,7 +189,7 @@ private extension ExampleViewController {
             timerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
                                             constant: Indent.single),
             timerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                constant: -Indent.single)
+                                                 constant: -Indent.single)
         ])
     }
 }
@@ -246,6 +246,7 @@ private extension ExampleViewController {
 extension ExampleViewController {
     
     func displayExample(view: UIView) {
+        exampleWorkspaceView.subviews.forEach { (view) in view.removeFromSuperview() }
         exampleWorkspaceView.addSubview(view)
         
         NSLayoutConstraint.activate([

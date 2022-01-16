@@ -28,11 +28,7 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     }
     
     func viewDidLoad() {
-        if let exampleView = factory.makeAdditionExample(for: level) {
-            view?.displayExample(view: exampleView)
-            view?.refreshAttemptsView(with: attempts)
-            createTimer()
-        }
+        makeExample()
     }
     
     func viewDidSetDigit(value: Int, at index: Int) {
@@ -43,6 +39,11 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     func viewDidCheckButtonTap() {
         if userResult == factory.solution.result {
             print("Correct decision!")
+            // todo: save level progress to db
+            // todo: calculate score
+            level.number += 1
+            attempts = 3
+            makeExample()
         } else {
             attempts -= 1
             if attempts < 0 {
@@ -50,6 +51,14 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
             }
             view?.refreshAttemptsView(with: attempts)
             print("Incorrect decision :(")
+        }
+    }
+    
+    private func makeExample() {
+        if let exampleView = factory.makeAdditionExample(for: level) {
+            view?.displayExample(view: exampleView)
+            view?.refreshAttemptsView(with: attempts)
+            createTimer()
         }
     }
     
@@ -72,14 +81,14 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
         timeInterval = 0
     }
     
+    @objc func timerHandler() {
+        timeInterval += 1
+        view?.refreshTimerView(with: timeFormatted(timeInterval))
+    }
+    
     private func timeFormatted(_ totalSeconds: Int) -> String {
         let seconds: Int = totalSeconds % 60
         let minutes: Int = (totalSeconds / 60) % 60
         return String(format: "%02d:%02d", minutes, seconds)
-    }
-    
-    @objc func timerHandler() {
-        timeInterval += 1
-        view?.refreshTimerView(with: timeFormatted(timeInterval))
     }
 }
