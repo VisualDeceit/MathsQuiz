@@ -257,9 +257,13 @@ private extension ScoreViewController {
     }
     
     func setupCircleContainerViews() {
-        bottomCircleContainterView.backgroundColor = MQColor.lavenderDark
-        middleCircleContainerView.backgroundColor = MQColor.lavenderLight
-        topCircleContainerView.backgroundColor = UIColor.init(rgb: 0xECF5FF)
+        let circleContainerColor = MQColor.lavenderDark
+        let middleLighterColor = circleContainerColor.lighter(by: 20)
+        let topLighterColor = circleContainerColor.lighter(by: 50)
+        
+        bottomCircleContainterView.backgroundColor = circleContainerColor
+        middleCircleContainerView.backgroundColor = middleLighterColor
+        topCircleContainerView.backgroundColor = topLighterColor
         
         bottomCircleContainterView.translatesAutoresizingMaskIntoConstraints = false
         middleCircleContainerView.translatesAutoresizingMaskIntoConstraints = false
