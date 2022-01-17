@@ -149,19 +149,19 @@ private extension LoginViewController {
         scrollView.addSubview(loginButton)
         
         NSLayoutConstraint.activate([
-            emailTextField.heightAnchor.constraint(equalToConstant: 44),
+            emailTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
             
-            stackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 24),
+            stackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: MQOffset.offset24),
             stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 27),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -27),
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: MQOffset.offset28),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -MQOffset.offset28),
             
-            forgotPasswordButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 8),
-            forgotPasswordButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -7),
+            forgotPasswordButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: MQOffset.offset8),
+            forgotPasswordButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -MQOffset.offset8),
             
-            loginButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: 12),
-            loginButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 54),
-            loginButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -54)
+            loginButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: MQOffset.offset12),
+            loginButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: MQOffset.offset56),
+            loginButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -MQOffset.offset56)
         ])
     }
     
@@ -185,18 +185,18 @@ private extension LoginViewController {
         scrollView.addSubview(createAccountStackView)
         
         NSLayoutConstraint.activate([
-            googleButton.widthAnchor.constraint(equalToConstant: 45),
-            googleButton.heightAnchor.constraint(equalToConstant: 45),
+            googleButton.widthAnchor.constraint(equalToConstant: MQOffset.offset44),
+            googleButton.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
             
-            orLogInWithLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 14),
+            orLogInWithLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: MQOffset.offset12),
             orLogInWithLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
-            buttonsStackView.topAnchor.constraint(equalTo: orLogInWithLabel.bottomAnchor, constant: 10),
+            buttonsStackView.topAnchor.constraint(equalTo: orLogInWithLabel.bottomAnchor, constant: MQOffset.offset12),
             buttonsStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
-            createAccountStackView.topAnchor.constraint(equalTo: buttonsStackView.bottomAnchor, constant: 15),
+            createAccountStackView.topAnchor.constraint(equalTo: buttonsStackView.bottomAnchor, constant: MQOffset.offset16),
             createAccountStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            createAccountStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -10)
+            createAccountStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.offset8)
         ])
     }
 }
