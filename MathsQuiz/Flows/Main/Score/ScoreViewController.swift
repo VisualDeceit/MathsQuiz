@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 class ScoreViewController: UIViewController {
     
@@ -16,6 +17,7 @@ class ScoreViewController: UIViewController {
     private let middleCircleContainerView = UIView()
     private let topCircleContainerView = UIView()
     private let demarcativeView = UIView()
+    private var congratulationFormStackView: UIStackView?
     
     private let closeButton: UIButton = {
         let button = UIButton()
@@ -25,6 +27,14 @@ class ScoreViewController: UIViewController {
         button.titleLabel?.font = MQFont.systemFont16
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
+    }()
+    
+    private let fireworkAnimationView: AnimationView = {
+        let view = AnimationView()
+        let path = Bundle.main.path(forResource: "fireworkAnimation", ofType: "json") ?? ""
+        view.animation = Animation.filepath(path)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
     }()
     
     private let scoreTitleLabel: UILabel = {
@@ -208,6 +218,7 @@ private extension ScoreViewController {
         setupCircleContainerViews()
         setupScoreLabels()
         setupCongratulationForm()
+        setupFireworkAnimation()
         setupResultForm()
         setupResultsText()
     }
@@ -240,7 +251,6 @@ private extension ScoreViewController {
             bottomStackView!.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
-
     
     func setupMainContainerView() {
         mainContainerView.backgroundColor = MQColor.lavenderLight
@@ -312,22 +322,36 @@ private extension ScoreViewController {
     func setupCongratulationForm() {
         demarcativeView.backgroundColor = MQColor.background
         
-        let stackView = UIStackView(arrangedSubviews: [congratulationTitleLabel,
+        congratulationFormStackView = UIStackView(arrangedSubviews: [congratulationTitleLabel,
                                                        descriptionSubtitleLabel,
                                                        demarcativeView])
-        stackView.axis = .vertical
-        stackView.distribution = .fillProportionally
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+        congratulationFormStackView?.axis = .vertical
+        congratulationFormStackView?.distribution = .fillProportionally
+        congratulationFormStackView?.translatesAutoresizingMaskIntoConstraints = false
         
-        mainContainerView.addSubview(stackView)
+        mainContainerView.addSubview(congratulationFormStackView!)
         
         NSLayoutConstraint.activate([
             demarcativeView.heightAnchor.constraint(equalToConstant: MQOffset.offset4),
-            stackView.topAnchor.constraint(equalTo: bottomCircleContainterView.bottomAnchor, constant: MQOffset.offset16),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset36),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset36),
-            stackView.heightAnchor.constraint(equalToConstant: 100)
+            congratulationFormStackView!.topAnchor.constraint(equalTo: bottomCircleContainterView.bottomAnchor, constant: MQOffset.offset16),
+            congratulationFormStackView!.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset36),
+            congratulationFormStackView!.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset36),
+            congratulationFormStackView!.heightAnchor.constraint(equalToConstant: 100)
         ])
+    }
+
+    func setupFireworkAnimation() {
+        guard let stackView = congratulationFormStackView else { return }
+        
+        mainContainerView.addSubview(fireworkAnimationView)
+        
+        NSLayoutConstraint.activate([
+            fireworkAnimationView.topAnchor.constraint(equalTo: mainContainerView.topAnchor),
+            fireworkAnimationView.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor),
+            fireworkAnimationView.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor),
+            fireworkAnimationView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
+        ])
+        fireworkAnimationView.play()
     }
     
     func setupResultForm() {
