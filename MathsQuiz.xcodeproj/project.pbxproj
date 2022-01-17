@@ -106,6 +106,7 @@
 		1BBC5C90276DD0AB001B5F3E /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C8F276DD0AB001B5F3E /* UIAlertController+Extension.swift */; };
 		1BBC5C93276DDF51001B5F3E /* AuthErrorCode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */; };
 		1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C9D276E0D81001B5F3E /* Credentials.swift */; };
+		1BF540602794EEC300D98F70 /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5405F2794EEC300D98F70 /* CheckButton.swift */; };
 		3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE32768907E00810069 /* UIColor+Extension.swift */; };
 		3C0CAAE7276890CE00810069 /* MQColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE6276890CE00810069 /* MQColor.swift */; };
 		3C0CAAEB2768966F00810069 /* MQStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */; };
@@ -220,6 +221,7 @@
 		1BBC5C8F276DD0AB001B5F3E /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthErrorCode+Extension.swift"; sourceTree = "<group>"; };
 		1BBC5C9D276E0D81001B5F3E /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		1BF5405F2794EEC300D98F70 /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
 		3C0CAAE32768907E00810069 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		3C0CAAE6276890CE00810069 /* MQColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQColor.swift; sourceTree = "<group>"; };
 		3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardTextField.swift; sourceTree = "<group>"; };
@@ -728,6 +730,7 @@
 				1B9BCAFD277B728E0084931D /* OnboardingContent.swift */,
 				1B2EB5AF277C588800FFDD9E /* Level.swift */,
 				1B2EB5D2278041F800FFDD9E /* PasswordPair.swift */,
+				1BF5405F2794EEC300D98F70 /* CheckButton.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -938,6 +941,7 @@
 				1B2EB6022785717000FFDD9E /* ExampleFactory.swift in Sources */,
 				1B9BCAF3277B5E3D0084931D /* OnboardingPresenter.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */,
+				1BF540602794EEC300D98F70 /* CheckButton.swift in Sources */,
 				1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */,
 				3C25CD562773259700A49DC2 /* PasswordChangeViewController.swift in Sources */,
 				1B2EB5F9278428E100FFDD9E /* ExampleResolver.swift in Sources */,
