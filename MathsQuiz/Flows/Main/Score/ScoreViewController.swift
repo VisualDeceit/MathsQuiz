@@ -40,7 +40,6 @@ class ScoreViewController: UIViewController {
     
     private let scoreNumLabel: UILabel = {
         let label = UILabel()
-        label.text = "72"
         label.font = MQFont.systemFont64
         label.textColor = .black
         label.textAlignment = .center
@@ -73,7 +72,6 @@ class ScoreViewController: UIViewController {
     
     private let descriptionSubtitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Даниил, ты решил все задания на сложение!"
         label.font = MQFont.systemFont16
         label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
@@ -94,7 +92,6 @@ class ScoreViewController: UIViewController {
     
     private let bestScoreNumLabel: UILabel = {
         let label = UILabel()
-        label.text = "69 очков"
         label.font = MQFont.boldSystemFont14
         label.textColor = .black
         label.textAlignment = .center
@@ -114,7 +111,6 @@ class ScoreViewController: UIViewController {
     
     private let totalTimeNumLabel: UILabel = {
         let label = UILabel()
-        label.text = "7:56 мин"
         label.font = MQFont.boldSystemFont14
         label.textColor = .black
         label.textAlignment = .center
@@ -134,7 +130,6 @@ class ScoreViewController: UIViewController {
     
     private let completionNumLabel: UILabel = {
         let label = UILabel()
-        label.text = "100%"
         label.font = MQFont.boldSystemFont14
         label.textColor = .black
         label.textAlignment = .center
@@ -154,7 +149,6 @@ class ScoreViewController: UIViewController {
     
     private let errorsNumLabel: UILabel = {
         let label = UILabel()
-        label.text = "3"
         label.font = MQFont.boldSystemFont14
         label.textColor = .black
         label.textAlignment = .center
@@ -215,6 +209,7 @@ private extension ScoreViewController {
         setupScoreLabels()
         setupCongratulationForm()
         setupResultForm()
+        setupResultsText()
     }
     
     func setupCloseButton() {
@@ -372,6 +367,15 @@ private extension ScoreViewController {
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainStackView.heightAnchor.constraint(equalToConstant: 100)
         ])
+    }
+    
+    func setupResultsText() {
+        scoreNumLabel.text = "72"
+        descriptionSubtitleLabel.text = "Даниил, ты решил все задания на сложение!"
+        bestScoreNumLabel.text = "69 очков"
+        totalTimeNumLabel.text = "7:56 мин"
+        completionNumLabel.text = "100%"
+        errorsNumLabel.text = "3"
     }
     
     func setupViewsCornerRadius() {
