@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class SignUpViewController: UIViewController, SignUpViewInput {
 
@@ -20,7 +21,6 @@ class SignUpViewController: UIViewController, SignUpViewInput {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.font = MQFont.boldSystemFont24
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -31,7 +31,6 @@ class SignUpViewController: UIViewController, SignUpViewInput {
         label.numberOfLines = 0
         label.textColor = MQColor.gray
         label.font = MQFont.systemFont14
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -40,7 +39,6 @@ class SignUpViewController: UIViewController, SignUpViewInput {
         label.text = "Уже есть аккаунт?"
         label.textColor = MQColor.gray
         label.font = MQFont.systemFont14
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -92,31 +90,28 @@ private extension SignUpViewController {
     }
     
     func setupScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(scrollView)
         
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        scrollView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     func setupTitleLabels() {
         scrollView.addSubview(newAccountLabel)
         scrollView.addSubview(createNewAccountLabel)
         
-        NSLayoutConstraint.activate([
-            newAccountLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.offset48),
-            newAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset20),
-            newAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset20),
-            
-            createNewAccountLabel.topAnchor.constraint(equalTo: newAccountLabel.bottomAnchor, constant: MQOffset.offset8),
-            createNewAccountLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset48),
-            createNewAccountLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset48)
-        ])
+        newAccountLabel.snp.makeConstraints { make in
+            make.top.equalTo(scrollView.snp.top).offset(MQOffset.offset48)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset20)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset20)
+        }
+        
+        createNewAccountLabel.snp.makeConstraints { make in
+            make.top.equalTo(newAccountLabel.snp.bottom).offset(MQOffset.offset8)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset48)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset48)
+        }
     }
     
     func setupSignUpForm() {
@@ -127,22 +122,23 @@ private extension SignUpViewController {
         stackView.axis = .vertical
         stackView.spacing = 16
         stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(stackView)
         scrollView.addSubview(signUpButton)
         
-        NSLayoutConstraint.activate([
-            nameTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
-            
-            stackView.topAnchor.constraint(equalTo: createNewAccountLabel.bottomAnchor, constant: MQOffset.offset24),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset28),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset28),
-            
-            signUpButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: MQOffset.offset24),
-            signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset56),
-            signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset56)
-        ])
+        nameTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44).isActive = true
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(createNewAccountLabel.snp.bottom).offset(MQOffset.offset24)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset28)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset28)
+        }
+        
+        signUpButton.snp.makeConstraints { make in
+            make.top.equalTo(stackView.snp.bottom).offset(MQOffset.offset24)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset56)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset56)
+        }
     }
     
     func setupSignInForm() {
@@ -150,15 +146,14 @@ private extension SignUpViewController {
                                                        signInButton])
         stackView.axis = .horizontal
         stackView.spacing = 2
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: signUpButton.bottomAnchor, constant: MQOffset.offset24),
-            stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.offset8)
-        ])
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(signUpButton.snp.bottom).offset(MQOffset.offset24)
+            make.centerX.equalTo(view)
+            make.bottom.equalTo(scrollView.snp.bottom).inset(MQOffset.offset8)
+        }
     }
 }
 
