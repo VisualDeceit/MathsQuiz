@@ -61,12 +61,9 @@ private extension LevelsViewController {
         levelCollectionView.dataSource = self
         levelCollectionView.delegate = self
         
-        NSLayoutConstraint.activate([
-            levelCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            levelCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            levelCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            levelCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        levelCollectionView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
 }
 
