@@ -7,5 +7,6 @@ target 'MathsQuiz' do
 
   # Pods for MathsQuiz
   pod 'SwiftLint', '~> 0.45.1'
+  pod 'SnapKit', '~> 5.0.1'
 
 end
