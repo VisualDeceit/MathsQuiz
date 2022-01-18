@@ -20,7 +20,6 @@ class LevelsViewController: UIViewController, LevelsViewInput {
                                 forCellWithReuseIdentifier: LevelCollectionViewCell.reuseId)
         collectionView.backgroundColor = MQColor.background
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
 
@@ -71,7 +70,8 @@ private extension LevelsViewController {
 // MARK: - CollectionViewDelegate & CollectionViewDataSource
 extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter?.levels?.count ?? 0
+//        presenter?.levels?.count ?? 0
+        10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -81,10 +81,11 @@ extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDele
             return UICollectionViewCell()
         }
         
-        if let level = presenter?.levels?[indexPath.row],
-           let activity = presenter?.activity {
-            levelCell.configure(level: level, type: activity)
-        }
+//        if let level = presenter?.levels?[indexPath.row],
+//           let activity = presenter?.activity {
+//            levelCell.configure(level: level, type: activity)
+//        }
+        levelCell.configure(level: Level(number: 3, completion: 1), type: .addition)
         return levelCell
     }
     

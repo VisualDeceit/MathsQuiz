@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class LevelCollectionViewCell: UICollectionViewCell {
     
@@ -30,7 +31,6 @@ class LevelCollectionViewCell: UICollectionViewCell {
         levelNumLabel.font = MQFont.systemFont48
         levelNumLabel.textAlignment = .center
         levelNumLabel.adjustsFontSizeToFitWidth = true
-        levelNumLabel.translatesAutoresizingMaskIntoConstraints = false
         
         for i in 1...3 {
             let image = UIImageView()
@@ -50,36 +50,33 @@ class LevelCollectionViewCell: UICollectionViewCell {
         stackView.distribution = .fillEqually
         stackView.axis = .horizontal
         stackView.spacing = 1
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(levelNumLabel)
         self.addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            levelNumLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            levelNumLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: MQOffset.offset20),
+        levelNumLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(MQOffset.offset20)
+        }
         
-            stackView.topAnchor.constraint(equalTo: levelNumLabel.bottomAnchor, constant: MQOffset.offset4),
-            stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: MQOffset.offset4),
-            stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.offset4),
-            stackView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -MQOffset.offset4)
-        ])
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(levelNumLabel.snp.bottom).offset(MQOffset.offset4)
+            make.leading.equalToSuperview().offset(MQOffset.offset4)
+            make.trailing.bottom.equalToSuperview().inset(MQOffset.offset4)
+        }
     }
     
     func setupBlockedCellForm(type: ActivityType) {
         lockImageView.image = UIImage(systemName: "lock.fill")
         lockImageView.tintColor = type.highlightedСolor
         lockImageView.contentMode = .scaleAspectFit
-        lockImageView.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(lockImageView)
         
-        NSLayoutConstraint.activate([
-            lockImageView.topAnchor.constraint(equalTo: self.topAnchor, constant: MQOffset.offset12),
-            lockImageView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: MQOffset.offset12),
-            lockImageView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -MQOffset.offset12),
-            lockImageView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -MQOffset.offset12)
-        ])
+        lockImageView.snp.makeConstraints { make in
+            make.top.leading.equalToSuperview().offset(MQOffset.offset12)
+            make.trailing.bottom.equalToSuperview().inset(MQOffset.offset12)
+        }
     }
     
     override func layoutSubviews() {
