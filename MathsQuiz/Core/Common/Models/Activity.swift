@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum ActivityType: String {
+enum ActivityType: String, Codable {
     case addition = "Cложение"
     case subtraction = "Вычитание"
     case multiplication = "Умножение"
@@ -24,6 +24,21 @@ enum ActivityType: String {
             return "x"
         default:
             return ""
+        }
+    }
+    
+    var totalLevels: Int {
+        switch self {
+        case .addition:
+            return AdditionActivityStrategy.total
+        case .subtraction:
+            return 0
+        case .multiplication:
+            return 0
+        case .division:
+            return 0
+        case .expression:
+            return 0
         }
     }
     
@@ -58,8 +73,8 @@ enum ActivityType: String {
     }
 }
 
-struct Activity {
+struct Activity: Codable {
+    let index: Int
     let type: ActivityType
-    let progress: Int // прогресс активности
-    let total: Int // всего уровней
+    let levels: [Level]
 }

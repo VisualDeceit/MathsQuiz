@@ -10,9 +10,9 @@ import FirebaseAuth
 
 final class PasswordResetPresenter: PasswordResetViewOutput, PasswordResetPresenterOutput {
 
-    var onSuccessSend: (() -> Void)?
+    let authService: AuthorizationService
     
-    var authService: AuthorizationService
+    var onSuccessSend: (() -> Void)?
     
     private weak var view: PasswordResetViewInput?
     

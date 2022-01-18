@@ -45,7 +45,7 @@ private extension ExampleResolver {
         let digitCount = max(firstNumber.count, secondNumber.count)
         
         var carry = 0
-        var output = ResolveResult(firstNumber: [], secondNumber: [], result: [])
+        var output = ResolveResult()
         
         for i in 0..<digitCount {
             var d1 = 0
@@ -73,33 +73,32 @@ private extension ExampleResolver {
                 carry = 0
             }
             
-            output.result.append(Digit(value: sum, carry: 0))
+            output.result[i] = Digit(value: sum, carry: 0)
         }
         
         if carry == 1 {
-            output.result.append(Digit(value: 1, carry: 0))
+            output.result[digitCount] = Digit(value: 1, carry: 0)
         }
         
         output.firstNumber.reverse()
         output.secondNumber.reverse()
-        output.result.reverse()
         
         return output
     }
     
     func subtractionHandler() -> ResolveResult {
-        ResolveResult(firstNumber: [], secondNumber: [], result: [])
+        ResolveResult()
     }
     
     func multiplicationHandler() -> ResolveResult {
-        ResolveResult(firstNumber: [], secondNumber: [], result: [])
+        ResolveResult()
     }
     
     func divisionHandler() -> ResolveResult {
-        ResolveResult(firstNumber: [], secondNumber: [], result: [])
+        ResolveResult()
     }
     
     func expressionHandler() -> ResolveResult {
-        ResolveResult(firstNumber: [], secondNumber: [], result: [])
+        ResolveResult()
     }
 }

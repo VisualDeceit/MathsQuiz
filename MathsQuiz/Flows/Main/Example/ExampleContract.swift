@@ -11,12 +11,17 @@ protocol ExampleViewInput: AnyObject {
     var presenter: (ExampleViewOutput & ExamplePresenterOutput)? { get set }
     
     func displayExample(view: UIView)
+    func refreshAttemptsView(with attempts: Int)
+    func refreshTimerView(with time: String)
+    func changeCheckButton(type: CheckButton)
 }
 
 protocol ExampleViewOutput: AnyObject {
     var activity: ActivityType { get }
     
     func viewDidLoad()
+    func viewDidSetDigit(value: Int, at index: Int)
+    func viewDidCheckButtonTap(type: CheckButton)
 }
 
 protocol ExamplePresenterOutput {

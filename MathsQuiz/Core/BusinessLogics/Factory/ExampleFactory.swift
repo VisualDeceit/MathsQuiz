@@ -11,6 +11,7 @@ protocol ExampleFactory {
     var type: ActivityType { get }
     var resolver: Resolver { get }
     var strategy: ActivityStrategy { get }
+    var solution: ResolveResult { get }
     
     func makeAdditionExample(for level: Level) -> UIView?
 }
@@ -20,6 +21,8 @@ final class MainExampleFactory: ExampleFactory {
     let type: ActivityType
     let resolver: Resolver
     let strategy: ActivityStrategy
+    
+    var solution = ResolveResult()
     
     init(strategy: ActivityStrategy, resolver: Resolver) {
         self.strategy = strategy
@@ -32,12 +35,10 @@ final class MainExampleFactory: ExampleFactory {
             return nil
         }
         
-        let solution = resolver.resolve(input: input)
+        solution = resolver.resolve(input: input)
         
         let builder = ExampleViewBuilder()
         builder.addNewRow()
-        
-//        let userResult = Array(repeating: Digit(value: 0, carry: 0), count: solution.result.count)
 
         for digit in solution.firstNumber {
             builder.addDigit(digit, type: .common, index: 0)
@@ -53,10 +54,10 @@ final class MainExampleFactory: ExampleFactory {
         builder.addSeparator(for: String(input.secondNumber).count + 1)
         builder.addNewRow()
         
-        for index in solution.result.indices {
-            builder.addDigit(Digit(value: 0, carry: 0), type: .result, index: index)
+        solution.result.sorted { $0.key > $1.key }.forEach { index, digit in
+            builder.addDigit(digit, type: .result, index: index)
         }
-        
+
         let exampleView = builder.build()
         
         return exampleView

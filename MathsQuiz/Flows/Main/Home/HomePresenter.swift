@@ -8,11 +8,12 @@
 import Foundation
 
 final class HomePresenter: HomePresenterOutput, HomeViewOutput {
-    var activities: [Activity]?
+    
+    let firestoreManager: StorageManager
+    
     var onSelectActivity: ((ActivityType) -> Void)?
     var onAccountButtonTap: (() -> Void)?
-    
-    var firestoreManager: StorageManager
+    var activities: [Activity]?
     
     private weak var view: HomeViewInput?
     
@@ -30,13 +31,21 @@ extension HomePresenter {
     }
     
     func viewDidLoad() {
-        activities = Stub.activities // stub
         firestoreManager.readUserProfile {[weak self] (result) in
             switch result {
             case .success(let profile):
                 if let profile = profile {
                     if let name = profile.firstName {
                         self?.view?.setGreeting(message: "Привет, \(name)!")
+                        self?.firestoreManager.loadActivities { (result) in
+                            switch result {
+                            case .success(let activities):
+                                self?.activities = activities
+                                self?.view?.reloadCollection()
+                            case .failure(let error):
+                                print(error)
+                            }
+                        }
                     } else {
                         self?.view?.setGreeting(message: "Привет, дружище!")
                     }
@@ -47,7 +56,6 @@ extension HomePresenter {
                 print("Error decoding profile: \(error.localizedDescription)")
             }
         }
-        view?.reloadCollection()
     }
     
     func viewDidAccountButtonTap() {

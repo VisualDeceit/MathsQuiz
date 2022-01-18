@@ -11,6 +11,8 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     
     var presenter: (ExamplePresenterOutput & ExampleViewOutput)?
     var relativeLocation = CGPoint()
+    var isDigitCaptured = false
+    var checkButtonType = CheckButton.check
     
     private let exampleWorkspaceView: UIView = {
         let view = UIView(frame: .zero)
@@ -49,9 +51,27 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         return label
     }()
     
+    private let attemptsStackView: UIStackView = {
+        let sv = UIStackView()
+        sv.distribution = .fillEqually
+        sv.axis = .horizontal
+        sv.spacing = 1
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        return sv
+    }()
+    
+    private let timerLabel: UILabel = {
+       let label = UILabel()
+        label.text = "00:00"
+        label.font = MQFont.timerFont
+        label.adjustsFontSizeToFitWidth = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     private let panGestureRecognizer = UIPanGestureRecognizer()
     
-    private let checkButton = MQStandardButton(title: "Проверить")
+    private let checkButton = MQStandardButton(title: CheckButton.check.rawValue)
     
     private var keypad = [KeypadDigitView]()
     
@@ -78,6 +98,8 @@ private extension ExampleViewController {
         view.addSubview(keypadDraggableLabel)
         setupGestureRecognizers()
         setupWorkspace()
+        setupTargets()
+        setupUserStateBar()
     }
     
     func setupWorkspace() {
@@ -144,6 +166,33 @@ private extension ExampleViewController {
                                                 constant: -Indent.single)
         ])
     }
+    
+    func setupTargets() {
+        checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func checkButtonTapped() {
+        presenter?.viewDidCheckButtonTap(type: checkButtonType)
+    }
+    
+    func setupUserStateBar() {
+        view.addSubview(attemptsStackView)
+        NSLayoutConstraint.activate([
+            attemptsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
+                                                       constant: Indent.single),
+            attemptsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                                   constant: Indent.single),
+            attemptsStackView.widthAnchor.constraint(equalToConstant: ExampleView.attemptsWidth)
+        ])
+        
+        view.addSubview(timerLabel)
+        NSLayoutConstraint.activate([
+            timerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
+                                            constant: Indent.single),
+            timerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,
+                                                 constant: -Indent.single)
+        ])
+    }
 }
 
 // MARK: - UIPanGestureRecognizer
@@ -161,6 +210,7 @@ private extension ExampleViewController {
             for button in keypad {
                 let frame = button.convert(button.bounds, to: view)
                 if frame.contains(relativeLocation) {
+                    isDigitCaptured = true
                     relativeLocation.y -= 25
                     keypadDraggableLabel.text = "\(button.digit)"
                     keypadDraggableLabel.center = relativeLocation
@@ -175,8 +225,18 @@ private extension ExampleViewController {
             keypadDraggableLabel.center = newCenter
         case .ended:
             keypadDraggableLabel.isHidden = true
+            if let targetDigitView = self.view.hitTest(keypadDraggableLabel.center,
+                                                       with: .none) as? ExampleDigitView,
+               isDigitCaptured {
+                let value = Int(keypadDraggableLabel.text ?? "") ?? 0
+                let index = targetDigitView.index
+                targetDigitView.setDigit("\(value)")
+                presenter?.viewDidSetDigit(value: value, at: index)
+            }
+            isDigitCaptured = false
         case .cancelled, .failed:
             keypadDraggableLabel.isHidden = true
+            isDigitCaptured = false
         default:
             break
         }
@@ -187,11 +247,44 @@ private extension ExampleViewController {
 extension ExampleViewController {
     
     func displayExample(view: UIView) {
+        exampleWorkspaceView.subviews.forEach { (view) in view.removeFromSuperview() }
         exampleWorkspaceView.addSubview(view)
         
         NSLayoutConstraint.activate([
             view.centerXAnchor.constraint(equalTo: exampleWorkspaceView.centerXAnchor),
             view.centerYAnchor.constraint(equalTo: exampleWorkspaceView.centerYAnchor)
         ])
+    }
+    
+    func refreshAttemptsView(with attempts: Int) {
+        attemptsStackView.subviews.forEach { (view) in view.removeFromSuperview() }
+        for i in 1...3 {
+            let image = UIImageView()
+            if i <= attempts {
+                image.image = UIImage(systemName: "star.fill")
+            } else {
+                image.image = UIImage(systemName: "star")
+            }
+            image.contentMode = .scaleAspectFit
+            image.tintColor = presenter?.activity.highlightedСolor
+            image.transform = .init(rotationAngle: 0.26)
+            image.heightAnchor.constraint(equalToConstant: 26).isActive = true
+            attemptsStackView.addArrangedSubview(image)
+        }
+        attemptsStackView.setNeedsLayout()
+    }
+    
+    func refreshTimerView(with time: String) {
+        timerLabel.text = time
+    }
+    
+    func changeCheckButton(type: CheckButton) {
+        checkButtonType = type
+        checkButton.setTitle(checkButtonType.rawValue, for: .normal)
+        if type == .transition {
+            exampleWorkspaceView.allSubViewsOf(type: ExampleDigitView.self)
+                .filter { $0.type == .result }
+                .forEach { $0.setColor(for: true) }
+        }
     }
 }
