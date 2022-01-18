@@ -25,11 +25,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = SignUpViewController()
+        window?.rootViewController = UINavigationController()
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-//        appCoordinator = makeCoordinator()
-//        appCoordinator.start()
+        appCoordinator = makeCoordinator()
+        appCoordinator.start()
     }
     
     private func makeCoordinator() -> Coordinator {
