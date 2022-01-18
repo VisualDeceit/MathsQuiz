@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ExampleViewController: UIViewController, ExampleViewInput {
     
@@ -14,7 +15,6 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     
     private let exampleWorkspaceView: UIView = {
         let view = UIView(frame: .zero)
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -25,7 +25,6 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         sv.distribution = .equalCentering
         sv.spacing = 0
         sv.contentMode = .scaleToFill
-        sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
     
@@ -36,7 +35,6 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         sv.distribution = .equalCentering
         sv.spacing = 0
         sv.contentMode = .scaleToFill
-        sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
     
@@ -84,12 +82,11 @@ private extension ExampleViewController {
         view.addSubview(exampleWorkspaceView)
         view.sendSubviewToBack(exampleWorkspaceView)
         
-        NSLayoutConstraint.activate([
-            exampleWorkspaceView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            exampleWorkspaceView.bottomAnchor.constraint(equalTo: topKeypadStack.topAnchor),
-            exampleWorkspaceView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            exampleWorkspaceView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        exampleWorkspaceView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.bottom.equalTo(topKeypadStack.snp.top)
+            make.leading.trailing.equalToSuperview()
+        }
     }
     
     func setupNavigationBar() {
@@ -114,35 +111,29 @@ private extension ExampleViewController {
         view.addSubview(topKeypadStack)
         view.addSubview(bottomKeypadStack)
         
-        NSLayoutConstraint.activate([
-            topKeypadStack.heightAnchor.constraint(equalToConstant: Keypad.buttonSize),
-            topKeypadStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                                    constant: Indent.single),
-            topKeypadStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                                     constant: -Indent.single)
-        ])
+        topKeypadStack.snp.makeConstraints { make in
+            make.height.equalTo(Keypad.buttonSize)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(Indent.single)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(Indent.single)
+        }
         
-        NSLayoutConstraint.activate([
-            bottomKeypadStack.heightAnchor.constraint(equalToConstant: Keypad.buttonSize),
-            bottomKeypadStack.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-                                                       constant: Indent.single),
-            bottomKeypadStack.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-                                                        constant: -Indent.single),
-            bottomKeypadStack.topAnchor.constraint(equalTo: topKeypadStack.bottomAnchor,
-                                                   constant: Indent.single)
-        ])
+        bottomKeypadStack.snp.makeConstraints { make in
+            make.height.equalTo(Keypad.buttonSize)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(Indent.single)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(Indent.single)
+            make.top.equalTo(topKeypadStack.snp.bottom).offset(Indent.single)
+        }
     }
     
     func setupButtons() {
         view.addSubview(checkButton)
-        NSLayoutConstraint.activate([
-            checkButton.widthAnchor.constraint(equalToConstant: Keypad.checkButtonWidth),
-            checkButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            checkButton.topAnchor.constraint(equalTo: bottomKeypadStack.bottomAnchor,
-                                             constant: Indent.single),
-            checkButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-                                                constant: -Indent.single)
-        ])
+        
+        checkButton.snp.makeConstraints { make in
+            make.width.equalTo(Keypad.checkButtonWidth)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(bottomKeypadStack.snp.bottom).offset(Indent.single)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Indent.single)
+        }
     }
 }
 
@@ -189,9 +180,8 @@ extension ExampleViewController {
     func displayExample(view: UIView) {
         exampleWorkspaceView.addSubview(view)
         
-        NSLayoutConstraint.activate([
-            view.centerXAnchor.constraint(equalTo: exampleWorkspaceView.centerXAnchor),
-            view.centerYAnchor.constraint(equalTo: exampleWorkspaceView.centerYAnchor)
-        ])
+        view.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(exampleWorkspaceView)
+        }
     }
 }
