@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class PasswordChangeViewController: UIViewController, PasswordChangeViewInput {
 
@@ -22,7 +23,6 @@ class PasswordChangeViewController: UIViewController, PasswordChangeViewInput {
         label.numberOfLines = 0
         label.textColor = MQColor.gray
         label.font = MQFont.systemFont14
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -73,16 +73,11 @@ private extension PasswordChangeViewController {
     }
     
     func setupScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(scrollView)
         
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        scrollView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     func setupChangePasswordForm() {
@@ -91,28 +86,31 @@ private extension PasswordChangeViewController {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 16
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(alertLabel)
         scrollView.addSubview(stackView)
         scrollView.addSubview(changeButton)
         
-        NSLayoutConstraint.activate([
-            passwordTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
-            
-            alertLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.offset20),
-            alertLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset36),
-            alertLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset36),
-            
-            stackView.topAnchor.constraint(equalTo: alertLabel.bottomAnchor, constant: MQOffset.offset24),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset24),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset24),
-            
-            changeButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: MQOffset.offset24),
-            changeButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset56),
-            changeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset56),
-            changeButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.offset8)
-        ])
+        passwordTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44).isActive = true
+        
+        alertLabel.snp.makeConstraints { make in
+            make.top.equalTo(scrollView).offset(MQOffset.offset20)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset36)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset36)
+        }
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(alertLabel.snp.bottom).offset(MQOffset.offset24)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset24)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset24)
+        }
+        
+        changeButton.snp.makeConstraints { make in
+            make.top.equalTo(stackView.snp.bottom).offset(MQOffset.offset24)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset56)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset56)
+            make.bottom.equalTo(scrollView.snp.bottom).inset(MQOffset.offset8)
+        }
     }
 
     func assignTargets() {
