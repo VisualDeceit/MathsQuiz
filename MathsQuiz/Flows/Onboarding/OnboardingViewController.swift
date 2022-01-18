@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class OnboardingViewController: UIPageViewController, OnboardingViewInput {
     
@@ -87,7 +88,6 @@ private extension OnboardingViewController {
     func setupPageControl() {
         pageControl.currentPageIndicatorTintColor = MQColor.ubeDefault
         pageControl.pageIndicatorTintColor = MQColor.ubeLight
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupPageForm() {
@@ -95,19 +95,22 @@ private extension OnboardingViewController {
         view.addSubview(pageControl)
         view.addSubview(bottomButton)
         
-        NSLayoutConstraint.activate([
-            skipButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: MQOffset.offset4),
-            skipButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset8),
-            
-            bottomButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -MQOffset.offset8),
-            bottomButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset64),
-            bottomButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset64),
-            bottomButton.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
-            
-            pageControl.bottomAnchor.constraint(equalTo: bottomButton.topAnchor, constant: -MQOffset.offset8),
-            pageControl.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            pageControl.widthAnchor.constraint(equalTo: view.widthAnchor)
-        ])
+        skipButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(MQOffset.offset4)
+            make.trailing.equalToSuperview().inset(MQOffset.offset8)
+        }
+        
+        bottomButton.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.leading.equalToSuperview().offset(MQOffset.offset64)
+            make.trailing.equalToSuperview().inset(MQOffset.offset64)
+            make.height.equalTo(MQOffset.offset44)
+        }
+        
+        pageControl.snp.makeConstraints { make in
+            make.bottom.equalTo(bottomButton.snp.top).inset(-MQOffset.offset8)
+            make.centerX.width.equalToSuperview()
+        }
     }
 }
 
