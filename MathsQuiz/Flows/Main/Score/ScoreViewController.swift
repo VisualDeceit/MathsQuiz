@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 import Lottie
 
 class ScoreViewController: UIViewController {
@@ -25,7 +26,6 @@ class ScoreViewController: UIViewController {
         button.setTitleColor(MQColor.lavenderDark, for: .normal)
         button.setTitleColor(MQColor.lavenderLight, for: .highlighted)
         button.titleLabel?.font = MQFont.systemFont16
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -33,7 +33,6 @@ class ScoreViewController: UIViewController {
         let view = AnimationView()
         let path = Bundle.main.path(forResource: "fireworkAnimation", ofType: "json") ?? ""
         view.animation = Animation.filepath(path)
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -44,7 +43,6 @@ class ScoreViewController: UIViewController {
         label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -54,7 +52,6 @@ class ScoreViewController: UIViewController {
         label.textColor = .black
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -65,7 +62,6 @@ class ScoreViewController: UIViewController {
         label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -76,7 +72,6 @@ class ScoreViewController: UIViewController {
         label.textColor = .black
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -86,7 +81,6 @@ class ScoreViewController: UIViewController {
         label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -96,7 +90,6 @@ class ScoreViewController: UIViewController {
         label.font = MQFont.boldSystemFont14
         label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -105,7 +98,6 @@ class ScoreViewController: UIViewController {
         label.font = MQFont.boldSystemFont14
         label.textColor = .black
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -115,7 +107,6 @@ class ScoreViewController: UIViewController {
         label.font = MQFont.boldSystemFont14
         label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -124,7 +115,6 @@ class ScoreViewController: UIViewController {
         label.font = MQFont.boldSystemFont14
         label.textColor = .black
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -134,7 +124,6 @@ class ScoreViewController: UIViewController {
         label.font = MQFont.boldSystemFont14
         label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -143,7 +132,6 @@ class ScoreViewController: UIViewController {
         label.font = MQFont.boldSystemFont14
         label.textColor = .black
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -153,7 +141,6 @@ class ScoreViewController: UIViewController {
         label.font = MQFont.boldSystemFont14
         label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -162,7 +149,6 @@ class ScoreViewController: UIViewController {
         label.font = MQFont.boldSystemFont14
         label.textColor = .black
         label.textAlignment = .center
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -171,7 +157,6 @@ class ScoreViewController: UIViewController {
         button.setImage(UIImage(named: "resetLevels"), for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -180,7 +165,6 @@ class ScoreViewController: UIViewController {
         button.setImage(UIImage(named: "home"), for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -189,7 +173,6 @@ class ScoreViewController: UIViewController {
         button.setImage(UIImage(named: "share"), for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -233,10 +216,10 @@ private extension ScoreViewController {
     func setupCloseButton() {
         mainContainerView.addSubview(closeButton)
         
-        NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: mainContainerView.topAnchor, constant: MQOffset.offset8),
-            closeButton.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor, constant: -MQOffset.offset8)
-        ])
+        closeButton.snp.makeConstraints { make in
+            make.top.equalTo(mainContainerView).offset(MQOffset.offset8)
+            make.trailing.equalTo(mainContainerView).inset(MQOffset.offset8)
+        }
     }
 
     func setupBottomButtons() {
@@ -247,31 +230,28 @@ private extension ScoreViewController {
         bottomStackView.axis = .horizontal
         bottomStackView.distribution = .fillEqually
         bottomStackView.spacing = 20
-        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(bottomStackView)
         
-        NSLayoutConstraint.activate([
-            resetLevelsButton.heightAnchor.constraint(equalToConstant: MQOffset.offset64),
-            resetLevelsButton.widthAnchor.constraint(equalToConstant: MQOffset.offset64),
-            
-            bottomStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -MQOffset.offset16),
-            bottomStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+        resetLevelsButton.snp.makeConstraints { make in
+            make.height.width.equalTo(MQOffset.offset64)
+        }
+        
+        bottomStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(MQOffset.offset16)
+            make.centerX.equalTo(view)
+        }
     }
     
     func setupMainContainerView() {
         mainContainerView.backgroundColor = MQColor.lavenderLight
-        mainContainerView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(mainContainerView)
         
-        NSLayoutConstraint.activate([
-            mainContainerView.topAnchor.constraint(equalTo: view.topAnchor),
-            mainContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainContainerView.bottomAnchor.constraint(equalTo: bottomStackView.topAnchor, constant: -20)
-        ])
+        mainContainerView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(bottomStackView.snp.top).inset(-MQOffset.offset20)
+        }
     }
     
     func setupCircleContainerViews() {
@@ -283,30 +263,28 @@ private extension ScoreViewController {
         middleCircleContainerView.backgroundColor = middleLighterColor
         topCircleContainerView.backgroundColor = topLighterColor
         
-        bottomCircleContainterView.translatesAutoresizingMaskIntoConstraints = false
-        middleCircleContainerView.translatesAutoresizingMaskIntoConstraints = false
-        topCircleContainerView.translatesAutoresizingMaskIntoConstraints = false
-        
         mainContainerView.addSubview(bottomCircleContainterView)
         bottomCircleContainterView.addSubview(middleCircleContainerView)
         middleCircleContainerView.addSubview(topCircleContainerView)
         
-        NSLayoutConstraint.activate([
-            bottomCircleContainterView.topAnchor.constraint(equalTo: mainContainerView.topAnchor, constant: MQOffset.offset40),
-            bottomCircleContainterView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            bottomCircleContainterView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.27),
-            bottomCircleContainterView.widthAnchor.constraint(equalTo: bottomCircleContainterView.heightAnchor),
-            
-            middleCircleContainerView.centerXAnchor.constraint(equalTo: bottomCircleContainterView.centerXAnchor),
-            middleCircleContainerView.centerYAnchor.constraint(equalTo: bottomCircleContainterView.centerYAnchor),
-            middleCircleContainerView.heightAnchor.constraint(equalTo: bottomCircleContainterView.heightAnchor, multiplier: 0.75),
-            middleCircleContainerView.widthAnchor.constraint(equalTo: middleCircleContainerView.heightAnchor),
-            
-            topCircleContainerView.centerXAnchor.constraint(equalTo: middleCircleContainerView.centerXAnchor),
-            topCircleContainerView.centerYAnchor.constraint(equalTo: middleCircleContainerView.centerYAnchor),
-            topCircleContainerView.heightAnchor.constraint(equalTo: middleCircleContainerView.heightAnchor, multiplier: 0.85),
-            topCircleContainerView.widthAnchor.constraint(equalTo: topCircleContainerView.heightAnchor)
-        ])
+        bottomCircleContainterView.snp.makeConstraints { make in
+            make.top.equalTo(mainContainerView).offset(MQOffset.offset40)
+            make.centerX.equalTo(view)
+            make.height.equalTo(view).multipliedBy(0.27)
+            make.width.equalTo(bottomCircleContainterView.snp.height)
+        }
+        
+        middleCircleContainerView.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(bottomCircleContainterView)
+            make.height.equalTo(bottomCircleContainterView.snp.height).multipliedBy(0.75)
+            make.width.equalTo(middleCircleContainerView.snp.height)
+        }
+        
+        topCircleContainerView.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(middleCircleContainerView)
+            make.height.equalTo(middleCircleContainerView).multipliedBy(0.85)
+            make.width.equalTo(topCircleContainerView.snp.height)
+        }
     }
     
     func setupScoreLabels() {
@@ -315,16 +293,14 @@ private extension ScoreViewController {
                                                        pointTitleLabel])
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         topCircleContainerView.addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: topCircleContainerView.topAnchor, constant: MQOffset.offset8),
-            stackView.leadingAnchor.constraint(equalTo: topCircleContainerView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: topCircleContainerView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: topCircleContainerView.bottomAnchor, constant: -MQOffset.offset8)
-        ])
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(topCircleContainerView).offset(MQOffset.offset8)
+            make.leading.trailing.equalTo(topCircleContainerView)
+            make.bottom.equalTo(topCircleContainerView).inset(MQOffset.offset8)
+        }
     }
     
     func setupCongratulationForm() {
@@ -333,27 +309,24 @@ private extension ScoreViewController {
 
         congratulationFormStackView.axis = .vertical
         congratulationFormStackView.distribution = .fillProportionally
-        congratulationFormStackView.translatesAutoresizingMaskIntoConstraints = false
         
         mainContainerView.addSubview(congratulationFormStackView)
         
-        NSLayoutConstraint.activate([
-            congratulationFormStackView.topAnchor.constraint(equalTo: bottomCircleContainterView.bottomAnchor, constant: MQOffset.offset16),
-            congratulationFormStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset36),
-            congratulationFormStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset36),
-            congratulationFormStackView.heightAnchor.constraint(equalToConstant: 80)
-        ])
+        congratulationFormStackView.snp.makeConstraints { make in
+            make.top.equalTo(bottomCircleContainterView.snp.bottom).offset(MQOffset.offset16)
+            make.leading.equalTo(view).offset(MQOffset.offset36)
+            make.trailing.equalTo(view).inset(MQOffset.offset36)
+            make.height.equalTo(80)
+        }
     }
 
     func setupFireworkAnimation() {
         mainContainerView.addSubview(fireworkAnimationView)
         
-        NSLayoutConstraint.activate([
-            fireworkAnimationView.topAnchor.constraint(equalTo: mainContainerView.topAnchor),
-            fireworkAnimationView.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor),
-            fireworkAnimationView.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor),
-            fireworkAnimationView.bottomAnchor.constraint(equalTo: congratulationFormStackView.bottomAnchor)
-        ])
+        fireworkAnimationView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(mainContainerView)
+            make.bottom.equalTo(congratulationFormStackView)
+        }
     }
     
     func setupResultForm() {
@@ -387,16 +360,14 @@ private extension ScoreViewController {
                                                            rightStackView])
         mainStackView.axis = .horizontal
         mainStackView.distribution = .fillEqually
-        mainStackView.translatesAutoresizingMaskIntoConstraints = false
         
         mainContainerView.addSubview(mainStackView)
         
-        NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: congratulationFormStackView.bottomAnchor, constant: MQOffset.offset8),
-            mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainStackView.heightAnchor.constraint(equalToConstant: 100)
-        ])
+        mainStackView.snp.makeConstraints { make in
+            make.top.equalTo(congratulationFormStackView.snp.bottom).offset(MQOffset.offset8)
+            make.leading.trailing.equalTo(view)
+            make.height.equalTo(100)
+        }
     }
     
     func setupResultsText() {
@@ -420,4 +391,30 @@ private extension ScoreViewController {
         middleCircleContainerView.layer.cornerRadius = middleCircleContainerView.frame.width / 2
         topCircleContainerView.layer.cornerRadius = topCircleContainerView.frame.width / 2
     }
+}
+
+// MARK: - Setup targets
+private extension ScoreViewController {
+    func setupTargets() {
+        closeButton.addTarget(self,
+                              action: #selector(closeButtonTapped),
+                              for: .touchUpInside)
+        resetLevelsButton.addTarget(self,
+                                    action: #selector(resetLevelsButtonTapped),
+                                    for: .touchUpInside)
+        homeButton.addTarget(self,
+                             action: #selector(homeButtonTapped),
+                             for: .touchUpInside)
+        shareButton.addTarget(self,
+                              action: #selector(shareButtonTapped),
+                              for: .touchUpInside)
+    }
+    
+    @objc func closeButtonTapped() {}
+    
+    @objc func resetLevelsButtonTapped() {}
+    
+    @objc func homeButtonTapped() {}
+    
+    @objc func shareButtonTapped() {}
 }
