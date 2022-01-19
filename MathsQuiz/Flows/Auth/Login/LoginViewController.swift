@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 import AuthenticationServices
 
 class LoginViewController: UIViewController, LoginViewInput {
@@ -19,7 +20,6 @@ class LoginViewController: UIViewController, LoginViewInput {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "login_dog")
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -30,7 +30,6 @@ class LoginViewController: UIViewController, LoginViewInput {
         label.numberOfLines = 0
         label.textColor = MQColor.gray
         label.font = MQFont.systemFont14
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -39,7 +38,6 @@ class LoginViewController: UIViewController, LoginViewInput {
         label.text = "Еще нет аккаунта?"
         label.textColor = MQColor.gray
         label.font = MQFont.systemFont14
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -50,7 +48,6 @@ class LoginViewController: UIViewController, LoginViewInput {
         button.setImage(UIImage(named: "Google"), for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -59,7 +56,6 @@ class LoginViewController: UIViewController, LoginViewInput {
         button.setImage(UIImage(named: "AppleID"), for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -68,7 +64,6 @@ class LoginViewController: UIViewController, LoginViewInput {
         button.setImage(UIImage(named: "Facebook"), for: .normal)
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -113,27 +108,20 @@ private extension LoginViewController {
     }
     
     func setupScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(scrollView)
         
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        scrollView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     func setupImageView() {
         scrollView.addSubview(imageView)
         
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4)
-        ])
+        imageView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(scrollView)
+            make.height.equalTo(view).multipliedBy(0.4)
+        }
     }
     
     func setupAuthForm() {
@@ -142,27 +130,29 @@ private extension LoginViewController {
         stackView.axis = .vertical
         stackView.spacing = 8
         stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(stackView)
         scrollView.addSubview(forgotPasswordButton)
         scrollView.addSubview(loginButton)
         
-        NSLayoutConstraint.activate([
-            emailTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
-            
-            stackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: MQOffset.offset24),
-            stackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: MQOffset.offset28),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -MQOffset.offset28),
-            
-            forgotPasswordButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: MQOffset.offset8),
-            forgotPasswordButton.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -MQOffset.offset8),
-            
-            loginButton.topAnchor.constraint(equalTo: forgotPasswordButton.bottomAnchor, constant: MQOffset.offset12),
-            loginButton.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: MQOffset.offset56),
-            loginButton.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -MQOffset.offset56)
-        ])
+        emailTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44).isActive = true
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).offset(MQOffset.offset24)
+            make.centerX.equalTo(scrollView)
+            make.trailing.leading.equalTo(scrollView).inset(MQOffset.offset28)
+        }
+        
+        forgotPasswordButton.snp.makeConstraints { make in
+            make.top.equalTo(stackView.snp.bottom).offset(MQOffset.offset8)
+            make.trailing.equalTo(stackView.snp.trailing).inset(MQOffset.offset8)
+        }
+        
+        loginButton.snp.makeConstraints { make in
+            make.top.equalTo(forgotPasswordButton.snp.bottom).offset(MQOffset.offset12)
+            make.leading.equalTo(scrollView).offset(MQOffset.offset56)
+            make.trailing.equalTo(scrollView).inset(MQOffset.offset56)
+        }
     }
     
     func setupSignUpForm() {
@@ -172,32 +162,35 @@ private extension LoginViewController {
         buttonsStackView.axis = .horizontal
         buttonsStackView.spacing = 37
         buttonsStackView.distribution = .fillEqually
-        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
         
         let createAccountStackView = UIStackView(arrangedSubviews: [noAccountYetLabel,
                                                                     createNewAccountButton])
         createAccountStackView.axis = .horizontal
         createAccountStackView.spacing = 2
-        createAccountStackView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(orLogInWithLabel)
         scrollView.addSubview(buttonsStackView)
         scrollView.addSubview(createAccountStackView)
         
-        NSLayoutConstraint.activate([
-            googleButton.widthAnchor.constraint(equalToConstant: MQOffset.offset44),
-            googleButton.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
-            
-            orLogInWithLabel.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: MQOffset.offset12),
-            orLogInWithLabel.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            
-            buttonsStackView.topAnchor.constraint(equalTo: orLogInWithLabel.bottomAnchor, constant: MQOffset.offset12),
-            buttonsStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            
-            createAccountStackView.topAnchor.constraint(equalTo: buttonsStackView.bottomAnchor, constant: MQOffset.offset16),
-            createAccountStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
-            createAccountStackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.offset8)
-        ])
+        googleButton.snp.makeConstraints { make in
+            make.width.height.equalTo(MQOffset.offset44)
+        }
+        
+        orLogInWithLabel.snp.makeConstraints { make in
+            make.top.equalTo(loginButton.snp.bottom).offset(MQOffset.offset12)
+            make.centerX.equalTo(scrollView)
+        }
+        
+        buttonsStackView.snp.makeConstraints { make in
+            make.top.equalTo(orLogInWithLabel.snp.bottom).offset(MQOffset.offset12)
+            make.centerX.equalTo(scrollView)
+        }
+        
+        createAccountStackView.snp.makeConstraints { make in
+            make.top.equalTo(buttonsStackView.snp.bottom).offset(MQOffset.offset16)
+            make.centerX.equalTo(scrollView)
+            make.bottom.equalTo(scrollView.snp.bottom).inset(MQOffset.offset8)
+        }
     }
 }
 

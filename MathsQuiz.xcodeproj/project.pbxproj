@@ -790,7 +790,7 @@
 				1B71BA0A2767BE490056A2FF /* Sources */,
 				1B71BA0B2767BE490056A2FF /* Frameworks */,
 				1B71BA0C2767BE490056A2FF /* Resources */,
-				009FBDF2A9229277F7DE5242 /* [CP] Embed Pods Frameworks */,
+				9542443E80958220D1CC5663 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -833,8 +833,8 @@
 			mainGroup = 1B71BA052767BE490056A2FF;
 			packageReferences = (
 				1BBC5C80276DB547001B5F3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				1B9BCAB32779D7E80084931D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				1B9BCAB32779D7E80084931D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */,
+				E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk.git" */,
 			);
 			productRefGroup = 1B71BA0F2767BE490056A2FF /* Products */;
 			projectDirPath = "";
@@ -895,6 +895,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		9542443E80958220D1CC5663 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		A6E0A07CDC4D57A546716DB4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1228,7 +1245,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1B9BCAB32779D7E80084931D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+		1B9BCAB32779D7E80084931D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:google/GoogleSignIn-iOS.git";
 			requirement = {
@@ -1244,7 +1261,7 @@
 				minimumVersion = 8.10.0;
 			};
 		};
-		E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+		E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
 			requirement = {
@@ -1267,7 +1284,7 @@
 		};
 		1B9BCAB42779D7E90084931D /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 1B9BCAB32779D7E80084931D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			package = 1B9BCAB32779D7E80084931D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */;
 			productName = GoogleSignIn;
 		};
 		1BBC5C81276DB547001B5F3E /* FirebaseAuth */ = {
@@ -1277,7 +1294,7 @@
 		};
 		E89B6BB0278844CF00363D31 /* FacebookLogin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			package = E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk.git" */;
 			productName = FacebookLogin;
 		};
 /* End XCSwiftPackageProductDependency section */

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class UserProfileViewController: UIViewController, UserProfileViewInput {
     
@@ -18,7 +19,6 @@ class UserProfileViewController: UIViewController, UserProfileViewInput {
         imageView.image = UIImage(named: "user_placeholder")
         imageView.layer.cornerRadius = imageView.frame.width / 2
         imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -30,7 +30,6 @@ class UserProfileViewController: UIViewController, UserProfileViewInput {
         button.backgroundColor = MQColor.ubeDefault
         button.tintColor = MQColor.background
         button.layer.cornerRadius = 10
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -38,7 +37,6 @@ class UserProfileViewController: UIViewController, UserProfileViewInput {
         let label = UILabel()
         label.text = "Вася Пупкин"
         label.font = MQFont.boldSystemFont24
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -46,7 +44,6 @@ class UserProfileViewController: UIViewController, UserProfileViewInput {
         let view = UIView()
         view.backgroundColor = MQColor.ubeLight
         view.layer.cornerRadius = 12
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -54,7 +51,6 @@ class UserProfileViewController: UIViewController, UserProfileViewInput {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "mail")
         imageView.contentMode = .scaleAspectFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -62,14 +58,12 @@ class UserProfileViewController: UIViewController, UserProfileViewInput {
         let label = UILabel()
         label.text = "test@mail.com"
         label.font = MQFont.systemFont16
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let resultContainerView: UIView = {
         let view = UIView()
         view.backgroundColor = UIColor(rgb: 0xC4C4C4)
-        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
     
@@ -114,16 +108,13 @@ private extension UserProfileViewController {
     }
     
     func setupScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         view.addSubview(scrollView)
         
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     func setupUserDataForm() {
@@ -131,20 +122,23 @@ private extension UserProfileViewController {
         userPhoto.addSubview(changePhotoButton)
         scrollView.addSubview(nameLabel)
         
-        NSLayoutConstraint.activate([
-            userPhoto.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            userPhoto.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            userPhoto.heightAnchor.constraint(equalToConstant: MQOffset.offset120),
-            userPhoto.widthAnchor.constraint(equalToConstant: MQOffset.offset120),
-            
-            changePhotoButton.topAnchor.constraint(equalTo: userPhoto.bottomAnchor, constant: -MQOffset.offset16),
-            changePhotoButton.centerXAnchor.constraint(equalTo: userPhoto.centerXAnchor),
-            changePhotoButton.widthAnchor.constraint(equalToConstant: MQOffset.offset72),
-            changePhotoButton.heightAnchor.constraint(equalToConstant: MQOffset.offset20),
-            
-            nameLabel.topAnchor.constraint(equalTo: changePhotoButton.bottomAnchor, constant: MQOffset.offset16),
-            nameLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-        ])
+        userPhoto.snp.makeConstraints { make in
+            make.top.equalTo(scrollView)
+            make.centerX.equalToSuperview()
+            make.height.width.equalTo(MQOffset.offset120)
+        }
+        
+        changePhotoButton.snp.makeConstraints { make in
+            make.top.equalTo(userPhoto.snp.bottom).inset(MQOffset.offset16)
+            make.centerX.equalTo(userPhoto.snp.centerX)
+            make.width.equalTo(MQOffset.offset72)
+            make.height.equalTo(MQOffset.offset20)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(changePhotoButton.snp.bottom).offset(MQOffset.offset16)
+            make.centerX.equalToSuperview()
+        }
     }
     
     func setupMailForm() {
@@ -152,30 +146,33 @@ private extension UserProfileViewController {
         mailContainerView.addSubview(mailImageView)
         mailContainerView.addSubview(mailLabel)
         
-        NSLayoutConstraint.activate([
-            mailContainerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: MQOffset.offset8),
-            mailContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset28),
-            mailContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset28),
-            mailContainerView.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
-            
-            mailImageView.topAnchor.constraint(equalTo: mailContainerView.topAnchor, constant: MQOffset.offset8),
-            mailImageView.leadingAnchor.constraint(equalTo: mailContainerView.leadingAnchor, constant: MQOffset.offset8),
-            mailImageView.bottomAnchor.constraint(equalTo: mailContainerView.bottomAnchor, constant: -MQOffset.offset8),
-            
-            mailLabel.centerYAnchor.constraint(equalTo: mailImageView.centerYAnchor),
-            mailLabel.leadingAnchor.constraint(equalTo: mailImageView.trailingAnchor, constant: MQOffset.offset8)
-        ])
+        mailContainerView.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(MQOffset.offset8)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset28)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset28)
+            make.height.equalTo(MQOffset.offset44)
+        }
+        
+        mailImageView.snp.makeConstraints { make in
+            make.top.leading.equalTo(mailContainerView).offset(MQOffset.offset8)
+            make.bottom.equalTo(mailContainerView.snp.bottom).inset(MQOffset.offset8)
+        }
+        
+        mailLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(mailImageView)
+            make.leading.equalTo(mailImageView.snp.trailing).offset(MQOffset.offset8)
+        }
     }
     
     func setupResultContainerView() {
         scrollView.addSubview(resultContainerView)
         
-        NSLayoutConstraint.activate([
-            resultContainerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: MQOffset.offset68),
-            resultContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset28),
-            resultContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset28),
-            resultContainerView.heightAnchor.constraint(equalToConstant: MQOffset.offset160)
-        ])
+        resultContainerView.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(MQOffset.offset68)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset28)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset28)
+            make.height.equalTo(MQOffset.offset160)
+        }
     }
     
     func setupButtons() {
@@ -185,16 +182,15 @@ private extension UserProfileViewController {
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 16
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(stackView)
         
-        NSLayoutConstraint.activate([
-            stackView.topAnchor.constraint(equalTo: resultContainerView.bottomAnchor, constant: MQOffset.offset16),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset56),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset56),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.offset20)
-        ])
+        stackView.snp.makeConstraints { make in
+            make.top.equalTo(resultContainerView.snp.bottom).offset(MQOffset.offset16)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset56)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset56)
+            make.bottom.equalTo(scrollView.snp.bottom).inset(MQOffset.offset20)
+        }
     }
 }
 

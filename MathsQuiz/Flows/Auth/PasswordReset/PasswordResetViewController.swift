@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class PasswordResetViewController: UIViewController, PasswordResetViewInput {
     
@@ -22,7 +23,6 @@ class PasswordResetViewController: UIViewController, PasswordResetViewInput {
         label.font = MQFont.boldSystemFont24
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -33,7 +33,6 @@ class PasswordResetViewController: UIViewController, PasswordResetViewInput {
         label.textColor = MQColor.gray
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -78,67 +77,62 @@ private extension PasswordResetViewController {
     }
     
     func setupScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(scrollView)
         
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        scrollView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     func setupCloseButton() {
         scrollView.addSubview(closeButton)
         
-        NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.offset16),
-            closeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset8)
-        ])
+        closeButton.snp.makeConstraints { make in
+            make.top.equalTo(scrollView).offset(MQOffset.offset16)
+            make.trailing.equalTo(view).inset(MQOffset.offset8)
+        }
     }
     
     func setupPasswordResetLabel() {
         scrollView.addSubview(passwordResetLabel)
         
-        NSLayoutConstraint.activate([
-            passwordResetLabel.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.offset48),
-            passwordResetLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset20),
-            passwordResetLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset20)
-        ])
+        passwordResetLabel.snp.makeConstraints { make in
+            make.top.equalTo(scrollView.snp.top).offset(MQOffset.offset48)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset20)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset20)
+        }
     }
     
     func setupEnterMailLabel() {
         scrollView.addSubview(enterMailLabel)
         
-        NSLayoutConstraint.activate([
-            enterMailLabel.topAnchor.constraint(equalTo: passwordResetLabel.bottomAnchor, constant: MQOffset.offset24),
-            enterMailLabel.leadingAnchor.constraint(equalTo: passwordResetLabel.leadingAnchor, constant: MQOffset.offset20),
-            enterMailLabel.trailingAnchor.constraint(equalTo: passwordResetLabel.trailingAnchor, constant: -MQOffset.offset20)
-        ])
+        enterMailLabel.snp.makeConstraints { make in
+            make.top.equalTo(passwordResetLabel.snp.bottom).offset(MQOffset.offset24)
+            make.leading.equalTo(passwordResetLabel).offset(MQOffset.offset20)
+            make.trailing.equalTo(passwordResetLabel).inset(MQOffset.offset20)
+        }
     }
     
     func setupTextField() {
         scrollView.addSubview(textField)
         
-        NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: enterMailLabel.bottomAnchor, constant: MQOffset.offset24),
-            textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset28),
-            textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset28),
-            textField.heightAnchor.constraint(equalToConstant: MQOffset.offset44)
-        ])
+        textField.snp.makeConstraints { make in
+            make.top.equalTo(enterMailLabel.snp.bottom).offset(MQOffset.offset24)
+            make.leading.equalTo(view).offset(MQOffset.offset28)
+            make.trailing.equalTo(view).inset(MQOffset.offset28)
+            make.height.equalTo(MQOffset.offset44)
+        }
     }
     
     func setupSendButton() {
         scrollView.addSubview(sendButton)
         
-        NSLayoutConstraint.activate([
-            sendButton.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: MQOffset.offset24),
-            sendButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset52),
-            sendButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset52),
-            sendButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.offset20)
-        ])
+        sendButton.snp.makeConstraints { make in
+            make.top.equalTo(textField.snp.bottom).offset(MQOffset.offset24)
+            make.leading.equalTo(view).offset(MQOffset.offset52)
+            make.trailing.equalTo(view).inset(MQOffset.offset52)
+            make.bottom.equalTo(scrollView.snp.bottom).inset(MQOffset.offset20)
+        }
     }
 }
 

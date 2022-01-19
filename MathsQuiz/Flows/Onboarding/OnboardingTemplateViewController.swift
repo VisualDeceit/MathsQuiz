@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class OnboardingTemplateViewController: UIViewController {
     
@@ -17,14 +18,12 @@ class OnboardingTemplateViewController: UIViewController {
         label.textColor = MQColor.burntSienna
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleToFill
-        imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
@@ -35,7 +34,6 @@ class OnboardingTemplateViewController: UIViewController {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -73,30 +71,31 @@ private extension OnboardingTemplateViewController {
         view.addSubview(describeLabel)
         
         if index > 0 {
-            NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: MQOffset.offset16),
-                imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset80),
-                imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset80),
-                imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
-            ])
+            imageView.snp.makeConstraints { make in
+                make.top.equalTo(titleLabel.snp.bottom).offset(MQOffset.offset16)
+                make.leading.equalToSuperview().offset(MQOffset.offset80)
+                make.trailing.equalToSuperview().inset(MQOffset.offset80)
+                make.height.equalToSuperview().multipliedBy(0.5)
+            }
         } else {
-            NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: MQOffset.offset16),
-                imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                imageView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.4)
-            ])
+            imageView.snp.makeConstraints { make in
+                make.top.equalTo(titleLabel.snp.bottom).offset(MQOffset.offset16)
+                make.leading.trailing.equalToSuperview()
+                make.height.equalToSuperview().multipliedBy(0.4)
+            }
         }
         
-        NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: MQOffset.offset24),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset16),
-            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset16),
-            titleLabel.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
-            
-            describeLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: MQOffset.offset24),
-            describeLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset16),
-            describeLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset16)
-        ])
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset24)
+            make.leading.equalToSuperview().offset(MQOffset.offset16)
+            make.trailing.equalToSuperview().inset(MQOffset.offset16)
+            make.height.equalTo(MQOffset.offset44)
+        }
+        
+        describeLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageView.snp.bottom).offset(MQOffset.offset24)
+            make.leading.equalToSuperview().offset(MQOffset.offset16)
+            make.trailing.equalToSuperview().inset(MQOffset.offset16)
+        }
     }
 }

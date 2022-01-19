@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class UserProfileDetailViewController: UIViewController, UserProfileDetailViewInput {
     
@@ -36,7 +37,6 @@ class UserProfileDetailViewController: UIViewController, UserProfileDetailViewIn
         button.tintColor = MQColor.burntSienna
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -88,16 +88,12 @@ private extension UserProfileDetailViewController {
     }
     
     func setupScrollView() {
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        
         view.addSubview(scrollView)
         
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        scrollView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
     }
     
     func setupPhoneNumberTextfield() {
@@ -140,12 +136,11 @@ private extension UserProfileDetailViewController {
     func setupCityTextfield() {
         cityTextField.addSubview(locationButton)
         
-        NSLayoutConstraint.activate([
-            locationButton.centerYAnchor.constraint(equalTo: cityTextField.centerYAnchor),
-            locationButton.trailingAnchor.constraint(equalTo: cityTextField.trailingAnchor, constant: -MQOffset.offset8),
-            locationButton.heightAnchor.constraint(equalToConstant: MQOffset.offset24),
-            locationButton.widthAnchor.constraint(equalToConstant: MQOffset.offset24)
-        ])
+        locationButton.snp.makeConstraints { make in
+            make.centerY.equalTo(cityTextField)
+            make.trailing.equalTo(cityTextField.snp.trailing).inset(MQOffset.offset8)
+            make.height.width.equalTo(MQOffset.offset24)
+        }
     }
     
     func setupUserDataForm() {
@@ -163,23 +158,24 @@ private extension UserProfileDetailViewController {
         stackView.axis = .vertical
         stackView.spacing = 19
         stackView.distribution = .fillEqually
-        stackView.translatesAutoresizingMaskIntoConstraints = false
         
         scrollView.addSubview(stackView)
         scrollView.addSubview(saveButton)
         
-        NSLayoutConstraint.activate([
-            surnameTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44),
-            
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: MQOffset.offset24),
-            stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset28),
-            stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset28),
-            
-            saveButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: MQOffset.offset24),
-            saveButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset56),
-            saveButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset56),
-            saveButton.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -MQOffset.offset8)
-        ])
+        surnameTextField.heightAnchor.constraint(equalToConstant: MQOffset.offset44).isActive = true
+        
+        stackView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(MQOffset.offset24)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset28)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset28)
+        }
+        
+        saveButton.snp.makeConstraints { make in
+            make.top.equalTo(stackView.snp.bottom).offset(MQOffset.offset24)
+            make.leading.equalTo(view.snp.leading).offset(MQOffset.offset56)
+            make.trailing.equalTo(view.snp.trailing).inset(MQOffset.offset56)
+            make.bottom.equalTo(scrollView.snp.bottom).inset(MQOffset.offset8)
+        }
     }
 }
 

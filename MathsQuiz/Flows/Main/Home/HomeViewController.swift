@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class HomeViewController: UIViewController, HomeViewInput {
     
@@ -13,10 +14,9 @@ class HomeViewController: UIViewController, HomeViewInput {
     
     private let greetingLabel: UILabel = {
         let label = UILabel()
-        label.text = ""
+        label.text = "Привет, Данила"
         label.font = MQFont.boldSystemFont30
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -25,7 +25,6 @@ class HomeViewController: UIViewController, HomeViewInput {
         button.layer.cornerRadius = button.frame.width / 2
         button.layer.masksToBounds = true
         button.setImage(UIImage(named: "user_placeholder"), for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(accountButtonTapped), for: .touchUpInside)
         return button
     }()
@@ -38,7 +37,6 @@ class HomeViewController: UIViewController, HomeViewInput {
                                 forCellWithReuseIdentifier: HomeCollectionViewCell.reuseId)
         collectionView.backgroundColor = MQColor.background
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
     
@@ -74,16 +72,17 @@ private extension HomeViewController {
         view.addSubview(greetingLabel)
         view.addSubview(accountButton)
         
-        NSLayoutConstraint.activate([
-            greetingLabel.centerYAnchor.constraint(equalTo: accountButton.centerYAnchor),
-            greetingLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset16),
-            greetingLabel.trailingAnchor.constraint(equalTo: accountButton.leadingAnchor, constant: -MQOffset.offset16),
-            
-            accountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset16),
-            accountButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: MQOffset.offset16),
-            accountButton.widthAnchor.constraint(equalToConstant: MQOffset.offset56),
-            accountButton.heightAnchor.constraint(equalToConstant: MQOffset.offset56)
-        ])
+        greetingLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(accountButton.snp.centerY)
+            make.leading.equalToSuperview().offset(MQOffset.offset16)
+            make.trailing.equalTo(accountButton.snp.leading).inset(MQOffset.offset16)
+        }
+        
+        accountButton.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset16)
+            make.trailing.equalToSuperview().inset(MQOffset.offset16)
+            make.width.height.equalTo(MQOffset.offset56)
+        }
     }
     
     func setupMainCollectionView() {
@@ -92,12 +91,11 @@ private extension HomeViewController {
         mainCollectionView.dataSource = self
         mainCollectionView.delegate = self
         
-        NSLayoutConstraint.activate([
-            mainCollectionView.topAnchor.constraint(equalTo: accountButton.bottomAnchor, constant: MQOffset.offset16),
-            mainCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            mainCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-        ])
+        mainCollectionView.snp.makeConstraints { make in
+            make.top.equalTo(accountButton.snp.bottom).offset(MQOffset.offset16)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
     
     // Targets

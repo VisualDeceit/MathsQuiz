@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class LevelsViewController: UIViewController, LevelsViewInput {
     
@@ -19,7 +20,6 @@ class LevelsViewController: UIViewController, LevelsViewInput {
                                 forCellWithReuseIdentifier: LevelCollectionViewCell.reuseId)
         collectionView.backgroundColor = MQColor.background
         collectionView.showsVerticalScrollIndicator = false
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
         return collectionView
     }()
 
@@ -61,19 +61,17 @@ private extension LevelsViewController {
         levelCollectionView.dataSource = self
         levelCollectionView.delegate = self
         
-        NSLayoutConstraint.activate([
-            levelCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            levelCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            levelCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            levelCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        levelCollectionView.snp.makeConstraints { make in
+            make.top.leading.trailing.bottom.equalToSuperview()
+        }
     }
 }
 
 // MARK: - CollectionViewDelegate & CollectionViewDataSource
 extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter?.levels?.count ?? 0
+//        presenter?.levels?.count ?? 0
+        10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -85,7 +83,7 @@ extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDele
         }
         
         levelCell.configure(level: levels[indexPath.row], type: activity)
-        
+
         return levelCell
     }
     
