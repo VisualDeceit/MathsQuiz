@@ -37,7 +37,6 @@ class LevelsViewController: UIViewController, LevelsViewInput {
 }
 
 // MARK: - Setup views
-
 private extension LevelsViewController {
     func setupNavigationBar() {
         title = presenter?.activity.rawValue
