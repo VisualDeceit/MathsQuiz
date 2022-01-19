@@ -9,6 +9,8 @@ import Foundation
 
 final class AdditionActivityStrategy: ActivityStrategy {
     
+    static let total = 5
+    
     func generate(level: Int) -> Input? {
         var n1, n2: Int
         switch level {

@@ -10,15 +10,15 @@ import FirebaseAuth
 
 class SignUpPresenter: SignUpPresenterOutput {
 
+    let authService: AuthorizationService
+    let firestoreManager: StorageManager
+    
     var onSignUpComplete: (() -> Void)?
     var onLoginButtonTap: (() -> Void)?
     
-    var authService: AuthorizationService
-    var firestoreManager: StorageManager
-    
     private(set) weak var view: SignUpViewInput?
     
-    required init(view: SignUpViewInput, authService: AuthorizationService, firestoreManager: StorageManager) {
+    init(view: SignUpViewInput, authService: AuthorizationService, firestoreManager: StorageManager) {
         self.view = view
         self.authService = authService
         self.firestoreManager = firestoreManager

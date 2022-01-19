@@ -8,5 +8,6 @@ target 'MathsQuiz' do
   # Pods for MathsQuiz
   pod 'SwiftLint', '~> 0.45.1'
   pod 'SnapKit', '~> 5.0.1'
+  pod 'lottie-ios', '~> 3.3.0'
 
 end

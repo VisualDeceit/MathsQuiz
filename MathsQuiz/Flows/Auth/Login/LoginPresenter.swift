@@ -13,20 +13,19 @@ import FBSDKLoginKit
 
 class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
     
+    let authService: AuthorizationService
+    let firestoreManager: StorageManager
+    
     var onCompleteAuth: (() -> Void)?
     var onSignUpButtonTap: (() -> Void)?
     var onPasswordReset: (() -> Void)?
     
-    var authService: AuthorizationService
-    var firestoreManager: StorageManager
-    
     private weak var view: LoginViewInput?
-
     fileprivate var currentNonce: String?
     
-    required init(view: LoginViewInput,
-                  authService: AuthorizationService,
-                  firestoreManager: StorageManager) {
+    init(view: LoginViewInput,
+         authService: AuthorizationService,
+         firestoreManager: StorageManager) {
         self.view = view
         self.authService = authService
         self.firestoreManager = firestoreManager

@@ -75,22 +75,21 @@ extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LevelCollectionViewCell.reuseId,
-                                                      for: indexPath)
-        guard let levelCell = cell as? LevelCollectionViewCell else {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LevelCollectionViewCell.reuseId, for: indexPath)
+        guard let levelCell = cell as? LevelCollectionViewCell,
+              let activity = presenter?.activity,
+              let levels = presenter?.levels else {
             return UICollectionViewCell()
         }
         
-//        if let level = presenter?.levels?[indexPath.row],
-//           let activity = presenter?.activity {
-//            levelCell.configure(level: level, type: activity)
-//        }
-        levelCell.configure(level: Level(number: 3, completion: 1), type: .addition)
+        levelCell.configure(level: levels[indexPath.row], type: activity)
+
         return levelCell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let selectedLevel = presenter?.levels?[indexPath.row] {
+        if let selectedLevel = presenter?.levels?[indexPath.row],
+           selectedLevel.completion >= 0 {
             presenter?.viewDidSelectLevel(selectedLevel)
         }
     }

@@ -8,11 +8,12 @@
 import Foundation
 
 final class UserProfileDetailPresenter: UserProfileDetailPresenterOutput, UserProfileDetailViewOutput {
+    
+    let firestoreManager: StorageManager
+    
     var userProfile: UserProfile?
     
     private weak var view: UserProfileDetailViewInput?
-    
-    var firestoreManager: StorageManager
     
     init(view: UserProfileDetailViewInput, firestoreManager: StorageManager) {
         self.view = view

@@ -24,10 +24,14 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         self.layer.cornerRadius = 24
         setupNameLabel(text: value.type.rawValue)
         setupLevelContainerView()
-        setupLevelCountLabel(with: "\(value.total)")
+        setupLevelCountLabel(with: value.type.totalLevels)
         setupProgressForm()
-        setUpCircularProgressBarView(toValue: Double(value.progress) / Double(value.total))
-        progressNumLabel.text = "\(value.progress)"
+        if value.type.totalLevels == 0 {
+            setUpCircularProgressBarView(toValue: 0)
+        } else {
+            setUpCircularProgressBarView(toValue: Double(value.levels.count - 1) / Double(value.type.totalLevels))
+        }
+        progressNumLabel.text = "\(value.levels.count - 1)"
     }
     
     private func setupNameLabel(text: String) {
@@ -58,8 +62,14 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         }
     }
     
-    private func setupLevelCountLabel(with text: String) {
-        levelCountLabel.text = text
+    private func setupLevelCountLabel(with number: Int) {
+        switch number {
+        case 0:
+            levelCountLabel.text = "Нет доступных"
+        default:
+            levelCountLabel.text = "\(number) уровней"
+        }
+       
         levelCountLabel.font = MQFont.systemFont12
         levelCountLabel.textAlignment = .center
         levelCountLabel.adjustsFontSizeToFitWidth = true

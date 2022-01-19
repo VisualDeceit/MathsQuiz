@@ -9,21 +9,21 @@ import UIKit
 
 struct Stub {
     static var activities: [Activity] = [
-        Activity(type: .addition,
-                 progress: 4,
-                 total: 18),
-        Activity(type: .subtraction,
-                 progress: 10,
-                 total: 17),
-        Activity(type: .multiplication,
-                 progress: 1,
-                 total: 23),
-        Activity(type: .division,
-                 progress: 0,
-                 total: 22),
-        Activity(type: .expression,
-                 progress: 0,
-                 total: 10)
+        Activity(index: 0,
+                 type: .addition,
+                 levels: [Level.empty]),
+        Activity(index: 1,
+                 type: .subtraction,
+                 levels: [Level.empty]),
+        Activity(index: 2,
+                 type: .multiplication,
+                 levels: [Level.empty]),
+        Activity(index: 3,
+                 type: .division,
+                 levels: [Level.empty]),
+        Activity(index: 5,
+                 type: .expression,
+                 levels: [Level.empty])
     ]
     
     static var levels: [Level] = {

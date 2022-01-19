@@ -10,10 +10,10 @@ import FirebaseAuth
 
 final class PasswordChangePresenter: PasswordChangeViewOutput, PasswordChangePresenterOutput {
     
+    let authService: AuthorizationService
+    
     var onSuccess: (() -> Void)?
     
-    var authService: AuthorizationService
-
     private weak var view: PasswordChangeViewInput?
     
     init(view: PasswordChangeViewInput, authService: AuthorizationService) {

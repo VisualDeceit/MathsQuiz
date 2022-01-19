@@ -15,7 +15,7 @@ protocol LevelsViewInput: AnyObject {
 
 protocol LevelsViewOutput: AnyObject {
     var levels: [Level]? { get set }
-    var activity: ActivityType { get set }
+    var activity: ActivityType { get }
     
     func viewDidSelectLevel(_ level: Level)
     func viewDidLoad()

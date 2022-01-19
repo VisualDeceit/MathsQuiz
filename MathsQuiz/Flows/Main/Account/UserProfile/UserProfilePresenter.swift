@@ -9,12 +9,13 @@ import Foundation
 import FirebaseAuth
 
 final class UserProfilePresenter: UserProfilePresenterOutput {
+    
+    let authService: AuthorizationService
+    let firestoreManager: StorageManager
+    
     var onLogout: (() -> Void)?
     var onMyDataButtonTap: (() -> Void)?
     var onPasswordChangeTap: (() -> Void)?
-    
-    var authService: AuthorizationService
-    var firestoreManager: StorageManager
     
     private weak var view: UserProfileViewInput?
     
