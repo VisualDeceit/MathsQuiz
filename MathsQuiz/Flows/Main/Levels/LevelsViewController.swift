@@ -70,8 +70,7 @@ private extension LevelsViewController {
 // MARK: - CollectionViewDelegate & CollectionViewDataSource
 extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        presenter?.levels?.count ?? 0
-        10
+        presenter?.levels?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
