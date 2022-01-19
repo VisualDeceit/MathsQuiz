@@ -16,7 +16,8 @@ class ScoreViewController: UIViewController {
     private let bottomCircleContainterView = UIView()
     private let middleCircleContainerView = UIView()
     private let topCircleContainerView = UIView()
-    private var congratulationFormStackView: UIStackView?
+    private var congratulationFormStackView = UIStackView()
+    private var bottomStackView = UIStackView()
     
     private let closeButton: UIButton = {
         let button = UIButton()
@@ -192,8 +193,6 @@ class ScoreViewController: UIViewController {
         return button
     }()
     
-    private var bottomStackView: UIStackView?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -241,22 +240,23 @@ private extension ScoreViewController {
     }
 
     func setupBottomButtons() {
-        bottomStackView = UIStackView(arrangedSubviews: [resetLevelsButton,
-                                                         homeButton,
-                                                         shareButton])
-        bottomStackView?.axis = .horizontal
-        bottomStackView?.distribution = .fillEqually
-        bottomStackView?.spacing = 20
-        bottomStackView?.translatesAutoresizingMaskIntoConstraints = false
+        bottomStackView.addArrangedSubview(resetLevelsButton)
+        bottomStackView.addArrangedSubview(homeButton)
+        bottomStackView.addArrangedSubview(shareButton)
+
+        bottomStackView.axis = .horizontal
+        bottomStackView.distribution = .fillEqually
+        bottomStackView.spacing = 20
+        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(bottomStackView!)
+        view.addSubview(bottomStackView)
         
         NSLayoutConstraint.activate([
             resetLevelsButton.heightAnchor.constraint(equalToConstant: MQOffset.offset64),
             resetLevelsButton.widthAnchor.constraint(equalToConstant: MQOffset.offset64),
             
-            bottomStackView!.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -MQOffset.offset16),
-            bottomStackView!.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            bottomStackView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -MQOffset.offset16),
+            bottomStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
         ])
     }
     
@@ -270,7 +270,7 @@ private extension ScoreViewController {
             mainContainerView.topAnchor.constraint(equalTo: view.topAnchor),
             mainContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            mainContainerView.bottomAnchor.constraint(equalTo: bottomStackView!.topAnchor, constant: -20)
+            mainContainerView.bottomAnchor.constraint(equalTo: bottomStackView.topAnchor, constant: -20)
         ])
     }
     
@@ -328,32 +328,31 @@ private extension ScoreViewController {
     }
     
     func setupCongratulationForm() {
-        congratulationFormStackView = UIStackView(arrangedSubviews: [congratulationTitleLabel,
-                                                       descriptionSubtitleLabel])
-        congratulationFormStackView?.axis = .vertical
-        congratulationFormStackView?.distribution = .fillProportionally
-        congratulationFormStackView?.translatesAutoresizingMaskIntoConstraints = false
+        congratulationFormStackView.addArrangedSubview(congratulationTitleLabel)
+        congratulationFormStackView.addArrangedSubview(descriptionSubtitleLabel)
+
+        congratulationFormStackView.axis = .vertical
+        congratulationFormStackView.distribution = .fillProportionally
+        congratulationFormStackView.translatesAutoresizingMaskIntoConstraints = false
         
-        mainContainerView.addSubview(congratulationFormStackView!)
+        mainContainerView.addSubview(congratulationFormStackView)
         
         NSLayoutConstraint.activate([
-            congratulationFormStackView!.topAnchor.constraint(equalTo: bottomCircleContainterView.bottomAnchor, constant: MQOffset.offset16),
-            congratulationFormStackView!.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset36),
-            congratulationFormStackView!.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset36),
-            congratulationFormStackView!.heightAnchor.constraint(equalToConstant: 80)
+            congratulationFormStackView.topAnchor.constraint(equalTo: bottomCircleContainterView.bottomAnchor, constant: MQOffset.offset16),
+            congratulationFormStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: MQOffset.offset36),
+            congratulationFormStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -MQOffset.offset36),
+            congratulationFormStackView.heightAnchor.constraint(equalToConstant: 80)
         ])
     }
 
     func setupFireworkAnimation() {
-        guard let stackView = congratulationFormStackView else { return }
-        
         mainContainerView.addSubview(fireworkAnimationView)
         
         NSLayoutConstraint.activate([
             fireworkAnimationView.topAnchor.constraint(equalTo: mainContainerView.topAnchor),
             fireworkAnimationView.leadingAnchor.constraint(equalTo: mainContainerView.leadingAnchor),
             fireworkAnimationView.trailingAnchor.constraint(equalTo: mainContainerView.trailingAnchor),
-            fireworkAnimationView.bottomAnchor.constraint(equalTo: stackView.bottomAnchor)
+            fireworkAnimationView.bottomAnchor.constraint(equalTo: congratulationFormStackView.bottomAnchor)
         ])
     }
     
@@ -393,7 +392,7 @@ private extension ScoreViewController {
         mainContainerView.addSubview(mainStackView)
         
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: congratulationFormStackView!.bottomAnchor, constant: MQOffset.offset8),
+            mainStackView.topAnchor.constraint(equalTo: congratulationFormStackView.bottomAnchor, constant: MQOffset.offset8),
             mainStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mainStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             mainStackView.heightAnchor.constraint(equalToConstant: 100)
