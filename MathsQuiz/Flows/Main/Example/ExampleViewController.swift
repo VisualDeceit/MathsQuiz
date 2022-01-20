@@ -122,8 +122,8 @@ private extension ExampleViewController {
     }
     
     func setupKeypad() {
-        for i in 0...9 {
-            keypad.append(KeypadDigitView(digit: i))
+        for index in 0...9 {
+            keypad.append(KeypadDigitView(digit: index))
         }
         
         Array(keypad[1...5]).forEach { topKeypadStack.addArrangedSubview($0) }
@@ -248,9 +248,9 @@ extension ExampleViewController {
     
     func refreshAttemptsView(with attempts: Int) {
         attemptsStackView.subviews.forEach { (view) in view.removeFromSuperview() }
-        for i in 1...3 {
+        for index in 1...3 {
             let image = UIImageView()
-            if i <= attempts {
+            if index <= attempts {
                 image.image = UIImage(systemName: "star.fill")
             } else {
                 image.image = UIImage(systemName: "star")
