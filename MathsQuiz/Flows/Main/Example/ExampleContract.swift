@@ -13,7 +13,7 @@ protocol ExampleViewInput: AnyObject {
     func displayExample(view: UIView)
     func refreshAttemptsView(with attempts: Int)
     func refreshTimerView(with time: String)
-    func changeCheckButton(type: CheckButton)
+    func changeCheckButton(title: CheckButtonTitle)
 }
 
 protocol ExampleViewOutput: AnyObject {
@@ -21,7 +21,7 @@ protocol ExampleViewOutput: AnyObject {
     
     func viewDidLoad()
     func viewDidSetDigit(value: Int, at index: Int)
-    func viewDidCheckButtonTap(type: CheckButton)
+    func viewDidCheckButtonTap(with title: CheckButtonTitle)
 }
 
 protocol ExamplePresenterOutput {

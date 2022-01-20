@@ -13,7 +13,7 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     var presenter: (ExamplePresenterOutput & ExampleViewOutput)?
     var relativeLocation = CGPoint()
     var isDigitCaptured = false
-    var checkButtonType = CheckButton.check
+    var checkButtonTitle = CheckButtonTitle.check
     
     private let exampleWorkspaceView: UIView = {
         let view = UIView(frame: .zero)
@@ -69,7 +69,7 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     
     private let panGestureRecognizer = UIPanGestureRecognizer()
     
-    private let checkButton = MQStandardButton(title: CheckButton.check.rawValue)
+    private let checkButton = MQStandardButton(title: CheckButtonTitle.check.rawValue)
     
     private var keypad = [KeypadDigitView]()
     
@@ -163,7 +163,7 @@ private extension ExampleViewController {
     }
     
     @objc func checkButtonTapped() {
-        presenter?.viewDidCheckButtonTap(type: checkButtonType)
+        presenter?.viewDidCheckButtonTap(with: checkButtonTitle)
     }
     
     func setupUserStateBar() {
@@ -268,10 +268,10 @@ extension ExampleViewController {
         timerLabel.text = time
     }
     
-    func changeCheckButton(type: CheckButton) {
-        checkButtonType = type
-        checkButton.setTitle(checkButtonType.rawValue, for: .normal)
-        if type == .transition {
+    func changeCheckButton(title: CheckButtonTitle) {
+        checkButtonTitle = title
+        checkButton.setTitle(checkButtonTitle.rawValue, for: .normal)
+        if title == .transition {
             exampleWorkspaceView.allSubViewsOf(type: ExampleDigitView.self)
                 .filter { $0.type == .result }
                 .forEach { $0.setColor(for: true) }

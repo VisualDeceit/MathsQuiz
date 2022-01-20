@@ -36,11 +36,11 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
         userResult[index] = digit
     }
     
-    func viewDidCheckButtonTap(type: CheckButton) {
-        switch type {
+    func viewDidCheckButtonTap(with title: CheckButtonTitle) {
+        switch title {
         case .check:
             if userResult == factory.solution.result {
-                view?.changeCheckButton(type: .transition)
+                view?.changeCheckButton(title: .transition)
                 // todo: save level progress to db
                 // todo: calculate score
             } else {
@@ -61,7 +61,7 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
         if let exampleView = factory.makeAdditionExample(for: level) {
             view?.displayExample(view: exampleView)
             view?.refreshAttemptsView(with: attempts)
-            view?.changeCheckButton(type: .check)
+            view?.changeCheckButton(title: .check)
             createTimer()
         }
     }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CheckButton: String {
+enum CheckButtonTitle: String {
     case check = "Проверить"
     case transition = "Далее"
 }
