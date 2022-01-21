@@ -14,7 +14,7 @@ class ExampleResolver: Resolver {
         self.type = type
     }
 
-    func resolve(input: Input) -> ResolveResult {
+    func resolve(input: InputData) -> ResolveResult {
         switch type {
         case .addition:
             return additionHandler(input: input)
@@ -32,7 +32,7 @@ class ExampleResolver: Resolver {
 
 private extension ExampleResolver {
     
-    func additionHandler(input: Input) -> ResolveResult {
+    func additionHandler(input: InputData) -> ResolveResult {
         
         let firstNumber = String(input.firstNumber)
             .reversed()

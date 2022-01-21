@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B2EB5B0277C588800FFDD9E /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5AF277C588800FFDD9E /* Level.swift */; };
 		1B2EB5B9277C9BC200FFDD9E /* ActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */; };
-		1B2EB5C1277C9C1700FFDD9E /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C0277C9C1700FFDD9E /* Input.swift */; };
+		1B2EB5C1277C9C1700FFDD9E /* InputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C0277C9C1700FFDD9E /* InputData.swift */; };
 		1B2EB5C5277CA14D00FFDD9E /* AdditionActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */; };
 		1B2EB5CA277D698C00FFDD9E /* Digit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C9277D698C00FFDD9E /* Digit.swift */; };
 		1B2EB5CE277EF7B900FFDD9E /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */; };
@@ -129,7 +129,7 @@
 		14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathsQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B2EB5AF277C588800FFDD9E /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStrategy.swift; sourceTree = "<group>"; };
-		1B2EB5C0277C9C1700FFDD9E /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		1B2EB5C0277C9C1700FFDD9E /* InputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputData.swift; sourceTree = "<group>"; };
 		1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionActivityStrategy.swift; sourceTree = "<group>"; };
 		1B2EB5C9277D698C00FFDD9E /* Digit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digit.swift; sourceTree = "<group>"; };
 		1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
@@ -309,7 +309,7 @@
 		1B2EB5BB277C9BDE00FFDD9E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1B2EB5C0277C9C1700FFDD9E /* Input.swift */,
+				1B2EB5C0277C9C1700FFDD9E /* InputData.swift */,
 				1B2EB5C9277D698C00FFDD9E /* Digit.swift */,
 				1B2EB5FB27842A0900FFDD9E /* ResolveResult.swift */,
 			);
@@ -939,7 +939,7 @@
 				1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */,
 				1B2EB5EA2781D3EA00FFDD9E /* ExamplePresenter.swift in Sources */,
 				1B9BCA9E27773CAB0084931D /* PasswordChangeContract.swift in Sources */,
-				1B2EB5C1277C9C1700FFDD9E /* Input.swift in Sources */,
+				1B2EB5C1277C9C1700FFDD9E /* InputData.swift in Sources */,
 				1B9BCA1D276F06A50084931D /* MainCoordinator.swift in Sources */,
 				1B71BA352768F5680056A2FF /* LoginPresenter.swift in Sources */,
 				1B7C4731276B42D100BFD277 /* AppCoordinator.swift in Sources */,
