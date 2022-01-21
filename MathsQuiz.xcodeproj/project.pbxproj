@@ -107,6 +107,7 @@
 		1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C9D276E0D81001B5F3E /* Credentials.swift */; };
 		1BF540602794EEC300D98F70 /* CheckButtonTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5405F2794EEC300D98F70 /* CheckButtonTitle.swift */; };
 		1BF540812799C29100D98F70 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 1BF540802799C29100D98F70 /* GoogleSignIn */; };
+		1BF54084279B2C9F00D98F70 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF54083279B2C9E00D98F70 /* Alertable.swift */; };
 		3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE32768907E00810069 /* UIColor+Extension.swift */; };
 		3C0CAAE7276890CE00810069 /* MQColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE6276890CE00810069 /* MQColor.swift */; };
 		3C0CAAEB2768966F00810069 /* MQStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */; };
@@ -224,6 +225,7 @@
 		1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthErrorCode+Extension.swift"; sourceTree = "<group>"; };
 		1BBC5C9D276E0D81001B5F3E /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		1BF5405F2794EEC300D98F70 /* CheckButtonTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButtonTitle.swift; sourceTree = "<group>"; };
+		1BF54083279B2C9E00D98F70 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		3C0CAAE32768907E00810069 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		3C0CAAE6276890CE00810069 /* MQColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQColor.swift; sourceTree = "<group>"; };
 		3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardTextField.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 				1B9BCA07276E52B70084931D /* ConfigCell.swift */,
 				1B7C4735276B42E700BFD277 /* Coordinator.swift */,
 				1B7C473F276B58B600BFD277 /* Presentable.swift */,
+				1BF54083279B2C9E00D98F70 /* Alertable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -1024,6 +1027,7 @@
 				1B9BCA2F276F0F170084931D /* Activity.swift in Sources */,
 				1B9BC9F1276E4D530084931D /* MQFont.swift in Sources */,
 				1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */,
+				1BF54084279B2C9F00D98F70 /* Alertable.swift in Sources */,
 				1B2EB62327882C7E00FFDD9E /* ExampleViewBuilder.swift in Sources */,
 				1B2EB5CE277EF7B900FFDD9E /* FirebaseAuthService.swift in Sources */,
 				1B7C4792276C663C00BFD277 /* CoordinatorFactoryImp.swift in Sources */,

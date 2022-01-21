@@ -7,9 +7,8 @@
 
 import Foundation
 
-protocol PasswordResetViewInput: AnyObject {
+protocol PasswordResetViewInput: AnyObject, Alertable {
     var presenter: (PasswordResetViewOutput & PasswordResetPresenterOutput)? { get set }
-    func displayAlert(_ message: String?)
 }
 
 protocol PasswordResetViewOutput: AnyObject {

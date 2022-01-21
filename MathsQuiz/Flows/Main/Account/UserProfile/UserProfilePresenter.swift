@@ -30,7 +30,7 @@ final class UserProfilePresenter: UserProfilePresenterOutput {
     private func logout() {
         authService.signOut {[weak self] error in
             if let error = error {
-                self?.view?.displayAlert(error.localizedDescription)
+                self?.view?.displayAlert(error)
             }
         }
         Session.uid = nil
