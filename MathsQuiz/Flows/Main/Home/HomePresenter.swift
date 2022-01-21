@@ -31,26 +31,22 @@ extension HomePresenter {
     }
     
     func viewDidLoad() {
-        firestoreManager.readUserProfile {[weak self] (result) in
+        firestoreManager.loadUserProfile {[weak self] (result) in
             switch result {
             case .success(let profile):
-                if let profile = profile {
-                    if let name = profile.firstName {
-                        self?.view?.setGreeting(message: "Привет, \(name)!")
-                        self?.firestoreManager.loadActivities { (result) in
-                            switch result {
-                            case .success(let activities):
-                                self?.activities = activities
-                                self?.view?.reloadCollection()
-                            case .failure(let error):
-                                print(error)
-                            }
+                if let name = profile.firstName {
+                    self?.view?.setGreeting(message: "Привет, \(name)!")
+                    self?.firestoreManager.loadActivities { (result) in
+                        switch result {
+                        case .success(let activities):
+                            self?.activities = activities
+                            self?.view?.reloadCollection()
+                        case .failure(let error):
+                            print(error)
                         }
-                    } else {
-                        self?.view?.setGreeting(message: "Привет, дружище!")
                     }
                 } else {
-                    print("Document does not exist")
+                    self?.view?.setGreeting(message: "Привет, дружище!")
                 }
             case .failure(let error):
                 print("Error decoding profile: \(error.localizedDescription)")
