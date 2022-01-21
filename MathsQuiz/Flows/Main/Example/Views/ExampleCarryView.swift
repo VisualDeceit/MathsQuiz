@@ -24,9 +24,9 @@ class ExampleCarryView: UIView {
         return label
     }()
     
-    init(frame: CGRect, carry: String) {
+    init(carry: String) {
         self.carry = carry
-        super.init(frame: frame)
+        super.init(frame: .zero)
         setupView()
     }
     

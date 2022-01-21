@@ -32,24 +32,20 @@ class ExampleDigitView: UIView {
         return label
     }()
     
-    init(frame: CGRect, digit: String, type: DigitType, index: Int) {
+    init(digit: String, type: DigitType, index: Int) {
         self.digit = digit
         self.type = type
         self.index = index
-        super.init(frame: frame)
+        super.init(frame: .zero)
         setupView()
     }
     
-    convenience init(digit: String, type: DigitType, index: Int) {
-        self.init(frame: .zero, digit: digit, type: type, index: index)
-    }
-    
     convenience init(digit: String, type: DigitType) {
-        self.init(frame: .zero, digit: digit, type: type, index: 0)
+        self.init(digit: digit, type: type, index: 0)
     }
     
     convenience init(sign: ActivityType) {
-        self.init(frame: .zero, digit: sign.sign, type: .common, index: 0)
+        self.init(digit: sign.sign, type: .common, index: 0)
     }
     
     required init?(coder: NSCoder) {
