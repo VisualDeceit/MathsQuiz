@@ -26,8 +26,11 @@ final class HomePresenter: HomePresenterOutput, HomeViewOutput {
 // MARK: - HomeViewOutput
 extension HomePresenter {
     
-    func viewDidSelectActivity(type: ActivityType) {
-        onSelectActivity?(type)
+    func viewDidSelectItemAt(_ indexPath: IndexPath) {
+        if let activity = activities?[indexPath.row],
+           activity.type.totalLevels > 0 {
+            onSelectActivity?(activity.type)
+        }
     }
     
     func viewDidLoad() {
