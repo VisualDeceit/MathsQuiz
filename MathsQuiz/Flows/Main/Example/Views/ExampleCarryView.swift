@@ -63,9 +63,4 @@ class ExampleCarryView: UIView {
         borderColor.setStroke()
         path.stroke()
     }
-    
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        guard self.bounds.contains(point) else { return nil }
-        return self
-    }
 }

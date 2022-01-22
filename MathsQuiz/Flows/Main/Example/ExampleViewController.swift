@@ -15,10 +15,7 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     var isDigitCaptured = false
     var checkButtonTitle = CheckButtonTitle.check
     
-    private let exampleWorkspaceView: UIView = {
-        let view = UIView(frame: .zero)
-        return view
-    }()
+    private let exampleWorkspaceView = UIView()
     
     private let topKeypadStack: UIStackView = {
         let sv = UIStackView()
