@@ -54,7 +54,6 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         sv.distribution = .fillEqually
         sv.axis = .horizontal
         sv.spacing = 1
-        sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
     
@@ -63,7 +62,6 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         label.text = "00:00"
         label.font = MQFont.timerFont
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
@@ -135,15 +133,15 @@ private extension ExampleViewController {
         
         topKeypadStack.snp.makeConstraints { make in
             make.height.equalTo(Keypad.buttonSize)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(Indent.single)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(Indent.single)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset8)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(MQOffset.offset8)
         }
         
         bottomKeypadStack.snp.makeConstraints { make in
             make.height.equalTo(Keypad.buttonSize)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(Indent.single)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(Indent.single)
-            make.top.equalTo(topKeypadStack.snp.bottom).offset(Indent.single)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset8)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(MQOffset.offset8)
+            make.top.equalTo(topKeypadStack.snp.bottom).offset(MQOffset.offset8)
         }
     }
     
@@ -153,8 +151,8 @@ private extension ExampleViewController {
         checkButton.snp.makeConstraints { make in
             make.width.equalTo(Keypad.checkButtonWidth)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bottomKeypadStack.snp.bottom).offset(Indent.single)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Indent.single)
+            make.top.equalTo(bottomKeypadStack.snp.bottom).offset(MQOffset.offset8)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(MQOffset.offset8)
         }
     }
     
@@ -168,21 +166,18 @@ private extension ExampleViewController {
     
     func setupUserStateBar() {
         view.addSubview(attemptsStackView)
-        NSLayoutConstraint.activate([
-            attemptsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                       constant: Indent.single),
-            attemptsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                                   constant: Indent.single),
-            attemptsStackView.widthAnchor.constraint(equalToConstant: ExampleView.attemptsWidth)
-        ])
-        
         view.addSubview(timerLabel)
-        NSLayoutConstraint.activate([
-            timerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                            constant: Indent.single),
-            timerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                 constant: -Indent.single)
-        ])
+        
+        attemptsStackView.snp.makeConstraints { make in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset8)
+            make.width.equalTo(ExampleView.attemptsWidth
+            )
+        }
+        
+        timerLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset8)
+            make.trailing.equalTo(view).inset(MQOffset.offset8)
+        }
     }
 }
 
