@@ -17,7 +17,6 @@ class ExampleCarryView: UIView {
     
     private(set) lazy var carryLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label.textColor = digitColor
         label.text = carry
@@ -40,16 +39,13 @@ class ExampleCarryView: UIView {
     }
     
     private func setupView() {
-        self.translatesAutoresizingMaskIntoConstraints = false
         self.backgroundColor = .systemBackground
         self.addSubview(carryLabel)
         
-        NSLayoutConstraint.activate([
-            carryLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor,
-                                                constant: borderWidth / 2),
-            carryLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor,
-                                                constant: -borderWidth / 2)
-        ])
+        carryLabel.snp.makeConstraints { make in
+            make.centerX.equalTo(self).offset(borderWidth / 2)
+            make.centerY.equalTo(self).inset(borderWidth / 2)
+        }
     }
     override func draw(_ rect: CGRect) {
         let radius = rect.width / 2 - borderWidth
