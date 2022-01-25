@@ -74,19 +74,18 @@ class MQStandardTextField: UITextField {
         }
         
         label.textColor = MQColor.gray
-        label.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(label)
         
         if isAnimatedForm {
-            NSLayoutConstraint.activate([
-                label.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-                label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 40)
-            ])
+            label.snp.makeConstraints { make in
+                make.centerY.equalTo(self)
+                make.leading.equalTo(self).offset(MQOffset.offset40)
+            }
         } else {
-            NSLayoutConstraint.activate([
-                label.topAnchor.constraint(equalTo: self.topAnchor, constant: 3),
-                label.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10)
-            ])
+            label.snp.makeConstraints { make in
+                make.top.equalTo(self).offset(MQOffset.offset4)
+                make.leading.equalTo(self).offset(MQOffset.offset12)
+            }
         }
     }
     
@@ -145,7 +144,7 @@ class MQStandardTextField: UITextField {
         if isAnimatedForm {
             return bounds.inset(by: UIEdgeInsets(top: 10, left: 40, bottom: 0, right: 30))
         } else {
-            return bounds.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 30))
+            return bounds.inset(by: UIEdgeInsets(top: 10, left: 12, bottom: 0, right: 30))
         }
     }
 
@@ -153,7 +152,7 @@ class MQStandardTextField: UITextField {
         if isAnimatedForm {
             return bounds.inset(by: UIEdgeInsets(top: 10, left: 40, bottom: 0, right: 30))
         } else {
-            return bounds.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 0, right: 30))
+            return bounds.inset(by: UIEdgeInsets(top: 10, left: 12, bottom: 0, right: 30))
         }
     }
     

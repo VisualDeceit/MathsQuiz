@@ -13,7 +13,6 @@ class KeypadDigitView: UIView {
     
     private(set) lazy var digitLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = MQFont.keypadFont
         label.textColor = .black
         return label
@@ -30,17 +29,16 @@ class KeypadDigitView: UIView {
     }
     
     private func setupView() {
-        translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
         
         digitLabel.text = "\(digit)"
         addSubview(digitLabel)
         
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalTo: heightAnchor),
-            digitLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            digitLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-        ])
+        widthAnchor.constraint(equalTo: heightAnchor).isActive = true
+        
+        digitLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(self)
+        }
     }
     
     override func draw(_ rect: CGRect) {
