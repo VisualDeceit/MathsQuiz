@@ -86,7 +86,7 @@ private extension OnboardingTemplateViewController {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset24)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset36)
             make.leading.equalToSuperview().offset(MQOffset.offset16)
             make.trailing.equalToSuperview().inset(MQOffset.offset16)
             make.height.equalTo(MQOffset.offset44)
