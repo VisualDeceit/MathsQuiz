@@ -25,7 +25,6 @@ class ExampleDigitView: UIView {
     
     private(set) lazy var digitLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 80, weight: .regular)
         label.textColor = digitColor
         label.text = digit
@@ -87,10 +86,9 @@ class ExampleDigitView: UIView {
         
         self.addSubview(digitLabel)
         
-        NSLayoutConstraint.activate([
-            digitLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            digitLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
-        ])
+        digitLabel.snp.makeConstraints { make in
+            make.centerX.centerY.equalTo(self)
+        }
     }
     
     override func draw(_ rect: CGRect) {
