@@ -14,7 +14,6 @@ class ExampleViewBuilder {
     
     init() {
         verticalStackView = UIStackView()
-        verticalStackView.translatesAutoresizingMaskIntoConstraints = false
         verticalStackView.spacing = 4
         verticalStackView.axis = .vertical
         verticalStackView.alignment = .trailing
@@ -23,7 +22,6 @@ class ExampleViewBuilder {
     
     private func makeView() -> UIStackView {
         let sv = UIStackView()
-        sv.translatesAutoresizingMaskIntoConstraints = false
         sv.spacing = 4
         sv.axis = .horizontal
         sv.alignment = .bottom
@@ -61,30 +59,33 @@ class ExampleViewBuilder {
             
             view.addSubview(carryView)
             
-            NSLayoutConstraint.activate([
-                carryView.widthAnchor.constraint(equalToConstant: carryFrameSize),
-                carryView.heightAnchor.constraint(equalToConstant: carryFrameSize),
-                carryView.centerXAnchor.constraint(equalTo: view.trailingAnchor, constant: -carryFrameSize / 2),
-                carryView.topAnchor.constraint(equalTo: view.topAnchor),
-                
-                digitView.widthAnchor.constraint(equalToConstant: 50),
-                digitView.heightAnchor.constraint(equalToConstant: 70),
-                digitView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                digitView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                
-                view.widthAnchor.constraint(equalToConstant: 50),
-                view.heightAnchor.constraint(equalToConstant: 70 + carryFrameSize)
-            ])
+            carryView.snp.makeConstraints { make in
+                make.width.height.equalTo(carryFrameSize)
+                make.centerX.equalTo(view.snp.trailing).inset(carryFrameSize / 2)
+                make.top.equalTo(view)
+            }
+            
+            digitView.snp.makeConstraints { make in
+                make.width.equalTo(50)
+                make.height.equalTo(70)
+                make.centerX.bottom.equalTo(view)
+            }
+            
+            view.snp.makeConstraints { make in
+                make.width.equalTo(50)
+                make.height.equalTo(70 + carryFrameSize)
+            }
         } else {
-            NSLayoutConstraint.activate([
-                digitView.widthAnchor.constraint(equalToConstant: 50),
-                digitView.heightAnchor.constraint(equalToConstant: 70),
-                digitView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                digitView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-                
-                view.widthAnchor.constraint(equalToConstant: 50),
-                view.heightAnchor.constraint(equalToConstant: 70)
-            ])
+            digitView.snp.makeConstraints { make in
+                make.width.equalTo(50)
+                make.height.equalTo(70)
+                make.centerX.bottom.equalTo(view)
+            }
+            
+            view.snp.makeConstraints { make in
+                make.width.equalTo(50)
+                make.height.equalTo(70)
+            }
         }
     }
 
@@ -92,10 +93,10 @@ class ExampleViewBuilder {
         let digitView = ExampleDigitView(sign: sign)
         horizontalStackView?.addArrangedSubview(digitView)
         
-        NSLayoutConstraint.activate([
-            digitView.widthAnchor.constraint(equalToConstant: 50),
-            digitView.heightAnchor.constraint(equalToConstant: 70)
-        ])
+        digitView.snp.makeConstraints { make in
+            make.width.equalTo(50)
+            make.height.equalTo(70)
+        }
     }
     
     func addSeparator(for digits: Int) {
@@ -105,10 +106,10 @@ class ExampleViewBuilder {
         self.verticalStackView.addArrangedSubview(separator)
         separator.backgroundColor = .systemGray4
  
-        NSLayoutConstraint.activate([
-            separator.widthAnchor.constraint(equalToConstant: CGFloat(54 * digits)),
-            separator.heightAnchor.constraint(equalToConstant: 4)
-        ])
+        separator.snp.makeConstraints { make in
+            make.width.equalTo(CGFloat(54 * digits))
+            make.height.equalTo(4)
+        }
     }
     
     func build() -> UIStackView {

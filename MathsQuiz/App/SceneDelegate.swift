@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 import FBSDKCoreKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -25,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = OnboardingViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
+        window?.rootViewController = ExampleAssembly.build(activity: .addition, level: Level(number: 2, completion: 1)).toPresent()
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
 //        appCoordinator = makeCoordinator()
