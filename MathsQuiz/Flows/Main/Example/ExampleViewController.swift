@@ -112,13 +112,34 @@ private extension ExampleViewController {
     }
     
     func setupNavigationBar() {
-        title = "Пример"
-        navigationController?.navigationBar.tintColor = MQColor.ubeDefault
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.view.backgroundColor = .clear
-        navigationItem.largeTitleDisplayMode = .never
+        let view = UIProgressView()
+        view.tintColor = MQColor.lavenderLight
+        view.progressTintColor = MQColor.lavenderDark
+        view.progress = 0.5
+        view.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        view.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
+        
+        let label = UILabel()
+        label.text = "4 из 17"
+        label.font = MQFont.systemFont16
+        label.textAlignment = .center
+        
+        let stackView = UIStackView(arrangedSubviews: [view, label])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        
+        navigationItem.titleView = stackView
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(checkButtonTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"), style: .plain, target: self, action: #selector(checkButtonTapped))
+//        title = "Пример"
+//        navigationController?.navigationBar.tintColor = .black
+////        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+////        navigationController?.navigationBar.shadowImage = UIImage()
+////        navigationController?.navigationBar.isTranslucent = true
+////        navigationController?.view.backgroundColor = .clear
+//        navigationItem.largeTitleDisplayMode = .never
     }
     
     func setupKeypad() {
