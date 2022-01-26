@@ -67,11 +67,13 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         return label
     }()
     
-    private let panGestureRecognizer = UIPanGestureRecognizer()
-    
     private let checkButton = MQStandardButton(title: CheckButton.check.rawValue)
+    private let progressView = UIProgressView()
+    private let label = UILabel()
     
     private var keypad = [KeypadDigitView]()
+    
+    private let panGestureRecognizer = UIPanGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +100,7 @@ private extension ExampleViewController {
         setupWorkspace()
         setupTargets()
         setupUserStateBar()
+        setupProgressView()
     }
     
     func setupWorkspace() {
@@ -112,34 +115,27 @@ private extension ExampleViewController {
     }
     
     func setupNavigationBar() {
-        let view = UIProgressView()
-        view.tintColor = MQColor.lavenderLight
-        view.progressTintColor = MQColor.lavenderDark
-        view.progress = 0.5
-        view.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        view.heightAnchor.constraint(equalToConstant: 10).isActive = true
-        view.layer.cornerRadius = 5
-        view.clipsToBounds = true
+        navigationController?.navigationBar.tintColor = .black
+        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationController?.navigationBar.shadowImage = UIImage()
+        navigationController?.view.backgroundColor = .clear
+        navigationController?.navigationBar.isTranslucent = true
+        navigationItem.largeTitleDisplayMode = .never
         
-        let label = UILabel()
-        label.text = "4 из 17"
-        label.font = MQFont.systemFont16
-        label.textAlignment = .center
+        let backButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(backButtonItemTapped))
+        backButtonItem.tintColor = MQColor.lavenderDark
         
-        let stackView = UIStackView(arrangedSubviews: [view, label])
-        stackView.axis = .vertical
-        stackView.spacing = 5
+        let questionButtonItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(questionButtonItemTapped))
+        questionButtonItem.tintColor = MQColor.lavenderLight
         
-        navigationItem.titleView = stackView
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(checkButtonTapped))
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"), style: .plain, target: self, action: #selector(checkButtonTapped))
-//        title = "Пример"
-//        navigationController?.navigationBar.tintColor = .black
-////        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-////        navigationController?.navigationBar.shadowImage = UIImage()
-////        navigationController?.navigationBar.isTranslucent = true
-////        navigationController?.view.backgroundColor = .clear
-//        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.leftBarButtonItem = backButtonItem
+        navigationItem.rightBarButtonItem = questionButtonItem
     }
     
     func setupKeypad() {
@@ -179,12 +175,25 @@ private extension ExampleViewController {
         }
     }
     
-    func setupTargets() {
-        checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc func checkButtonTapped() {
-        presenter?.viewDidCheckButtonTap(type: checkButtonType)
+    func setupProgressView() {
+        progressView.trackTintColor = MQColor.lavenderLight
+        progressView.progressTintColor = MQColor.lavenderDark
+        progressView.progress = 0.5
+        
+        progressView.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5).isActive = true
+        progressView.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        progressView.layer.cornerRadius = 5
+        progressView.clipsToBounds = true
+        
+        label.text = "4 из 17"
+        label.font = MQFont.semiBoldSystemFont17
+        label.textAlignment = .center
+        
+        let stackView = UIStackView(arrangedSubviews: [progressView, label])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        
+        navigationItem.titleView = stackView
     }
     
     func setupUserStateBar() {
@@ -205,6 +214,22 @@ private extension ExampleViewController {
                                                  constant: -Indent.single)
         ])
     }
+}
+
+//MARK: - Setup targets
+private extension ExampleViewController {
+    
+    func setupTargets() {
+        checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc func checkButtonTapped() {
+        presenter?.viewDidCheckButtonTap(type: checkButtonType)
+    }
+    
+    @objc func backButtonItemTapped() {}
+    
+    @objc func questionButtonItemTapped() {}
 }
 
 // MARK: - UIPanGestureRecognizer
