@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ExampleCarryView: UIView {
     
@@ -23,9 +24,9 @@ class ExampleCarryView: UIView {
         return label
     }()
     
-    init(frame: CGRect, carry: String) {
+    init(carry: String) {
         self.carry = carry
-        super.init(frame: frame)
+        super.init(frame: .zero)
         setupView()
     }
     
@@ -42,28 +43,23 @@ class ExampleCarryView: UIView {
         self.backgroundColor = .systemBackground
         self.addSubview(carryLabel)
         
-        carryLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(self).offset(borderWidth / 2)
-            make.centerY.equalTo(self).inset(borderWidth / 2)
+        carryLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
         }
     }
+    
     override func draw(_ rect: CGRect) {
         let radius = rect.width / 2 - borderWidth
-        let center = CGPoint(x: rect.width - radius - borderWidth / 2,
-                             y: radius + borderWidth / 2)
+        let center = CGPoint(x: rect.midX,
+                             y: rect.midY)
         let path = UIBezierPath(arcCenter: center,
                                 radius: radius,
-                                startAngle: 330 * CGFloat.pi / 180,
-                                endAngle: -30 * CGFloat.pi / 180,
+                                startAngle: 0,
+                                endAngle: 2 * CGFloat.pi,
                                 clockwise: false)
         
         path.lineWidth = borderWidth
         borderColor.setStroke()
         path.stroke()
-    }
-    
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        guard self.bounds.contains(point) else { return nil }
-        return self
     }
 }

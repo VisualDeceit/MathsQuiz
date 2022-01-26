@@ -7,11 +7,10 @@
 
 import Foundation
 
-protocol UserProfileViewInput: AnyObject {
+protocol UserProfileViewInput: AnyObject, Alertable {
     var presenter: (UserProfileViewOutput & UserProfilePresenterOutput)? { get set }
     
     func displayProfile(userName: String, email: String)
-    func displayAlert(_ message: String?)
 }
 
 protocol UserProfileViewOutput: AnyObject {

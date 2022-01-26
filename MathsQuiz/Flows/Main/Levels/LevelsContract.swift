@@ -17,7 +17,7 @@ protocol LevelsViewOutput: AnyObject {
     var levels: [Level]? { get set }
     var activity: ActivityType { get }
     
-    func viewDidSelectLevel(_ level: Level)
+    func viewDidSelectItemAt(_ indexPath: IndexPath)
     func viewDidLoad()
 }
 

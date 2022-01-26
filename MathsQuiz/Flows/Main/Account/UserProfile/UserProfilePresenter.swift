@@ -30,7 +30,7 @@ final class UserProfilePresenter: UserProfilePresenterOutput {
     private func logout() {
         authService.signOut {[weak self] error in
             if let error = error {
-                self?.view?.displayAlert(error.localizedDescription)
+                self?.view?.displayAlert(error)
             }
         }
         Session.uid = nil
@@ -41,17 +41,17 @@ final class UserProfilePresenter: UserProfilePresenterOutput {
 // MARK: - HomeViewOutput
 extension UserProfilePresenter: UserProfileViewOutput {
     func viewDidLoad() {
-        firestoreManager.readUserProfile {[weak self] (result) in
+        firestoreManager.loadUserProfile {[weak self] (result) in
             switch result {
             case .success(let profile):
                 var userName = ""
-                if let firstName = profile?.firstName {
+                if let firstName = profile.firstName {
                     userName = "\(firstName) "
                 }
-                if let lastName = profile?.lastName {
+                if let lastName = profile.lastName {
                     userName.append(lastName)
                 }
-                self?.view?.displayProfile(userName: userName, email: profile?.email ?? "")
+                self?.view?.displayProfile(userName: userName, email: profile.email ?? "")
             case .failure(let error):
                 print("Error decoding profile: \(error.localizedDescription)")
             }

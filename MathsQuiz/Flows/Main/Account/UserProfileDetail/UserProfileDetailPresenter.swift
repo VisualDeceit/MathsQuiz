@@ -51,13 +51,11 @@ extension UserProfileDetailPresenter {
     }
     
     func viewDidLoad() {
-        firestoreManager.readUserProfile {[weak self] (result) in
+        firestoreManager.loadUserProfile {[weak self] (result) in
             switch result {
             case .success(let profile):
-                if let profile = profile {
-                    self?.userProfile = profile
-                    self?.view?.displayUserProfile()
-                }
+                self?.userProfile = profile
+                self?.view?.displayUserProfile()
             case .failure(let error):
                 print("Error decoding profile: \(error.localizedDescription)")
             }

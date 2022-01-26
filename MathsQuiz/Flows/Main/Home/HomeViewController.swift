@@ -123,10 +123,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let selectedActivity = presenter?.activities?[indexPath.row],
-           selectedActivity.type.totalLevels > 0 {
-            presenter?.viewDidSelectActivity(type: selectedActivity.type)
-        }
+        presenter?.viewDidSelectItemAt(indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {

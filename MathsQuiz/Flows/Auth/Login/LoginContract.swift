@@ -13,9 +13,8 @@ enum AuthProvider {
     case google, apple, facebook, emailPassword
 }
 
-protocol LoginViewInput: AnyObject {
+protocol LoginViewInput: AnyObject, Alertable {
     var presenter: (LoginViewOutput & LoginPresenterOutput)? { get set }
-    func displayAlert(_ message: String?)
 }
 
 protocol LoginViewOutput: AnyObject {

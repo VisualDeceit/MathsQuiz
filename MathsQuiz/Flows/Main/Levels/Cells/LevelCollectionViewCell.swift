@@ -32,11 +32,11 @@ class LevelCollectionViewCell: UICollectionViewCell {
         levelNumLabel.textAlignment = .center
         levelNumLabel.adjustsFontSizeToFitWidth = true
         
-        for i in 1...3 {
+        for index in 1...3 {
             let image = UIImageView()
             image.image = UIImage(systemName: "star.fill")
             image.contentMode = .scaleAspectFit
-            if i <= level.completion {
+            if index <= level.completion {
                 image.tintColor = type.highlightedСolor
             } else {
                 image.tintColor = MQColor.background

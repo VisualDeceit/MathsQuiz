@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class KeypadDigitView: UIView {
     
@@ -34,29 +35,23 @@ class KeypadDigitView: UIView {
         digitLabel.text = "\(digit)"
         addSubview(digitLabel)
         
-        widthAnchor.constraint(equalTo: heightAnchor).isActive = true
+        snp.makeConstraints { (make) in
+            make.width.equalTo(snp.height)
+        }
         
-        digitLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalTo(self)
+        digitLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
         }
     }
     
-    override func draw(_ rect: CGRect) {
-        let rectWidth = rect.width
-        let rectHeight = rect.height
-        
-        let xf: CGFloat = (self.frame.width - rectWidth) / 2
-        let yf: CGFloat = (self.frame.height - rectHeight) / 2
-        
-        let rect = CGRect(x: xf, y: yf, width: rectWidth, height: rectHeight)
-        
-        let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
+    override func draw(_ rect: CGRect) {        
+        let center = CGPoint(x: rect.midX, y: rect.midY)
         let radius = 0.5 * min(rect.width, rect.height)
         
         let clipPath = UIBezierPath(arcCenter: center,
                                     radius: radius,
-                                    startAngle: 330 * CGFloat.pi / 180,
-                                    endAngle: -30 * CGFloat.pi / 180,
+                                    startAngle: 0,
+                                    endAngle: 2 * CGFloat.pi,
                                     clockwise: false)
         UIColor.systemGray6.setFill()
         clipPath.fill()

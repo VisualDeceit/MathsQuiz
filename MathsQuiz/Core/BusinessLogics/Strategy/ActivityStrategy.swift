@@ -8,5 +8,5 @@
 import Foundation
 
 protocol ActivityStrategy {
-    func generate(level: Int) -> Input?
+    func generate(level: Int) -> InputData?
 }

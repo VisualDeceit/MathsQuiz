@@ -16,8 +16,6 @@ protocol SignUpViewOutput: AnyObject {
     func viewDidLoginButtonTap()
 }
 
-protocol SignUpViewInput: AnyObject {
+protocol SignUpViewInput: AnyObject, Alertable {
     var presenter: (SignUpViewOutput & SignUpPresenterOutput)? { get set }
-    
-    func displayAlert(_ message: String?)
 }
