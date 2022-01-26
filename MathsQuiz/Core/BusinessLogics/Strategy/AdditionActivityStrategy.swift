@@ -11,7 +11,7 @@ final class AdditionActivityStrategy: ActivityStrategy {
     
     static let total = 5
     
-    func generate(level: Int) -> Input? {
+    func generate(level: Int) -> InputData? {
         var n1, n2: Int
         switch level {
         case 1:

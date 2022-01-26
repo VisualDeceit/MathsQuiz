@@ -33,7 +33,7 @@ extension FirestoreError: LocalizedError {
 
 protocol StorageManager {
     func saveUserProfile(profile: UserProfile) throws
-    func readUserProfile(completion: @escaping (Result<UserProfile?, Error>) -> Void)
+    func loadUserProfile(completion: @escaping (Result<UserProfile, Error>) -> Void)
     func isUserProfileExist(uid: String?, completion: @escaping ((Bool) -> Void))
     func loadActivities(_ completion: @escaping (Result<[Activity], Error>) -> Void)
     func loadLevels(for activity: ActivityType, completion: @escaping (Result<[Level], Error>) -> Void)
@@ -50,7 +50,7 @@ class FirestoreManager: StorageManager {
         try db.collection("users").document(uid).setData(from: profile)
     }
     
-    func readUserProfile(completion: @escaping (Result<UserProfile?, Error>) -> Void) {
+    func loadUserProfile(completion: @escaping (Result<UserProfile, Error>) -> Void) {
         guard let uid = Session.uid, !uid.isEmpty else {
             completion(.failure(FirestoreError.emptyPath))
             return
@@ -66,9 +66,11 @@ class FirestoreManager: StorageManager {
                 completion(.failure(FirestoreError.notExist))
                 return
             }
-            let result = Result {
-                try document.data(as: UserProfile.self)
+            guard let data = try? document.data(as: UserProfile.self) else {
+                completion(.failure(FirestoreError.notExist))
+                return
             }
+            let result = Result { data }
             completion(result)
         }
     }

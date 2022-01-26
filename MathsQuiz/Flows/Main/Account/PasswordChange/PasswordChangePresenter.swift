@@ -52,7 +52,7 @@ final class PasswordChangePresenter: PasswordChangeViewOutput, PasswordChangePre
             }
             self?.authService.signOut {[weak self] error in
                 if let error = error {
-                    self?.view?.displayAlert("Error signing out: \(error.localizedDescription)")
+                    self?.view?.displayAlert(error)
                     return
                 }
             }

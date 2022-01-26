@@ -13,12 +13,9 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     var presenter: (ExamplePresenterOutput & ExampleViewOutput)?
     var relativeLocation = CGPoint()
     var isDigitCaptured = false
-    var checkButtonType = CheckButton.check
+    var checkButtonTitle = CheckButtonTitle.check
     
-    private let exampleWorkspaceView: UIView = {
-        let view = UIView(frame: .zero)
-        return view
-    }()
+    private let exampleWorkspaceView = UIView()
     
     private let topKeypadStack: UIStackView = {
         let sv = UIStackView()
@@ -69,7 +66,7 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     
     private let panGestureRecognizer = UIPanGestureRecognizer()
     
-    private let checkButton = MQStandardButton(title: CheckButton.check.rawValue)
+    private let checkButton = MQStandardButton(title: CheckButtonTitle.check.rawValue)
     
     private var keypad = [KeypadDigitView]()
     
@@ -122,8 +119,8 @@ private extension ExampleViewController {
     }
     
     func setupKeypad() {
-        for i in 0...9 {
-            keypad.append(KeypadDigitView(digit: i))
+        for index in 0...9 {
+            keypad.append(KeypadDigitView(digit: index))
         }
         
         Array(keypad[1...5]).forEach { topKeypadStack.addArrangedSubview($0) }
@@ -163,7 +160,7 @@ private extension ExampleViewController {
     }
     
     @objc func checkButtonTapped() {
-        presenter?.viewDidCheckButtonTap(type: checkButtonType)
+        presenter?.viewDidCheckButtonTap(with: checkButtonTitle)
     }
     
     func setupUserStateBar() {
@@ -248,9 +245,9 @@ extension ExampleViewController {
     
     func refreshAttemptsView(with attempts: Int) {
         attemptsStackView.subviews.forEach { (view) in view.removeFromSuperview() }
-        for i in 1...3 {
+        for index in 1...3 {
             let image = UIImageView()
-            if i <= attempts {
+            if index <= attempts {
                 image.image = UIImage(systemName: "star.fill")
             } else {
                 image.image = UIImage(systemName: "star")
@@ -268,10 +265,10 @@ extension ExampleViewController {
         timerLabel.text = time
     }
     
-    func changeCheckButton(type: CheckButton) {
-        checkButtonType = type
-        checkButton.setTitle(checkButtonType.rawValue, for: .normal)
-        if type == .transition {
+    func changeCheckButton(title: CheckButtonTitle) {
+        checkButtonTitle = title
+        checkButton.setTitle(checkButtonTitle.rawValue, for: .normal)
+        if title == .transition {
             exampleWorkspaceView.allSubViewsOf(type: ExampleDigitView.self)
                 .filter { $0.type == .result }
                 .forEach { $0.setColor(for: true) }

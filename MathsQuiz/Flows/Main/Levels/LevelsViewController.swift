@@ -87,10 +87,7 @@ extension LevelsViewController: UICollectionViewDataSource, UICollectionViewDele
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let selectedLevel = presenter?.levels?[indexPath.row],
-           selectedLevel.completion >= 0 {
-            presenter?.viewDidSelectLevel(selectedLevel)
-        }
+        presenter?.viewDidSelectItemAt(indexPath)
     }
 
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {

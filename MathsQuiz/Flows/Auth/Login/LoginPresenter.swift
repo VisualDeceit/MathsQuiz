@@ -78,7 +78,7 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
         GIDSignIn.sharedInstance.signIn(with: config,
                                         presenting: view) { [weak self] user, error in
             if let error = error {
-                self?.view?.displayAlert(error.localizedDescription)
+                self?.view?.displayAlert(error)
                 return
             }
             
@@ -132,7 +132,7 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
             case .cancelled:
                 break
             case .failed (let error):
-                self?.view?.displayAlert(error.localizedDescription)
+                self?.view?.displayAlert(error)
             }
         }
     }
@@ -156,7 +156,7 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
                         } catch let error {
                             self?.authService.deleteCurrentUser { _ in }
                             Session.uid = nil
-                            self?.view?.displayAlert(error.localizedDescription)
+                            self?.view?.displayAlert(error)
                             return
                         }
                     }
@@ -195,6 +195,6 @@ extension LoginPresenter: ASAuthorizationControllerDelegate {
     }
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        view?.displayAlert("Sign in with Apple errored: \(error)")
+        view?.displayAlert(error)
     }
 }

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B2EB5B0277C588800FFDD9E /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5AF277C588800FFDD9E /* Level.swift */; };
 		1B2EB5B9277C9BC200FFDD9E /* ActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */; };
-		1B2EB5C1277C9C1700FFDD9E /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C0277C9C1700FFDD9E /* Input.swift */; };
+		1B2EB5C1277C9C1700FFDD9E /* InputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C0277C9C1700FFDD9E /* InputData.swift */; };
 		1B2EB5C5277CA14D00FFDD9E /* AdditionActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */; };
 		1B2EB5CA277D698C00FFDD9E /* Digit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C9277D698C00FFDD9E /* Digit.swift */; };
 		1B2EB5CE277EF7B900FFDD9E /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */; };
@@ -90,7 +90,6 @@
 		1B9BCAA9277855190084931D /* PasswordResetContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAA8277855180084931D /* PasswordResetContract.swift */; };
 		1B9BCAAC2778552E0084931D /* PasswordResetAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAAB2778552E0084931D /* PasswordResetAssembly.swift */; };
 		1B9BCAAF2778553C0084931D /* PasswordResetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAAE2778553C0084931D /* PasswordResetPresenter.swift */; };
-		1B9BCAB52779D7E90084931D /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 1B9BCAB42779D7E90084931D /* GoogleSignIn */; };
 		1B9BCADC277B05E90084931D /* Nonce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCADB277B05E80084931D /* Nonce.swift */; };
 		1B9BCAE7277B5DE40084931D /* OnboardingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAE6277B5DE30084931D /* OnboardingCoordinator.swift */; };
 		1B9BCAED277B5E170084931D /* OnboardingContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCAEC277B5E170084931D /* OnboardingContract.swift */; };
@@ -106,7 +105,9 @@
 		1BBC5C90276DD0AB001B5F3E /* UIAlertController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C8F276DD0AB001B5F3E /* UIAlertController+Extension.swift */; };
 		1BBC5C93276DDF51001B5F3E /* AuthErrorCode+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */; };
 		1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBC5C9D276E0D81001B5F3E /* Credentials.swift */; };
-		1BF540602794EEC300D98F70 /* CheckButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5405F2794EEC300D98F70 /* CheckButton.swift */; };
+		1BF540602794EEC300D98F70 /* CheckButtonTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF5405F2794EEC300D98F70 /* CheckButtonTitle.swift */; };
+		1BF540812799C29100D98F70 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 1BF540802799C29100D98F70 /* GoogleSignIn */; };
+		1BF54084279B2C9F00D98F70 /* Alertable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BF54083279B2C9E00D98F70 /* Alertable.swift */; };
 		3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE32768907E00810069 /* UIColor+Extension.swift */; };
 		3C0CAAE7276890CE00810069 /* MQColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAE6276890CE00810069 /* MQColor.swift */; };
 		3C0CAAEB2768966F00810069 /* MQStandardTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */; };
@@ -128,7 +129,7 @@
 		14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathsQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B2EB5AF277C588800FFDD9E /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStrategy.swift; sourceTree = "<group>"; };
-		1B2EB5C0277C9C1700FFDD9E /* Input.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Input.swift; sourceTree = "<group>"; };
+		1B2EB5C0277C9C1700FFDD9E /* InputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputData.swift; sourceTree = "<group>"; };
 		1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionActivityStrategy.swift; sourceTree = "<group>"; };
 		1B2EB5C9277D698C00FFDD9E /* Digit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Digit.swift; sourceTree = "<group>"; };
 		1B2EB5CD277EF7B900FFDD9E /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
@@ -223,7 +224,8 @@
 		1BBC5C8F276DD0AB001B5F3E /* UIAlertController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extension.swift"; sourceTree = "<group>"; };
 		1BBC5C92276DDF51001B5F3E /* AuthErrorCode+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthErrorCode+Extension.swift"; sourceTree = "<group>"; };
 		1BBC5C9D276E0D81001B5F3E /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
-		1BF5405F2794EEC300D98F70 /* CheckButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButton.swift; sourceTree = "<group>"; };
+		1BF5405F2794EEC300D98F70 /* CheckButtonTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckButtonTitle.swift; sourceTree = "<group>"; };
+		1BF54083279B2C9E00D98F70 /* Alertable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alertable.swift; sourceTree = "<group>"; };
 		3C0CAAE32768907E00810069 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		3C0CAAE6276890CE00810069 /* MQColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQColor.swift; sourceTree = "<group>"; };
 		3C0CAAEA2768966F00810069 /* MQStandardTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQStandardTextField.swift; sourceTree = "<group>"; };
@@ -246,12 +248,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1B9BCAB52779D7E90084931D /* GoogleSignIn in Frameworks */,
 				1BBC5C82276DB547001B5F3E /* FirebaseAuth in Frameworks */,
 				1B9BCA80277591730084931D /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				EC22387C3C87C6E08D11C37B /* Pods_MathsQuiz.framework in Frameworks */,
 				E89B6BB1278844CF00363D31 /* FacebookLogin in Frameworks */,
 				1B9BCA7E2775912C0084931D /* FirebaseFirestore in Frameworks */,
+				1BF540812799C29100D98F70 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,7 +309,7 @@
 		1B2EB5BB277C9BDE00FFDD9E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1B2EB5C0277C9C1700FFDD9E /* Input.swift */,
+				1B2EB5C0277C9C1700FFDD9E /* InputData.swift */,
 				1B2EB5C9277D698C00FFDD9E /* Digit.swift */,
 				1B2EB5FB27842A0900FFDD9E /* ResolveResult.swift */,
 			);
@@ -480,6 +482,7 @@
 				1B9BCA07276E52B70084931D /* ConfigCell.swift */,
 				1B7C4735276B42E700BFD277 /* Coordinator.swift */,
 				1B7C473F276B58B600BFD277 /* Presentable.swift */,
+				1BF54083279B2C9E00D98F70 /* Alertable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -736,7 +739,7 @@
 				1B9BCAFD277B728E0084931D /* OnboardingContent.swift */,
 				1B2EB5AF277C588800FFDD9E /* Level.swift */,
 				1B2EB5D2278041F800FFDD9E /* PasswordPair.swift */,
-				1BF5405F2794EEC300D98F70 /* CheckButton.swift */,
+				1BF5405F2794EEC300D98F70 /* CheckButtonTitle.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -801,8 +804,8 @@
 				1BBC5C81276DB547001B5F3E /* FirebaseAuth */,
 				1B9BCA7D2775912C0084931D /* FirebaseFirestore */,
 				1B9BCA7F277591730084931D /* FirebaseFirestoreSwift-Beta */,
-				1B9BCAB42779D7E90084931D /* GoogleSignIn */,
 				E89B6BB0278844CF00363D31 /* FacebookLogin */,
+				1BF540802799C29100D98F70 /* GoogleSignIn */,
 			);
 			productName = MathsQuiz;
 			productReference = 1B71BA0E2767BE490056A2FF /* MathsQuiz.app */;
@@ -833,8 +836,8 @@
 			mainGroup = 1B71BA052767BE490056A2FF;
 			packageReferences = (
 				1BBC5C80276DB547001B5F3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				1B9BCAB32779D7E80084931D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */,
-				E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk.git" */,
+				E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				1BF5407F2799C29100D98F70 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = 1B71BA0F2767BE490056A2FF /* Products */;
 			projectDirPath = "";
@@ -861,23 +864,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		009FBDF2A9229277F7DE5242 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MathsQuiz/Pods-MathsQuiz-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1BBC5C9B276DF5C0001B5F3E /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -953,7 +939,7 @@
 				1BBC5C9E276E0D82001B5F3E /* Credentials.swift in Sources */,
 				1B2EB5EA2781D3EA00FFDD9E /* ExamplePresenter.swift in Sources */,
 				1B9BCA9E27773CAB0084931D /* PasswordChangeContract.swift in Sources */,
-				1B2EB5C1277C9C1700FFDD9E /* Input.swift in Sources */,
+				1B2EB5C1277C9C1700FFDD9E /* InputData.swift in Sources */,
 				1B9BCA1D276F06A50084931D /* MainCoordinator.swift in Sources */,
 				1B71BA352768F5680056A2FF /* LoginPresenter.swift in Sources */,
 				1B7C4731276B42D100BFD277 /* AppCoordinator.swift in Sources */,
@@ -991,7 +977,7 @@
 				1B2EB6022785717000FFDD9E /* ExampleFactory.swift in Sources */,
 				1B9BCAF3277B5E3D0084931D /* OnboardingPresenter.swift in Sources */,
 				3C0CAAE42768907E00810069 /* UIColor+Extension.swift in Sources */,
-				1BF540602794EEC300D98F70 /* CheckButton.swift in Sources */,
+				1BF540602794EEC300D98F70 /* CheckButtonTitle.swift in Sources */,
 				1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */,
 				3C25CD562773259700A49DC2 /* PasswordChangeViewController.swift in Sources */,
 				1B2EB5F9278428E100FFDD9E /* ExampleResolver.swift in Sources */,
@@ -1041,6 +1027,7 @@
 				1B9BCA2F276F0F170084931D /* Activity.swift in Sources */,
 				1B9BC9F1276E4D530084931D /* MQFont.swift in Sources */,
 				1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */,
+				1BF54084279B2C9F00D98F70 /* Alertable.swift in Sources */,
 				1B2EB62327882C7E00FFDD9E /* ExampleViewBuilder.swift in Sources */,
 				1B2EB5CE277EF7B900FFDD9E /* FirebaseAuthService.swift in Sources */,
 				1B7C4792276C663C00BFD277 /* CoordinatorFactoryImp.swift in Sources */,
@@ -1245,14 +1232,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		1B9BCAB32779D7E80084931D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:google/GoogleSignIn-iOS.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.1.0;
-			};
-		};
 		1BBC5C80276DB547001B5F3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1261,7 +1240,15 @@
 				minimumVersion = 8.10.0;
 			};
 		};
-		E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk.git" */ = {
+		1BF5407F2799C29100D98F70 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.1.0;
+			};
+		};
+		E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
 			requirement = {
@@ -1282,19 +1269,19 @@
 			package = 1BBC5C80276DB547001B5F3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
 		};
-		1B9BCAB42779D7E90084931D /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1B9BCAB32779D7E80084931D /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS.git" */;
-			productName = GoogleSignIn;
-		};
 		1BBC5C81276DB547001B5F3E /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1BBC5C80276DB547001B5F3E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
 		};
+		1BF540802799C29100D98F70 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BF5407F2799C29100D98F70 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
 		E89B6BB0278844CF00363D31 /* FacebookLogin */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk.git" */;
+			package = E89B6BAD278844CF00363D31 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookLogin;
 		};
 /* End XCSwiftPackageProductDependency section */

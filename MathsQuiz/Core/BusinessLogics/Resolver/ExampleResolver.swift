@@ -14,7 +14,7 @@ class ExampleResolver: Resolver {
         self.type = type
     }
 
-    func resolve(input: Input) -> ResolveResult {
+    func resolve(input: InputData) -> ResolveResult {
         switch type {
         case .addition:
             return additionHandler(input: input)
@@ -32,7 +32,7 @@ class ExampleResolver: Resolver {
 
 private extension ExampleResolver {
     
-    func additionHandler(input: Input) -> ResolveResult {
+    func additionHandler(input: InputData) -> ResolveResult {
         
         let firstNumber = String(input.firstNumber)
             .reversed()
@@ -47,18 +47,18 @@ private extension ExampleResolver {
         var carry = 0
         var output = ResolveResult()
         
-        for i in 0..<digitCount {
+        for index in 0..<digitCount {
             var d1 = 0
             var d2 = 0
             
-            if i >= 0 && i < firstNumber.count {
-                d1 = firstNumber[i]
+            if index >= 0 && index < firstNumber.count {
+                d1 = firstNumber[index]
                 output.firstNumber.append(Digit(value: d1, carry: carry))
             }
             
-            if i >= 0 && i < secondNumber.count {
-                d2 = secondNumber[i]
-                if i > firstNumber.count - 1 {
+            if index >= 0 && index < secondNumber.count {
+                d2 = secondNumber[index]
+                if index > firstNumber.count - 1 {
                     output.secondNumber.append(Digit(value: d2, carry: carry))
                 } else {
                     output.secondNumber.append(Digit(value: d2, carry: 0))
@@ -73,7 +73,7 @@ private extension ExampleResolver {
                 carry = 0
             }
             
-            output.result[i] = Digit(value: sum, carry: 0)
+            output.result[index] = Digit(value: sum, carry: 0)
         }
         
         if carry == 1 {

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ExampleCarryView: UIView {
     
@@ -17,16 +18,15 @@ class ExampleCarryView: UIView {
     
     private(set) lazy var carryLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.systemFont(ofSize: 20, weight: .regular)
         label.textColor = digitColor
         label.text = carry
         return label
     }()
     
-    init(frame: CGRect, carry: String) {
+    init(carry: String) {
         self.carry = carry
-        super.init(frame: frame)
+        super.init(frame: .zero)
         setupView()
     }
     
@@ -44,30 +44,23 @@ class ExampleCarryView: UIView {
         self.backgroundColor = .systemBackground
         self.addSubview(carryLabel)
         
-        NSLayoutConstraint.activate([
-            carryLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor,
-                                                constant: borderWidth / 2),
-            carryLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor,
-                                                constant: -borderWidth / 2)
-        ])
+        carryLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
     }
+    
     override func draw(_ rect: CGRect) {
         let radius = rect.width / 2 - borderWidth
-        let center = CGPoint(x: rect.width - radius - borderWidth / 2,
-                             y: radius + borderWidth / 2)
+        let center = CGPoint(x: rect.midX,
+                             y: rect.midY)
         let path = UIBezierPath(arcCenter: center,
                                 radius: radius,
-                                startAngle: 330 * CGFloat.pi / 180,
-                                endAngle: -30 * CGFloat.pi / 180,
+                                startAngle: 0,
+                                endAngle: 2 * CGFloat.pi,
                                 clockwise: false)
         
         path.lineWidth = borderWidth
         borderColor.setStroke()
         path.stroke()
-    }
-    
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        guard self.bounds.contains(point) else { return nil }
-        return self
     }
 }

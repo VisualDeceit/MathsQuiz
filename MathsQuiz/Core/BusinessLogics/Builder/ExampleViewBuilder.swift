@@ -50,7 +50,7 @@ class ExampleViewBuilder {
     func addDigit(_ digit: Digit, type: DigitType, index: Int) {
         let view = UIView()
         let digitView = ExampleDigitView(digit: String(digit.value), type: type, index: index)
-        let carryView = ExampleCarryView(frame: .zero, carry: "0")
+        let carryView = ExampleCarryView(carry: "0")
         
         view.addSubview(digitView)
         

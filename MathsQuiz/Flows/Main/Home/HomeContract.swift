@@ -17,7 +17,7 @@ protocol HomeViewInput: AnyObject {
 protocol HomeViewOutput: AnyObject {
     var activities: [Activity]? { get set }
     
-    func viewDidSelectActivity(type: ActivityType)
+    func viewDidSelectItemAt(_ indexPath: IndexPath)
     func viewDidLoad()
     func viewDidAccountButtonTap()    
 }

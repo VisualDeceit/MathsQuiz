@@ -26,8 +26,11 @@ final class LevelsPresenter: LevelsPresenterOutput {
 
 // MARK: - LevelsViewOutput
 extension LevelsPresenter: LevelsViewOutput {
-    func viewDidSelectLevel(_ level: Level) {
-        onSelectLevel?(level)
+    func viewDidSelectItemAt(_ indexPath: IndexPath) {
+        if let level = levels?[indexPath.row],
+           level.completion >= 0 {
+            onSelectLevel?(level)
+        }
     }
     
     func viewDidLoad() {

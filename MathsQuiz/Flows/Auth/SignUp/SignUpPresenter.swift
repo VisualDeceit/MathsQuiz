@@ -63,7 +63,7 @@ class SignUpPresenter: SignUpPresenterOutput {
                 } catch let error {
                     self?.authService.deleteCurrentUser { _ in }
                     Session.uid = nil
-                    self?.view?.displayAlert(error.localizedDescription)
+                    self?.view?.displayAlert(error)
                     return
                 }
                 self?.onSignUpComplete?()
