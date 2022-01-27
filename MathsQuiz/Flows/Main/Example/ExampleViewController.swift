@@ -118,19 +118,12 @@ private extension ExampleViewController {
         navigationController?.navigationBar.isTranslucent = true
         navigationItem.largeTitleDisplayMode = .never
 
-        let backButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(backButtonItemTapped))
-        backButtonItem.tintColor = MQColor.lavenderDark
-
         let questionButtonItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"),
                                              style: .plain,
                                              target: self,
                                              action: #selector(questionButtonItemTapped))
         questionButtonItem.tintColor = MQColor.background
 
-        navigationItem.leftBarButtonItem = backButtonItem
         navigationItem.rightBarButtonItem = questionButtonItem
     }
     
