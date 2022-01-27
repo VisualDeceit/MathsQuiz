@@ -41,6 +41,10 @@
 	<string>9f9006343040c5b9375662cca9e25498</string>
 	<key>FacebookDisplayName</key>
 	<string>Maths Quiz</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<false/>
+	<key>FacebookAdvertiserIDCollectionEnabled</key>
+	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
