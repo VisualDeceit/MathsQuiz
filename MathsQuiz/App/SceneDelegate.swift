@@ -26,11 +26,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController()
+        let nav = UINavigationController(rootViewController: ExampleAssembly.build(activity: .addition, level: Level(number: 1, completion: 2)).toPresent()!)
+        window?.rootViewController = nav
         window?.windowScene = windowScene
         window?.makeKeyAndVisible()
-        appCoordinator = makeCoordinator()
-        appCoordinator.start()
+//        appCoordinator = makeCoordinator()
+//        appCoordinator.start()
     }
     
     private func makeCoordinator() -> Coordinator {

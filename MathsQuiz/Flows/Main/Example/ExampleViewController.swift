@@ -18,23 +18,23 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     private let exampleWorkspaceView = UIView()
     
     private let topKeypadStack: UIStackView = {
-        let sv = UIStackView()
-        sv.alignment = .fill
-        sv.axis = .horizontal
-        sv.distribution = .equalCentering
-        sv.spacing = 0
-        sv.contentMode = .scaleToFill
-        return sv
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.axis = .horizontal
+        stackView.distribution = .equalCentering
+        stackView.spacing = 0
+        stackView.contentMode = .scaleToFill
+        return stackView
     }()
     
     private let bottomKeypadStack: UIStackView = {
-        let sv = UIStackView()
-        sv.alignment = .fill
-        sv.axis = .horizontal
-        sv.distribution = .equalCentering
-        sv.spacing = 0
-        sv.contentMode = .scaleToFill
-        return sv
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.axis = .horizontal
+        stackView.distribution = .equalCentering
+        stackView.spacing = 0
+        stackView.contentMode = .scaleToFill
+        return stackView
     }()
     
     private let keypadDraggableLabel: UILabel = {
@@ -47,11 +47,11 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     }()
     
     private let attemptsStackView: UIStackView = {
-        let sv = UIStackView()
-        sv.distribution = .fillEqually
-        sv.axis = .horizontal
-        sv.spacing = 1
-        return sv
+        let stackView = UIStackView()
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.spacing = 1
+        return stackView
     }()
     
     private let timerLabel: UILabel = {
@@ -64,7 +64,7 @@ class ExampleViewController: UIViewController, ExampleViewInput {
 
     private let checkButton = MQStandardButton(title: CheckButtonTitle.check.rawValue)
     private let progressView = UIProgressView()
-    private let label = UILabel()
+    private let progressResultLabel = UILabel()
 
     private var keypad = [KeypadDigitView]()
     
@@ -110,10 +110,11 @@ private extension ExampleViewController {
     }
     
     func setupNavigationBar() {
-        navigationController?.navigationBar.tintColor = .black
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.view.backgroundColor = .clear
+//        navigationController?.navigationBar.tintColor = .black
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        navigationController?.navigationBar.shadowImage = UIImage()
+//        navigationController?.view.backgroundColor = .clear
+        navigationController?.navigationBar.backgroundColor = MQColor.lavenderLight
         navigationController?.navigationBar.isTranslucent = true
         navigationItem.largeTitleDisplayMode = .never
 
@@ -127,7 +128,7 @@ private extension ExampleViewController {
                                              style: .plain,
                                              target: self,
                                              action: #selector(questionButtonItemTapped))
-        questionButtonItem.tintColor = MQColor.lavenderLight
+        questionButtonItem.tintColor = MQColor.background
 
         navigationItem.leftBarButtonItem = backButtonItem
         navigationItem.rightBarButtonItem = questionButtonItem
@@ -171,7 +172,7 @@ private extension ExampleViewController {
     }
     
     func setupProgressView() {
-        progressView.trackTintColor = MQColor.lavenderLight
+        progressView.trackTintColor = MQColor.background
         progressView.progressTintColor = MQColor.lavenderDark
         progressView.progress = 0.5
 
@@ -180,11 +181,11 @@ private extension ExampleViewController {
         progressView.layer.cornerRadius = 5
         progressView.clipsToBounds = true
 
-        label.text = "4 из 17"
-        label.font = MQFont.semiBoldSystemFont17
-        label.textAlignment = .center
+        progressResultLabel.text = "4 из 17"
+        progressResultLabel.font = MQFont.semiBoldSystemFont17
+        progressResultLabel.textAlignment = .center
 
-        let stackView = UIStackView(arrangedSubviews: [progressView, label])
+        let stackView = UIStackView(arrangedSubviews: [progressView, progressResultLabel])
         stackView.axis = .vertical
         stackView.spacing = 5
 
@@ -216,7 +217,7 @@ private extension ExampleViewController {
     }
 
     @objc func checkButtonTapped() {
-        presenter?.viewDidCheckButtonTap(type: checkButtonType)
+        presenter?.viewDidCheckButtonTap(with: checkButtonTitle)
     }
 
     @objc func backButtonItemTapped() {}
