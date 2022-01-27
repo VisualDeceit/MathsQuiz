@@ -7,9 +7,8 @@
 
 import Foundation
 
-protocol PasswordChangeViewInput: AnyObject {
+protocol PasswordChangeViewInput: AnyObject, Alertable {
     var presenter: (PasswordChangeViewOutput & PasswordChangePresenterOutput)? { get set }
-    func displayAlert(_ message: String?)
 }
 
 protocol PasswordChangeViewOutput {

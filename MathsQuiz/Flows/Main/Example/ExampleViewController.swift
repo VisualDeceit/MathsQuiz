@@ -13,12 +13,9 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     var presenter: (ExamplePresenterOutput & ExampleViewOutput)?
     var relativeLocation = CGPoint()
     var isDigitCaptured = false
-    var checkButtonType = CheckButton.check
+    var checkButtonTitle = CheckButtonTitle.check
     
-    private let exampleWorkspaceView: UIView = {
-        let view = UIView(frame: .zero)
-        return view
-    }()
+    private let exampleWorkspaceView = UIView()
     
     private let topKeypadStack: UIStackView = {
         let sv = UIStackView()
@@ -54,7 +51,6 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         sv.distribution = .fillEqually
         sv.axis = .horizontal
         sv.spacing = 1
-        sv.translatesAutoresizingMaskIntoConstraints = false
         return sv
     }()
     
@@ -63,18 +59,17 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         label.text = "00:00"
         label.font = MQFont.timerFont
         label.adjustsFontSizeToFitWidth = true
-        label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-    
-    private let checkButton = MQStandardButton(title: CheckButton.check.rawValue)
+
+    private let checkButton = MQStandardButton(title: CheckButtonTitle.check.rawValue)
     private let progressView = UIProgressView()
     private let label = UILabel()
-    
+
     private var keypad = [KeypadDigitView]()
     
     private let panGestureRecognizer = UIPanGestureRecognizer()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -121,26 +116,26 @@ private extension ExampleViewController {
         navigationController?.view.backgroundColor = .clear
         navigationController?.navigationBar.isTranslucent = true
         navigationItem.largeTitleDisplayMode = .never
-        
+
         let backButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
                                          style: .plain,
                                          target: self,
                                          action: #selector(backButtonItemTapped))
         backButtonItem.tintColor = MQColor.lavenderDark
-        
+
         let questionButtonItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"),
                                              style: .plain,
                                              target: self,
                                              action: #selector(questionButtonItemTapped))
         questionButtonItem.tintColor = MQColor.lavenderLight
-        
+
         navigationItem.leftBarButtonItem = backButtonItem
         navigationItem.rightBarButtonItem = questionButtonItem
     }
     
     func setupKeypad() {
-        for i in 0...9 {
-            keypad.append(KeypadDigitView(digit: i))
+        for index in 0...9 {
+            keypad.append(KeypadDigitView(digit: index))
         }
         
         Array(keypad[1...5]).forEach { topKeypadStack.addArrangedSubview($0) }
@@ -152,15 +147,15 @@ private extension ExampleViewController {
         
         topKeypadStack.snp.makeConstraints { make in
             make.height.equalTo(Keypad.buttonSize)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(Indent.single)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(Indent.single)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset8)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(MQOffset.offset8)
         }
         
         bottomKeypadStack.snp.makeConstraints { make in
             make.height.equalTo(Keypad.buttonSize)
-            make.leading.equalTo(view.safeAreaLayoutGuide).offset(Indent.single)
-            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(Indent.single)
-            make.top.equalTo(topKeypadStack.snp.bottom).offset(Indent.single)
+            make.leading.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset8)
+            make.trailing.equalTo(view.safeAreaLayoutGuide).inset(MQOffset.offset8)
+            make.top.equalTo(topKeypadStack.snp.bottom).offset(MQOffset.offset8)
         }
     }
     
@@ -170,8 +165,8 @@ private extension ExampleViewController {
         checkButton.snp.makeConstraints { make in
             make.width.equalTo(Keypad.checkButtonWidth)
             make.centerX.equalToSuperview()
-            make.top.equalTo(bottomKeypadStack.snp.bottom).offset(Indent.single)
-            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(Indent.single)
+            make.top.equalTo(bottomKeypadStack.snp.bottom).offset(MQOffset.offset8)
+            make.bottom.equalTo(view.safeAreaLayoutGuide).inset(MQOffset.offset8)
         }
     }
     
@@ -179,56 +174,53 @@ private extension ExampleViewController {
         progressView.trackTintColor = MQColor.lavenderLight
         progressView.progressTintColor = MQColor.lavenderDark
         progressView.progress = 0.5
-        
+
         progressView.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: 10).isActive = true
         progressView.layer.cornerRadius = 5
         progressView.clipsToBounds = true
-        
+
         label.text = "4 из 17"
         label.font = MQFont.semiBoldSystemFont17
         label.textAlignment = .center
-        
+
         let stackView = UIStackView(arrangedSubviews: [progressView, label])
         stackView.axis = .vertical
         stackView.spacing = 5
-        
+
         navigationItem.titleView = stackView
     }
     
     func setupUserStateBar() {
         view.addSubview(attemptsStackView)
-        NSLayoutConstraint.activate([
-            attemptsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor,
-                                                       constant: Indent.single),
-            attemptsStackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                                   constant: Indent.single),
-            attemptsStackView.widthAnchor.constraint(equalToConstant: ExampleView.attemptsWidth)
-        ])
-        
         view.addSubview(timerLabel)
-        NSLayoutConstraint.activate([
-            timerLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,
-                                            constant: Indent.single),
-            timerLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor,
-                                                 constant: -Indent.single)
-        ])
+
+        attemptsStackView.snp.makeConstraints { make in
+            make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset8)
+            make.width.equalTo(ExampleView.attemptsWidth
+            )
+        }
+
+        timerLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset8)
+            make.trailing.equalTo(view).inset(MQOffset.offset8)
+        }
     }
 }
 
 //MARK: - Setup targets
 private extension ExampleViewController {
-    
+
     func setupTargets() {
         checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
     }
-    
+
     @objc func checkButtonTapped() {
         presenter?.viewDidCheckButtonTap(type: checkButtonType)
     }
-    
+
     @objc func backButtonItemTapped() {}
-    
+
     @objc func questionButtonItemTapped() {}
 }
 
@@ -294,9 +286,9 @@ extension ExampleViewController {
     
     func refreshAttemptsView(with attempts: Int) {
         attemptsStackView.subviews.forEach { (view) in view.removeFromSuperview() }
-        for i in 1...3 {
+        for index in 1...3 {
             let image = UIImageView()
-            if i <= attempts {
+            if index <= attempts {
                 image.image = UIImage(systemName: "star.fill")
             } else {
                 image.image = UIImage(systemName: "star")
@@ -314,10 +306,10 @@ extension ExampleViewController {
         timerLabel.text = time
     }
     
-    func changeCheckButton(type: CheckButton) {
-        checkButtonType = type
-        checkButton.setTitle(checkButtonType.rawValue, for: .normal)
-        if type == .transition {
+    func changeCheckButton(title: CheckButtonTitle) {
+        checkButtonTitle = title
+        checkButton.setTitle(checkButtonTitle.rawValue, for: .normal)
+        if title == .transition {
             exampleWorkspaceView.allSubViewsOf(type: ExampleDigitView.self)
                 .filter { $0.type == .result }
                 .forEach { $0.setColor(for: true) }

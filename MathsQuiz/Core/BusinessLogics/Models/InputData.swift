@@ -7,8 +7,7 @@
 
 import Foundation
 
-// Начальные данные примера
-struct Input {
+struct InputData {
     let firstNumber: Int
     let secondNumber: Int
 }

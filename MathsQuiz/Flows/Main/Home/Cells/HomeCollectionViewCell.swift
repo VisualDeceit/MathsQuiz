@@ -19,19 +19,19 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
     private let progressNumLabel = UILabel()
     private let circularProgressBarView = MQCircularProgressBar(frame: .zero)
     
-    func configure(with value: Activity) {
-        self.backgroundColor = value.type.color
+    func configure(with activity: Activity) {
+        self.backgroundColor = activity.type.color
         self.layer.cornerRadius = 24
-        setupNameLabel(text: value.type.rawValue)
+        setupNameLabel(text: activity.type.rawValue)
         setupLevelContainerView()
-        setupLevelCountLabel(with: value.type.totalLevels)
+        setupLevelCountLabel(with: activity.type.totalLevels)
         setupProgressForm()
-        if value.type.totalLevels == 0 {
+        if activity.type.totalLevels == 0 {
             setUpCircularProgressBarView(toValue: 0)
         } else {
-            setUpCircularProgressBarView(toValue: Double(value.levels.count - 1) / Double(value.type.totalLevels))
+            setUpCircularProgressBarView(toValue: Double(activity.levels.count - 1) / Double(activity.type.totalLevels))
         }
-        progressNumLabel.text = "\(value.levels.count - 1)"
+        progressNumLabel.text = "\(activity.levels.count - 1)"
     }
     
     private func setupNameLabel(text: String) {

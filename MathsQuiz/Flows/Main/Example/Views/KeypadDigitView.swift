@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class KeypadDigitView: UIView {
     
@@ -13,7 +14,6 @@ class KeypadDigitView: UIView {
     
     private(set) lazy var digitLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
         label.font = MQFont.keypadFont
         label.textColor = .black
         return label
@@ -30,35 +30,28 @@ class KeypadDigitView: UIView {
     }
     
     private func setupView() {
-        translatesAutoresizingMaskIntoConstraints = false
         backgroundColor = .clear
         
         digitLabel.text = "\(digit)"
         addSubview(digitLabel)
         
-        NSLayoutConstraint.activate([
-            widthAnchor.constraint(equalTo: heightAnchor),
-            digitLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
-            digitLabel.centerXAnchor.constraint(equalTo: centerXAnchor)
-        ])
+        snp.makeConstraints { (make) in
+            make.width.equalTo(snp.height)
+        }
+        
+        digitLabel.snp.makeConstraints { (make) in
+            make.center.equalToSuperview()
+        }
     }
     
-    override func draw(_ rect: CGRect) {
-        let rectWidth = rect.width
-        let rectHeight = rect.height
-        
-        let xf: CGFloat = (self.frame.width - rectWidth) / 2
-        let yf: CGFloat = (self.frame.height - rectHeight) / 2
-        
-        let rect = CGRect(x: xf, y: yf, width: rectWidth, height: rectHeight)
-        
-        let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
+    override func draw(_ rect: CGRect) {        
+        let center = CGPoint(x: rect.midX, y: rect.midY)
         let radius = 0.5 * min(rect.width, rect.height)
         
         let clipPath = UIBezierPath(arcCenter: center,
                                     radius: radius,
-                                    startAngle: 330 * CGFloat.pi / 180,
-                                    endAngle: -30 * CGFloat.pi / 180,
+                                    startAngle: 0,
+                                    endAngle: 2 * CGFloat.pi,
                                     clockwise: false)
         UIColor.systemGray6.setFill()
         clipPath.fill()

@@ -16,7 +16,6 @@ class OnboardingViewController: UIPageViewController, OnboardingViewInput {
     private let pageControl = UIPageControl()
     private let skipButton = MQPlainButton(title: "Начать")
     private let bottomButton = MQStandardButton(title: "Далее")
-    private var pageControlBottomAnchor: NSLayoutConstraint?
     
     convenience init(transitionStyle style: UIPageViewController.TransitionStyle) {
         self.init(transitionStyle: style, navigationOrientation: .horizontal)
@@ -101,7 +100,7 @@ private extension OnboardingViewController {
         }
         
         bottomButton.snp.makeConstraints { make in
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).inset(MQOffset.offset12)
             make.leading.equalToSuperview().offset(MQOffset.offset64)
             make.trailing.equalToSuperview().inset(MQOffset.offset64)
             make.height.equalTo(MQOffset.offset44)
