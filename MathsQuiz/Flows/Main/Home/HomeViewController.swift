@@ -75,7 +75,7 @@ private extension HomeViewController {
         greetingLabel.snp.makeConstraints { make in
             make.centerY.equalTo(accountButton.snp.centerY)
             make.leading.equalToSuperview().offset(MQOffset.offset16)
-            make.trailing.equalTo(accountButton.snp.leading).inset(MQOffset.offset16)
+            make.trailing.equalTo(accountButton.snp.leading).inset(-MQOffset.offset16)
         }
         
         accountButton.snp.makeConstraints { make in
