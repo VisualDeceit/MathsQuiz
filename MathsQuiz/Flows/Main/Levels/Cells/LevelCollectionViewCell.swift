@@ -29,8 +29,6 @@ class LevelCollectionViewCell: UICollectionViewCell {
     func setupUnblockedCellForm(level: Level, type: ActivityType) {
         levelNumLabel.text = "\(level.number)"
         levelNumLabel.font = MQFont.systemFont48
-        levelNumLabel.textAlignment = .center
-        levelNumLabel.adjustsFontSizeToFitWidth = true
         
         for index in 1...3 {
             let image = UIImageView()
@@ -56,7 +54,7 @@ class LevelCollectionViewCell: UICollectionViewCell {
         
         levelNumLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(MQOffset.offset20)
+            make.top.greaterThanOrEqualToSuperview().offset(MQOffset.offset8)
         }
         
         stackView.snp.makeConstraints { make in

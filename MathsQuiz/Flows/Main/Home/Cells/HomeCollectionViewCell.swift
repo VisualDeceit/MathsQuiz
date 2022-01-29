@@ -26,6 +26,7 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         setupLevelContainerView()
         setupLevelCountLabel(with: activity.type.totalLevels)
         setupProgressForm()
+        
         if activity.type.totalLevels == 0 {
             setUpCircularProgressBarView(toValue: 0)
         } else {
@@ -86,7 +87,6 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
     private func setupProgressForm() {
         circleContainerView.backgroundColor = MQColor.background
         
-        progressNumLabel.text = "3"
         progressNumLabel.font = MQFont.systemFont12
         
         self.addSubview(circleContainerView)
