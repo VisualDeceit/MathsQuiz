@@ -14,6 +14,7 @@ struct MQFont {
     static let boldSystemFont18 = UIFont.boldSystemFont(ofSize: 18)
     static let boldSystemFont16 = UIFont.boldSystemFont(ofSize: 16)
     static let boldSystemFont14 = UIFont.boldSystemFont(ofSize: 14)
+    static let semiBoldSystemFont17 = UIFont.systemFont(ofSize: 17, weight: .semibold)
     static let systemFont64 = UIFont.systemFont(ofSize: 64)
     static let systemFont48 = UIFont.systemFont(ofSize: 48)
     static let systemFont32 = UIFont.systemFont(ofSize: 32)

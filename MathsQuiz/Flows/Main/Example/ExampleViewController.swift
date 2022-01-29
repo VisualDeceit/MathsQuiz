@@ -18,23 +18,23 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     private let exampleWorkspaceView = UIView()
     
     private let topKeypadStack: UIStackView = {
-        let sv = UIStackView()
-        sv.alignment = .fill
-        sv.axis = .horizontal
-        sv.distribution = .equalCentering
-        sv.spacing = 0
-        sv.contentMode = .scaleToFill
-        return sv
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.axis = .horizontal
+        stackView.distribution = .equalCentering
+        stackView.spacing = 0
+        stackView.contentMode = .scaleToFill
+        return stackView
     }()
     
     private let bottomKeypadStack: UIStackView = {
-        let sv = UIStackView()
-        sv.alignment = .fill
-        sv.axis = .horizontal
-        sv.distribution = .equalCentering
-        sv.spacing = 0
-        sv.contentMode = .scaleToFill
-        return sv
+        let stackView = UIStackView()
+        stackView.alignment = .fill
+        stackView.axis = .horizontal
+        stackView.distribution = .equalCentering
+        stackView.spacing = 0
+        stackView.contentMode = .scaleToFill
+        return stackView
     }()
     
     private let keypadDraggableLabel: UILabel = {
@@ -47,11 +47,11 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     }()
     
     private let attemptsStackView: UIStackView = {
-        let sv = UIStackView()
-        sv.distribution = .fillEqually
-        sv.axis = .horizontal
-        sv.spacing = 1
-        return sv
+        let stackView = UIStackView()
+        stackView.distribution = .fillEqually
+        stackView.axis = .horizontal
+        stackView.spacing = 1
+        return stackView
     }()
     
     private let timerLabel: UILabel = {
@@ -61,13 +61,15 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
-    
-    private let panGestureRecognizer = UIPanGestureRecognizer()
-    
+
     private let checkButton = MQStandardButton(title: CheckButtonTitle.check.rawValue)
-    
+    private let progressView = UIProgressView()
+    private let progressResultLabel = UILabel()
+
     private var keypad = [KeypadDigitView]()
     
+    private let panGestureRecognizer = UIPanGestureRecognizer()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -93,6 +95,7 @@ private extension ExampleViewController {
         setupWorkspace()
         setupTargets()
         setupUserStateBar()
+        setupProgressView()
     }
     
     func setupWorkspace() {
@@ -107,13 +110,21 @@ private extension ExampleViewController {
     }
     
     func setupNavigationBar() {
-        title = "Пример"
-        navigationController?.navigationBar.tintColor = MQColor.ubeDefault
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
+//        navigationController?.navigationBar.tintColor = .black
+//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        navigationController?.navigationBar.shadowImage = UIImage()
+//        navigationController?.view.backgroundColor = .clear
+        navigationController?.navigationBar.backgroundColor = MQColor.lavenderLight
         navigationController?.navigationBar.isTranslucent = true
-        navigationController?.view.backgroundColor = .clear
         navigationItem.largeTitleDisplayMode = .never
+
+        let questionButtonItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(questionButtonItemTapped))
+        questionButtonItem.tintColor = MQColor.background
+
+        navigationItem.rightBarButtonItem = questionButtonItem
     }
     
     func setupKeypad() {
@@ -153,29 +164,58 @@ private extension ExampleViewController {
         }
     }
     
-    func setupTargets() {
-        checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
-    }
-    
-    @objc func checkButtonTapped() {
-        presenter?.viewDidCheckButtonTap(with: checkButtonTitle)
+    func setupProgressView() {
+        progressView.trackTintColor = MQColor.background
+        progressView.progressTintColor = MQColor.lavenderDark
+        progressView.progress = 0.5
+
+        progressView.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5).isActive = true
+        progressView.heightAnchor.constraint(equalToConstant: 10).isActive = true
+        progressView.layer.cornerRadius = 5
+        progressView.clipsToBounds = true
+
+        progressResultLabel.text = "4 из 17"
+        progressResultLabel.font = MQFont.semiBoldSystemFont17
+        progressResultLabel.textAlignment = .center
+
+        let stackView = UIStackView(arrangedSubviews: [progressView, progressResultLabel])
+        stackView.axis = .vertical
+        stackView.spacing = 5
+
+        navigationItem.titleView = stackView
     }
     
     func setupUserStateBar() {
         view.addSubview(attemptsStackView)
         view.addSubview(timerLabel)
-        
+
         attemptsStackView.snp.makeConstraints { make in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset8)
             make.width.equalTo(ExampleView.attemptsWidth
             )
         }
-        
+
         timerLabel.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide).offset(MQOffset.offset8)
             make.trailing.equalTo(view).inset(MQOffset.offset8)
         }
     }
+}
+
+//MARK: - Setup targets
+private extension ExampleViewController {
+
+    func setupTargets() {
+        checkButton.addTarget(self, action: #selector(checkButtonTapped), for: .touchUpInside)
+    }
+
+    @objc func checkButtonTapped() {
+        presenter?.viewDidCheckButtonTap(with: checkButtonTitle)
+    }
+
+    @objc func backButtonItemTapped() {}
+
+    @objc func questionButtonItemTapped() {}
 }
 
 // MARK: - UIPanGestureRecognizer
