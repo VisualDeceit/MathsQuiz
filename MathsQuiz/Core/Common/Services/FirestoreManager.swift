@@ -37,6 +37,7 @@ protocol StorageManager {
     func isUserProfileExist(uid: String?, completion: @escaping ((Bool) -> Void))
     func loadActivities(_ completion: @escaping (Result<[Activity], Error>) -> Void)
     func loadLevels(for activity: ActivityType, completion: @escaping (Result<[Level], Error>) -> Void)
+    func saveLevel(level: Level, for activity: ActivityType, completion: ((Error) -> Void)?) 
 }
 
 class FirestoreManager: StorageManager {
@@ -142,6 +143,49 @@ class FirestoreManager: StorageManager {
                     return
                 }
                 completion(.success(activity.levels))
+            }
+        }
+    }
+    
+    func saveLevel(level: Level, for activity: ActivityType, completion: ((Error) -> Void)? = nil) {
+        guard let uid = Session.uid, !uid.isEmpty else {
+            completion?(FirestoreError.emptyPath)
+            return
+        }
+        
+        let collectionRef = db.collection("users").document(uid).collection("activity")
+        collectionRef.whereField("type", isEqualTo: activity.rawValue).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion?(error)
+            } else {
+                
+                let documentRef = querySnapshot?.documents.first?.reference
+                guard let document = querySnapshot?.documents.first,
+                      let oldActivity = try? document.data(as: Activity.self) else {
+                    completion?(FirestoreError.levelIsEmpty)
+                    return
+                }
+                
+                if level.completion > oldActivity.levels[level.number - 1].completion {
+                    let newActivity: Activity
+                    var newLevels = oldActivity.levels
+                    newLevels[level.number - 1] = level
+                    
+                    if oldActivity.levels.count <= level.number,
+                       oldActivity.levels.count < oldActivity.type.totalLevels {
+                        newLevels.append(Level(number: level.number + 1, completion: 0))
+                    }
+                    
+                    newActivity = Activity(index: oldActivity.index,
+                                               type: oldActivity.type,
+                                               levels: newLevels)
+                    
+                    do {
+                        try documentRef?.setData(from: newActivity)
+                    } catch {
+                        completion?(error)
+                    }
+                }
             }
         }
     }

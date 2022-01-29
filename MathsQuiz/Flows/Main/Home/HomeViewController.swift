@@ -14,7 +14,6 @@ class HomeViewController: UIViewController, HomeViewInput {
     
     private let greetingLabel: UILabel = {
         let label = UILabel()
-        label.text = "Привет, Данила"
         label.font = MQFont.boldSystemFont30
         label.adjustsFontSizeToFitWidth = true
         return label

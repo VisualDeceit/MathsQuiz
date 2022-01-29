@@ -22,17 +22,19 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
     func configure(with activity: Activity) {
         self.backgroundColor = activity.type.color
         self.layer.cornerRadius = 24
+        
         setupNameLabel(text: activity.type.rawValue)
         setupLevelContainerView()
         setupLevelCountLabel(with: activity.type.totalLevels)
         setupProgressForm()
         
+        let completed = activity.levels.filter { $0.completion > 0 }.count
         if activity.type.totalLevels == 0 {
             setUpCircularProgressBarView(toValue: 0)
         } else {
-            setUpCircularProgressBarView(toValue: Double(activity.levels.count - 1) / Double(activity.type.totalLevels))
+            setUpCircularProgressBarView(toValue: Double(completed) / Double(activity.type.totalLevels))
         }
-        progressNumLabel.text = "\(activity.levels.count - 1)"
+        progressNumLabel.text = "\(completed)"
     }
     
     private func setupNameLabel(text: String) {
@@ -119,5 +121,11 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         self.layer.cornerRadius = 24
         levelContainerView.layer.cornerRadius = self.frame.width / 15
         circleContainerView.layer.cornerRadius = 18
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        nameLabel.text = nil
+        circularProgressBarView.progressTo(value: 0)
     }
 }

@@ -11,6 +11,7 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
 
     let factory: ExampleFactory
     let activity: ActivityType
+    let firestoreManager: StorageManager
     
     var level: Level
     var userResult = [Int: Digit]()
@@ -20,11 +21,15 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     
     weak var view: ExampleViewInput?
     
-    init(view: ExampleViewInput, factory: ExampleFactory, level: Level) {
+    init(view: ExampleViewInput,
+         factory: ExampleFactory,
+         level: Level,
+         firestoreManager: StorageManager) {
         self.view = view
         self.level = level
         self.factory = factory
         self.activity = factory.type
+        self.firestoreManager = firestoreManager
     }
     
     func viewDidLoad() {
@@ -41,8 +46,12 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
         case .check:
             if userResult == factory.solution.result {
                 view?.changeCheckButton(title: .transition)
-                // todo: save level progress to db
-                // todo: calculate score
+                level.completion = attempts
+                firestoreManager.saveLevel(level: level,
+                                           for: factory.type) { (error) in
+                    print(error.localizedDescription)
+                }
+                #warning("TODO: calculate score")
             } else {
                 attempts -= 1
                 if attempts < 0 {

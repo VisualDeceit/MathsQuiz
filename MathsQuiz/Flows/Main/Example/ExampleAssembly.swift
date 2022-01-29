@@ -15,7 +15,10 @@ final class ExampleAssembly {
         let resolver = ExampleResolver(type: activity)
         let factory = MainExampleFactory(strategy: strategy, resolver: resolver)
         
-        let presenter = ExamplePresenter(view: view, factory: factory, level: level)
+        let presenter = ExamplePresenter(view: view,
+                                         factory: factory,
+                                         level: level,
+                                         firestoreManager: FirestoreManager())
         view.presenter = presenter
         return view
     }
