@@ -14,6 +14,7 @@ protocol ExampleViewInput: AnyObject {
     func refreshAttemptsView(with attempts: Int)
     func refreshTimerView(with time: String)
     func changeCheckButton(title: CheckButtonTitle)
+    func refreshProgress(label: String, percent: Float)
 }
 
 protocol ExampleViewOutput: AnyObject {

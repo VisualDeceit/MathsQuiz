@@ -69,6 +69,9 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     private func makeExample() {
         if let exampleView = factory.makeAdditionExample(for: level) {
             view?.displayExample(view: exampleView)
+            let progressLabel = "\(level.number) из \(activity.totalLevels)"
+            let progressPercent = Float(level.number) / Float(activity.totalLevels)
+            view?.refreshProgress(label: progressLabel, percent: progressPercent)
             view?.refreshAttemptsView(with: attempts)
             view?.changeCheckButton(title: .check)
             createTimer()

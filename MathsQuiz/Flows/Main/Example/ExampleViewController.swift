@@ -65,9 +65,7 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     private let checkButton = MQStandardButton(title: CheckButtonTitle.check.rawValue)
     private let progressView = UIProgressView()
     private let progressResultLabel = UILabel()
-
     private var keypad = [KeypadDigitView]()
-    
     private let panGestureRecognizer = UIPanGestureRecognizer()
 
     override func viewDidLoad() {
@@ -110,20 +108,22 @@ private extension ExampleViewController {
     }
     
     func setupNavigationBar() {
-//        navigationController?.navigationBar.tintColor = .black
-//        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-//        navigationController?.navigationBar.shadowImage = UIImage()
-//        navigationController?.view.backgroundColor = .clear
-        navigationController?.navigationBar.backgroundColor = MQColor.lavenderLight
-        navigationController?.navigationBar.isTranslucent = true
+        navigationController?.navigationBar.tintColor = presenter?.activity.highlightedСolor
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.shadowColor = .clear
+        appearance.backgroundColor = presenter?.activity.color
+
+        navigationItem.standardAppearance = appearance
         navigationItem.largeTitleDisplayMode = .never
-
+        
         let questionButtonItem = UIBarButtonItem(image: UIImage(systemName: "questionmark.circle"),
-                                             style: .plain,
-                                             target: self,
-                                             action: #selector(questionButtonItemTapped))
+                                                 style: .plain,
+                                                 target: self,
+                                                 action: #selector(questionButtonItemTapped))
         questionButtonItem.tintColor = MQColor.background
-
+        
         navigationItem.rightBarButtonItem = questionButtonItem
     }
     
@@ -155,6 +155,7 @@ private extension ExampleViewController {
     
     func setupButtons() {
         view.addSubview(checkButton)
+        checkButton.backgroundColor = presenter?.activity.highlightedСolor
         
         checkButton.snp.makeConstraints { make in
             make.width.equalTo(Keypad.checkButtonWidth)
@@ -166,15 +167,13 @@ private extension ExampleViewController {
     
     func setupProgressView() {
         progressView.trackTintColor = MQColor.background
-        progressView.progressTintColor = MQColor.lavenderDark
-        progressView.progress = 0.5
+        progressView.progressTintColor = presenter?.activity.highlightedСolor
 
         progressView.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: 10).isActive = true
         progressView.layer.cornerRadius = 5
         progressView.clipsToBounds = true
-
-        progressResultLabel.text = "4 из 17"
+        
         progressResultLabel.font = MQFont.semiBoldSystemFont17
         progressResultLabel.textAlignment = .center
 
@@ -202,7 +201,7 @@ private extension ExampleViewController {
     }
 }
 
-//MARK: - Setup targets
+// MARK: - Setup targets
 private extension ExampleViewController {
 
     func setupTargets() {
@@ -212,8 +211,6 @@ private extension ExampleViewController {
     @objc func checkButtonTapped() {
         presenter?.viewDidCheckButtonTap(with: checkButtonTitle)
     }
-
-    @objc func backButtonItemTapped() {}
 
     @objc func questionButtonItemTapped() {}
 }
@@ -308,5 +305,10 @@ extension ExampleViewController {
                 .filter { $0.type == .result }
                 .forEach { $0.setColor(for: true) }
         }
+    }
+    
+    func refreshProgress(label: String, percent: Float) {
+        progressResultLabel.text = label
+        progressView.progress = percent
     }
 }

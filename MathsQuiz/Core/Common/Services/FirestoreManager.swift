@@ -177,8 +177,8 @@ class FirestoreManager: StorageManager {
                     }
                     
                     newActivity = Activity(index: oldActivity.index,
-                                               type: oldActivity.type,
-                                               levels: newLevels)
+                                           type: oldActivity.type,
+                                           levels: newLevels)
                     
                     do {
                         try documentRef?.setData(from: newActivity)

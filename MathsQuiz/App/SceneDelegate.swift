@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SnapKit
 import FBSDKCoreKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
