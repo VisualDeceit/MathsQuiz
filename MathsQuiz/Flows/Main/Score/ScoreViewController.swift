@@ -9,12 +9,13 @@ import UIKit
 import SnapKit
 import Lottie
 
-class ScoreViewController: UIViewController {
+class ScoreViewController: UIViewController, ScoreViewInput {
     
     var activityType: ActivityType?
+    var presenter: (ScorePresenterOutput & ScoreViewOutput)?
     
     private let mainContainerView = UIView()
-    private let bottomCircleContainterView = UIView()
+    private let bottomCircleContainerView = UIView()
     private let middleCircleContainerView = UIView()
     private let topCircleContainerView = UIView()
     private var congratulationFormStackView = UIStackView()
@@ -188,6 +189,11 @@ class ScoreViewController: UIViewController {
         setupViewsCornerRadius()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.viewDidLoad()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -259,24 +265,24 @@ private extension ScoreViewController {
         let middleLighterColor = circleContainerColor.lighter(by: 20)
         let topLighterColor = circleContainerColor.lighter(by: 50)
         
-        bottomCircleContainterView.backgroundColor = circleContainerColor
+        bottomCircleContainerView.backgroundColor = circleContainerColor
         middleCircleContainerView.backgroundColor = middleLighterColor
         topCircleContainerView.backgroundColor = topLighterColor
         
-        mainContainerView.addSubview(bottomCircleContainterView)
-        bottomCircleContainterView.addSubview(middleCircleContainerView)
+        mainContainerView.addSubview(bottomCircleContainerView)
+        bottomCircleContainerView.addSubview(middleCircleContainerView)
         middleCircleContainerView.addSubview(topCircleContainerView)
         
-        bottomCircleContainterView.snp.makeConstraints { make in
+        bottomCircleContainerView.snp.makeConstraints { make in
             make.top.equalTo(mainContainerView).offset(MQOffset.offset40)
             make.centerX.equalTo(view)
             make.height.equalTo(view).multipliedBy(0.27)
-            make.width.equalTo(bottomCircleContainterView.snp.height)
+            make.width.equalTo(bottomCircleContainerView.snp.height)
         }
         
         middleCircleContainerView.snp.makeConstraints { make in
-            make.centerX.centerY.equalTo(bottomCircleContainterView)
-            make.height.equalTo(bottomCircleContainterView.snp.height).multipliedBy(0.75)
+            make.centerX.centerY.equalTo(bottomCircleContainerView)
+            make.height.equalTo(bottomCircleContainerView.snp.height).multipliedBy(0.75)
             make.width.equalTo(middleCircleContainerView.snp.height)
         }
         
@@ -313,7 +319,7 @@ private extension ScoreViewController {
         mainContainerView.addSubview(congratulationFormStackView)
         
         congratulationFormStackView.snp.makeConstraints { make in
-            make.top.equalTo(bottomCircleContainterView.snp.bottom).offset(MQOffset.offset16)
+            make.top.equalTo(bottomCircleContainerView.snp.bottom).offset(MQOffset.offset16)
             make.leading.equalTo(view).offset(MQOffset.offset36)
             make.trailing.equalTo(view).inset(MQOffset.offset36)
             make.height.equalTo(80)
@@ -383,11 +389,11 @@ private extension ScoreViewController {
         mainContainerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         mainContainerView.layer.cornerRadius = 30
         
-        bottomCircleContainterView.layoutIfNeeded()
+        bottomCircleContainerView.layoutIfNeeded()
         middleCircleContainerView.layoutIfNeeded()
         topCircleContainerView.layoutIfNeeded()
         
-        bottomCircleContainterView.layer.cornerRadius = bottomCircleContainterView.frame.width / 2
+        bottomCircleContainerView.layer.cornerRadius = bottomCircleContainerView.frame.width / 2
         middleCircleContainerView.layer.cornerRadius = middleCircleContainerView.frame.width / 2
         topCircleContainerView.layer.cornerRadius = topCircleContainerView.frame.width / 2
     }

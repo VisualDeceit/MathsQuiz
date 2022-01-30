@@ -52,6 +52,9 @@
 		1B7C4792276C663C00BFD277 /* CoordinatorFactoryImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C4791276C663C00BFD277 /* CoordinatorFactoryImp.swift */; };
 		1B7C4797276C6A2D00BFD277 /* RouterImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C4796276C6A2D00BFD277 /* RouterImp.swift */; };
 		1B7C47A7276C8BD200BFD277 /* SignUpContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B7C47A6276C8BD200BFD277 /* SignUpContract.swift */; };
+		1B957D2727A66B4200FFCBA1 /* ScoreContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B957D2627A66B4200FFCBA1 /* ScoreContract.swift */; };
+		1B957D2A27A66B5300FFCBA1 /* ScoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B957D2927A66B5300FFCBA1 /* ScoreAssembly.swift */; };
+		1B957D2D27A66B6800FFCBA1 /* ScorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B957D2C27A66B6800FFCBA1 /* ScorePresenter.swift */; };
 		1B9BC9F1276E4D530084931D /* MQFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9F0276E4D530084931D /* MQFont.swift */; };
 		1B9BC9F5276E4FC90084931D /* UserProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9F4276E4FC90084931D /* UserProfileDetailViewController.swift */; };
 		1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9F7276E4FD70084931D /* UserProfileViewController.swift */; };
@@ -174,6 +177,9 @@
 		1B7C4791276C663C00BFD277 /* CoordinatorFactoryImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorFactoryImp.swift; sourceTree = "<group>"; };
 		1B7C4796276C6A2D00BFD277 /* RouterImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterImp.swift; sourceTree = "<group>"; };
 		1B7C47A6276C8BD200BFD277 /* SignUpContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpContract.swift; sourceTree = "<group>"; };
+		1B957D2627A66B4200FFCBA1 /* ScoreContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreContract.swift; sourceTree = "<group>"; };
+		1B957D2927A66B5300FFCBA1 /* ScoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreAssembly.swift; sourceTree = "<group>"; };
+		1B957D2C27A66B6800FFCBA1 /* ScorePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePresenter.swift; sourceTree = "<group>"; };
 		1B9BC9F0276E4D530084931D /* MQFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQFont.swift; sourceTree = "<group>"; };
 		1B9BC9F4276E4FC90084931D /* UserProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileDetailViewController.swift; sourceTree = "<group>"; };
 		1B9BC9F7276E4FD70084931D /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -777,6 +783,9 @@
 			isa = PBXGroup;
 			children = (
 				E89E486D278EC1060066356F /* ScoreViewController.swift */,
+				1B957D2927A66B5300FFCBA1 /* ScoreAssembly.swift */,
+				1B957D2C27A66B6800FFCBA1 /* ScorePresenter.swift */,
+				1B957D2627A66B4200FFCBA1 /* ScoreContract.swift */,
 			);
 			path = Score;
 			sourceTree = "<group>";
@@ -962,6 +971,7 @@
 				1B7C47A7276C8BD200BFD277 /* SignUpContract.swift in Sources */,
 				1B9BCA532770B6840084931D /* UserProfileDetailPresenter.swift in Sources */,
 				1B9BCAF0277B5E2B0084931D /* OnboardingAssembly.swift in Sources */,
+				1B957D2727A66B4200FFCBA1 /* ScoreContract.swift in Sources */,
 				1B9BCAE7277B5DE40084931D /* OnboardingCoordinator.swift in Sources */,
 				1B71BA3B276908560056A2FF /* LoginAssembly.swift in Sources */,
 				3C0CAAE7276890CE00810069 /* MQColor.swift in Sources */,
@@ -969,6 +979,7 @@
 				1B2EB61C278824EA00FFDD9E /* ExampleDigitView.swift in Sources */,
 				3C5CE3D027785CDF00896ABD /* OnboardingTemplateViewController.swift in Sources */,
 				1B9BCAFA277B6B4D0084931D /* OnboardingModuleFactory.swift in Sources */,
+				1B957D2A27A66B5300FFCBA1 /* ScoreAssembly.swift in Sources */,
 				1B9BCA08276E52B70084931D /* ConfigCell.swift in Sources */,
 				1B9BCA83277591E10084931D /* FirestoreManager.swift in Sources */,
 				1B7C4736276B42E700BFD277 /* Coordinator.swift in Sources */,
@@ -1017,6 +1028,7 @@
 				1B9BCA682774BE2E0084931D /* UIView+Extension.swift in Sources */,
 				3C0CAAF12768A15000810069 /* MQStandardButton.swift in Sources */,
 				1B2EB5F4278426D400FFDD9E /* Resolver.swift in Sources */,
+				1B957D2D27A66B6800FFCBA1 /* ScorePresenter.swift in Sources */,
 				1B9BCAED277B5E170084931D /* OnboardingContract.swift in Sources */,
 				1B9BCA43277054BF0084931D /* UserProfilePresenter.swift in Sources */,
 				1B9BCA712774C6030084931D /* UserDefaultsStorage.swift in Sources */,
