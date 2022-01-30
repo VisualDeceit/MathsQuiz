@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreLocation
 
 class UserProfileDetailViewController: UIViewController, UserProfileDetailViewInput {
     
@@ -45,6 +46,14 @@ class UserProfileDetailViewController: UIViewController, UserProfileDetailViewIn
     private let pickerToolBar = UIToolbar()
     private let saveButton = MQStandardButton(title: "Сохранить")
     
+    private lazy var locationManager = CLLocationManager()
+    private lazy var geocoder = CLGeocoder()
+    private lazy var userCity = "" {
+        didSet {
+            cityTextField.text = userCity
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,6 +61,7 @@ class UserProfileDetailViewController: UIViewController, UserProfileDetailViewIn
         addTargetToButtons()
         addTargetToTextFields()
         addTapGestureRecognizer()
+        configureLocationManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -131,10 +141,12 @@ private extension UserProfileDetailViewController {
         cancelButton.tintColor = MQColor.ubeDark
         
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
-                                        target: nil, action: nil)
+                                        target: nil,
+                                        action: nil)
         
         let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
-                                         target: self, action: #selector(doneToolButtonTapped))
+                                         target: self,
+                                         action: #selector(doneToolButtonTapped))
         doneButton.tintColor = MQColor.ubeDark
         
         pickerToolBar.items = [cancelButton,flexSpace, doneButton]
@@ -241,6 +253,7 @@ private extension UserProfileDetailViewController {
     }
     
     @objc func locationButtonTapped() {
+        locationManager.requestLocation()
     }
     
     @objc func cancelToolButtonTapped() {
@@ -372,3 +385,27 @@ extension UserProfileDetailViewController {
                                            phone: presenter?.userProfile?.phone ?? "")
     }
 }
+
+//MARK: - Setup location
+extension UserProfileDetailViewController: CLLocationManagerDelegate {
+    func configureLocationManager() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        
+        geocoder.reverseGeocodeLocation(location) { places, error in
+            if let city = places?.first?.administrativeArea {
+                self.cityTextField.text = city
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+}
+
+
