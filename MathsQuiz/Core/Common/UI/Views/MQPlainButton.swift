@@ -19,7 +19,7 @@ class MQPlainButton: UIButton {
         self.setTitleColor(normalColor, for: .normal)
         self.setTitleColor(highlightedColor, for: .highlighted)
         self.titleLabel?.font = MQFont.boldSystemFont14
-        self.backgroundColor = MQColor.background
+        self.backgroundColor = .clear
         self.translatesAutoresizingMaskIntoConstraints = false
     }
     

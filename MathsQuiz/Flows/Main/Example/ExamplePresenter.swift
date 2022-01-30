@@ -8,7 +8,7 @@
 import Foundation
 
 final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
-
+   
     let factory: ExampleFactory
     let activity: ActivityType
     let firestoreManager: StorageManager
@@ -18,6 +18,7 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     var attempts = 3
     var timer: Timer?
     var timeInterval = 0
+    var onFinish: (() -> Void)?
     
     weak var view: ExampleViewInput?
     
@@ -60,9 +61,13 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
                 view?.refreshAttemptsView(with: attempts)
             }
         case .transition:
-            level.number += 1
-            attempts = 3
-            makeExample()
+            if activity.totalLevels > level.number {
+                level.number += 1
+                attempts = 3
+                makeExample()
+            } else {
+                onFinish?()
+            }
         }
     }
     

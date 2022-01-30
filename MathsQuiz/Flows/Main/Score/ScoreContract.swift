@@ -12,8 +12,12 @@ protocol ScoreViewInput: AnyObject {
 }
 
 protocol ScoreViewOutput: AnyObject {
+    var activityType: ActivityType { get }
+    
     func viewDidLoad()
+    func closeButtonDidTapped()
 }
 
 protocol ScorePresenterOutput {
+    var onClose: (() -> Void)? { get set }
 }

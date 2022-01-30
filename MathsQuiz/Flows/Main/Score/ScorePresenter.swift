@@ -10,13 +10,22 @@ import Foundation
 final class ScorePresenter: ScoreViewOutput, ScorePresenterOutput {
     
     unowned var view: ScoreViewInput
-    let firestoreManager: StorageManager
     
-    required init(view: ScoreViewInput, firestoreManager: StorageManager) {
+    let firestoreManager: StorageManager
+    let activityType: ActivityType
+    
+    var onClose: (() -> Void)?
+    
+    required init(view: ScoreViewInput, activityType: ActivityType, firestoreManager: StorageManager) {
         self.view = view
         self.firestoreManager = firestoreManager
+        self.activityType = activityType
     }
     
     func viewDidLoad() {
+    }
+    
+    func closeButtonDidTapped() {
+        onClose?()
     }
 }

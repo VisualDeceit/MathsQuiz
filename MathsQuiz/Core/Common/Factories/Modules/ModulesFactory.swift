@@ -49,6 +49,10 @@ extension ModulesFactory: MainModuleFactory {
     func makeExampleView(activity: ActivityType, level: Level) -> ExampleViewInput & Presentable {
         return ExampleAssembly.build(activity: activity, level: level)
     }
+    
+    func makeScoreView(activityType: ActivityType) -> Presentable & ScoreViewInput {
+        return ScoreAssembly.build(activityType: activityType)
+    }
 }
 
 // MARK: - Onboarding Flow

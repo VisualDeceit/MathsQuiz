@@ -26,4 +26,5 @@ protocol ExampleViewOutput: AnyObject {
 }
 
 protocol ExamplePresenterOutput {
+    var onFinish: (() -> Void)? { get set }
 }

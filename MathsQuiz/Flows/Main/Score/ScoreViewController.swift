@@ -10,8 +10,7 @@ import SnapKit
 import Lottie
 
 class ScoreViewController: UIViewController, ScoreViewInput {
-    
-    var activityType: ActivityType?
+
     var presenter: (ScorePresenterOutput & ScoreViewOutput)?
     
     private let mainContainerView = UIView()
@@ -21,14 +20,7 @@ class ScoreViewController: UIViewController, ScoreViewInput {
     private var congratulationFormStackView = UIStackView()
     private var bottomStackView = UIStackView()
     
-    private let closeButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Закрыть", for: .normal)
-        button.setTitleColor(MQColor.lavenderDark, for: .normal)
-        button.setTitleColor(MQColor.lavenderLight, for: .highlighted)
-        button.titleLabel?.font = MQFont.systemFont16
-        return button
-    }()
+    private let closeButton = MQPlainButton(title: "Закрыть")
     
     private let fireworkAnimationView: AnimationView = {
         let view = AnimationView()
@@ -41,7 +33,6 @@ class ScoreViewController: UIViewController, ScoreViewInput {
         let label = UILabel()
         label.text = "Счет"
         label.font = MQFont.boldSystemFont18
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         return label
@@ -58,9 +49,8 @@ class ScoreViewController: UIViewController, ScoreViewInput {
     
     private let pointTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Очка"
+        label.text = "очка"
         label.font = MQFont.systemFont18
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         return label
@@ -79,7 +69,7 @@ class ScoreViewController: UIViewController, ScoreViewInput {
     private let descriptionSubtitleLabel: UILabel = {
         let label = UILabel()
         label.font = MQFont.systemFont16
-        label.textColor = MQColor.lavenderDark
+        label.textColor = .black
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -89,7 +79,6 @@ class ScoreViewController: UIViewController, ScoreViewInput {
         let label = UILabel()
         label.text = "Лучший результат"
         label.font = MQFont.boldSystemFont14
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         return label
     }()
@@ -106,7 +95,6 @@ class ScoreViewController: UIViewController, ScoreViewInput {
         let label = UILabel()
         label.text = "Общее время"
         label.font = MQFont.boldSystemFont14
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         return label
     }()
@@ -123,7 +111,6 @@ class ScoreViewController: UIViewController, ScoreViewInput {
         let label = UILabel()
         label.text = "Завершение"
         label.font = MQFont.boldSystemFont14
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         return label
     }()
@@ -140,7 +127,6 @@ class ScoreViewController: UIViewController, ScoreViewInput {
         let label = UILabel()
         label.text = "Ошибки"
         label.font = MQFont.boldSystemFont14
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         return label
     }()
@@ -217,9 +203,13 @@ private extension ScoreViewController {
         setupFireworkAnimation()
         setupResultForm()
         setupResultsText()
+        setupTargets()
     }
     
     func setupCloseButton() {
+        closeButton.setTitleColor(presenter?.activityType.color, for: .highlighted)
+        closeButton.setTitleColor(presenter?.activityType.highlightedСolor, for: .normal)
+        
         mainContainerView.addSubview(closeButton)
         
         closeButton.snp.makeConstraints { make in
@@ -250,7 +240,7 @@ private extension ScoreViewController {
     }
     
     func setupMainContainerView() {
-        mainContainerView.backgroundColor = MQColor.lavenderLight
+        mainContainerView.backgroundColor = presenter?.activityType.color
         
         view.addSubview(mainContainerView)
         
@@ -261,7 +251,7 @@ private extension ScoreViewController {
     }
     
     func setupCircleContainerViews() {
-        let circleContainerColor = MQColor.lavenderDark
+        let circleContainerColor = presenter?.activityType.highlightedСolor ?? .black
         let middleLighterColor = circleContainerColor.lighter(by: 20)
         let topLighterColor = circleContainerColor.lighter(by: 50)
         
@@ -294,6 +284,13 @@ private extension ScoreViewController {
     }
     
     func setupScoreLabels() {
+        scoreTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        pointTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        bestScoreTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        totalTimeTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        errorsTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        completionTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        
         let stackView = UIStackView(arrangedSubviews: [scoreTitleLabel,
                                                        scoreNumLabel,
                                                        pointTitleLabel])
@@ -416,7 +413,9 @@ private extension ScoreViewController {
                               for: .touchUpInside)
     }
     
-    @objc func closeButtonTapped() {}
+    @objc func closeButtonTapped() {
+        presenter?.closeButtonDidTapped()
+    }
     
     @objc func resetLevelsButtonTapped() {}
     
