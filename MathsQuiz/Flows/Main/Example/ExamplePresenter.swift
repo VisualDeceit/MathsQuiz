@@ -18,7 +18,15 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     var attempts = 3
     var timer: Timer?
     var timeInterval = 0
-    var onFinish: (() -> Void)?
+    var onFinish: ((ScoreViewType) -> Void)?
+    
+    var isCorrect: Bool {
+        userResult == factory.solution.result
+    }
+    
+    var isGameOver: Bool {
+        activity.totalLevels <= level.number
+    }
     
     weak var view: ExampleViewInput?
     
@@ -45,8 +53,14 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     func viewDidCheckButtonTap(with title: CheckButtonTitle) {
         switch title {
         case .check:
-            if userResult == factory.solution.result {
-                view?.changeCheckButton(title: .transition)
+            if isCorrect {
+                if isGameOver {
+                    view?.changeCheckButton(title: .finish)
+                } else {
+                    view?.changeCheckButton(title: .transition)
+                }
+                view?.highlightSolution()
+                
                 level.completion = attempts
                 firestoreManager.saveLevel(level: level,
                                            for: factory.type) { (error) in
@@ -55,19 +69,18 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
                 #warning("TODO: calculate score")
             } else {
                 attempts -= 1
-                if attempts < 0 {
+                if attempts <= 0 {
                     attempts = 0
+                    view?.changeCheckButton(title: .finish)
                 }
                 view?.refreshAttemptsView(with: attempts)
             }
         case .transition:
-            if activity.totalLevels > level.number {
                 level.number += 1
                 attempts = 3
                 makeExample()
-            } else {
-                onFinish?()
-            }
+        case .finish:
+            attempts == 0 ? onFinish?(.lose) : onFinish?(.win)
         }
     }
     

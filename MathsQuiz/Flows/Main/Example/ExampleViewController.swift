@@ -300,15 +300,16 @@ extension ExampleViewController {
     func changeCheckButton(title: CheckButtonTitle) {
         checkButtonTitle = title
         checkButton.setTitle(checkButtonTitle.rawValue, for: .normal)
-        if title == .transition {
-            exampleWorkspaceView.allSubViewsOf(type: ExampleDigitView.self)
-                .filter { $0.type == .result }
-                .forEach { $0.setColor(for: true) }
-        }
     }
     
     func refreshProgress(label: String, percent: Float) {
         progressResultLabel.text = label
         progressView.progress = percent
+    }
+    
+    func highlightSolution() {
+        exampleWorkspaceView.allSubViewsOf(type: ExampleDigitView.self)
+            .filter { $0.type == .result }
+            .forEach { $0.setColor(for: true) }
     }
 }

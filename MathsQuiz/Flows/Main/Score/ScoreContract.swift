@@ -13,6 +13,7 @@ protocol ScoreViewInput: AnyObject {
 
 protocol ScoreViewOutput: AnyObject {
     var activityType: ActivityType { get }
+    var scoreViewType: ScoreViewType { get }
     
     func viewDidLoad()
     func closeButtonDidTapped()

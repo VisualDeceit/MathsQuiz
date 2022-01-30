@@ -8,10 +8,12 @@
 import Foundation
 
 final class ScoreAssembly {
-    static func build(activityType: ActivityType) -> Presentable & ScoreViewInput {
+    static func build(activityType: ActivityType,
+                      scoreViewType: ScoreViewType) -> Presentable & ScoreViewInput {
         let view = ScoreViewController()
         let presenter = ScorePresenter(view: view,
                                        activityType: activityType,
+                                       scoreViewType: scoreViewType,
                                        firestoreManager: FirestoreManager())
         view.presenter = presenter
         return view

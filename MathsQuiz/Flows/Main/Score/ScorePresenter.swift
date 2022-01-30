@@ -13,13 +13,18 @@ final class ScorePresenter: ScoreViewOutput, ScorePresenterOutput {
     
     let firestoreManager: StorageManager
     let activityType: ActivityType
+    let scoreViewType: ScoreViewType
     
     var onClose: (() -> Void)?
     
-    required init(view: ScoreViewInput, activityType: ActivityType, firestoreManager: StorageManager) {
+    required init(view: ScoreViewInput,
+                  activityType: ActivityType,
+                  scoreViewType: ScoreViewType,
+                  firestoreManager: StorageManager) {
         self.view = view
         self.firestoreManager = firestoreManager
         self.activityType = activityType
+        self.scoreViewType = scoreViewType
     }
     
     func viewDidLoad() {

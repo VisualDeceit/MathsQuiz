@@ -55,6 +55,7 @@
 		1B957D2727A66B4200FFCBA1 /* ScoreContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B957D2627A66B4200FFCBA1 /* ScoreContract.swift */; };
 		1B957D2A27A66B5300FFCBA1 /* ScoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B957D2927A66B5300FFCBA1 /* ScoreAssembly.swift */; };
 		1B957D2D27A66B6800FFCBA1 /* ScorePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B957D2C27A66B6800FFCBA1 /* ScorePresenter.swift */; };
+		1B957D3027A693FE00FFCBA1 /* ScoreViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B957D2F27A693FE00FFCBA1 /* ScoreViewType.swift */; };
 		1B9BC9F1276E4D530084931D /* MQFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9F0276E4D530084931D /* MQFont.swift */; };
 		1B9BC9F5276E4FC90084931D /* UserProfileDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9F4276E4FC90084931D /* UserProfileDetailViewController.swift */; };
 		1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9F7276E4FD70084931D /* UserProfileViewController.swift */; };
@@ -180,6 +181,7 @@
 		1B957D2627A66B4200FFCBA1 /* ScoreContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreContract.swift; sourceTree = "<group>"; };
 		1B957D2927A66B5300FFCBA1 /* ScoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreAssembly.swift; sourceTree = "<group>"; };
 		1B957D2C27A66B6800FFCBA1 /* ScorePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePresenter.swift; sourceTree = "<group>"; };
+		1B957D2F27A693FE00FFCBA1 /* ScoreViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreViewType.swift; sourceTree = "<group>"; };
 		1B9BC9F0276E4D530084931D /* MQFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQFont.swift; sourceTree = "<group>"; };
 		1B9BC9F4276E4FC90084931D /* UserProfileDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileDetailViewController.swift; sourceTree = "<group>"; };
 		1B9BC9F7276E4FD70084931D /* UserProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
@@ -746,6 +748,7 @@
 				1B2EB5AF277C588800FFDD9E /* Level.swift */,
 				1B2EB5D2278041F800FFDD9E /* PasswordPair.swift */,
 				1BF5405F2794EEC300D98F70 /* CheckButtonTitle.swift */,
+				1B957D2F27A693FE00FFCBA1 /* ScoreViewType.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 				1B9BCA40277053D00084931D /* UserProfileAssembly.swift in Sources */,
 				1B9BCAAF2778553C0084931D /* PasswordResetPresenter.swift in Sources */,
 				1B9BCA0E276E547F0084931D /* CollectionCellSize.swift in Sources */,
+				1B957D3027A693FE00FFCBA1 /* ScoreViewType.swift in Sources */,
 				1B2EB5D62780459700FFDD9E /* DateFormatter+Extension.swift in Sources */,
 				1B2EB5B9277C9BC200FFDD9E /* ActivityStrategy.swift in Sources */,
 				1B2EB5E72781D3D200FFDD9E /* ExampleAssembly.swift in Sources */,

@@ -10,7 +10,7 @@ import SnapKit
 import Lottie
 
 class ScoreViewController: UIViewController, ScoreViewInput {
-
+    
     var presenter: (ScorePresenterOutput & ScoreViewOutput)?
     
     private let mainContainerView = UIView()
@@ -193,6 +193,7 @@ class ScoreViewController: UIViewController, ScoreViewInput {
 // MARK: - Setup views
 private extension ScoreViewController {
     func setupViews() {
+        #warning("Настроить в зависимости от presenter?.scoreViewType")
         view.backgroundColor = MQColor.background
         setupCloseButton()
         setupBottomButtons()
