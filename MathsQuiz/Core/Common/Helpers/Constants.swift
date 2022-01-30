@@ -49,5 +49,6 @@ enum MQOffset {
     static let offset72: CGFloat = 72.0
     static let offset80: CGFloat = 80.0
     static let offset120: CGFloat = 120.0
+    static let offset124: CGFloat = 124.0
     static let offset160: CGFloat = 160.0
 }

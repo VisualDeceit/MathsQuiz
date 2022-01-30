@@ -365,7 +365,6 @@ private extension UserProfileDetailViewController {
 
 // MARK: - UserProfileDetailViewInput
 extension UserProfileDetailViewController {
-    
     func displayUserProfile() {
         cityTextField.text = presenter?.userProfile?.city
         nameTextField.text = presenter?.userProfile?.firstName
