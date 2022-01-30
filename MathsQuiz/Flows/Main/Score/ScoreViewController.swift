@@ -58,7 +58,6 @@ class ScoreViewController: UIViewController, ScoreViewInput {
     
     private let congratulationTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Поздравляем!"
         label.font = MQFont.boldSystemFont24
         label.textColor = .black
         label.textAlignment = .center
@@ -182,10 +181,11 @@ class ScoreViewController: UIViewController, ScoreViewInput {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        fireworkAnimationView.play { _ in
-            self.fireworkAnimationView.stop()
-            self.fireworkAnimationView.removeFromSuperview()
+        if presenter?.scoreViewType == .some(.win) {
+            fireworkAnimationView.play { _ in
+                self.fireworkAnimationView.stop()
+                self.fireworkAnimationView.removeFromSuperview()
+            }
         }
     }
 }
@@ -193,7 +193,6 @@ class ScoreViewController: UIViewController, ScoreViewInput {
 // MARK: - Setup views
 private extension ScoreViewController {
     func setupViews() {
-        #warning("Настроить в зависимости от presenter?.scoreViewType")
         view.backgroundColor = MQColor.background
         setupCloseButton()
         setupBottomButtons()
@@ -325,6 +324,8 @@ private extension ScoreViewController {
     }
 
     func setupFireworkAnimation() {
+        if presenter?.scoreViewType == .some(.lose) { return }
+        
         mainContainerView.addSubview(fireworkAnimationView)
         
         fireworkAnimationView.snp.makeConstraints { make in
@@ -375,8 +376,18 @@ private extension ScoreViewController {
     }
     
     func setupResultsText() {
+        switch presenter?.scoreViewType {
+        case .win:
+            congratulationTitleLabel.text = "Поздравляем!"
+            descriptionSubtitleLabel.text = "Ты решил все задания на \(presenter?.activityType.rawValue.lowercased() ?? "")"
+        case .lose:
+            congratulationTitleLabel.text = "К сожалению, ты проиграл!"
+            descriptionSubtitleLabel.text = "Попробуй еще раз"
+        case .none:
+            break
+        }
+        
         scoreNumLabel.text = "72"
-        descriptionSubtitleLabel.text = "Даниил, ты решил все задания на сложение!"
         bestScoreNumLabel.text = "69 очков"
         totalTimeNumLabel.text = "7:56 мин"
         completionNumLabel.text = "100%"
