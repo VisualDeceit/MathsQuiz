@@ -42,6 +42,7 @@ class UserProfileDetailViewController: UIViewController, UserProfileDetailViewIn
     
     private let sexPickerView = UIPickerView()
     private let datePickerView = UIDatePicker()
+    private let pickerToolBar = UIToolbar()
     private let saveButton = MQStandardButton(title: "Сохранить")
     
     override func viewDidLoad() {
@@ -77,6 +78,7 @@ private extension UserProfileDetailViewController {
         setupNavigationBar()
         setupScrollView()
         setupPhoneNumberTextfield()
+        setupPickerToolBar()
         setupPickerViews()
         setupCityTextfield()
         setupUserDataForm()
@@ -117,6 +119,27 @@ private extension UserProfileDetailViewController {
         return result
     }
     
+    func setupPickerToolBar() {
+        pickerToolBar.autoresizingMask = .flexibleHeight
+        pickerToolBar.barStyle = .default
+        pickerToolBar.barTintColor = MQColor.ubeLight
+        pickerToolBar.isTranslucent = false
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                           target: self,
+                                           action: #selector(cancelToolButtonTapped))
+        cancelButton.tintColor = MQColor.ubeDark
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                        target: nil, action: nil)
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                         target: self, action: #selector(doneToolButtonTapped))
+        doneButton.tintColor = MQColor.ubeDark
+        
+        pickerToolBar.items = [cancelButton,flexSpace, doneButton]
+    }
+    
     func setupPickerViews() {
         sexPickerView.delegate = self
         sexPickerView.dataSource = self
@@ -130,7 +153,10 @@ private extension UserProfileDetailViewController {
         datePickerView.backgroundColor = MQColor.ubeLight
         
         sexTextField.inputView = sexPickerView
+        sexTextField.inputAccessoryView = pickerToolBar
+        
         birthdayTextField.inputView = datePickerView
+        birthdayTextField.inputAccessoryView = pickerToolBar
     }
     
     func setupCityTextfield() {
@@ -215,6 +241,19 @@ private extension UserProfileDetailViewController {
     }
     
     @objc func locationButtonTapped() {
+    }
+    
+    @objc func cancelToolButtonTapped() {
+        if sexTextField.isEditing {
+            sexTextField.text = "Выбрать"
+        } else if birthdayTextField.isEditing{
+            birthdayTextField.text = ""
+        }
+        view.endEditing(true)
+    }
+    
+    @objc func doneToolButtonTapped() {
+        view.endEditing(true)
     }
     
     @objc func dateDidChange() {
