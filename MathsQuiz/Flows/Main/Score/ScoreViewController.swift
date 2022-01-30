@@ -40,10 +40,9 @@ class ScoreViewController: UIViewController, ScoreViewInput {
     
     private let scoreNumLabel: UILabel = {
         let label = UILabel()
-        label.font = MQFont.systemFont64
+        label.font = MQFont.systemFont48
         label.textColor = .black
         label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
