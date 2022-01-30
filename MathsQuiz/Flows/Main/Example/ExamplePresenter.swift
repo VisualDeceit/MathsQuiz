@@ -20,6 +20,8 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     var timeInterval = 0
     var onFinish: ((ScoreViewType) -> Void)?
     
+    var totalScore = 0
+    
     var isCorrect: Bool {
         userResult == factory.solution.result
     }
@@ -66,7 +68,12 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
                                            for: factory.type) { (error) in
                     print(error.localizedDescription)
                 }
-                #warning("TODO: calculate score")
+
+                let score = (attempts * level.number * 10) / timeInterval
+                totalScore += score
+                print("Score: \(score)")
+                print("Total score: \(totalScore)")
+                stopTimer()
             } else {
                 attempts -= 1
                 if attempts <= 0 {
@@ -107,12 +114,13 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
             timer.tolerance = 0.1
             self.timer = timer
         }
+        timeInterval = 0
+        view?.refreshTimerView(with: timeFormatted(timeInterval))
     }
     
     private func stopTimer() {
         timer?.invalidate()
         timer = nil
-        timeInterval = 0
     }
     
     @objc func timerHandler() {
