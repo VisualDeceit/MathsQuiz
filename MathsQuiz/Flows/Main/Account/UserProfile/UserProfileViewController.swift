@@ -17,7 +17,7 @@ class UserProfileViewController: UIViewController, UserProfileViewInput {
     private let userPhoto: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "user_placeholder")
-        imageView.layer.cornerRadius = imageView.frame.width / 2
+        imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         return imageView
@@ -83,6 +83,11 @@ class UserProfileViewController: UIViewController, UserProfileViewInput {
         setupNavigationBar()
         presenter?.viewDidLoad()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        userPhoto.layer.cornerRadius = userPhoto.frame.width / 2
+    }
 }
 
 // MARK: - Setup views
@@ -119,13 +124,13 @@ private extension UserProfileViewController {
     
     func setupUserDataForm() {
         scrollView.addSubview(userPhoto)
-        userPhoto.addSubview(changePhotoButton)
+        scrollView.addSubview(changePhotoButton)
         scrollView.addSubview(nameLabel)
         
         userPhoto.snp.makeConstraints { make in
             make.top.equalTo(scrollView)
             make.centerX.equalToSuperview()
-            make.height.width.equalTo(MQOffset.offset120)
+            make.height.width.equalTo(MQOffset.offset124)
         }
         
         changePhotoButton.snp.makeConstraints { make in
@@ -212,7 +217,18 @@ private extension UserProfileViewController {
     }
     
     @objc func changePhotoButtonTapped() {
-        presenter?.viewDidChangePhotoButtonTap()
+        let alert = UIAlertController(title: "Выберать фотографию", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Камера", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Галерея", style: .default, handler: { _ in
+            self.openGallery()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     @objc func myDataButtonTapped() {
@@ -242,5 +258,73 @@ extension UserProfileViewController {
     
     func displayAlert(_ message: String?) {
         showAlert(title: "Ошибка", message: message)
+    }
+}
+
+extension UserProfileViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true) { [weak self] in
+            guard let image = self?.extractImage(form: info) else { return }
+            if let data = image.pngData() {
+                self?.addDataToDisk(data: data)
+            }
+        }
+    }
+    
+    private func extractImage(form info: [UIImagePickerController.InfoKey: Any]) -> UIImage? {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            return image
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            return image
+        } else {
+            return nil
+        }
+    }
+    
+    func addDataToDisk(data: Data) {
+        let documents = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let url = documents.appendingPathComponent("selfieImage.png")
+        
+        do {
+            try data.write(to: url)
+            UserDefaults.standard.set(url, forKey: "selfieImage")
+        } catch {
+            print("Unable to Write Data to Disk (\(error)")
+        }
+        if let url = UserDefaults.standard.url(forKey: "selfieImage"),
+           let image = convertUrlToImage(url: url) {
+            userPhoto.image = image
+        }
+    }
+    
+    private func convertUrlToImage(url: URL) -> UIImage? {
+        guard
+            let data = try? Data(contentsOf: url),
+            let image = UIImage(data: data)
+        else { return nil }
+        
+        return image
+    }
+    
+    func openCamera() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .camera
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
+    
+    func openGallery() {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = .photoLibrary
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
     }
 }
