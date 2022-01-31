@@ -380,8 +380,9 @@ extension UserProfileDetailViewController {
             birthdayTextField.text = DateFormatter.shortLocalStyle.string(from: date)
         }
         
-        phoneNumberTextField.text = format(with: "+X (XXX) XXX-XX-XX",
-                                           phone: presenter?.userProfile?.phone ?? "")
+//        phoneNumberTextField.text = format(with: "+X (XXX) XXX-XX-XX",
+//                                           phone: presenter?.userProfile?.phone ?? "")
+        phoneNumberTextField.text = "+"
     }
 }
 
