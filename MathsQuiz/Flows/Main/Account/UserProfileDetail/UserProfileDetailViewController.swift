@@ -116,7 +116,7 @@ private extension UserProfileDetailViewController {
     func format(with mask: String, phone: String) -> String {
         let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""
-        var index = numbers.startIndex // numbers iterator
+        var index = numbers.startIndex
 
         for ch in mask where index < numbers.endIndex {
             if ch == "X" {
@@ -380,9 +380,8 @@ extension UserProfileDetailViewController {
             birthdayTextField.text = DateFormatter.shortLocalStyle.string(from: date)
         }
         
-//        phoneNumberTextField.text = format(with: "+X (XXX) XXX-XX-XX",
-//                                           phone: presenter?.userProfile?.phone ?? "")
-        phoneNumberTextField.text = "+"
+        phoneNumberTextField.text = format(with: "+X (XXX) XXX-XX-XX",
+                                           phone: presenter?.userProfile?.phone ?? "")
     }
 }
 
