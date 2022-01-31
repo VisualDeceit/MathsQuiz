@@ -149,7 +149,7 @@ private extension UserProfileDetailViewController {
                                          action: #selector(doneToolButtonTapped))
         doneButton.tintColor = MQColor.ubeDark
         
-        pickerToolBar.items = [cancelButton,flexSpace, doneButton]
+        pickerToolBar.items = [cancelButton, flexSpace, doneButton]
     }
     
     func setupPickerViews() {
@@ -259,7 +259,7 @@ private extension UserProfileDetailViewController {
     @objc func cancelToolButtonTapped() {
         if sexTextField.isEditing {
             sexTextField.text = "Выбрать"
-        } else if birthdayTextField.isEditing{
+        } else if birthdayTextField.isEditing {
             birthdayTextField.text = ""
         }
         view.endEditing(true)
@@ -385,7 +385,7 @@ extension UserProfileDetailViewController {
     }
 }
 
-//MARK: - Setup location
+// MARK: - Setup location
 extension UserProfileDetailViewController: CLLocationManagerDelegate {
     func configureLocationManager() {
         locationManager.delegate = self
@@ -395,7 +395,7 @@ extension UserProfileDetailViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
         
-        geocoder.reverseGeocodeLocation(location) { places, error in
+        geocoder.reverseGeocodeLocation(location) { places, _ in
             if let city = places?.first?.administrativeArea {
                 self.cityTextField.text = city
             }
@@ -406,5 +406,3 @@ extension UserProfileDetailViewController: CLLocationManagerDelegate {
         print(error)
     }
 }
-
-

@@ -226,7 +226,7 @@ private extension UserProfileViewController {
             self.openGallery()
         }))
         
-        alert.addAction(UIAlertAction.init(title: "Отмена", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
     }
@@ -266,7 +266,7 @@ extension UserProfileViewController: UINavigationControllerDelegate, UIImagePick
         picker.dismiss(animated: true)
     }
 
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         picker.dismiss(animated: true) { [weak self] in
             guard let image = self?.extractImage(form: info) else { return }
             if let data = image.pngData() {
