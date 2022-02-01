@@ -43,8 +43,8 @@ extension LevelsPresenter: LevelsViewOutput {
                 if countToFill < 0 {
                     countToFill = 0
                 }
-                
-                let levelsTail = [Level](repeating: Level.blocked, count: countToFill)
+                let blocked = Level(number: 0, completion: -1, score: 0, time: 0)
+                let levelsTail = [Level](repeating: blocked, count: countToFill)
                 self?.levels?.append(contentsOf: levelsTail)
                 
                 self?.view?.reloadCollection()

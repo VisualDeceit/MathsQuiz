@@ -63,7 +63,6 @@
 		1B9BCA00276E50590084931D /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BC9FF276E50590084931D /* HomeCollectionViewCell.swift */; };
 		1B9BCA05276E52A80084931D /* MQCircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA04276E52A80084931D /* MQCircularProgressBar.swift */; };
 		1B9BCA08276E52B70084931D /* ConfigCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA07276E52B70084931D /* ConfigCell.swift */; };
-		1B9BCA0B276E53E20084931D /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA0A276E53E20084931D /* Stub.swift */; };
 		1B9BCA0E276E547F0084931D /* CollectionCellSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA0D276E547F0084931D /* CollectionCellSize.swift */; };
 		1B9BCA1D276F06A50084931D /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA1C276F06A50084931D /* MainCoordinator.swift */; };
 		1B9BCA21276F08C20084931D /* MainModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B9BCA20276F08C20084931D /* MainModuleFactory.swift */; };
@@ -189,7 +188,6 @@
 		1B9BC9FF276E50590084931D /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		1B9BCA04276E52A80084931D /* MQCircularProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MQCircularProgressBar.swift; sourceTree = "<group>"; };
 		1B9BCA07276E52B70084931D /* ConfigCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigCell.swift; sourceTree = "<group>"; };
-		1B9BCA0A276E53E20084931D /* Stub.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		1B9BCA0D276E547F0084931D /* CollectionCellSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCellSize.swift; sourceTree = "<group>"; };
 		1B9BCA1C276F06A50084931D /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		1B9BCA20276F08C20084931D /* MainModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModuleFactory.swift; sourceTree = "<group>"; };
@@ -507,7 +505,6 @@
 			isa = PBXGroup;
 			children = (
 				1B9BCA0D276E547F0084931D /* CollectionCellSize.swift */,
-				1B9BCA0A276E53E20084931D /* Stub.swift */,
 				1B7C4771276B8D2200BFD277 /* Constants.swift */,
 				1BBC5C84276DBAF4001B5F3E /* Session.swift */,
 				1B9BCA702774C6030084931D /* UserDefaultsStorage.swift */,
@@ -995,7 +992,6 @@
 				1B9BC9F8276E4FD70084931D /* UserProfileViewController.swift in Sources */,
 				3C25CD562773259700A49DC2 /* PasswordChangeViewController.swift in Sources */,
 				1B2EB5F9278428E100FFDD9E /* ExampleResolver.swift in Sources */,
-				1B9BCA0B276E53E20084931D /* Stub.swift in Sources */,
 				1B9BCA26276F09A30084931D /* HomePresenter.swift in Sources */,
 				1B9BCA40277053D00084931D /* UserProfileAssembly.swift in Sources */,
 				1B9BCAAF2778553C0084931D /* PasswordResetPresenter.swift in Sources */,

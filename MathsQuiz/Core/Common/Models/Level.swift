@@ -10,12 +10,6 @@ import Foundation
 struct Level: Codable {
     var number: Int
     var completion: Int
-    
-    static var empty: Level {
-        Level(number: 1, completion: 0)
-    }
-    
-    static var blocked: Level {
-        Level(number: 0, completion: -1)
-    }
+    var score: Int
+    var time: Int
 }

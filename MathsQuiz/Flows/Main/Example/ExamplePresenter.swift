@@ -20,8 +20,6 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     var timeInterval = 0
     var onFinish: ((ScoreViewType) -> Void)?
     
-    var totalScore = 0
-    
     var isCorrect: Bool {
         userResult == factory.solution.result
     }
@@ -64,21 +62,21 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
                 view?.highlightSolution()
                 
                 level.completion = attempts
+                level.score = (attempts * level.number * 10) / timeInterval
+                level.time = timeInterval
+
                 firestoreManager.saveLevel(level: level,
                                            for: factory.type) { (error) in
                     print(error.localizedDescription)
                 }
-
-                let score = (attempts * level.number * 10) / timeInterval
-                totalScore += score
-                print("Score: \(score)")
-                print("Total score: \(totalScore)")
+                
                 stopTimer()
             } else {
                 attempts -= 1
                 if attempts <= 0 {
                     attempts = 0
                     view?.changeCheckButton(title: .finish)
+                    stopTimer()
                 }
                 view?.refreshAttemptsView(with: attempts)
             }
