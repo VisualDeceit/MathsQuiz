@@ -107,7 +107,7 @@ class ScoreViewController: UIViewController, ScoreViewInput {
     
     private let completionTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Завершение"
+        label.text = "Завершено"
         label.font = MQFont.boldSystemFont14
         label.textAlignment = .center
         return label
@@ -123,7 +123,7 @@ class ScoreViewController: UIViewController, ScoreViewInput {
     
     private let errorsTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ошибки"
+        label.text = "Ошибок"
         label.font = MQFont.boldSystemFont14
         label.textAlignment = .center
         return label
@@ -385,12 +385,8 @@ private extension ScoreViewController {
         case .none:
             break
         }
-        
-        scoreNumLabel.text = "72"
-        bestScoreNumLabel.text = "69 очков"
-        totalTimeNumLabel.text = "7:56 мин"
-        completionNumLabel.text = "100%"
-        errorsNumLabel.text = "3"
+        scoreNumLabel.text = "\(presenter?.score?.value ?? 0)"
+        errorsNumLabel.text = "\(presenter?.score?.attempts ?? 0)"
     }
     
     func setupViewsCornerRadius() {
@@ -433,4 +429,13 @@ private extension ScoreViewController {
     @objc func homeButtonTapped() {}
     
     @objc func shareButtonTapped() {}
+}
+
+// MARK: - ScoreViewInput
+extension ScoreViewController {
+    func displayStatistics(totalScore: String, totalTime: String, completion: String) {
+        bestScoreNumLabel.text = totalScore
+        totalTimeNumLabel.text = totalTime
+        completionNumLabel.text = completion
+    }
 }

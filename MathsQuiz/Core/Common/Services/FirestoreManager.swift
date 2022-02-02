@@ -37,7 +37,8 @@ protocol StorageManager {
     func isUserProfileExist(uid: String?, completion: @escaping ((Bool) -> Void))
     func loadActivities(_ completion: @escaping (Result<[Activity], Error>) -> Void)
     func loadLevels(for activity: ActivityType, completion: @escaping (Result<[Level], Error>) -> Void)
-    func saveLevel(level: Level, for activity: ActivityType, completion: ((Error) -> Void)?) 
+    func saveLevel(level: Level, for activity: ActivityType, completion: ((Error) -> Void)?)
+    func loadStatistics(activity: ActivityType, _ completion: @escaping (Result<ActivityStatistics, Error>) -> Void)
 }
 
 class FirestoreManager: StorageManager {
@@ -117,8 +118,7 @@ class FirestoreManager: StorageManager {
                 ActivityType.allCases.enumerated().forEach { (item) in
                     if activityList.map({ $0.type }).contains(item.element) { return }
                     let activity = Activity(index: item.offset,
-                                            type: item.element,
-                                            completed: 0)
+                                            type: item.element)
                     activityList.append(activity)
                     do {
                         try collectionRef.document().setData(from: activity)
@@ -163,7 +163,7 @@ class FirestoreManager: StorageManager {
                             
                             // init levels at first time
                             if levels.isEmpty {
-                                let empty = Level(number: 1, completion: 0, score: 0, time: Int.max)
+                                let empty = Level(number: 1, attempts: 0, score: 0, time: 0)
                                 levels.append(empty)
                                 try documentRef.collection("levels_list").document().setData(from: empty)
                             }
@@ -199,10 +199,10 @@ class FirestoreManager: StorageManager {
                             completion?(error)
                         } else {
                             if let documents = querySnapshot?.documents {
-                                if level.completion > 0,
+                                if level.attempts > 0,
                                    documents.count == level.number,
                                    documents.count < activity.totalLevels {
-                                    let empty = Level(number: level.number + 1, completion: 0, score: 0, time: Int.max)
+                                    let empty = Level(number: level.number + 1, attempts: 0, score: 0, time: 0)
                                     do {
                                         try levelListRef?.document().setData(from: empty)
                                     } catch {
@@ -225,18 +225,66 @@ class FirestoreManager: StorageManager {
                                     return
                                 }
                                 
-                                if level.completion > currentLevel.completion {
-                                    document?.reference.updateData(["completion": level.completion])
+                                if level.attempts > currentLevel.attempts {
+                                    document?.reference.updateData(["attempts": level.attempts])
                                 }
                                 if level.score > currentLevel.score {
                                     document?.reference.updateData(["score": level.score])
                                 }
-                                if level.time < currentLevel.time {
+                                if level.time < currentLevel.time || currentLevel.time == 0 {
                                     document?.reference.updateData(["time": level.time])
                                 }
                             }
                         })
                 }
             }
+    }
+    
+    func loadStatistics(activity: ActivityType, _ completion: @escaping (Result<ActivityStatistics, Error>) -> Void) {
+        guard let uid = Session.uid, !uid.isEmpty else {
+            completion(.failure(FirestoreError.emptyPath))
+            return
+        }
+        
+        db.collection("users").document(uid).collection("activity_list")
+            .whereField("type", isEqualTo: activity.rawValue)
+            .getDocuments { (querySnapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let documentRef = querySnapshot?.documents.first?.reference
+                else {
+                    completion(.failure(FirestoreError.levelIsEmpty))
+                    return
+                }
+                
+                documentRef.collection("levels_list").getDocuments { (levelsSnapshot, error) in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        guard let levelsSnapshot = levelsSnapshot else {
+                            completion(.failure(FirestoreError.activitiesIsEmpty))
+                            return
+                        }
+                        do {
+                            let levels = try levelsSnapshot.documents.compactMap {
+                                try $0.data(as: Level.self)
+                            }
+                            
+                            let score = levels.map { $0.score }.reduce(0, +)
+                            let percent = levels.filter { $0.attempts > 0 }.count
+                            let time = levels.map { $0.time }.reduce(0, +)
+
+                            let statistics = ActivityStatistics(totalScore: score,
+                                                                completion: percent,
+                                                                time: time)
+                            completion(.success(statistics))
+                        } catch {
+                            completion(.failure(error))
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -27,5 +27,5 @@ protocol ExampleViewOutput: AnyObject {
 }
 
 protocol ExamplePresenterOutput {
-    var onFinish: ((ScoreViewType) -> Void)? { get set }
+    var onFinish: ((ScoreViewType, Score) -> Void)? { get set }
 }

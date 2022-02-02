@@ -28,7 +28,7 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         setupLevelCountLabel(with: activity.type.totalLevels)
         setupProgressForm()
         
-        let completed = activity.completed
+        let completed = 0
         if activity.type.totalLevels == 0 {
             setUpCircularProgressBarView(toValue: 0)
         } else {

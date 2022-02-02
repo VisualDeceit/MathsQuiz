@@ -76,5 +76,4 @@ enum ActivityType: String, Codable, CaseIterable {
 struct Activity: Codable, Hashable {
     let index: Int
     let type: ActivityType
-    let completed: Int
 }

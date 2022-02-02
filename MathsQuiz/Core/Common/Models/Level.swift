@@ -9,7 +9,7 @@ import Foundation
 
 struct Level: Codable {
     var number: Int
-    var completion: Int
+    var attempts: Int
     var score: Int
     var time: Int
 }

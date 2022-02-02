@@ -51,8 +51,11 @@ extension ModulesFactory: MainModuleFactory {
     }
     
     func makeScoreView(activityType: ActivityType,
-                       scoreViewType: ScoreViewType) -> Presentable & ScoreViewInput {
-        return ScoreAssembly.build(activityType: activityType, scoreViewType: scoreViewType)
+                       scoreViewType: ScoreViewType,
+                       score: Score) -> Presentable & ScoreViewInput {
+        return ScoreAssembly.build(activityType: activityType,
+                                   scoreViewType: scoreViewType,
+                                   score: score)
     }
 }
 
