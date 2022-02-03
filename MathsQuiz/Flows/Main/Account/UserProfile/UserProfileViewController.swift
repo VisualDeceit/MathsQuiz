@@ -104,11 +104,14 @@ private extension UserProfileViewController {
     
     func setupNavigationBar() {
         title = "Профиль"
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.shadowColor = .clear
+        appearance.backgroundColor = .white
+
+        navigationItem.standardAppearance = appearance
         navigationController?.navigationBar.tintColor = MQColor.ubeDefault
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.shadowImage = UIImage()
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.view.backgroundColor = .clear
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     
