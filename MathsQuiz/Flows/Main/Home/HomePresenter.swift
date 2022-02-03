@@ -34,30 +34,81 @@ extension HomePresenter {
     }
     
     func viewDidLoad() {
+        
         firestoreManager.loadUserProfile {[weak self] (result) in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let profile):
                 if let name = profile.firstName {
-                    self?.view?.setGreeting(message: "Привет, \(name)!")
-                    self?.firestoreManager.loadActivities { (result) in
-                        switch result {
-                        case .success(let activities):
-                            self?.activities = activities
-                            self?.view?.reloadCollection()
-                        case .failure(let error):
-                            print(error)
-                        }
-                    }
+                    self.view?.setGreeting(message: "Привет, \(name)!")
                 } else {
-                    self?.view?.setGreeting(message: "Привет, дружище!")
+                    self.view?.setGreeting(message: "Привет, дружище!")
                 }
+                
             case .failure(let error):
                 print("Error decoding profile: \(error.localizedDescription)")
+            }
+        }
+        
+        self.firestoreManager.loadActivities {[weak self] (result) in
+            guard let self = self else { return }
+            
+            var activityViewData = [ActivityViewData]()
+            
+            switch result {
+            case .success(let activities):
+                self.activities = activities
+                let group = DispatchGroup()
+                
+                activities.forEach { activity in
+                    group.enter()
+                    self.firestoreManager.loadStatistics(activity: activity.type, { (result) in
+                        switch result {
+                        case .success(let statistics):
+                            activityViewData.append(self.parse(from: activity, with: statistics))
+                            group.leave()
+                        case .failure:
+                            break
+                        }
+                    })
+                }
+                
+                group.notify(queue: .main) {
+                    self.view?.setActivities(activityViewData.sorted { $0.index < $1.index })
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }
     
     func viewDidAccountButtonTap() {
         onAccountButtonTap?()
+    }
+    
+    private func parse(from activity: Activity, with statistics: ActivityStatistics) -> ActivityViewData {
+        let levelCountLabel: String
+        let progress: Double
+        
+        switch activity.type.totalLevels {
+        case 0:
+            levelCountLabel = "Нет доступных"
+        default:
+            levelCountLabel = "\(activity.type.totalLevels) уровней"
+        }
+        
+        if activity.type.totalLevels == 0 {
+            progress = 0
+        } else {
+            progress = Double(statistics.completion) / Double(activity.type.totalLevels)
+        }
+        
+        return .init(index: activity.index,
+                     title: activity.type.rawValue,
+                     color: activity.type.color,
+                     totalLevels: levelCountLabel,
+                     completed: "\(statistics.completion)",
+                     progress: progress)
     }
 }

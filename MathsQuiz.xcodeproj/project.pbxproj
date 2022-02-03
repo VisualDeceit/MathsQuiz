@@ -30,6 +30,7 @@
 		1B2EB62327882C7E00FFDD9E /* ExampleViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB62227882C7E00FFDD9E /* ExampleViewBuilder.swift */; };
 		1B383B0F27AAE91300E75BB1 /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B383B0E27AAE91300E75BB1 /* Score.swift */; };
 		1B383B1227AB0B2300E75BB1 /* ActivityStatistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B383B1127AB0B2300E75BB1 /* ActivityStatistics.swift */; };
+		1B383B1527AB8F0300E75BB1 /* ActivityViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B383B1427AB8F0200E75BB1 /* ActivityViewData.swift */; };
 		1B71BA122767BE490056A2FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA112767BE490056A2FF /* AppDelegate.swift */; };
 		1B71BA142767BE490056A2FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA132767BE490056A2FF /* SceneDelegate.swift */; };
 		1B71BA162767BE490056A2FF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B71BA152767BE490056A2FF /* LoginViewController.swift */; };
@@ -155,6 +156,7 @@
 		1B2EB62227882C7E00FFDD9E /* ExampleViewBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleViewBuilder.swift; sourceTree = "<group>"; };
 		1B383B0E27AAE91300E75BB1 /* Score.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
 		1B383B1127AB0B2300E75BB1 /* ActivityStatistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStatistics.swift; sourceTree = "<group>"; };
+		1B383B1427AB8F0200E75BB1 /* ActivityViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityViewData.swift; sourceTree = "<group>"; };
 		1B71BA0E2767BE490056A2FF /* MathsQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MathsQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B71BA112767BE490056A2FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B71BA132767BE490056A2FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -743,6 +745,8 @@
 			children = (
 				1BBC5C8B276DC0A4001B5F3E /* SignUpData.swift */,
 				1B9BCA2E276F0F170084931D /* Activity.swift */,
+				1B383B1427AB8F0200E75BB1 /* ActivityViewData.swift */,
+				1B383B1127AB0B2300E75BB1 /* ActivityStatistics.swift */,
 				1BBC5C9D276E0D81001B5F3E /* Credentials.swift */,
 				1B9BCA862775A07E0084931D /* UserProfile.swift */,
 				1B9BCAFD277B728E0084931D /* OnboardingContent.swift */,
@@ -750,7 +754,6 @@
 				1B2EB5D2278041F800FFDD9E /* PasswordPair.swift */,
 				1BF5405F2794EEC300D98F70 /* CheckButtonTitle.swift */,
 				1B957D2F27A693FE00FFCBA1 /* ScoreViewType.swift */,
-				1B383B1127AB0B2300E75BB1 /* ActivityStatistics.swift */,
 				1B383B0E27AAE91300E75BB1 /* Score.swift */,
 			);
 			path = Models;
@@ -945,6 +948,7 @@
 			files = (
 				1B9BCA502770B66E0084931D /* UserProfileDetailAssembly.swift in Sources */,
 				1BBC5C85276DBAF4001B5F3E /* Session.swift in Sources */,
+				1B383B1527AB8F0300E75BB1 /* ActivityViewData.swift in Sources */,
 				1B2EB61F27882A8E00FFDD9E /* ExampleCarryView.swift in Sources */,
 				1B71BA5A27691EF70056A2FF /* SignUpViewController.swift in Sources */,
 				1B9BCA29276F09B00084931D /* HomeAssembly.swift in Sources */,

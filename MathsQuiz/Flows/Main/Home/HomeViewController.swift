@@ -12,6 +12,8 @@ class HomeViewController: UIViewController, HomeViewInput {
     
     var presenter: (HomePresenterOutput & HomeViewOutput)?
     
+    fileprivate var activitiesToDisplay = [ActivityViewData]()
+    
     private let greetingLabel: UILabel = {
         let label = UILabel()
         label.font = MQFont.boldSystemFont30
@@ -106,7 +108,7 @@ private extension HomeViewController {
 // MARK: - CollectionViewDelegate & CollectionViewDataSource
 extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        presenter?.activities?.count ?? 0
+        activitiesToDisplay.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -115,9 +117,8 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let mainCell = cell as? HomeCollectionViewCell else {
             return UICollectionViewCell()
         }
-        if let activity = presenter?.activities?[indexPath.row] {
-            mainCell.configure(with: activity)
-        }
+       
+        mainCell.configure(with: activitiesToDisplay[indexPath.row])
         return mainCell
     }
     
@@ -170,11 +171,12 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - HomeViewInput
 extension HomeViewController {
-    func reloadCollection() {
-        mainCollectionView.reloadData()
-    }
-    
     func setGreeting(message: String) {
         greetingLabel.text = message
+    }
+    
+    func setActivities(_ activities: [ActivityViewData]) {
+        activitiesToDisplay = activities
+        mainCollectionView.reloadData()
     }
 }
