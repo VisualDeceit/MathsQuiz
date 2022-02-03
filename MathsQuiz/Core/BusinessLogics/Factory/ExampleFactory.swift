@@ -54,8 +54,8 @@ final class MainExampleFactory: ExampleFactory {
         builder.addSeparator(for: String(input.secondNumber).count + 1)
         builder.addNewRow()
         
-        solution.result.sorted { $0.key > $1.key }.forEach { index, digit in
-            builder.addDigit(digit, type: .result, index: index)
+        solution.result.sorted { $0.key > $1.key }.forEach { index, _ in
+            builder.addDigit(Digit(value: 0, carry: 0), type: .result, index: index)
         }
 
         let exampleView = builder.build()

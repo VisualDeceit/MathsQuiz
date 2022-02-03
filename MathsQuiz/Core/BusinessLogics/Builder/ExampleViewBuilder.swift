@@ -48,23 +48,34 @@ class ExampleViewBuilder {
     func addDigit(_ digit: Digit, type: DigitType, index: Int) {
         let view = UIView()
         let digitView = ExampleDigitView(digit: String(digit.value), type: type, index: index)
-        let carryView = ExampleCarryView(carry: "0")
+        // let carryView = ExampleCarryView(carry: "0")
         
         view.addSubview(digitView)
         
         horizontalStackView?.addArrangedSubview(view)
         
-        if digit.carry != 0 {
-            let carryFrameSize: CGFloat = 25
-            
-            view.addSubview(carryView)
-            
-            carryView.snp.makeConstraints { make in
-                make.width.height.equalTo(carryFrameSize)
-                make.centerX.equalTo(view.snp.trailing).inset(carryFrameSize / 2)
-                make.top.equalTo(view)
-            }
-            
+//        if digit.carry != 0 {
+//            let carryFrameSize: CGFloat = 25
+//
+//            view.addSubview(carryView)
+//
+//            carryView.snp.makeConstraints { make in
+//                make.width.height.equalTo(carryFrameSize)
+//                make.centerX.equalTo(view.snp.trailing).inset(carryFrameSize / 2)
+//                make.top.equalTo(view)
+//            }
+//
+//            digitView.snp.makeConstraints { make in
+//                make.width.equalTo(50)
+//                make.height.equalTo(70)
+//                make.centerX.bottom.equalTo(view)
+//            }
+//
+//            view.snp.makeConstraints { make in
+//                make.width.equalTo(50)
+//                make.height.equalTo(70 + carryFrameSize)
+//            }
+//        } else {
             digitView.snp.makeConstraints { make in
                 make.width.equalTo(50)
                 make.height.equalTo(70)
@@ -73,20 +84,9 @@ class ExampleViewBuilder {
             
             view.snp.makeConstraints { make in
                 make.width.equalTo(50)
-                make.height.equalTo(70 + carryFrameSize)
-            }
-        } else {
-            digitView.snp.makeConstraints { make in
-                make.width.equalTo(50)
-                make.height.equalTo(70)
-                make.centerX.bottom.equalTo(view)
-            }
-            
-            view.snp.makeConstraints { make in
-                make.width.equalTo(50)
                 make.height.equalTo(70)
             }
-        }
+//        }
     }
 
     func addSign(_ sign: ActivityType) {
