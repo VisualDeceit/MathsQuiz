@@ -7,9 +7,8 @@
 
 import UIKit
 
-class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
-    typealias T = Activity
-    
+class HomeCollectionViewCell: UICollectionViewCell {
+
     static let reuseId: String = "HomeCollectionViewCell"
     
     private let nameLabel = UILabel()
@@ -19,22 +18,16 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
     private let progressNumLabel = UILabel()
     private let circularProgressBarView = MQCircularProgressBar(frame: .zero)
     
-    func configure(with activity: Activity) {
-        self.backgroundColor = activity.type.color
+    func configure(with activity: ActivityViewData) {
+        self.backgroundColor = activity.color
         self.layer.cornerRadius = 24
         
-        setupNameLabel(text: activity.type.rawValue)
+        setupNameLabel(text: activity.title)
         setupLevelContainerView()
-        setupLevelCountLabel(with: activity.type.totalLevels)
+        setupLevelCountLabel(with: activity.totalLevels)
         setupProgressForm()
-        
-        let completed = activity.levels.filter { $0.completion > 0 }.count
-        if activity.type.totalLevels == 0 {
-            setUpCircularProgressBarView(toValue: 0)
-        } else {
-            setUpCircularProgressBarView(toValue: Double(completed) / Double(activity.type.totalLevels))
-        }
-        progressNumLabel.text = "\(completed)"
+        setUpCircularProgressBarView(toValue: activity.progress)
+        progressNumLabel.text = activity.completed   
     }
     
     private func setupNameLabel(text: String) {
@@ -65,14 +58,8 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         }
     }
     
-    private func setupLevelCountLabel(with number: Int) {
-        switch number {
-        case 0:
-            levelCountLabel.text = "Нет доступных"
-        default:
-            levelCountLabel.text = "\(number) уровней"
-        }
-       
+    private func setupLevelCountLabel(with number: String) {
+        levelCountLabel.text = number
         levelCountLabel.font = MQFont.systemFont12
         levelCountLabel.textAlignment = .center
         levelCountLabel.adjustsFontSizeToFitWidth = true
@@ -109,7 +96,7 @@ class HomeCollectionViewCell: UICollectionViewCell, ConfigCell {
         circleContainerView.addSubview(circularProgressBarView)
         
         circularProgressBarView.progressTo(value: toValue)
-                
+        
         circularProgressBarView.snp.makeConstraints { make in
             make.centerX.centerY.equalTo(circleContainerView)
             make.height.width.equalTo(MQOffset.offset24)

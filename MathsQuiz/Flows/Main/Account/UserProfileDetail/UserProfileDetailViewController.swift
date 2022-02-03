@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CoreLocation
 
 class UserProfileDetailViewController: UIViewController, UserProfileDetailViewInput {
     
@@ -42,7 +43,16 @@ class UserProfileDetailViewController: UIViewController, UserProfileDetailViewIn
     
     private let sexPickerView = UIPickerView()
     private let datePickerView = UIDatePicker()
+    private let pickerToolBar = UIToolbar()
     private let saveButton = MQStandardButton(title: "Сохранить")
+    
+    private lazy var locationManager = CLLocationManager()
+    private lazy var geocoder = CLGeocoder()
+    private lazy var userCity = "" {
+        didSet {
+            cityTextField.text = userCity
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +61,7 @@ class UserProfileDetailViewController: UIViewController, UserProfileDetailViewIn
         addTargetToButtons()
         addTargetToTextFields()
         addTapGestureRecognizer()
+        configureLocationManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -77,6 +88,7 @@ private extension UserProfileDetailViewController {
         setupNavigationBar()
         setupScrollView()
         setupPhoneNumberTextfield()
+        setupPickerToolBar()
         setupPickerViews()
         setupCityTextfield()
         setupUserDataForm()
@@ -104,7 +116,7 @@ private extension UserProfileDetailViewController {
     func format(with mask: String, phone: String) -> String {
         let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""
-        var index = numbers.startIndex // numbers iterator
+        var index = numbers.startIndex
 
         for ch in mask where index < numbers.endIndex {
             if ch == "X" {
@@ -115,6 +127,29 @@ private extension UserProfileDetailViewController {
             }
         }
         return result
+    }
+    
+    func setupPickerToolBar() {
+        pickerToolBar.autoresizingMask = .flexibleHeight
+        pickerToolBar.barStyle = .default
+        pickerToolBar.barTintColor = MQColor.ubeLight
+        pickerToolBar.isTranslucent = false
+        
+        let cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel,
+                                           target: self,
+                                           action: #selector(cancelToolButtonTapped))
+        cancelButton.tintColor = MQColor.ubeDark
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                        target: nil,
+                                        action: nil)
+        
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done,
+                                         target: self,
+                                         action: #selector(doneToolButtonTapped))
+        doneButton.tintColor = MQColor.ubeDark
+        
+        pickerToolBar.items = [cancelButton, flexSpace, doneButton]
     }
     
     func setupPickerViews() {
@@ -130,7 +165,10 @@ private extension UserProfileDetailViewController {
         datePickerView.backgroundColor = MQColor.ubeLight
         
         sexTextField.inputView = sexPickerView
+        sexTextField.inputAccessoryView = pickerToolBar
+        
         birthdayTextField.inputView = datePickerView
+        birthdayTextField.inputAccessoryView = pickerToolBar
     }
     
     func setupCityTextfield() {
@@ -215,6 +253,20 @@ private extension UserProfileDetailViewController {
     }
     
     @objc func locationButtonTapped() {
+        locationManager.requestLocation()
+    }
+    
+    @objc func cancelToolButtonTapped() {
+        if sexTextField.isEditing {
+            sexTextField.text = "Выбрать"
+        } else if birthdayTextField.isEditing {
+            birthdayTextField.text = ""
+        }
+        view.endEditing(true)
+    }
+    
+    @objc func doneToolButtonTapped() {
+        view.endEditing(true)
     }
     
     @objc func dateDidChange() {
@@ -313,7 +365,6 @@ private extension UserProfileDetailViewController {
 
 // MARK: - UserProfileDetailViewInput
 extension UserProfileDetailViewController {
-    
     func displayUserProfile() {
         cityTextField.text = presenter?.userProfile?.city
         nameTextField.text = presenter?.userProfile?.firstName
@@ -331,5 +382,27 @@ extension UserProfileDetailViewController {
         
         phoneNumberTextField.text = format(with: "+X (XXX) XXX-XX-XX",
                                            phone: presenter?.userProfile?.phone ?? "")
+    }
+}
+
+// MARK: - Setup location
+extension UserProfileDetailViewController: CLLocationManagerDelegate {
+    func configureLocationManager() {
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+    }
+
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        
+        geocoder.reverseGeocodeLocation(location) { places, _ in
+            if let city = places?.first?.administrativeArea {
+                self.cityTextField.text = city
+            }
+        }
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
     }
 }

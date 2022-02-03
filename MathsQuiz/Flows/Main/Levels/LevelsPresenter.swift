@@ -28,7 +28,7 @@ final class LevelsPresenter: LevelsPresenterOutput {
 extension LevelsPresenter: LevelsViewOutput {
     func viewDidSelectItemAt(_ indexPath: IndexPath) {
         if let level = levels?[indexPath.row],
-           level.completion >= 0 {
+           level.attempts >= 0 {
             onSelectLevel?(level)
         }
     }
@@ -43,8 +43,8 @@ extension LevelsPresenter: LevelsViewOutput {
                 if countToFill < 0 {
                     countToFill = 0
                 }
-                
-                let levelsTail = [Level](repeating: Level.blocked, count: countToFill)
+                let blocked = Level(number: 0, attempts: -1, score: 0, time: 0)
+                let levelsTail = [Level](repeating: blocked, count: countToFill)
                 self?.levels?.append(contentsOf: levelsTail)
                 
                 self?.view?.reloadCollection()

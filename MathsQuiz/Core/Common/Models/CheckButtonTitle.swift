@@ -10,4 +10,5 @@ import Foundation
 enum CheckButtonTitle: String {
     case check = "Проверить"
     case transition = "Далее"
+    case finish = "Завершить"
 }

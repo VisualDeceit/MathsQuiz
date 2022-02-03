@@ -19,7 +19,7 @@ class LevelCollectionViewCell: UICollectionViewCell {
     func configure(level: Level, type: ActivityType) {
         self.backgroundColor = type.color
 
-        if -1 == level.completion {
+        if -1 == level.attempts {
             setupBlockedCellForm(type: type)
         } else {
             setupUnblockedCellForm(level: level, type: type)
@@ -34,7 +34,7 @@ class LevelCollectionViewCell: UICollectionViewCell {
             let image = UIImageView()
             image.image = UIImage(systemName: "star.fill")
             image.contentMode = .scaleAspectFit
-            if index <= level.completion {
+            if index <= level.attempts {
                 image.tintColor = type.highlightedСolor
             } else {
                 image.tintColor = MQColor.background

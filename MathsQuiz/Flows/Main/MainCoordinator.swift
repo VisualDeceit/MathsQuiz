@@ -48,7 +48,23 @@ final class MainCoordinator: BaseCoordinator {
     private func showExample(for activity: ActivityType, level: Level) {
         let view = factory.makeExampleView(activity: activity, level: level)
         
+        view.presenter?.onFinish = { [weak self] type, score in
+            self?.showScore(for: activity, scoreViewType: type, score: score)
+        }
+        
         router.push(view)
+    }
+    
+    private func showScore(for activityType: ActivityType, scoreViewType: ScoreViewType, score: Score) {
+        let view = factory.makeScoreView(activityType: activityType,
+                                         scoreViewType: scoreViewType,
+                                         score: score)
+        
+        view.presenter?.onClose = {[weak router] in
+            router?.dismissModule(animated: true, completion: nil)
+        }
+        
+        router.present(view, animated: true)
     }
     
     private func showUserProfile() {

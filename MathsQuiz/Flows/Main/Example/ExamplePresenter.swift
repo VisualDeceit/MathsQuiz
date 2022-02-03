@@ -8,7 +8,7 @@
 import Foundation
 
 final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
-
+   
     let factory: ExampleFactory
     let activity: ActivityType
     let firestoreManager: StorageManager
@@ -18,6 +18,17 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     var attempts = 3
     var timer: Timer?
     var timeInterval = 0
+    var onFinish: ((ScoreViewType, Score) -> Void)?
+    
+    var score = Score()
+    
+    var isCorrect: Bool {
+        userResult == factory.solution.result
+    }
+    
+    var isGameOver: Bool {
+        activity.totalLevels <= level.number
+    }
     
     weak var view: ExampleViewInput?
     
@@ -44,25 +55,43 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     func viewDidCheckButtonTap(with title: CheckButtonTitle) {
         switch title {
         case .check:
-            if userResult == factory.solution.result {
-                view?.changeCheckButton(title: .transition)
-                level.completion = attempts
+            if isCorrect {
+                if isGameOver {
+                    view?.changeCheckButton(title: .finish)
+                } else {
+                    view?.changeCheckButton(title: .transition)
+                }
+                view?.highlightSolution()
+                
+                level.attempts = attempts
+                level.score = (attempts * level.number * 10) / timeInterval
+                level.time = timeInterval
+                
+                score.value += level.score
+                score.attempts += (3 - level.attempts)
+                
                 firestoreManager.saveLevel(level: level,
                                            for: factory.type) { (error) in
                     print(error.localizedDescription)
                 }
-                #warning("TODO: calculate score")
+                
+                stopTimer()
             } else {
                 attempts -= 1
-                if attempts < 0 {
+                if attempts <= 0 {
                     attempts = 0
+                    score.attempts += 3
+                    view?.changeCheckButton(title: .finish)
+                    stopTimer()
                 }
                 view?.refreshAttemptsView(with: attempts)
             }
         case .transition:
-            level.number += 1
-            attempts = 3
-            makeExample()
+                level.number += 1
+                attempts = 3
+                makeExample()
+        case .finish:
+            attempts == 0 ? onFinish?(.lose, score) : onFinish?(.win, score)
         }
     }
     
@@ -89,12 +118,13 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
             timer.tolerance = 0.1
             self.timer = timer
         }
+        timeInterval = 0
+        view?.refreshTimerView(with: timeFormatted(timeInterval))
     }
     
     private func stopTimer() {
         timer?.invalidate()
         timer = nil
-        timeInterval = 0
     }
     
     @objc func timerHandler() {

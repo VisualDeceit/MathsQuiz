@@ -9,25 +9,18 @@ import UIKit
 import SnapKit
 import Lottie
 
-class ScoreViewController: UIViewController {
+class ScoreViewController: UIViewController, ScoreViewInput {
     
-    var activityType: ActivityType?
+    var presenter: (ScorePresenterOutput & ScoreViewOutput)?
     
     private let mainContainerView = UIView()
-    private let bottomCircleContainterView = UIView()
+    private let bottomCircleContainerView = UIView()
     private let middleCircleContainerView = UIView()
     private let topCircleContainerView = UIView()
     private var congratulationFormStackView = UIStackView()
     private var bottomStackView = UIStackView()
     
-    private let closeButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Закрыть", for: .normal)
-        button.setTitleColor(MQColor.lavenderDark, for: .normal)
-        button.setTitleColor(MQColor.lavenderLight, for: .highlighted)
-        button.titleLabel?.font = MQFont.systemFont16
-        return button
-    }()
+    private let closeButton = MQPlainButton(title: "Закрыть")
     
     private let fireworkAnimationView: AnimationView = {
         let view = AnimationView()
@@ -40,7 +33,6 @@ class ScoreViewController: UIViewController {
         let label = UILabel()
         label.text = "Счет"
         label.font = MQFont.boldSystemFont18
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         return label
@@ -48,18 +40,16 @@ class ScoreViewController: UIViewController {
     
     private let scoreNumLabel: UILabel = {
         let label = UILabel()
-        label.font = MQFont.systemFont64
+        label.font = MQFont.systemFont48
         label.textColor = .black
         label.textAlignment = .center
-        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     private let pointTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Очка"
+        label.text = "очка"
         label.font = MQFont.systemFont18
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         return label
@@ -67,7 +57,6 @@ class ScoreViewController: UIViewController {
     
     private let congratulationTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Поздравляем!"
         label.font = MQFont.boldSystemFont24
         label.textColor = .black
         label.textAlignment = .center
@@ -78,7 +67,7 @@ class ScoreViewController: UIViewController {
     private let descriptionSubtitleLabel: UILabel = {
         let label = UILabel()
         label.font = MQFont.systemFont16
-        label.textColor = MQColor.lavenderDark
+        label.textColor = .black
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -88,7 +77,6 @@ class ScoreViewController: UIViewController {
         let label = UILabel()
         label.text = "Лучший результат"
         label.font = MQFont.boldSystemFont14
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         return label
     }()
@@ -105,7 +93,6 @@ class ScoreViewController: UIViewController {
         let label = UILabel()
         label.text = "Общее время"
         label.font = MQFont.boldSystemFont14
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         return label
     }()
@@ -120,9 +107,8 @@ class ScoreViewController: UIViewController {
     
     private let completionTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Завершение"
+        label.text = "Завершено"
         label.font = MQFont.boldSystemFont14
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         return label
     }()
@@ -137,9 +123,8 @@ class ScoreViewController: UIViewController {
     
     private let errorsTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ошибки"
+        label.text = "Ошибок"
         label.font = MQFont.boldSystemFont14
-        label.textColor = MQColor.lavenderDark
         label.textAlignment = .center
         return label
     }()
@@ -188,12 +173,18 @@ class ScoreViewController: UIViewController {
         setupViewsCornerRadius()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter?.viewDidLoad()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        fireworkAnimationView.play { _ in
-            self.fireworkAnimationView.stop()
-            self.fireworkAnimationView.removeFromSuperview()
+        if presenter?.scoreViewType == .some(.win) {
+            fireworkAnimationView.play { _ in
+                self.fireworkAnimationView.stop()
+                self.fireworkAnimationView.removeFromSuperview()
+            }
         }
     }
 }
@@ -211,9 +202,13 @@ private extension ScoreViewController {
         setupFireworkAnimation()
         setupResultForm()
         setupResultsText()
+        setupTargets()
     }
     
     func setupCloseButton() {
+        closeButton.setTitleColor(presenter?.activityType.color, for: .highlighted)
+        closeButton.setTitleColor(presenter?.activityType.highlightedСolor, for: .normal)
+        
         mainContainerView.addSubview(closeButton)
         
         closeButton.snp.makeConstraints { make in
@@ -244,7 +239,7 @@ private extension ScoreViewController {
     }
     
     func setupMainContainerView() {
-        mainContainerView.backgroundColor = MQColor.lavenderLight
+        mainContainerView.backgroundColor = presenter?.activityType.color
         
         view.addSubview(mainContainerView)
         
@@ -255,28 +250,28 @@ private extension ScoreViewController {
     }
     
     func setupCircleContainerViews() {
-        let circleContainerColor = MQColor.lavenderDark
+        let circleContainerColor = presenter?.activityType.highlightedСolor ?? .black
         let middleLighterColor = circleContainerColor.lighter(by: 20)
         let topLighterColor = circleContainerColor.lighter(by: 50)
         
-        bottomCircleContainterView.backgroundColor = circleContainerColor
+        bottomCircleContainerView.backgroundColor = circleContainerColor
         middleCircleContainerView.backgroundColor = middleLighterColor
         topCircleContainerView.backgroundColor = topLighterColor
         
-        mainContainerView.addSubview(bottomCircleContainterView)
-        bottomCircleContainterView.addSubview(middleCircleContainerView)
+        mainContainerView.addSubview(bottomCircleContainerView)
+        bottomCircleContainerView.addSubview(middleCircleContainerView)
         middleCircleContainerView.addSubview(topCircleContainerView)
         
-        bottomCircleContainterView.snp.makeConstraints { make in
+        bottomCircleContainerView.snp.makeConstraints { make in
             make.top.equalTo(mainContainerView).offset(MQOffset.offset40)
             make.centerX.equalTo(view)
             make.height.equalTo(view).multipliedBy(0.27)
-            make.width.equalTo(bottomCircleContainterView.snp.height)
+            make.width.equalTo(bottomCircleContainerView.snp.height)
         }
         
         middleCircleContainerView.snp.makeConstraints { make in
-            make.centerX.centerY.equalTo(bottomCircleContainterView)
-            make.height.equalTo(bottomCircleContainterView.snp.height).multipliedBy(0.75)
+            make.centerX.centerY.equalTo(bottomCircleContainerView)
+            make.height.equalTo(bottomCircleContainerView.snp.height).multipliedBy(0.75)
             make.width.equalTo(middleCircleContainerView.snp.height)
         }
         
@@ -288,6 +283,13 @@ private extension ScoreViewController {
     }
     
     func setupScoreLabels() {
+        scoreTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        pointTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        bestScoreTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        totalTimeTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        errorsTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        completionTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        
         let stackView = UIStackView(arrangedSubviews: [scoreTitleLabel,
                                                        scoreNumLabel,
                                                        pointTitleLabel])
@@ -313,7 +315,7 @@ private extension ScoreViewController {
         mainContainerView.addSubview(congratulationFormStackView)
         
         congratulationFormStackView.snp.makeConstraints { make in
-            make.top.equalTo(bottomCircleContainterView.snp.bottom).offset(MQOffset.offset16)
+            make.top.equalTo(bottomCircleContainerView.snp.bottom).offset(MQOffset.offset16)
             make.leading.equalTo(view).offset(MQOffset.offset36)
             make.trailing.equalTo(view).inset(MQOffset.offset36)
             make.height.equalTo(80)
@@ -321,6 +323,8 @@ private extension ScoreViewController {
     }
 
     func setupFireworkAnimation() {
+        if presenter?.scoreViewType == .some(.lose) { return }
+        
         mainContainerView.addSubview(fireworkAnimationView)
         
         fireworkAnimationView.snp.makeConstraints { make in
@@ -371,23 +375,29 @@ private extension ScoreViewController {
     }
     
     func setupResultsText() {
-        scoreNumLabel.text = "72"
-        descriptionSubtitleLabel.text = "Даниил, ты решил все задания на сложение!"
-        bestScoreNumLabel.text = "69 очков"
-        totalTimeNumLabel.text = "7:56 мин"
-        completionNumLabel.text = "100%"
-        errorsNumLabel.text = "3"
+        switch presenter?.scoreViewType {
+        case .win:
+            congratulationTitleLabel.text = "Поздравляем!"
+            descriptionSubtitleLabel.text = "Ты решил все задания на \(presenter?.activityType.rawValue.lowercased() ?? "")"
+        case .lose:
+            congratulationTitleLabel.text = "К сожалению, ты проиграл!"
+            descriptionSubtitleLabel.text = "Попробуй еще раз"
+        case .none:
+            break
+        }
+        scoreNumLabel.text = "\(presenter?.score?.value ?? 0)"
+        errorsNumLabel.text = "\(presenter?.score?.attempts ?? 0)"
     }
     
     func setupViewsCornerRadius() {
         mainContainerView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
         mainContainerView.layer.cornerRadius = 30
         
-        bottomCircleContainterView.layoutIfNeeded()
+        bottomCircleContainerView.layoutIfNeeded()
         middleCircleContainerView.layoutIfNeeded()
         topCircleContainerView.layoutIfNeeded()
         
-        bottomCircleContainterView.layer.cornerRadius = bottomCircleContainterView.frame.width / 2
+        bottomCircleContainerView.layer.cornerRadius = bottomCircleContainerView.frame.width / 2
         middleCircleContainerView.layer.cornerRadius = middleCircleContainerView.frame.width / 2
         topCircleContainerView.layer.cornerRadius = topCircleContainerView.frame.width / 2
     }
@@ -410,11 +420,22 @@ private extension ScoreViewController {
                               for: .touchUpInside)
     }
     
-    @objc func closeButtonTapped() {}
+    @objc func closeButtonTapped() {
+        presenter?.closeButtonDidTapped()
+    }
     
     @objc func resetLevelsButtonTapped() {}
     
     @objc func homeButtonTapped() {}
     
     @objc func shareButtonTapped() {}
+}
+
+// MARK: - ScoreViewInput
+extension ScoreViewController {
+    func displayStatistics(totalScore: String, totalTime: String, completion: String) {
+        bestScoreNumLabel.text = totalScore
+        totalTimeNumLabel.text = totalTime
+        completionNumLabel.text = completion
+    }
 }

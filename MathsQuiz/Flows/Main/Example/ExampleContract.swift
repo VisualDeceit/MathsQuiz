@@ -15,6 +15,7 @@ protocol ExampleViewInput: AnyObject {
     func refreshTimerView(with time: String)
     func changeCheckButton(title: CheckButtonTitle)
     func refreshProgress(label: String, percent: Float)
+    func highlightSolution()
 }
 
 protocol ExampleViewOutput: AnyObject {
@@ -26,4 +27,5 @@ protocol ExampleViewOutput: AnyObject {
 }
 
 protocol ExamplePresenterOutput {
+    var onFinish: ((ScoreViewType, Score) -> Void)? { get set }
 }

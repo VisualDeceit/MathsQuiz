@@ -14,4 +14,7 @@ protocol MainModuleFactory {
     func makeLevelsView(activity: ActivityType) -> LevelsViewInput & Presentable
     func makePasswordChangeView() -> PasswordChangeViewInput & Presentable
     func makeExampleView(activity: ActivityType, level: Level) -> ExampleViewInput & Presentable
+    func makeScoreView(activityType: ActivityType,
+                       scoreViewType: ScoreViewType,
+                       score: Score) -> ScoreViewInput & Presentable
 }
