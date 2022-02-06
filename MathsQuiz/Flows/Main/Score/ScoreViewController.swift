@@ -432,7 +432,21 @@ private extension ScoreViewController {
         presenter?.homebuttonDidTapped()
     }
     
-    @objc func shareButtonTapped() {}
+    @objc func shareButtonTapped() {
+        let renderer = UIGraphicsImageRenderer(bounds: mainContainerView.bounds)
+        let image = renderer.pngData(actions: {rendererContext in
+            closeButton.isHidden = true
+            mainContainerView.layer.render(in: rendererContext.cgContext)
+            closeButton.isHidden = false
+        })
+        
+        let objectsToShare = [image]
+        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
+        activityViewController.excludedActivityTypes = [.airDrop,
+                                                        .addToReadingList]
+
+        self.present(activityViewController, animated: true, completion: nil)
+    }
 }
 
 // MARK: - ScoreViewInput

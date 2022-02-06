@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>For share result</string>
 	<key>NSCameraUsageDescription</key>
-	<string>For example</string>
+	<string>For change avatar</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>For example</string>
+	<string>For change avatar</string>
 	<key>LSApplicationCategoryType</key>
 	<array/>
 	<key>CFBundleDevelopmentRegion</key>
