@@ -75,6 +75,11 @@ final class MainCoordinator: BaseCoordinator {
             self?.onResetActivity?()
         }
         
+        view.presenter?.onHomeButtonTap = { [weak router] in
+            router?.dismissModule(animated: true, completion: nil)
+            router?.popToRootModule(animated: true)
+        }
+        
         router.present(view, animated: true)
     }
     
