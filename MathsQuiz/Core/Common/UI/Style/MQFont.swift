@@ -27,4 +27,5 @@ struct MQFont {
     static let systemFont11 = UIFont.systemFont(ofSize: 11)
     static let systemFont10 = UIFont.systemFont(ofSize: 10)
     static let timerFont = UIFont.monospacedDigitSystemFont(ofSize: 24, weight: .regular)
+    static let mainProgressFont = UIFont.monospacedDigitSystemFont(ofSize: 12, weight: .regular)
 }

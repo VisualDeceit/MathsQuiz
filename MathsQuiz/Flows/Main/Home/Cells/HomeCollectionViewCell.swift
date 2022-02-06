@@ -76,7 +76,7 @@ class HomeCollectionViewCell: UICollectionViewCell {
     private func setupProgressForm() {
         circleContainerView.backgroundColor = MQColor.background
         
-        progressNumLabel.font = MQFont.systemFont12
+        progressNumLabel.font = MQFont.mainProgressFont
         
         self.addSubview(circleContainerView)
         circleContainerView.addSubview(progressNumLabel)
