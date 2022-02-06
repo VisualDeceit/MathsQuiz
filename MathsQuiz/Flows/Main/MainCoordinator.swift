@@ -11,6 +11,8 @@ final class MainCoordinator: BaseCoordinator {
     
     private let factory: MainModuleFactory
     private let router: Router
+    
+    var onResetActivity: (() -> Void )?
 
     init(router: Router, factory: MainModuleFactory) {
         self.factory = factory
@@ -52,6 +54,10 @@ final class MainCoordinator: BaseCoordinator {
             self?.showScore(for: activity, scoreViewType: type, score: score)
         }
         
+        self.onResetActivity = { [weak view] in
+            view?.presenter?.resetActivity()
+        }
+        
         router.push(view)
     }
     
@@ -62,6 +68,11 @@ final class MainCoordinator: BaseCoordinator {
         
         view.presenter?.onClose = {[weak router] in
             router?.dismissModule(animated: true, completion: nil)
+        }
+        
+        view.presenter?.onResetButtonTap = { [weak router, weak self] in
+            router?.dismissModule(animated: true, completion: nil)
+            self?.onResetActivity?()
         }
         
         router.present(view, animated: true)

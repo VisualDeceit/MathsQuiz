@@ -18,6 +18,8 @@ final class ScorePresenter: ScoreViewOutput, ScorePresenterOutput {
     var score: Score?
     
     var onClose: (() -> Void)?
+    var onResetButtonTap: (() -> Void)?
+    var onHomeButtonTap: (() -> Void)?
     
     required init(view: ScoreViewInput,
                   activityType: ActivityType,
@@ -47,6 +49,14 @@ final class ScorePresenter: ScoreViewOutput, ScorePresenterOutput {
     
     func closeButtonDidTapped() {
         onClose?()
+    }
+    
+    func resetButtonDidTapped() {
+        onResetButtonTap?()
+    }
+    
+    func homebuttonDidTapped() {
+        onHomeButtonTap?()
     }
     
     private func timeFormatted(_ totalSeconds: Int) -> String {

@@ -95,6 +95,12 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
         }
     }
     
+    func resetActivity() {
+        level.number = 1
+        attempts = 3
+        makeExample()
+    }
+    
     private func makeExample() {
         if let exampleView = factory.makeAdditionExample(for: level) {
             view?.displayExample(view: exampleView)

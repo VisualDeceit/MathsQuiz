@@ -424,9 +424,13 @@ private extension ScoreViewController {
         presenter?.closeButtonDidTapped()
     }
     
-    @objc func resetLevelsButtonTapped() {}
+    @objc func resetLevelsButtonTapped() {
+        presenter?.resetButtonDidTapped()
+    }
     
-    @objc func homeButtonTapped() {}
+    @objc func homeButtonTapped() {
+        presenter?.homebuttonDidTapped()
+    }
     
     @objc func shareButtonTapped() {}
 }

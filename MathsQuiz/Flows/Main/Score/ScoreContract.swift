@@ -20,8 +20,12 @@ protocol ScoreViewOutput: AnyObject {
     
     func viewDidLoad()
     func closeButtonDidTapped()
+    func resetButtonDidTapped()
+    func homebuttonDidTapped()
 }
 
 protocol ScorePresenterOutput {
     var onClose: (() -> Void)? { get set }
+    var onResetButtonTap: (() -> Void)? { get set }
+    var onHomeButtonTap: (() -> Void)? { get set }
 }

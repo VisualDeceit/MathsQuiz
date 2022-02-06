@@ -24,6 +24,7 @@ protocol ExampleViewOutput: AnyObject {
     func viewDidLoad()
     func viewDidSetDigit(value: Int, at index: Int)
     func viewDidCheckButtonTap(with title: CheckButtonTitle)
+    func resetActivity()
 }
 
 protocol ExamplePresenterOutput {
