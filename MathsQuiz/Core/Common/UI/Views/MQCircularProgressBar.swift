@@ -45,7 +45,7 @@ class MQCircularProgressBar: UIView {
         progressLayer.lineCap = .round
         progressLayer.lineWidth = 3.0
         progressLayer.strokeEnd = 0
-        progressLayer.strokeColor = MQColor.lavenderDark.cgColor
+        progressLayer.strokeColor = UIColor.clear.cgColor
         layer.addSublayer(progressLayer)
     }
 
@@ -53,6 +53,13 @@ class MQCircularProgressBar: UIView {
         CATransaction.begin()
         CATransaction.setDisableActions(true)
         progressLayer.strokeEnd = CGFloat(value)
+        CATransaction.commit()
+    }
+    
+    func setStrokeColor(_ color: UIColor) {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
+        progressLayer.strokeColor = color.cgColor
         CATransaction.commit()
     }
 }

@@ -11,6 +11,7 @@ struct ActivityViewData {
     let index: Int
     let title: String
     let color: UIColor
+    let highlightedColor: UIColor
     let totalLevels: String
     let completed: String
     let progress: Double

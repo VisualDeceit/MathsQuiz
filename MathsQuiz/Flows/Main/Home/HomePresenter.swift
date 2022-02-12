@@ -110,6 +110,7 @@ extension HomePresenter {
         return .init(index: activity.index,
                      title: activity.type.rawValue,
                      color: activity.type.color,
+                     highlightedColor: activity.type.highlightedColor,
                      totalLevels: levelCountLabel,
                      completed: "\(statistics.completion)",
                      progress: progress)

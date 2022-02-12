@@ -35,7 +35,7 @@ class LevelCollectionViewCell: UICollectionViewCell {
             image.image = UIImage(systemName: "star.fill")
             image.contentMode = .scaleAspectFit
             if index <= level.attempts {
-                image.tintColor = type.highlightedСolor
+                image.tintColor = type.highlightedColor
             } else {
                 image.tintColor = MQColor.background
             }
@@ -66,7 +66,7 @@ class LevelCollectionViewCell: UICollectionViewCell {
     
     func setupBlockedCellForm(type: ActivityType) {
         lockImageView.image = UIImage(systemName: "lock.fill")
-        lockImageView.tintColor = type.highlightedСolor
+        lockImageView.tintColor = type.highlightedColor
         lockImageView.contentMode = .scaleAspectFit
         
         self.addSubview(lockImageView)

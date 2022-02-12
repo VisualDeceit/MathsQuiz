@@ -26,8 +26,9 @@ class HomeCollectionViewCell: UICollectionViewCell {
         setupLevelContainerView()
         setupLevelCountLabel(with: activity.totalLevels)
         setupProgressForm()
+        circularProgressBarView.setStrokeColor(activity.highlightedColor)
         setUpCircularProgressBarView(toValue: activity.progress)
-        progressNumLabel.text = activity.completed   
+        progressNumLabel.text = activity.completed
     }
     
     private func setupNameLabel(text: String) {

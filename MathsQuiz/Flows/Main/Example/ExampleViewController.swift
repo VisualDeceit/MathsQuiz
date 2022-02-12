@@ -108,7 +108,7 @@ private extension ExampleViewController {
     }
     
     func setupNavigationBar() {
-        navigationController?.navigationBar.tintColor = presenter?.activity.highlightedСolor
+        navigationController?.navigationBar.tintColor = presenter?.activity.highlightedColor
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
@@ -155,7 +155,7 @@ private extension ExampleViewController {
     
     func setupButtons() {
         view.addSubview(checkButton)
-        checkButton.backgroundColor = presenter?.activity.highlightedСolor
+        checkButton.backgroundColor = presenter?.activity.highlightedColor
         
         checkButton.snp.makeConstraints { make in
             make.width.equalTo(Keypad.checkButtonWidth)
@@ -167,7 +167,7 @@ private extension ExampleViewController {
     
     func setupProgressView() {
         progressView.trackTintColor = MQColor.background
-        progressView.progressTintColor = presenter?.activity.highlightedСolor
+        progressView.progressTintColor = presenter?.activity.highlightedColor
 
         progressView.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: 10).isActive = true
@@ -285,7 +285,7 @@ extension ExampleViewController {
                 image.image = UIImage(systemName: "star")
             }
             image.contentMode = .scaleAspectFit
-            image.tintColor = presenter?.activity.highlightedСolor
+            image.tintColor = presenter?.activity.highlightedColor
             image.transform = .init(rotationAngle: 0.26)
             image.heightAnchor.constraint(equalToConstant: 26).isActive = true
             attemptsStackView.addArrangedSubview(image)
