@@ -35,12 +35,12 @@ extension HomePresenter {
     
     func viewDidLoad() {
         
-        firestoreManager.loadUserProfile {[weak self] (result) in
+        firestoreManager.loadUserProfile(uid: Session.uid, completion: {[weak self] (result) in
             guard let self = self else { return }
             
             switch result {
             case .success(let profile):
-                if let name = profile.firstName {
+                if let name = profile.firstName, !name.isEmpty {
                     self.view?.setGreeting(message: "Привет, \(name)!")
                 } else {
                     self.view?.setGreeting(message: "Привет, дружище!")
@@ -48,10 +48,11 @@ extension HomePresenter {
                 
             case .failure(let error):
                 print("Error decoding profile: \(error.localizedDescription)")
+                self.view?.setGreeting(message: "Привет, дружище!")
             }
-        }
+        })
         
-        self.firestoreManager.loadActivities {[weak self] (result) in
+        self.firestoreManager.loadActivities(uid: Session.uid, completion: {[weak self] (result) in
             guard let self = self else { return }
             
             var activityViewData = [ActivityViewData]()
@@ -63,13 +64,15 @@ extension HomePresenter {
                 
                 activities.forEach { activity in
                     group.enter()
-                    self.firestoreManager.loadStatistics(activity: activity.type, { (result) in
+                    self.firestoreManager.loadStatistics(uid: Session.uid,
+                                                         activityType: activity.type,
+                                                         completion: { (result) in
                         switch result {
                         case .success(let statistics):
                             activityViewData.append(self.parse(from: activity, with: statistics))
                             group.leave()
                         case .failure:
-                            break
+                            group.leave()
                         }
                     })
                 }
@@ -80,7 +83,7 @@ extension HomePresenter {
             case .failure(let error):
                 print(error)
             }
-        }
+        })
     }
     
     func viewDidAccountButtonTap() {

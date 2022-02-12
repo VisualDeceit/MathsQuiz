@@ -33,7 +33,7 @@ final class ScorePresenter: ScoreViewOutput, ScorePresenterOutput {
     }
     
     func viewDidLoad() {
-        firestoreManager.loadStatistics(activity: activityType) {[weak self] (result) in
+        firestoreManager.loadStatistics(uid: Session.uid, activityType: activityType) {[weak self] (result) in
             switch result {
             case .success(let statistics):
                 let totalScore = "\(statistics.totalScore) очков"

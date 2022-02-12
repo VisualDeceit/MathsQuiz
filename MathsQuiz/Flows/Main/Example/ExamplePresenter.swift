@@ -70,8 +70,9 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
                 score.value += level.score
                 score.attempts += (3 - level.attempts)
                 
-                firestoreManager.saveLevel(level: level,
-                                           for: factory.type) { (error) in
+                firestoreManager.saveLevel(uid: Session.uid,
+                                           level: level,
+                                           activityType: factory.type) { (error) in
                     print(error.localizedDescription)
                 }
                 

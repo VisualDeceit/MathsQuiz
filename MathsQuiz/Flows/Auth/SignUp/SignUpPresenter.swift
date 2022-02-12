@@ -59,7 +59,7 @@ class SignUpPresenter: SignUpPresenterOutput {
                                           birthday: nil)
                 
                 do {
-                    try self?.firestoreManager.saveUserProfile(profile: profile)
+                    try self?.firestoreManager.saveUserProfile(uid: Session.uid, profile: profile)
                 } catch let error {
                     self?.authService.deleteCurrentUser { _ in }
                     Session.uid = nil

@@ -152,7 +152,8 @@ class LoginPresenter: NSObject, LoginViewOutput, LoginPresenterOutput {
                                                       sex: nil,
                                                       birthday: nil)
                         do {
-                            try self?.firestoreManager.saveUserProfile(profile: userProfile)
+                            try self?.firestoreManager.saveUserProfile(uid: Session.uid,
+                                                                       profile: userProfile)
                         } catch let error {
                             self?.authService.deleteCurrentUser { _ in }
                             Session.uid = nil

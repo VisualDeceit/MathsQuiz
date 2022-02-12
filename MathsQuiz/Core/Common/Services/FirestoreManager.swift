@@ -32,28 +32,35 @@ extension FirestoreError: LocalizedError {
 }
 
 protocol StorageManager {
-    func saveUserProfile(profile: UserProfile) throws
-    func loadUserProfile(completion: @escaping (Result<UserProfile, Error>) -> Void)
+    func saveUserProfile(uid: String?, profile: UserProfile) throws
+    func loadUserProfile(uid: String?, completion: @escaping (Result<UserProfile, Error>) -> Void)
     func isUserProfileExist(uid: String?, completion: @escaping ((Bool) -> Void))
-    func loadActivities(_ completion: @escaping (Result<[Activity], Error>) -> Void)
-    func loadLevels(for activity: ActivityType, completion: @escaping (Result<[Level], Error>) -> Void)
-    func saveLevel(level: Level, for activity: ActivityType, completion: ((Error) -> Void)?)
-    func loadStatistics(activity: ActivityType, _ completion: @escaping (Result<ActivityStatistics, Error>) -> Void)
+    func loadActivities(uid: String?, completion: @escaping (Result<[Activity], Error>) -> Void)
+    func loadLevels(uid: String?,
+                    activityType: ActivityType,
+                    completion: @escaping (Result<[Level], Error>) -> Void)
+    func saveLevel(uid: String?,
+                   level: Level,
+                   activityType: ActivityType,
+                   completion: ((Error) -> Void)?)
+    func loadStatistics(uid: String?,
+                        activityType: ActivityType,
+                        completion: @escaping (Result<ActivityStatistics, Error>) -> Void)
 }
 
 class FirestoreManager: StorageManager {
     
     private let db = Firestore.firestore()
-    
-    func saveUserProfile(profile: UserProfile) throws {
-        guard let uid = Session.uid, !uid.isEmpty else {
+
+    func saveUserProfile(uid: String?, profile: UserProfile) throws {
+        guard let uid = uid else {
             throw FirestoreError.emptyPath
         }
         try db.collection("users").document(uid).setData(from: profile)
     }
     
-    func loadUserProfile(completion: @escaping (Result<UserProfile, Error>) -> Void) {
-        guard let uid = Session.uid, !uid.isEmpty else {
+    func loadUserProfile(uid: String?, completion: @escaping (Result<UserProfile, Error>) -> Void) {
+        guard let uid = uid else {
             completion(.failure(FirestoreError.emptyPath))
             return
         }
@@ -78,7 +85,12 @@ class FirestoreManager: StorageManager {
     }
     
     func isUserProfileExist(uid: String?, completion: @escaping ((Bool) -> Void)) {
-        let docRef = db.collection("users").document(uid ?? "uid")
+        guard let uid = uid else {
+            completion(false)
+            return
+        }
+        
+        let docRef = db.collection("users").document(uid)
         docRef.getDocument { (document, _) in
             guard let document = document, document.exists else {
                 completion(false)
@@ -88,8 +100,8 @@ class FirestoreManager: StorageManager {
         }
     }
     
-    func loadActivities(_ completion: @escaping (Result<[Activity], Error>) -> Void) {
-        guard let uid = Session.uid, !uid.isEmpty else {
+    func loadActivities(uid: String?, completion: @escaping (Result<[Activity], Error>) -> Void) {
+        guard let uid = uid else {
             completion(.failure(FirestoreError.emptyPath))
             return
         }
@@ -115,10 +127,9 @@ class FirestoreManager: StorageManager {
                     }
                 }
                 
-                ActivityType.allCases.enumerated().forEach { (item) in
-                    if activityList.map({ $0.type }).contains(item.element) { return }
-                    let activity = Activity(index: item.offset,
-                                            type: item.element)
+                ActivityType.allCases.enumerated().forEach { index, activityType in
+                    guard !activityList.lazy.map(\.type).contains(activityType) else { return }
+                    let activity = Activity(index: index, type: activityType)
                     activityList.append(activity)
                     do {
                         try collectionRef.document().setData(from: activity)
@@ -131,14 +142,14 @@ class FirestoreManager: StorageManager {
         }
     }
     
-    func loadLevels(for activity: ActivityType, completion: @escaping (Result<[Level], Error>) -> Void) {
-        guard let uid = Session.uid, !uid.isEmpty else {
+    func loadLevels(uid: String?, activityType: ActivityType, completion: @escaping (Result<[Level], Error>) -> Void) {
+        guard let uid = uid else {
             completion(.failure(FirestoreError.emptyPath))
             return
         }
         
         let collectionRef = db.collection("users").document(uid).collection("activity_list")
-        collectionRef.whereField("type", isEqualTo: activity.rawValue).getDocuments { (querySnapshot, error) in
+        collectionRef.whereField("type", isEqualTo: activityType.rawValue).getDocuments { (querySnapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -178,14 +189,14 @@ class FirestoreManager: StorageManager {
         }
     }
     
-    func saveLevel(level: Level, for activity: ActivityType, completion: ((Error) -> Void)? = nil) {
-        guard let uid = Session.uid, !uid.isEmpty else {
+    func saveLevel(uid: String?, level: Level, activityType: ActivityType, completion: ((Error) -> Void)? = nil) {
+        guard let uid = uid else {
             completion?(FirestoreError.emptyPath)
             return
         }
         
         db.collection("users").document(uid).collection("activity_list")
-            .whereField("type", isEqualTo: activity.rawValue)
+            .whereField("type", isEqualTo: activityType.rawValue)
             .getDocuments { (querySnapshot, error) in
                 if let error = error {
                     completion?(error)
@@ -201,7 +212,7 @@ class FirestoreManager: StorageManager {
                             if let documents = querySnapshot?.documents {
                                 if level.attempts > 0,
                                    documents.count == level.number,
-                                   documents.count < activity.totalLevels {
+                                   documents.count < activityType.totalLevels {
                                     let empty = Level(number: level.number + 1, attempts: 0, score: 0, time: 0)
                                     do {
                                         try levelListRef?.document().setData(from: empty)
@@ -240,14 +251,14 @@ class FirestoreManager: StorageManager {
             }
     }
     
-    func loadStatistics(activity: ActivityType, _ completion: @escaping (Result<ActivityStatistics, Error>) -> Void) {
-        guard let uid = Session.uid, !uid.isEmpty else {
+    func loadStatistics(uid: String?, activityType: ActivityType, completion: @escaping (Result<ActivityStatistics, Error>) -> Void) {
+        guard let uid = uid else {
             completion(.failure(FirestoreError.emptyPath))
             return
         }
         
         db.collection("users").document(uid).collection("activity_list")
-            .whereField("type", isEqualTo: activity.rawValue)
+            .whereField("type", isEqualTo: activityType.rawValue)
             .getDocuments { (querySnapshot, error) in
             if let error = error {
                 completion(.failure(error))
@@ -271,9 +282,9 @@ class FirestoreManager: StorageManager {
                                 try $0.data(as: Level.self)
                             }
                             
-                            let score = levels.map { $0.score }.reduce(0, +)
+                            let score = levels.map(\.score).reduce(0, +)
                             let percent = levels.filter { $0.attempts > 0 }.count
-                            let time = levels.map { $0.time }.reduce(0, +)
+                            let time = levels.map(\.time).reduce(0, +)
 
                             let statistics = ActivityStatistics(totalScore: score,
                                                                 completion: percent,

@@ -34,7 +34,7 @@ extension LevelsPresenter: LevelsViewOutput {
     }
     
     func viewDidLoad() {
-        firestoreManager.loadLevels(for: activity) {[weak self] (result) in
+        firestoreManager.loadLevels(uid: Session.uid, activityType: activity) {[weak self] (result) in
             switch result {
             case .success(let items):
                 self?.levels = items

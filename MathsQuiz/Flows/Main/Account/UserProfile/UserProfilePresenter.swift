@@ -41,7 +41,7 @@ final class UserProfilePresenter: UserProfilePresenterOutput {
 // MARK: - HomeViewOutput
 extension UserProfilePresenter: UserProfileViewOutput {
     func viewDidLoad() {
-        firestoreManager.loadUserProfile {[weak self] (result) in
+        firestoreManager.loadUserProfile(uid: Session.uid, completion: {[weak self] (result) in
             switch result {
             case .success(let profile):
                 var userName = ""
@@ -55,7 +55,7 @@ extension UserProfilePresenter: UserProfileViewOutput {
             case .failure(let error):
                 print("Error decoding profile: \(error.localizedDescription)")
             }
-        }
+        })
     }
     
     func viewDidChangePhotoButtonTap() {

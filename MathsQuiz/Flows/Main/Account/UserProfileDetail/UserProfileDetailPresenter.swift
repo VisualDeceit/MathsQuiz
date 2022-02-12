@@ -43,7 +43,7 @@ extension UserProfileDetailPresenter {
                                   sex: Sex(rawValue: sex ?? ""),
                                   birthday: birthdayDate)
         do {
-            try firestoreManager.saveUserProfile(profile: profile)
+            try firestoreManager.saveUserProfile(uid: Session.uid, profile: profile)
         } catch let error {
                 print("Error update profile: \(error.localizedDescription)")
             return
@@ -51,7 +51,7 @@ extension UserProfileDetailPresenter {
     }
     
     func viewDidLoad() {
-        firestoreManager.loadUserProfile {[weak self] (result) in
+        firestoreManager.loadUserProfile(uid: Session.uid, completion: {[weak self] (result) in
             switch result {
             case .success(let profile):
                 self?.userProfile = profile
@@ -59,6 +59,6 @@ extension UserProfileDetailPresenter {
             case .failure(let error):
                 print("Error decoding profile: \(error.localizedDescription)")
             }
-        }
+        })
     }
 }
