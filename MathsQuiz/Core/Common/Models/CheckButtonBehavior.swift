@@ -7,8 +7,12 @@
 
 import Foundation
 
-enum CheckButtonTitle: String {
+enum CheckButtonBehavior: String {
     case check = "Проверить"
     case transition = "Далее"
     case finish = "Завершить"
+    
+    var title: String {
+        self.rawValue
+    }
 }

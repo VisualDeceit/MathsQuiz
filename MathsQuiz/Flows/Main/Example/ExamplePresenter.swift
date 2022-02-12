@@ -52,14 +52,14 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
         userResult[index] = digit
     }
     
-    func viewDidCheckButtonTap(with title: CheckButtonTitle) {
-        switch title {
+    func viewDidCheckButtonTap(with behavior: CheckButtonBehavior) {
+        switch behavior {
         case .check:
             if isCorrect {
                 if isGameOver {
-                    view?.changeCheckButton(title: .finish)
+                    view?.changeCheckButton(behavior: .finish)
                 } else {
-                    view?.changeCheckButton(title: .transition)
+                    view?.changeCheckButton(behavior: .transition)
                 }
                 view?.highlightSolution()
                 
@@ -81,7 +81,7 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
                 if attempts <= 0 {
                     attempts = 0
                     score.attempts += 3
-                    view?.changeCheckButton(title: .finish)
+                    view?.changeCheckButton(behavior: .finish)
                     stopTimer()
                 }
                 view?.refreshAttemptsView(with: attempts)
@@ -108,7 +108,7 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
             let progressPercent = Float(level.number) / Float(activity.totalLevels)
             view?.refreshProgress(label: progressLabel, percent: progressPercent)
             view?.refreshAttemptsView(with: attempts)
-            view?.changeCheckButton(title: .check)
+            view?.changeCheckButton(behavior: .check)
             createTimer()
         }
     }

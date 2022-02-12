@@ -13,7 +13,7 @@ class ExampleViewController: UIViewController, ExampleViewInput {
     var presenter: (ExamplePresenterOutput & ExampleViewOutput)?
     var relativeLocation = CGPoint()
     var isDigitCaptured = false
-    var checkButtonTitle = CheckButtonTitle.check
+    var checkButtonBehavior = CheckButtonBehavior.check
     
     private let exampleWorkspaceView = UIView()
     
@@ -62,7 +62,7 @@ class ExampleViewController: UIViewController, ExampleViewInput {
         return label
     }()
 
-    private let checkButton = MQStandardButton(title: CheckButtonTitle.check.rawValue)
+    private let checkButton = MQStandardButton(title: CheckButtonBehavior.check.rawValue)
     private let progressView = UIProgressView()
     private let progressResultLabel = UILabel()
     private var keypad = [KeypadDigitView]()
@@ -209,7 +209,7 @@ private extension ExampleViewController {
     }
 
     @objc func checkButtonTapped() {
-        presenter?.viewDidCheckButtonTap(with: checkButtonTitle)
+        presenter?.viewDidCheckButtonTap(with: checkButtonBehavior)
     }
 
     @objc func questionButtonItemTapped() {}
@@ -297,9 +297,9 @@ extension ExampleViewController {
         timerLabel.text = time
     }
     
-    func changeCheckButton(title: CheckButtonTitle) {
-        checkButtonTitle = title
-        checkButton.setTitle(checkButtonTitle.rawValue, for: .normal)
+    func changeCheckButton(behavior: CheckButtonBehavior) {
+        checkButtonBehavior = behavior
+        checkButton.setTitle(checkButtonBehavior.title, for: .normal)
     }
     
     func refreshProgress(label: String, percent: Float) {
