@@ -17,7 +17,7 @@ final class ScorePresenter: ScoreViewOutput, ScorePresenterOutput {
 
     var score: Score?
     
-    var onClose: (() -> Void)?
+    var onCloseProgrammatically: ((Bool) -> Void)?
     var onResetButtonTap: (() -> Void)?
     var onHomeButtonTap: (() -> Void)?
     var onShowShareActivity: (([Any]) -> Void)?
@@ -49,7 +49,11 @@ final class ScorePresenter: ScoreViewOutput, ScorePresenterOutput {
     }
     
     func closeButtonDidTapped() {
-        onClose?()
+        onCloseProgrammatically?(true)
+    }
+    
+    func viewDidDismiss() {
+        onCloseProgrammatically?(false)
     }
     
     func resetButtonDidTapped() {

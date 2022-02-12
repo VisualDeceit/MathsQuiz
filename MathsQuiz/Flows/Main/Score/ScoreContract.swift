@@ -23,10 +23,11 @@ protocol ScoreViewOutput: AnyObject {
     func resetButtonDidTapped()
     func homeButtonDidTapped()
     func sharedObjectsPrepared(objects: [Any])
+    func viewDidDismiss()
 }
 
 protocol ScorePresenterOutput {
-    var onClose: (() -> Void)? { get set }
+    var onCloseProgrammatically: ((Bool) -> Void)? { get set }
     var onResetButtonTap: (() -> Void)? { get set }
     var onHomeButtonTap: (() -> Void)? { get set }
     var onShowShareActivity: (([Any]) -> Void)? { get set }

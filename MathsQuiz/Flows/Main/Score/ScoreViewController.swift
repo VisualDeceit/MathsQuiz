@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import Lottie
 
-class ScoreViewController: UIViewController, ScoreViewInput {
+class ScoreViewController: UIViewController, UIAdaptivePresentationControllerDelegate, ScoreViewInput {
     
     var presenter: (ScorePresenterOutput & ScoreViewOutput)?
     
@@ -163,7 +163,7 @@ class ScoreViewController: UIViewController, ScoreViewInput {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.presentationController?.delegate = self
         setupViews()
     }
     
@@ -186,6 +186,10 @@ class ScoreViewController: UIViewController, ScoreViewInput {
                 self.fireworkAnimationView.removeFromSuperview()
             }
         }
+    }
+    
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        presenter?.viewDidDismiss()
     }
 }
 
