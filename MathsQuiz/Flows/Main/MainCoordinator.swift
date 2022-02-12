@@ -80,6 +80,10 @@ final class MainCoordinator: BaseCoordinator {
             router?.popToRootModule(animated: true)
         }
         
+        view.presenter?.onShowShareActivity = {[weak router] sharedObjects in
+            router?.presentShareActivity(sharedObjects: sharedObjects)
+        }
+        
         router.present(view, animated: true)
     }
     

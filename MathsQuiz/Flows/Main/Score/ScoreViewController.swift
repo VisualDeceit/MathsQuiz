@@ -429,7 +429,7 @@ private extension ScoreViewController {
     }
     
     @objc func homeButtonTapped() {
-        presenter?.homebuttonDidTapped()
+        presenter?.homeButtonDidTapped()
     }
     
     @objc func shareButtonTapped() {
@@ -439,13 +439,7 @@ private extension ScoreViewController {
             mainContainerView.layer.render(in: rendererContext.cgContext)
             closeButton.isHidden = false
         })
-        
-        let objectsToShare = [image]
-        let activityViewController = UIActivityViewController(activityItems: objectsToShare, applicationActivities: nil)
-        activityViewController.excludedActivityTypes = [.airDrop,
-                                                        .addToReadingList]
-
-        self.present(activityViewController, animated: true, completion: nil)
+        presenter?.sharedObjectsPrepared(objects: [image])
     }
 }
 

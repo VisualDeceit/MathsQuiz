@@ -21,6 +21,17 @@ final class RouterImp: NSObject, Router {
         return rootController
     }
     
+    func presentShareActivity(sharedObjects: [Any]) {
+        let activityViewController = UIActivityViewController(activityItems: sharedObjects,
+                                                              applicationActivities: nil)
+        activityViewController.excludedActivityTypes = [.airDrop,
+                                                        .addToReadingList]
+        
+        rootController?.presentedViewController?.present(activityViewController,
+                                                         animated: true,
+                                                         completion: nil)
+    }
+    
     func present(_ module: Presentable?) {
         present(module, animated: true)
     }

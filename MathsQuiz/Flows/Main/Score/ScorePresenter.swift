@@ -20,6 +20,7 @@ final class ScorePresenter: ScoreViewOutput, ScorePresenterOutput {
     var onClose: (() -> Void)?
     var onResetButtonTap: (() -> Void)?
     var onHomeButtonTap: (() -> Void)?
+    var onShowShareActivity: (([Any]) -> Void)?
     
     required init(view: ScoreViewInput,
                   activityType: ActivityType,
@@ -55,8 +56,12 @@ final class ScorePresenter: ScoreViewOutput, ScorePresenterOutput {
         onResetButtonTap?()
     }
     
-    func homebuttonDidTapped() {
+    func homeButtonDidTapped() {
         onHomeButtonTap?()
+    }
+    
+    func sharedObjectsPrepared(objects: [Any]) {
+        onShowShareActivity?(objects)
     }
     
     private func timeFormatted(_ totalSeconds: Int) -> String {

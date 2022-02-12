@@ -9,6 +9,8 @@ import Foundation
 
 protocol Router: Presentable, AnyObject {
     
+    func presentShareActivity(sharedObjects: [Any])
+    
     func present(_ module: Presentable?)
     func present(_ module: Presentable?, animated: Bool)
     

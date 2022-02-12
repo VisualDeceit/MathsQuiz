@@ -21,11 +21,13 @@ protocol ScoreViewOutput: AnyObject {
     func viewDidLoad()
     func closeButtonDidTapped()
     func resetButtonDidTapped()
-    func homebuttonDidTapped()
+    func homeButtonDidTapped()
+    func sharedObjectsPrepared(objects: [Any])
 }
 
 protocol ScorePresenterOutput {
     var onClose: (() -> Void)? { get set }
     var onResetButtonTap: (() -> Void)? { get set }
     var onHomeButtonTap: (() -> Void)? { get set }
+    var onShowShareActivity: (([Any]) -> Void)? { get set }
 }
