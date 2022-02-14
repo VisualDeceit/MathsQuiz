@@ -8,6 +8,13 @@
 import Foundation
 
 struct Digit: Equatable, Hashable {
-    var value: Int
-    var carry: Int
+    let value: Int
+    let carry: Int
+}
+
+extension Digit {
+    init() {
+        value = 0
+        carry = 0
+    }
 }
