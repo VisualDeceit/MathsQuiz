@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B02E7C727B4D2260014CC0D /* SubtractionActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02E7C627B4D2260014CC0D /* SubtractionActivityStrategy.swift */; };
 		1B2EB5B0277C588800FFDD9E /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5AF277C588800FFDD9E /* Level.swift */; };
 		1B2EB5B9277C9BC200FFDD9E /* ActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */; };
 		1B2EB5C1277C9C1700FFDD9E /* InputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C0277C9C1700FFDD9E /* InputData.swift */; };
@@ -133,6 +134,7 @@
 
 /* Begin PBXFileReference section */
 		14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathsQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B02E7C627B4D2260014CC0D /* SubtractionActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtractionActivityStrategy.swift; sourceTree = "<group>"; };
 		1B2EB5AF277C588800FFDD9E /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStrategy.swift; sourceTree = "<group>"; };
 		1B2EB5C0277C9C1700FFDD9E /* InputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputData.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 			isa = PBXGroup;
 			children = (
 				1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */,
+				1B02E7C627B4D2260014CC0D /* SubtractionActivityStrategy.swift */,
 				1B2EB5C4277CA14D00FFDD9E /* AdditionActivityStrategy.swift */,
 			);
 			path = Strategy;
@@ -1056,6 +1059,7 @@
 				1B2EB5CE277EF7B900FFDD9E /* FirebaseAuthService.swift in Sources */,
 				1B7C4792276C663C00BFD277 /* CoordinatorFactoryImp.swift in Sources */,
 				1BBC5C90276DD0AB001B5F3E /* UIAlertController+Extension.swift in Sources */,
+				1B02E7C727B4D2260014CC0D /* SubtractionActivityStrategy.swift in Sources */,
 				1B2EB5E02781D39600FFDD9E /* ExampleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

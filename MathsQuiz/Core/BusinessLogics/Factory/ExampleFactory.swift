@@ -14,6 +14,7 @@ protocol ExampleFactory {
     var solution: ResolveResult { get }
     
     func makeAdditionExample(for level: Level) -> UIView?
+    func makeSubtractionExample(for level: Level) -> UIView?
 }
 
 final class MainExampleFactory: ExampleFactory {
@@ -31,6 +32,14 @@ final class MainExampleFactory: ExampleFactory {
     }
     
     func makeAdditionExample(for level: Level) -> UIView? {
+       makeBaseExample(for: level)
+    }
+    
+    func makeSubtractionExample(for level: Level) -> UIView? {
+        makeBaseExample(for: level)
+    }
+    
+    private func makeBaseExample(for level: Level) -> UIView? {
         guard let input = strategy.generate(level: level.number) else {
             return nil
         }
@@ -55,7 +64,7 @@ final class MainExampleFactory: ExampleFactory {
         builder.addNewRow()
         
         solution.result.sorted { $0.key > $1.key }.forEach { index, _ in
-            builder.addDigit(Digit(value: 0, carry: 0), type: .result, index: index)
+            builder.addDigit(Digit(), type: .result, index: index)
         }
 
         let exampleView = builder.build()

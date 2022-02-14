@@ -104,6 +104,10 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     
     private func makeExample() {
         if let exampleView = factory.makeAdditionExample(for: level) {
+            userResult.removeAll()
+            factory.solution.result.forEach { key, _ in
+                userResult[key] = Digit()
+            }
             view?.displayExample(view: exampleView)
             let progressLabel = "\(level.number) из \(activity.totalLevels)"
             let progressPercent = Float(level.number) / Float(activity.totalLevels)

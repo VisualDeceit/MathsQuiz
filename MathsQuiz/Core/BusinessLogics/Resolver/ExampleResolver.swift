@@ -19,7 +19,7 @@ class ExampleResolver: Resolver {
         case .addition:
             return additionHandler(input: input)
         case .subtraction:
-            return subtractionHandler()
+            return subtractionHandler(input: input)
         case .multiplication:
             return multiplicationHandler()
         case .division:
@@ -86,8 +86,58 @@ private extension ExampleResolver {
         return output
     }
     
-    func subtractionHandler() -> ResolveResult {
-        ResolveResult()
+    func subtractionHandler(input: InputData) -> ResolveResult {
+        
+        let firstNumber = String(input.firstNumber)
+            .reversed()
+            .compactMap { Int(String($0)) }
+        
+        let secondNumber = String(input.secondNumber)
+            .reversed()
+            .compactMap { Int(String($0)) }
+        
+        let digitCount = max(firstNumber.count, secondNumber.count)
+        
+        var carry = 0
+        var output = ResolveResult()
+        
+        for index in 0..<digitCount {
+            var d1 = 0
+            var d2 = 0
+            
+            if index >= 0 && index < firstNumber.count {
+                d1 = firstNumber[index]
+                output.firstNumber.append(Digit(value: d1, carry: carry))
+            }
+            
+            if index >= 0 && index < secondNumber.count {
+                d2 = secondNumber[index]
+                if index > firstNumber.count - 1 {
+                    output.secondNumber.append(Digit(value: d2, carry: carry))
+                } else {
+                    output.secondNumber.append(Digit(value: d2, carry: 0))
+                }
+            }
+            
+            var diff = d1 - d2 - carry
+            if diff < 0 {
+                carry = 1
+                diff += 10
+            } else {
+                carry = 0
+            }
+            
+            if index == (digitCount - 1), diff == 0 {
+                break
+            }
+            
+            output.result[index] = Digit(value: diff, carry: 0)
+        }
+
+        output.firstNumber.reverse()
+        output.secondNumber.reverse()
+        
+        return output
     }
     
     func multiplicationHandler() -> ResolveResult {

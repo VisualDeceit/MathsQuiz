@@ -32,7 +32,7 @@ enum ActivityType: String, Codable, CaseIterable {
         case .addition:
             return AdditionActivityStrategy.total
         case .subtraction:
-            return 0
+            return SubtractionActivityStrategy.total
         case .multiplication:
             return 0
         case .division:
@@ -57,7 +57,7 @@ enum ActivityType: String, Codable, CaseIterable {
         }
     }
     
-    var highlightedСolor: UIColor {
+    var highlightedColor: UIColor {
         switch self {
         case .addition:
             return  MQColor.lavenderDark

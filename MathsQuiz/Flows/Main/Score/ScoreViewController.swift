@@ -180,7 +180,7 @@ class ScoreViewController: UIViewController, UIAdaptivePresentationControllerDel
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if presenter?.scoreViewType == .some(.win) {
+        if presenter?.scoreViewType == .win {
             fireworkAnimationView.play { _ in
                 self.fireworkAnimationView.stop()
                 self.fireworkAnimationView.removeFromSuperview()
@@ -211,7 +211,7 @@ private extension ScoreViewController {
     
     func setupCloseButton() {
         closeButton.setTitleColor(presenter?.activityType.color, for: .highlighted)
-        closeButton.setTitleColor(presenter?.activityType.highlightedСolor, for: .normal)
+        closeButton.setTitleColor(presenter?.activityType.highlightedColor, for: .normal)
         
         mainContainerView.addSubview(closeButton)
         
@@ -254,7 +254,7 @@ private extension ScoreViewController {
     }
     
     func setupCircleContainerViews() {
-        let circleContainerColor = presenter?.activityType.highlightedСolor ?? .black
+        let circleContainerColor = presenter?.activityType.highlightedColor ?? .black
         let middleLighterColor = circleContainerColor.lighter(by: 20)
         let topLighterColor = circleContainerColor.lighter(by: 50)
         
@@ -287,12 +287,12 @@ private extension ScoreViewController {
     }
     
     func setupScoreLabels() {
-        scoreTitleLabel.textColor = presenter?.activityType.highlightedСolor
-        pointTitleLabel.textColor = presenter?.activityType.highlightedСolor
-        bestScoreTitleLabel.textColor = presenter?.activityType.highlightedСolor
-        totalTimeTitleLabel.textColor = presenter?.activityType.highlightedСolor
-        errorsTitleLabel.textColor = presenter?.activityType.highlightedСolor
-        completionTitleLabel.textColor = presenter?.activityType.highlightedСolor
+        scoreTitleLabel.textColor = presenter?.activityType.highlightedColor
+        pointTitleLabel.textColor = presenter?.activityType.highlightedColor
+        bestScoreTitleLabel.textColor = presenter?.activityType.highlightedColor
+        totalTimeTitleLabel.textColor = presenter?.activityType.highlightedColor
+        errorsTitleLabel.textColor = presenter?.activityType.highlightedColor
+        completionTitleLabel.textColor = presenter?.activityType.highlightedColor
         
         let stackView = UIStackView(arrangedSubviews: [scoreTitleLabel,
                                                        scoreNumLabel,
@@ -327,7 +327,7 @@ private extension ScoreViewController {
     }
 
     func setupFireworkAnimation() {
-        if presenter?.scoreViewType == .some(.lose) { return }
+        if presenter?.scoreViewType == .lose { return }
         
         mainContainerView.addSubview(fireworkAnimationView)
         
