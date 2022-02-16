@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>For share result</string>
+	<string>Приложение требует доступ к фотогаллереи для сохранения результатов решения заданий</string>
 	<key>NSCameraUsageDescription</key>
-	<string>For change avatar</string>
+	<string>Приложение требует доступ к камере для смены пользовательского аварата</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>For change avatar</string>
+	<string>Приложение требует доступ к геолокации для автоматического определения города по местонахождению пользователя</string>
 	<key>LSApplicationCategoryType</key>
 	<array/>
 	<key>CFBundleDevelopmentRegion</key>

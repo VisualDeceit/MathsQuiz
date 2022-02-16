@@ -10,7 +10,7 @@ import UIKit
 protocol ExampleViewInput: AnyObject {
     var presenter: (ExampleViewOutput & ExamplePresenterOutput)? { get set }
     
-    func displayExample(view: UIView)
+    func displayExample(view: NSObject)
     func refreshAttemptsView(with attempts: Int)
     func refreshTimerView(with time: String)
     func changeCheckButton(behavior: CheckButtonBehavior)

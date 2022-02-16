@@ -9,7 +9,7 @@ import Foundation
 
 final class MultiplicationActivityStrategy: ActivityStrategy {
     
-    static let total = 14
+    static let total = 15
     
     func generate(level: Int) -> InputData? {
         var n1, n2: Int
@@ -56,6 +56,9 @@ final class MultiplicationActivityStrategy: ActivityStrategy {
         case 14:
             n1 = Int.random(in: 13...19)
             n2 = Int.random(in: 2...9)
+        case 15:
+            n1 = Int.random(in: 2...4) * 10 + Int.random(in: 2...4)
+            n2 = Int.random(in: 2...4)
         default:
             return nil
         }

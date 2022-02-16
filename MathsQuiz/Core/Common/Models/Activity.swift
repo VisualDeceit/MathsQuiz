@@ -34,7 +34,7 @@ enum ActivityType: String, Codable, CaseIterable {
         case .subtraction:
             return SubtractionActivityStrategy.total
         case .multiplication:
-            return 0
+            return MultiplicationActivityStrategy.total
         case .division:
             return 0
         case .expression:

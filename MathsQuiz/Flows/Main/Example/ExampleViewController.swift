@@ -266,12 +266,14 @@ private extension ExampleViewController {
 // MARK: - ExampleViewInput
 extension ExampleViewController {
     
-    func displayExample(view: UIView) {
-        exampleWorkspaceView.subviews.forEach { (view) in view.removeFromSuperview() }
-        exampleWorkspaceView.addSubview(view)
-        
-        view.snp.makeConstraints { make in
-            make.centerX.centerY.equalTo(exampleWorkspaceView)
+    func displayExample(view: NSObject) {
+        if let view = view as? UIView {
+            exampleWorkspaceView.subviews.forEach { (view) in view.removeFromSuperview() }
+            exampleWorkspaceView.addSubview(view)
+            
+            view.snp.makeConstraints { make in
+                make.centerX.centerY.equalTo(exampleWorkspaceView)
+            }
         }
     }
     
