@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 enum DigitType {
-    case common, result
+    case common, result, stub
 }
 
 class ExampleDigitView: UIView {
@@ -46,6 +46,10 @@ class ExampleDigitView: UIView {
     
     convenience init(sign: ActivityType) {
         self.init(digit: sign.sign, type: .common, index: 0)
+    }
+    
+    convenience init() {
+        self.init(digit: "", type: .stub, index: 0)
     }
     
     required init?(coder: NSCoder) {

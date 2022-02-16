@@ -99,6 +99,16 @@ class ExampleViewBuilder {
         }
     }
     
+    func addDigitStub() {
+        let digitView = ExampleDigitView()
+        horizontalStackView?.addArrangedSubview(digitView)
+        
+        digitView.snp.makeConstraints { make in
+            make.width.equalTo(50)
+            make.height.equalTo(70)
+        }
+    }
+    
     func addSeparator(for digits: Int) {
         addStackViewAndNil()
         

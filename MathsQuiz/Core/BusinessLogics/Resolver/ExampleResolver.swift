@@ -21,7 +21,7 @@ class ExampleResolver: Resolver {
         case .subtraction:
             return subtractionHandler(input: input)
         case .multiplication:
-            return multiplicationHandler()
+            return multiplicationHandler(input: input)
         case .division:
             return divisionHandler()
         case .expression:
@@ -133,15 +133,61 @@ private extension ExampleResolver {
             
             output.result[index] = Digit(value: diff, carry: 0)
         }
-
+        
         output.firstNumber.reverse()
         output.secondNumber.reverse()
         
         return output
     }
     
-    func multiplicationHandler() -> ResolveResult {
-        ResolveResult()
+    func multiplicationHandler(input: InputData) -> ResolveResult {
+        
+        let firstNumber = String(input.firstNumber)
+            .reversed()
+            .compactMap { Int(String($0)) }
+        
+        let secondNumber = String(input.secondNumber)
+            .reversed()
+            .compactMap { Int(String($0)) }
+        
+        var output = ResolveResult()
+        
+        for secondIndex in 0..<secondNumber.count {
+            let secondNumberDigit = secondNumber[secondIndex]
+            var carry = 0
+            output.secondNumber.append(Digit(value: secondNumberDigit, carry: 0))
+            
+            for firstIndex in 0..<firstNumber.count {
+                let firstNumberDigit = firstNumber[firstIndex]
+                if secondIndex == 0 {
+                    output.firstNumber.append(Digit(value: firstNumberDigit, carry: carry))
+                }
+                
+                let multi = firstNumberDigit * secondNumberDigit + carry
+                output.result[secondIndex * 10 + firstIndex + secondIndex] = Digit(value: multi % 10,
+                                                                                   carry: 0)
+                carry = multi / 10
+            }
+            
+            if carry > 0 {
+                output.result[secondIndex * 10 + firstNumber.count] = Digit(value: carry, carry: 0)
+            }
+        }
+        
+        if firstNumber.count > 1 && secondNumber.count > 1 {
+            let resultNumber = String(input.firstNumber * input.secondNumber)
+                .reversed()
+                .compactMap { Int(String($0)) }
+            
+            for resultIndex in 0..<resultNumber.count {
+                output.result[(secondNumber.count + 1) * 10 + resultIndex] =
+                    Digit(value: resultNumber[resultIndex], carry: 0)
+            }
+        }
+        
+        output.firstNumber.reverse()
+        output.secondNumber.reverse()
+        return output
     }
     
     func divisionHandler() -> ResolveResult {

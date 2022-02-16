@@ -103,7 +103,22 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
     }
     
     private func makeExample() {
-        if let exampleView = factory.makeAdditionExample(for: level) {
+        let exampleView: NSObject?
+        
+        switch activity {
+        case .addition:
+            exampleView = factory.makeAdditionExample(for: level)
+        case .subtraction:
+            exampleView = factory.makeSubtractionExample(for: level)
+        case .multiplication:
+            exampleView = factory.makeMultiplicationExample(for: level)
+        case .division:
+            exampleView = nil
+        case .expression:
+            exampleView = nil
+        }
+        
+        if let exampleView = exampleView {
             userResult.removeAll()
             factory.solution.result.forEach { key, _ in
                 userResult[key] = Digit()
