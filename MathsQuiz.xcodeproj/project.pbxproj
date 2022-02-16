@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1B02E7C727B4D2260014CC0D /* SubtractionActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02E7C627B4D2260014CC0D /* SubtractionActivityStrategy.swift */; };
 		1B02E7D627BBFD380014CC0D /* MultiplicationActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B02E7D527BBFD380014CC0D /* MultiplicationActivityStrategy.swift */; };
+		1B02E7F227BD877C0014CC0D /* Localizable.stringsdict in Resources */ = {isa = PBXBuildFile; fileRef = 1B02E7F027BD877C0014CC0D /* Localizable.stringsdict */; };
 		1B2EB5B0277C588800FFDD9E /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5AF277C588800FFDD9E /* Level.swift */; };
 		1B2EB5B9277C9BC200FFDD9E /* ActivityStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */; };
 		1B2EB5C1277C9C1700FFDD9E /* InputData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B2EB5C0277C9C1700FFDD9E /* InputData.swift */; };
@@ -137,6 +138,8 @@
 		14854C16524560F9BF89A18C /* Pods_MathsQuiz.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MathsQuiz.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B02E7C627B4D2260014CC0D /* SubtractionActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubtractionActivityStrategy.swift; sourceTree = "<group>"; };
 		1B02E7D527BBFD380014CC0D /* MultiplicationActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiplicationActivityStrategy.swift; sourceTree = "<group>"; };
+		1B02E7F127BD877C0014CC0D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = ru; path = ru.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
+		1B02E7F427BD88120014CC0D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.stringsdict; name = en; path = en.lproj/Localizable.stringsdict; sourceTree = "<group>"; };
 		1B2EB5AF277C588800FFDD9E /* Level.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		1B2EB5B8277C9BC200FFDD9E /* ActivityStrategy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityStrategy.swift; sourceTree = "<group>"; };
 		1B2EB5C0277C9C1700FFDD9E /* InputData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputData.swift; sourceTree = "<group>"; };
@@ -454,6 +457,7 @@
 		1B71BA2A2767BF1C0056A2FF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				1B02E7F027BD877C0014CC0D /* Localizable.stringsdict */,
 				1B71BA1A2767BE4A0056A2FF /* Assets.xcassets */,
 				E8335A5E27958D5B004A0BCA /* fireworkAnimation.json */,
 				1B9BCB00277B760A0084931D /* onboarding.json */,
@@ -851,11 +855,12 @@
 			};
 			buildConfigurationList = 1B71BA092767BE490056A2FF /* Build configuration list for PBXProject "MathsQuiz" */;
 			compatibilityVersion = "Xcode 9.3";
-			developmentRegion = en;
+			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				en,
 				Base,
+				ru,
+				en,
 			);
 			mainGroup = 1B71BA052767BE490056A2FF;
 			packageReferences = (
@@ -882,6 +887,7 @@
 				E8335A5F27958D5B004A0BCA /* fireworkAnimation.json in Resources */,
 				1B9BCB01277B760A0084931D /* onboarding.json in Resources */,
 				1BBC5C7E276DB060001B5F3E /* GoogleService-Info.plist in Resources */,
+				1B02E7F227BD877C0014CC0D /* Localizable.stringsdict in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1071,6 +1077,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		1B02E7F027BD877C0014CC0D /* Localizable.stringsdict */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1B02E7F127BD877C0014CC0D /* ru */,
+				1B02E7F427BD88120014CC0D /* en */,
+			);
+			name = Localizable.stringsdict;
+			sourceTree = "<group>";
+		};
 		1B71BA1C2767BE4A0056A2FF /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1086,6 +1101,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1147,6 +1163,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

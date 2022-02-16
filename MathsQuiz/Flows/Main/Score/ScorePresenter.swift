@@ -36,7 +36,8 @@ final class ScorePresenter: ScoreViewOutput, ScorePresenterOutput {
         firestoreManager.loadStatistics(uid: Session.uid, activityType: activityType) {[weak self] (result) in
             switch result {
             case .success(let statistics):
-                let totalScore = "\(statistics.totalScore) очков"
+                let totalScore = String(format: NSLocalizedString("statistic points", comment: ""),
+                                        statistics.totalScore)
                 let totalTime = "\(self?.timeFormatted(statistics.time) ?? "") сек"
                 let completion = "\(statistics.completion * 100 / (self?.activityType.totalLevels ?? 1))%"
                 self?.view.displayStatistics(totalScore: totalScore,

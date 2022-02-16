@@ -91,16 +91,9 @@ extension HomePresenter {
     }
     
     private func parse(from activity: Activity, with statistics: ActivityStatistics) -> ActivityViewData {
-        let levelCountLabel: String
+        let levelCountLabel = String(format: NSLocalizedString("total levels", comment: ""),
+                                     activity.type.totalLevels)
         let progress: Double
-        
-        switch activity.type.totalLevels {
-        case 0:
-            levelCountLabel = "Нет доступных"
-        default:
-            levelCountLabel = "\(activity.type.totalLevels) уровней"
-        }
-        
         if activity.type.totalLevels == 0 {
             progress = 0
         } else {
