@@ -69,8 +69,8 @@ final class MainExampleFactory: ExampleFactory {
                 solution.result
                     .filter { $0.key / 10 == row }
                     .sorted { $0.key > $1.key }
-                    .forEach { index, digit in
-                        builder.addDigit(digit, type: .result, index: index)
+                    .forEach { index, _ in
+                        builder.addDigit(Digit(), type: .result, index: index)
                     }
                 if row > 0 {
                     builder.addDigitStub()

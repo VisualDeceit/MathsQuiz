@@ -114,7 +114,7 @@ class ExampleViewBuilder {
         
         let separator = UIView()
         self.verticalStackView.addArrangedSubview(separator)
-        separator.backgroundColor = .systemGray4
+        separator.backgroundColor = .black
  
         separator.snp.makeConstraints { make in
             make.width.equalTo(CGFloat(54 * digits))
