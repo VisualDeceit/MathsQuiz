@@ -269,6 +269,9 @@ extension ExampleViewController {
     func displayExample(view: NSObject) {
         if let view = view as? UIView {
             exampleWorkspaceView.subviews.forEach { (view) in view.removeFromSuperview() }
+            if presenter?.activity == .multiplication {
+                view.transform = .init(scaleX: 0.9, y: 0.9)
+            }
             exampleWorkspaceView.addSubview(view)
             
             view.snp.makeConstraints { make in

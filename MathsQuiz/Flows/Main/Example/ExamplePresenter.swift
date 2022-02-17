@@ -113,7 +113,8 @@ final class ExamplePresenter: ExampleViewOutput, ExamplePresenterOutput {
         case .multiplication:
             exampleView = factory.makeMultiplicationExample(for: level)
         case .division:
-            exampleView = nil
+            exampleView = factory.makeDivisionExample(for: level)
+            
         case .expression:
             exampleView = nil
         }

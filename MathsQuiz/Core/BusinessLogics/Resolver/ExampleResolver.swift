@@ -23,7 +23,7 @@ class ExampleResolver: Resolver {
         case .multiplication:
             return multiplicationHandler(input: input)
         case .division:
-            return divisionHandler()
+            return divisionHandler(input: input)
         case .expression:
             return expressionHandler()
         }
@@ -190,7 +190,7 @@ private extension ExampleResolver {
         return output
     }
     
-    func divisionHandler() -> ResolveResult {
+    func divisionHandler(input: InputData) -> ResolveResult {
         ResolveResult()
     }
     

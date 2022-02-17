@@ -16,6 +16,7 @@ protocol ExampleFactory {
     func makeAdditionExample(for level: Level) -> UIView?
     func makeSubtractionExample(for level: Level) -> UIView?
     func makeMultiplicationExample(for level: Level) -> UIView?
+    func makeDivisionExample(for level: Level) -> UIView?
 }
 
 final class MainExampleFactory: ExampleFactory {
@@ -95,6 +96,10 @@ final class MainExampleFactory: ExampleFactory {
         let exampleView = builder.build()
         
         return exampleView
+    }
+    
+    func makeDivisionExample(for level: Level) -> UIView? {
+        UIView()
     }
     
     private func makeBaseExample(for level: Level) -> UIView? {

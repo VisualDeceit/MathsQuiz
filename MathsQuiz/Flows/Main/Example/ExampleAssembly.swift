@@ -20,7 +20,7 @@ final class ExampleAssembly {
         case .multiplication:
             strategy = MultiplicationActivityStrategy()
         case .division:
-            strategy = AdditionActivityStrategy()
+            strategy = DivisionActivityStrategy()
         case .expression:
             strategy = AdditionActivityStrategy()
         }
