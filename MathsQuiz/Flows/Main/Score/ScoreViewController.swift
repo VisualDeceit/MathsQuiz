@@ -391,6 +391,9 @@ private extension ScoreViewController {
         }
         scoreNumLabel.text = "\(presenter?.score?.value ?? 0)"
         errorsNumLabel.text = "\(presenter?.score?.attempts ?? 0)"
+        
+        pointTitleLabel.text = String(format: NSLocalizedString("score points", comment: ""),
+                                      presenter?.score?.value ?? 0)
     }
     
     func setupViewsCornerRadius() {
